@@ -11,6 +11,7 @@
         id = `${v.surface}:${v.key}`;
       if (
         !s ||
+        !Number.isInteger(v.surface) ||
         v.surface <= 0 ||
         v.surface >= system.surfaces.length - 1 ||
         !["R", "t", "stopPosition"].includes(v.key) ||
@@ -21,7 +22,7 @@
       if (![v.min, v.max].every(Number.isFinite) || v.min >= v.max)
         throw new Error(`Invalid bounds for ${id}`);
       const value = v.key === "stopPosition" ? 0 : s[v.key];
-      if (value < v.min || value > v.max)
+      if (!Number.isFinite(value) || value < v.min || value > v.max)
         throw new Error(`Current ${id} outside bounds`);
       if (v.key === "R" && v.min <= 0 && v.max >= 0)
         throw new Error(

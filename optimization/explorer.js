@@ -12,12 +12,25 @@
       .map((v) => ({
         ...v,
         id: v.id || `${v.surface}:${v.key}`,
+        type:
+          v.key === "R"
+            ? "radius"
+            : v.key === "stopPosition"
+              ? "stopPosition"
+              : input.surfaces[v.surface]?.glass === "AIR"
+                ? "airGap"
+                : "elementThickness",
         scale: v.scale ?? v.max - v.min,
         value:
           v.key === "stopPosition" ? 0 : input.surfaces[v.surface]?.[v.key],
         enabled: true,
       }));
     S.validateVariables(input, vars);
+    if (
+      new Set(vars.map((v) => v.id)).size !== vars.length ||
+      vars.some((v) => typeof v.id !== "string")
+    )
+      throw Error("Parameter IDs must be unique strings");
     if (vars.some((v) => !Number.isFinite(v.scale) || v.scale <= 0))
       throw Error("Invalid parameter scale");
     return vars;
@@ -68,7 +81,19 @@
         "Select a single prescription; multi-configuration search is unavailable",
       );
     const variables = parameters(input, definitions);
-    A.settings(spec);
+    const configured = A.settings(spec);
+    if (configured.fields.length > 26 || configured.wavelengths.length > 9)
+      throw Error(
+        "Search supports at most 26 fields and 9 wavelengths, reserving room for dense reference samples",
+      );
+    if (
+      operands.some(
+        (o) =>
+          o.metric === "rms" &&
+          !configured.fields.some((f) => Math.abs(f - o.field) < 1e-8),
+      )
+    )
+      throw Error("RMS operand field is absent from analysis specification");
     M.validateOperands(operands);
     const config = {
       strategy: "de",
@@ -105,7 +130,9 @@
       throw Error("Population 4–4096, archive 1–100, runs 1–10000");
     if (
       !["de", "uniform", "sensitivity"].includes(config.strategy) ||
-      !Number.isSafeInteger(config.seed)
+      !Number.isSafeInteger(config.seed) ||
+      config.seed < 0 ||
+      config.seed > 4294967295
     )
       throw Error("Invalid strategy/seed");
     if (
@@ -189,7 +216,7 @@
       });
       vectors = all.slice(
         s.evaluations,
-        s.evaluations + Math.min(32, remaining),
+        s.evaluations + Math.min(s.config.population, 32, remaining),
       );
       if (!vectors.length) {
         s.done = true;
@@ -243,15 +270,12 @@
   }
   function archive(s, item) {
     if (!Number.isFinite(item.score)) return;
-    const near = s.archive.findIndex(
-      (a) =>
-        distance(a.vector, item.vector, s.variables) < s.config.diversity ||
-        distance(a.vector, item.vector, s.variables) === 0,
-    );
-    if (near >= 0) {
-      if (s.archive[near].score <= item.score) return;
-      s.archive.splice(near, 1);
-    }
+    const near = (a) => {
+      const d = distance(a.vector, item.vector, s.variables);
+      return d < s.config.diversity || d === 0;
+    };
+    if (s.archive.some((a) => near(a) && a.score <= item.score)) return;
+    s.archive = s.archive.filter((a) => !near(a));
     s.archive.push(item);
     s.archive.sort((a, b) => a.score - b.score);
     s.archive.length = Math.min(s.archive.length, s.config.archiveSize);
@@ -386,8 +410,15 @@
             Math.min(41, 2 * (s.spec.pupilGrid || 9) + 1),
           ),
           pupilPattern: "sunflower",
-          fields: A.DEFAULT_FIELDS,
-          wavelengths: A.DEFAULT_WAVES,
+          fields: [
+            ...new Set([...A.DEFAULT_FIELDS, ...(s.spec.fields || [])]),
+          ].sort((a, b) => a - b),
+          wavelengths: [
+            ...A.DEFAULT_WAVES,
+            ...(s.spec.wavelengths || []).filter(
+              (w) => !A.DEFAULT_WAVES.some((d) => d.nm === w.nm),
+            ),
+          ],
         }
       : s.spec;
     const result = M.evaluate(system, spec, s.operands),
@@ -477,6 +508,8 @@
       s.evaluations > s.config.budget ||
       s.valid > s.evaluations ||
       s.run >= s.config.runs ||
+      s.rng > 4294967295 ||
+      s.lastImprovement > s.evaluations ||
       !Number.isFinite(s.elapsedMs) ||
       s.elapsedMs < 0 ||
       typeof s.done !== "boolean"
@@ -492,6 +525,23 @@
       s.history.length > 2048
     )
       throw Error("Invalid checkpoint arrays");
+    if (
+      !Array.isArray(s.sensitivity) ||
+      s.sensitivity.length > 129 ||
+      !s.rejections ||
+      typeof s.rejections !== "object" ||
+      Object.values(s.rejections).some(
+        (n) => !Number.isSafeInteger(n) || n < 0,
+      ) ||
+      s.history.some(
+        (h) =>
+          !Number.isSafeInteger(h.evaluations) ||
+          h.evaluations < 0 ||
+          h.evaluations > s.evaluations ||
+          (h.score !== null && !Number.isFinite(h.score)),
+      )
+    )
+      throw Error("Invalid checkpoint history/statistics");
     s.population.forEach(vector);
     if (s.pending) {
       if (
@@ -507,6 +557,8 @@
       vector(a.vector);
       if (!Number.isFinite(a.score)) throw Error("Invalid archive score");
     });
+    s.variables = fresh.variables;
+    s.archive.sort((a, b) => a.score - b.score);
     // Stored rankings must be rechecked by the runner before resuming untrusted imports.
     return s;
   }

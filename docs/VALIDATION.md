@@ -59,3 +59,7 @@ Timings are machine-specific Node measurements, not browser guarantees or a spee
 ## Remaining quality boundaries
 
 Paraxial entrance-pupil disk sampling, approximate legacy materials, finite-conjugate preview heuristics and geometric preview brightness remain explicitly limited. No manufactured-lens accuracy, full Zemax compatibility, diffraction/MTF, autonomous design, optical character scoring or tolerance yield is claimed. The next technical gate is independent real-pupil and multi-field comparison against trusted reference exports before expanding autonomous design.
+
+## Numerical Search Lab follow-up
+
+The subsequent DE/worker-pool milestone has its own [benchmark and validation record](SEARCH_BENCHMARK.md) and [scope](SEARCH_LAB.md). It includes mathematical-function optimization and worker-count-invariant replay tests. The historical local-optimizer benchmark above remains unchanged.

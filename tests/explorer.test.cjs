@@ -137,3 +137,88 @@ test("uniform runs, invalid candidates, stop limits and 10M budgets", () => {
   assert.equal(s.archive.length, 0);
   assert.equal(state({ budget: 10000000 }).config.budget, 10000000);
 });
+
+test("DE converges on Rosenbrock with cross-coupled parameters", () => {
+  const s = state({ budget: 6400, population: 32 });
+  run(s, (v) => {
+    const x = (v[0] - 55) / 5,
+      y = (v[1] - 32) / 5;
+    return { score: (1 - x) ** 2 + 100 * (y - x * x) ** 2 };
+  });
+  assert.ok(s.archive[0].score < 1e-7);
+});
+test("target, elapsed time and stagnation stop only at complete batches", () => {
+  const a = run(state({ targetMerit: 1e8 }));
+  assert.equal(a.evaluations, 16);
+  assert.match(a.reason, /target/);
+  const b = state({ seconds: 1 });
+  b.elapsedMs = 1000;
+  E.accept(b, E.next(b).map(sphere));
+  assert.match(b.reason, /time/);
+  const c = run(state({ stagnation: 32 }), () => ({ score: 10 }));
+  assert.match(c.reason, /improvement/);
+  assert.equal(c.evaluations, 48);
+});
+test("many-parameter sensitivity checkpoints stay bounded and restore between batches", () => {
+  const vars = [];
+  lens.surfaces.slice(1, -1).forEach((x, j) => {
+    if (x.R !== 0)
+      vars.push({
+        surface: j + 1,
+        key: "R",
+        min: Math.min(x.R * 0.95, x.R * 1.05),
+        max: Math.max(x.R * 0.95, x.R * 1.05),
+      });
+  });
+  let s = E.create(lens, spec, vars, M.defaultOperands(spec), {
+    strategy: "sensitivity",
+    population: 4,
+    budget: 100,
+  });
+  while (!s.done) {
+    const v = E.next(s);
+    if (!v.length) break;
+    E.accept(
+      s,
+      v.map((x) => ({ score: x.reduce((a, b) => a + b * b, 0) })),
+    );
+    s = E.restore(JSON.parse(JSON.stringify(s)));
+  }
+  assert.equal(s.sensitivity.length, 2 * vars.length + 1);
+});
+
+test("dense validation retains custom field operands and includes reference fields", () => {
+  const s = state();
+  s.spec.fields = [0, 0.2, 1];
+  s.operands = [{ metric: "rms", field: 0.2, target: 0, scale: 1, weight: 1 }];
+  const r = E.evaluate(
+    s,
+    s.variables.map((v) => v.value),
+    true,
+  );
+  assert.ok(Number.isFinite(r.score));
+  assert.ok(r.analysis.settings.fields.includes(0.2));
+  assert.ok(r.analysis.settings.fields.includes(0.7));
+});
+test("long mathematical search keeps history and archive bounded", () => {
+  const s = run(state({ strategy: "uniform", budget: 100000, population: 8 }));
+  assert.equal(s.evaluations, 100000);
+  assert.ok(s.history.length <= 2048);
+  assert.ok(s.archive.length <= 12);
+  assert.equal(s.history.at(-1).evaluations, 100000);
+  assert.doesNotThrow(() => E.restore(JSON.parse(JSON.stringify(s))));
+});
+
+test("parameter definitions reject nonnumeric indices and nonfinite current values", () => {
+  assert.throws(
+    () =>
+      E.parameters(lens, [{ surface: "__proto__", key: "t", min: 0, max: 1 }]),
+    /variable/,
+  );
+  const broken = structuredClone(lens);
+  broken.surfaces[1].R = null;
+  assert.throws(
+    () => E.parameters(broken, [{ surface: 1, key: "R", min: 40, max: 70 }]),
+    /bounds/,
+  );
+});

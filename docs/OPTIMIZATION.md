@@ -10,6 +10,6 @@ Workers support pause/resume/stop. State includes input, specification, operand 
 
 Adoption is explicit and one undo transaction. It resets preview focus offsets and disables automatic refocus. Adoption is blocked if the editor changed since the run, to preserve newer edits. Native JSON includes the adopted run/settings/validation in `project`. Failed/high-grid-regressing candidates cannot be adopted through the result button.
 
-Not implemented: global search, autonomous starting architecture generation, glass selection, Pareto archive, manufacturing yield, matched prime sets, multi-configuration optimization or character inference. Existing zoom editing/import metadata is retained but excluded from optimization.
+The local workflow above remains available. [Search Lab](SEARCH_LAB.md) now adds seeded global DE, uniform exploration, sensitivity, multi-start experiments, worker pooling and a diverse scalar-merit archive. Not implemented: from-scratch starting architecture generation, glass selection, Pareto archive, manufacturing yield, matched prime sets, multi-configuration optimization or character metrics. Existing zoom editing/import metadata is retained but excluded from optimization.
 
 Experiment metadata includes engine version, a source SHA-256 fingerprint and the Git base commit at stamping time. `node tools/build-info.cjs` refreshes `build-info.js` after source changes; the base commit is labelled as a parent, not falsely claimed as the final release commit.

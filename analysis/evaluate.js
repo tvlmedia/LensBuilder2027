@@ -73,16 +73,16 @@
     if (
       !Array.isArray(s.fields) ||
       s.fields.length < 2 ||
-      s.fields.length > 16 ||
+      s.fields.length > 32 ||
       !s.fields.includes(0) ||
       !s.fields.includes(1) ||
       s.fields.some((f) => !Number.isFinite(f) || f < 0 || f > 1)
     )
-      throw new Error("Fields must include 0 and 1, within [0,1], at most 16");
+      throw new Error("Fields must include 0 and 1, within [0,1], at most 32");
     if (
       !Array.isArray(s.wavelengths) ||
       s.wavelengths.length < 1 ||
-      s.wavelengths.length > 9 ||
+      s.wavelengths.length > 12 ||
       s.wavelengths.some(
         (w) =>
           !(

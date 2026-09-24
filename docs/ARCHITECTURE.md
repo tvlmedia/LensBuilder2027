@@ -16,3 +16,13 @@ The original HTML/CSS/editor remains the application. Plain script modules expos
 `window.LensBuilder` is the explicit editor boundary: snapshot, load, adopt, undo/redo, sensor, preview and importer. Objective evaluations use cloned prescription data, never DOM state. Checkpoints omit nested prior project records to prevent unbounded experiment nesting.
 
 Native prescription JSON schema 2 is backward compatible with unversioned prescriptions. New metadata retains project, import report and surface capabilities. Future schema versions are rejected. Existing save/copy controls remain; optimizer offers additional experiment/checkpoint exports. Sensor dimensions are recorded through the reference circle in the analysis spec, while original sensor UI persistence remains unchanged.
+
+## Numerical Search Lab extension
+
+- `optimization/explorer.js`: seeded DE/uniform/sensitivity, compact vectors, scalar/diverse archive, deterministic batch coordinator, state validation and dense resampling.
+- `optimization/evaluation-worker.js`, `optimization/pool.js`: persistent evaluators, base/config transfer once, bounded vector batches, errors and shutdown.
+- `optimization/refine-worker.js`: local refinement in a separate worker, followed by standard and dense analysis.
+- `ui/experiments.js`: atomic IndexedDB experiment storage.
+- `ui/search-lab.js`: Search Lab configuration, run lifecycle, throttled progress, saved experiments, selected candidate comparisons and guarded adoption.
+
+Generation bookkeeping happens on the main thread; expensive evaluation and refinement do not. No runtime dependencies or AI services are added. [Search Lab](SEARCH_LAB.md) documents algorithm, persistence and scientific limits.

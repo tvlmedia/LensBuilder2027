@@ -52,6 +52,49 @@ const records = {
       pool.close();
     }
   }
+  const singlet = {
+    name: "N-BK7 singlet",
+    surfaces: [
+      { type: "OBJ", glass: "AIR", t: 0, R: 0, ap: 20 },
+      { type: "1", R: 50, t: 5, ap: 5, glass: "N-BK7", stop: true },
+      { type: "2", R: -50, t: 48, ap: 5, glass: "AIR" },
+      { type: "IMS", R: 0, t: 0, ap: 20, glass: "AIR" },
+    ],
+  };
+  const simpleSpec = {
+    targetEflMm: 50,
+    targetFNumber: 5,
+    imageCircleMm: 10,
+    pupilGrid: 9,
+  };
+  const simple = E.create(
+    singlet,
+    simpleSpec,
+    [{ surface: 2, key: "t", min: 40, max: 55 }],
+    M.defaultOperands(simpleSpec),
+    { strategy: "uniform", budget: 512, population: 512 },
+  );
+  const simpleVectors = E.next(simple);
+  records.singlet = [];
+  for (const workers of [1, 2, 4]) {
+    const pool = new Pool(workers, adapter);
+    try {
+      await pool.init(simple);
+      await pool.evaluate(simpleVectors.slice(0, 32));
+      const t = performance.now(),
+        output = await pool.evaluate(simpleVectors),
+        ms = performance.now() - t;
+      records.singlet.push({
+        workers,
+        evaluationsPerSecond: 512 / (ms / 1000),
+        sampledRaysPerSecond:
+          output.reduce((n, r) => n + r.rays, 0) / (ms / 1000),
+        valid: output.filter((r) => r.score !== null).length,
+      });
+    } finally {
+      pool.close();
+    }
+  }
   // Instrumented inclusive timings, separately from throughput; nested categories overlap.
   const timings = {};
   const restore = [];
@@ -83,6 +126,19 @@ const records = {
     note: "Inclusive categories overlap; instrumentation adds overhead. trace includes surface intersections and Snell. Sampled ray counts exclude chief aiming rays. Allocation/GC and UI costs require browser/CPU profiling.",
   };
   restore.forEach((fn) => fn());
+  const timed = (count, fn) => {
+    const t = performance.now();
+    for (let i = 0; i < count; i++) fn(i);
+    return (performance.now() - t) / count;
+  };
+  const analysis = A.evaluate(lens, spec);
+  records.microbenchMeanMs = {
+    candidateSurfaceClone: timed(10000, (i) =>
+      E.prescription(state, vectors[i % vectors.length]),
+    ),
+    cachedPupilLookup: timed(10000, () => A.pupilGrid(9)),
+    meritOnly: timed(10000, () => M.score(analysis, state.operands)),
+  };
   console.log(JSON.stringify(records, null, 2));
 })().catch((e) => {
   console.error(e);

@@ -50,6 +50,8 @@
     }
     async evaluate(vectors, dense = false) {
       const output = new Array(vectors.length);
+      const started = performance.now();
+      let occupiedMs = 0;
       let cursor = 0;
       await Promise.all(
         this.workers.map(async (w) => {
@@ -58,6 +60,7 @@
             cursor += 4;
             const batch = vectors.slice(offset, offset + 4);
             this.busy++;
+            const chunkStart = performance.now();
             try {
               const r = await this.request(w, {
                 type: "evaluate",
@@ -66,11 +69,16 @@
               });
               r.results.forEach((v, i) => (output[offset + i] = v));
             } finally {
+              occupiedMs += performance.now() - chunkStart;
               this.busy--;
             }
           }
         }),
       );
+      this.utilization =
+        occupiedMs /
+        Math.max(1, performance.now() - started) /
+        this.workers.length;
       return output;
     }
     close(error = Error("Pool stopped")) {

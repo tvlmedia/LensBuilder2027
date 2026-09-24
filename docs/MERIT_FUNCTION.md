@@ -7,3 +7,5 @@ For scalar target t, error=e=value−t. For range [lo,hi], e is zero inside the 
 This supports intentional nonzero **measured** RMS/color/distortion targets; it does not claim a physically implemented swirl/glow control. Default numerical weights are starting choices, not aesthetic or manufacturing truth. Changing EFL/f-number controls updates untouched default operands automatically. Edited custom operands remain independent, with a visible review message; **Reset operands to current targets** recreates the defaults.
 
 Hard geometry limits are validated separately and cannot be outweighed. Available limits: min center/edge thickness, min air gap, max diameter, max optical length including sensor gap, minimum BFL. Minimum sampled pupil survival also applies. These are a limited geometric feasibility model, not a PL-mount clearance certification. No full image-circle guarantee is implemented.
+
+Search Lab adds explicit directional/threshold types and BFL/pupil-survival operands. See [type formulas](SEARCH_LAB.md#merit-semantics). Directional objectives may produce negative totals.

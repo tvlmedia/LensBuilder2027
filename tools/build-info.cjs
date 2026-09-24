@@ -27,6 +27,7 @@ const baseCommit = cp
   .trim();
 const info = {
   engineVersion: "lb2027-spherical-0.2.0",
+  searchEngineVersion: "numerical-lab-1",
   baseCommit,
   sourceSha256: hash.digest("hex"),
   note: "Source fingerprint identifies this exact working source; baseCommit is its recorded Git parent at stamping time.",

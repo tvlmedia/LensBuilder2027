@@ -1,0 +1,90 @@
+{
+  "runtime": "v24.16.0",
+  "system": "Biotar 13 physical surfaces; six fields; F/d/C; grid9",
+  "seed": 1001,
+  "count": 512,
+  "scaling": [
+    {
+      "workers": 1,
+      "startupAndWarmupMs": 151.571292,
+      "elapsedMs": 1769.233834,
+      "evaluationsPerSecond": 289.390803047462,
+      "sampledRaysPerSecond": 359423.3773849478,
+      "meanEvaluationWallMs": 3.45553483203125,
+      "valid": 512
+    },
+    {
+      "workers": 2,
+      "startupAndWarmupMs": 89.91487499999994,
+      "elapsedMs": 929.9590000000001,
+      "evaluationsPerSecond": 550.5619064926518,
+      "sampledRaysPerSecond": 683797.8878638735,
+      "meanEvaluationWallMs": 1.8163261718750001,
+      "valid": 512
+    },
+    {
+      "workers": 4,
+      "startupAndWarmupMs": 61.99783400000024,
+      "elapsedMs": 502.6229159999998,
+      "evaluationsPerSecond": 1018.6563001834963,
+      "sampledRaysPerSecond": 1265171.1248279025,
+      "meanEvaluationWallMs": 0.9816853828124996,
+      "valid": 512
+    }
+  ],
+  "singlet": [
+    {
+      "workers": 1,
+      "evaluationsPerSecond": 1401.753859096818,
+      "sampledRaysPerSecond": 1740978.2929982478,
+      "valid": 512
+    },
+    {
+      "workers": 2,
+      "evaluationsPerSecond": 2639.243837258671,
+      "sampledRaysPerSecond": 3277940.8458752693,
+      "valid": 512
+    },
+    {
+      "workers": 4,
+      "evaluationsPerSecond": 4580.357528573975,
+      "sampledRaysPerSecond": 5688804.050488877,
+      "valid": 512
+    }
+  ],
+  "instrumented": {
+    "totalMs": 232.35616700000082,
+    "inclusiveTimings": {
+      "validate": {
+        "calls": 64,
+        "ms": 0.7254559999937555
+      },
+      "index": {
+        "calls": 2496,
+        "ms": 0.3855819999907908
+      },
+      "compileValidated": {
+        "calls": 192,
+        "ms": 0.7712929999970584
+      },
+      "paraxial": {
+        "calls": 384,
+        "ms": 0.3402559999994992
+      },
+      "aimChief": {
+        "calls": 1536,
+        "ms": 11.093562999995811
+      },
+      "trace": {
+        "calls": 81024,
+        "ms": 207.69366900018576
+      }
+    },
+    "note": "Inclusive categories overlap; instrumentation adds overhead. trace includes surface intersections and Snell. Sampled ray counts exclude chief aiming rays. Allocation/GC and UI costs require browser/CPU profiling."
+  },
+  "microbenchMeanMs": {
+    "candidateSurfaceClone": 0.00028609999999998766,
+    "cachedPupilLookup": 0.00005042080000002898,
+    "meritOnly": 0.0010702374999999847
+  }
+}
