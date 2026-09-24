@@ -2,7 +2,7 @@
 globalThis.LB_BUILD = {
   "engineVersion": "lb2027-spherical-0.2.0",
   "searchEngineVersion": "numerical-lab-1",
-  "baseCommit": "10f0a6d9e6ed9067cf807190e82ffb670a3a72d4",
-  "sourceSha256": "ddb73deefa04f7e029e4613cf1dc4871d9848fd96db32fe4e194d867c4401743",
+  "baseCommit": "2fcc1f6a87d284a04b310d0111f0979bef994caa",
+  "sourceSha256": "09032974a195c2f00f90fd6a66e05c402d9709ae502252ead75d4e2b5096ba82",
   "note": "Source fingerprint identifies this exact working source; baseCommit is its recorded Git parent at stamping time."
 };

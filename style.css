@@ -739,7 +739,7 @@ input:disabled {
 #designStatus {white-space:pre-line;line-height:1.5;}.designer canvas { width:100%; background:#0b111b; border-radius:5px; }.designer pre {white-space:pre-wrap;overflow-wrap:anywhere;}
 @media(max-width:1000px){.designerGrid{grid-template-columns:1fr;}.designer{padding:14px;}}
 
-.searchLab { position:fixed; inset:0; z-index:900; background:#101721; color:#dfe7f2; padding:24px; overflow:auto; }
+.searchLab { position:fixed; inset:0; z-index:6000; background:#101721; color:#dfe7f2; padding:24px; overflow:auto; }
 .searchLab[hidden] { display:none; }
 .searchLab header { display:flex; justify-content:space-between; align-items:center; gap:20px; }
 .labConfig { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:22px; }
@@ -752,3 +752,7 @@ input:disabled {
 #labConvergence { width:100%; max-height:150px; background:#0c111a; }
 .labComparison { display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px; }.labComparison section{padding:16px;border:1px solid #364054;}.labComparison canvas{max-width:100%;}
 @media(max-width:1000px){.labConfig{grid-template-columns:1fr}.searchLab{padding:14px}}
+
+.searchLab header { position:sticky; top:-24px; z-index:1; background:#101721; padding:12px 0; }
+.searchLab input:not([type=checkbox]), .searchLab textarea, .searchLab select { background:#0b121c; color:#dfe7f2; border:1px solid #364054; border-radius:6px; padding:8px; box-sizing:border-box; }
+.searchLab textarea { line-height:1.45; }
