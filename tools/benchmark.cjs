@@ -1,0 +1,5 @@
+const A=require('../analysis/evaluate.js'),S=require('../optimization/search.js'),D=require('../design/merit.js'),lens=require('../bijna-goed.json');
+const spec={targetEflMm:58.01287,targetFNumber:1.4614346,imageCircleMm:43.27,pupilGrid:9};
+A.evaluate(lens,spec);const t=performance.now();for(let i=0;i<25;i++)A.evaluate(lens,spec);const per=(performance.now()-t)/25;
+const s=S.create(lens,spec,[{surface:13,key:'t',min:21.05230899,max:63.15692698}],D.defaultOperands(spec),{maxEvaluations:600,seed:1});const start=performance.now();while(!s.done)S.advance(s);const r=S.finish(s);
+console.log(JSON.stringify({node:process.version,analysisMeanMs:per,evaluations:s.evaluations,searchAndValidationMs:performance.now()-start,accepted:r.accepted,initialImageGapMm:lens.surfaces[13].t,finalImageGapMm:r.candidate.surfaces[13].t,meritBefore:r.before.merit.total,meritAfter:r.after.merit.total,centerRmsBeforeMm:r.before.analysis.fields[0].rmsMm,centerRmsAfterMm:r.after.analysis.fields[0].rmsMm,validationGrid:r.validationGrid},null,2));
