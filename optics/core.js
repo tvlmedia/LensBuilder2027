@@ -170,6 +170,11 @@
   function compile(system, nm = M.wavelengths.d, limits = {}) {
     const v = validate(system, limits);
     if (v.errors.length) throw new Error(v.errors.join("; "));
+    return compileValidated(v, nm);
+  }
+  // Internal fast path: caller must supply an unchanged successful validate() result.
+  function compileValidated(v, nm) {
+    if (v.errors.length) throw new Error(v.errors.join("; "));
     let before = 1;
     const surfaces = v.surfaces.map((s) => {
       const n2 = M.index(s, nm);
@@ -295,6 +300,7 @@
     intersect,
     validate,
     compile,
+    compileValidated,
     trace,
     multiply,
     paraxial,

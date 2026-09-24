@@ -164,7 +164,6 @@
     Merit.validateOperands(s.operands);
     if (
       !Number.isFinite(s.bestScore) ||
-      s.bestScore < 0 ||
       typeof s.done !== "boolean" ||
       !Number.isInteger(s.validCandidates) ||
       s.validCandidates < 1 ||
@@ -179,8 +178,7 @@
         (h) =>
           !Number.isInteger(h.evaluations) ||
           h.evaluations < 1 ||
-          !Number.isFinite(h.score) ||
-          h.score < 0,
+          !Number.isFinite(h.score),
       )
     )
       throw new Error("Invalid checkpoint metadata");

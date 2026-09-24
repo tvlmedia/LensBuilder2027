@@ -31,6 +31,10 @@
   function metric(result, o) {
     const f = result.fields.find((f) => Math.abs(f.field - o.field) < 1e-8);
     switch (o.metric) {
+      case "bfl":
+        return result.firstOrder.bflMm;
+      case "pupilSurvival":
+        return Math.min(...result.fields.map((f) => f.rayFraction));
       case "efl":
         return result.firstOrder.eflMm;
       case "fNumber":
@@ -63,6 +67,8 @@
     for (const o of operands) {
       if (
         ![
+          "bfl",
+          "pupilSurvival",
           "efl",
           "fNumber",
           "rms",
@@ -82,6 +88,27 @@
         )
       )
         throw new Error("Invalid operand scale/weight");
+      if (
+        o.type &&
+        ![
+          "MINIMIZE",
+          "MAXIMIZE",
+          "TARGET VALUE",
+          "TARGET RANGE",
+          "MINIMUM",
+          "MAXIMUM",
+        ].includes(o.type)
+      )
+        throw new Error("Unknown operand type");
+      if (o.type === "TARGET RANGE" && !Array.isArray(o.target))
+        throw new Error("Range needs two targets");
+      if (o.type && o.type !== "TARGET RANGE" && Array.isArray(o.target))
+        throw new Error("This operand type needs a scalar target");
+      if (
+        o.metric === "rms" &&
+        (!Number.isFinite(o.field) || o.field < 0 || o.field > 1)
+      )
+        throw new Error("RMS operand needs a field in [0,1]");
       const t = Array.isArray(o.target) ? o.target : [o.target];
       if (
         !t.every(Number.isFinite) ||
@@ -114,7 +141,15 @@
             ? value - o.target[1]
             : 0
         : value - o.target;
-      const contribution = o.weight * (error / o.scale) ** 2;
+      if (o.type === "MINIMUM") error = Math.min(0, value - o.target);
+      if (o.type === "MAXIMUM") error = Math.max(0, value - o.target);
+      // Directional linear objectives are signed; unlike squared distance they are monotonic.
+      const contribution =
+        o.type === "MINIMIZE"
+          ? (o.weight * value) / o.scale
+          : o.type === "MAXIMIZE"
+            ? (-o.weight * value) / o.scale
+            : o.weight * (error / o.scale) ** 2;
       total += contribution;
       return { ...o, value, error, contribution };
     });

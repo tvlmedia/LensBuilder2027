@@ -8,16 +8,31 @@
     { nm: M.wavelengths.d, weight: 2 },
     { nm: M.wavelengths.C, weight: 1 },
   ];
-  function pupilGrid(n = 9) {
+  const sampleCache = new Map();
+  function pupilGrid(n = 9, pattern = "grid") {
     if (!Number.isInteger(n) || n < 3 || n > 41)
       throw new Error("Pupil grid must be an integer 3–41");
+    const cacheKey = `${n}:${pattern}`;
+    if (sampleCache.has(cacheKey)) return sampleCache.get(cacheKey);
     const out = [];
-    for (let i = 0; i < n; i++)
-      for (let j = 0; j < n; j++) {
-        const y = (2 * (i + 0.5)) / n - 1,
-          z = (2 * (j + 0.5)) / n - 1;
-        if (y * y + z * z <= 1) out.push({ y, z });
+    if (pattern === "sunflower") {
+      const count = Math.round((Math.PI * n * n) / 4);
+      for (let i = 0; i < count; i++) {
+        const r = Math.sqrt((i + 0.5) / count),
+          a = i * Math.PI * (3 - Math.sqrt(5));
+        out.push({ y: r * Math.cos(a), z: r * Math.sin(a) });
       }
+    } else if (pattern !== "grid") throw new Error("Unknown pupil pattern");
+    else
+      for (let i = 0; i < n; i++)
+        for (let j = 0; j < n; j++) {
+          const y = (2 * (i + 0.5)) / n - 1,
+            z = (2 * (j + 0.5)) / n - 1;
+          if (y * y + z * z <= 1) out.push({ y, z });
+        }
+    out.forEach(Object.freeze);
+    Object.freeze(out);
+    sampleCache.set(cacheKey, out);
     return out;
   }
   function statistics(hits) {
@@ -85,7 +100,7 @@
       s.minRayFraction > 1
     )
       throw new Error("Invalid minimum ray fraction");
-    pupilGrid(s.pupilGrid);
+    pupilGrid(s.pupilGrid, s.pupilPattern);
     return s;
   }
   function evaluateInternal(system, spec = {}) {
@@ -105,11 +120,15 @@
         ...validation.warnings,
       ]);
     let compiled, reference, first;
+    const compilation = new Map();
+    const compile = (nm) => {
+      if (!compilation.has(nm))
+        compilation.set(nm, O.compileValidated(validation, nm));
+      return compilation.get(nm);
+    };
     try {
-      compiled = s.wavelengths.map((w) =>
-        O.compile(system, w.nm, s.constraints),
-      );
-      reference = O.compile(system, M.wavelengths.d, s.constraints);
+      compiled = s.wavelengths.map((w) => compile(w.nm));
+      reference = compile(M.wavelengths.d);
       first = O.paraxial(reference);
     } catch (e) {
       return invalid([e.message]);
@@ -118,7 +137,8 @@
       return invalid(["Positive EFL and BFL required"]);
     if (first.bflMm < (s.constraints?.minBflMm ?? 0))
       return invalid(["BFL minimum violated"]);
-    const samples = pupilGrid(s.pupilGrid),
+    const samples = pupilGrid(s.pupilGrid, s.pupilPattern),
+      paraxials = compiled.map(O.paraxial),
       rows = [],
       fields = [],
       errors = [];
@@ -134,7 +154,7 @@
       for (let wi = 0; wi < compiled.length; wi++) {
         const c = compiled[wi],
           wave = s.wavelengths[wi],
-          p = O.paraxial(c),
+          p = paraxials[wi],
           chief = O.aimChief(c, angle),
           hits = [],
           failures = {};
@@ -206,8 +226,8 @@
         ...statistics(all),
       });
     }
-    const blue = O.paraxial(O.compile(system, M.wavelengths.F)),
-      red = O.paraxial(O.compile(system, M.wavelengths.C));
+    const blue = O.paraxial(compile(M.wavelengths.F)),
+      red = O.paraxial(compile(M.wavelengths.C));
     return {
       valid: !errors.length,
       errors,
