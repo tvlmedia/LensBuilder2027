@@ -4,8 +4,25 @@
   const M = root.LBMerit || require("../design/merit.js");
   const A = root.LBAnalysis || require("../analysis/evaluate.js");
   const O = root.LBOptics || require("../optics/core.js");
-  const VERSION = "numerical-lab-1";
+  const VERSION = "numerical-lab-2";
   const clean = (x) => JSON.parse(JSON.stringify(x));
+  function configurationHash(value) {
+    const canonical = (x) =>
+      Array.isArray(x)
+        ? x.map(canonical)
+        : x && typeof x === "object"
+          ? Object.fromEntries(
+              Object.keys(x)
+                .sort()
+                .map((k) => [k, canonical(x[k])]),
+            )
+          : x;
+    const text = JSON.stringify(canonical(value));
+    let h = 2166136261;
+    for (let i = 0; i < text.length; i++)
+      h = Math.imul(h ^ text.charCodeAt(i), 16777619);
+    return `fnv1a32-${(h >>> 0).toString(16).padStart(8, "0")}`;
+  }
   function parameters(input, definitions) {
     const vars = definitions
       .filter((v) => v.enabled !== false)
@@ -95,6 +112,27 @@
     )
       throw Error("RMS operand field is absent from analysis specification");
     M.validateOperands(operands);
+    if (spec.apertures) {
+      const Multi =
+        root.LBMultiAperture || require("../analysis/multi-aperture.js");
+      const aps = Multi.configuration(spec);
+      for (const o of operands.filter((o) => o.enabled !== false)) {
+        for (const n of o.operation
+          ? [o.aperture, o.compareAperture]
+          : [o.aperture])
+          if (!aps.some((a) => a.fNumber === n && a.optimization))
+            throw Error(
+              "Every merit aperture must be enabled for optimization",
+            );
+      }
+    }
+    if (
+      spec.focusPolicy === "global-image-plane-variable" &&
+      !variables.some(
+        (v) => v.surface === input.surfaces.length - 2 && v.key === "t",
+      )
+    )
+      throw Error("Global image-plane policy requires image-gap variable");
     const config = {
       strategy: "de",
       seed: 1001,
@@ -160,6 +198,13 @@
     delete base.project;
     return {
       version: VERSION,
+      configurationHash: configurationHash({
+        input: base,
+        spec: clean(spec),
+        variables,
+        operands: clean(operands),
+        config,
+      }),
       id: options.id || `experiment-${Date.now()}`,
       createdAt: new Date().toISOString(),
       software: options.software || { engine: VERSION },
@@ -298,6 +343,7 @@
           score,
           metrics: r.metrics,
           breakdown: r.breakdown,
+          apertureMetrics: r.apertureMetrics,
           evaluation: s.evaluations,
           generation: s.generation,
           run: s.run,
@@ -392,7 +438,7 @@
     const system = prescription(s, vector);
     let rays = 0;
     // Optional coarse gate only rejects physical/ray failures; it never ranks against standard merit.
-    if (s.config.coarse && !dense) {
+    if (s.config.coarse && !dense && !s.spec.apertures) {
       const coarse = A.evaluate(system, {
         ...s.spec,
         fields: [0, 1],
@@ -405,11 +451,12 @@
     const spec = dense
       ? {
           ...s.spec,
-          pupilGrid: Math.max(
-            19,
-            Math.min(41, 2 * (s.spec.pupilGrid || 9) + 1),
-          ),
+          pupilGrid:
+            s.spec.validationGrid ??
+            Math.max(19, Math.min(41, 2 * (s.spec.pupilGrid || 9) + 1)),
           pupilPattern: "sunflower",
+          diagnostics: true,
+          validationRun: true,
           fields: [
             ...new Set([...A.DEFAULT_FIELDS, ...(s.spec.fields || [])]),
           ].sort((a, b) => a - b),
@@ -438,9 +485,13 @@
       rays,
       metrics: metrics(a),
       breakdown: result.merit.breakdown,
+      apertureMetrics: a.apertures?.map((r) => ({
+        aperture: r.config.fNumber,
+        metrics: metrics(r.analysis),
+      })),
     };
     if (dense && a.valid) {
-      const c = O.compile(system),
+      const c = O.compile(a.apertures?.[0]?.system || system),
         p = O.paraxial(c),
         traces = [];
       for (const f of [0, 1]) {
@@ -472,7 +523,8 @@
     }
     if (dense) {
       out.analysis = a;
-      out.prescription = system;
+      out.prescription = a.apertures?.[0]?.system || system;
+      out.geometryAtOriginalStop = system;
       out.validation = {
         pattern: "sunflower",
         grid: spec.pupilGrid,
@@ -490,6 +542,8 @@
       raw.operands,
       raw.config,
     );
+    if (raw.configurationHash !== fresh.configurationHash)
+      throw Error("Checkpoint configuration hash mismatch");
     const s = clean(raw),
       vector = (v) => prescription(fresh, v);
     for (const k of [

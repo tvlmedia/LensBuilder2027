@@ -1,7 +1,7 @@
 (function (root) {
   "use strict";
   const Merit = root.LBMerit || require("../design/merit.js");
-  const VERSION = "lb2027-spherical-0.2.0";
+  const VERSION = "lb2027-spherical-0.4.0";
   function validateVariables(system, variables) {
     if (!Array.isArray(variables) || !variables.length || variables.length > 64)
       throw new Error("Select 1–64 variables");
@@ -221,6 +221,9 @@
     const candidate = prescription(state, state.bestVector),
       highSpec = {
         ...state.spec,
+        validationRun: true,
+        diagnostics: true,
+        pupilPattern: "sunflower",
         pupilGrid: Math.min(41, 2 * (state.spec.pupilGrid || 9) + 1),
       };
     const before = Merit.evaluate(state.input, highSpec, state.operands),
