@@ -22,6 +22,9 @@
     </div>
 
     <div class="toolbar" role="toolbar" aria-label="Main toolbar">
+      <button id="btnDesigner" class="btn btnPrimary" type="button">Analyze / Auto Optimize</button>
+      <button id="btnUndo" class="btn" type="button">Undo</button>
+      <button id="btnRedo" class="btn" type="button">Redo</button>
       <button id="btnNew" class="btn" type="button">New / Clear</button>
       <button id="btnLoadOmit" class="btn" type="button">Load OMIT 50 preset</button>
       <button id="btnLoadDemo" class="btn" type="button">Load demo lens</button>
@@ -38,7 +41,7 @@
       <div class="sep" aria-hidden="true"></div>
 
       <button id="btnScaleToFocal" class="btn" type="button">Scale → FL</button>
-      <button id="btnSetTStop" class="btn" type="button">Set T</button>
+      <button id="btnSetTStop" class="btn" type="button">Set f/</button>
       <button id="btnAutoFocus" class="btn" type="button">Refocus now</button>
       <button id="btnRenderEngine" class="btn btnPrimary" type="button" aria-pressed="true">Preview: ON</button>
       <button id="btnDebugOverlay" class="btn" type="button" aria-pressed="false">Outline Debug: OFF</button>
@@ -129,7 +132,7 @@
               <select id="focusMechanism">
                 <option value="move-lens" selected>move-lens</option>
                 <option value="move-ims">move-ims</option>
-                <option value="move-focus-group">move-focus-group (future)</option>
+                <option value="move-focus-group" disabled>move-focus-group (unavailable)</option>
               </select>
             </div>
 
@@ -212,9 +215,9 @@
               <select id="prevRes">
                 <option value="256">256 px (fast)</option>
                 <option value="384">384 px</option>
-                <option value="512">512 px</option>
+                <option value="512" selected>512 px</option>
                 <option value="768">768 px (slow)</option>
-                <option value="1920" selected>1920 px (HQ)</option>
+                <option value="1920">1920 px (HQ)</option>
               </select>
             </div>
 
@@ -246,8 +249,8 @@
             <div class="ctrl">
               <label for="previewRenderMode">Preview mode</label>
               <select id="previewRenderMode">
-                <option value="fast" selected>Fast preview (LUT)</option>
-                <option value="quality">Quality preview (raytrace)</option>
+                <option value="fast" selected>Approximate preview (LUT)</option>
+                <option value="quality">Geometric preview (experimental)</option>
               </select>
             </div>
 
@@ -304,7 +307,7 @@
         <div class="badges">
           <div id="badgeEfl" class="badge">EFL: —</div>
           <div id="badgeBfl" class="badge">BFL: —</div>
-          <div id="badgeT" class="badge">T≈ —</div>
+          <div id="badgeT" class="badge">f/≈ —</div><div class="badge">T-stop: unavailable</div>
           <div id="badgeVig" class="badge">Vignette: —</div>
         </div>
 
@@ -356,7 +359,7 @@
         <div class="topBadges" aria-label="Top badges">
           <div id="badgeEflTop" class="pill">EFL: —</div>
           <div id="badgeBflTop" class="pill">BFL: —</div>
-          <div id="badgeTTop" class="pill">T≈ —</div>
+          <div id="badgeTTop" class="pill">f/≈ —</div>
           <div id="badgeFovTop" class="pill">FOV: —</div>
           <div id="badgeCovTop" class="pill">COV: —</div>
           <div id="badgeICTop" class="pill">IC: —</div>
@@ -528,6 +531,16 @@
   </div>
 
   <div id="toastHost" class="toastHost" aria-live="polite" aria-atomic="true"></div>
+  <script src="./build-info.js"></script>
+  <script src="./materials/catalog.js"></script>
+  <script src="./optics/core.js"></script>
+  <script src="./analysis/evaluate.js"></script>
+  <script src="./design/merit.js"></script>
+  <script src="./optimization/search.js"></script>
+  <script src="./import/report.js"></script>
+  <script src="./import/zemax.js"></script>
+  <script src="./ui/history.js"></script>
   <script src="./script.js"></script>
+  <script src="./ui/designer.js"></script>
 </body>
 </html>

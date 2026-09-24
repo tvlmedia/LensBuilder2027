@@ -349,202 +349,14 @@ const SENSOR_PRESETS = {
   }
 
   // -------------------- glass db --------------------
-  const GLASS_DB = {
-  // --- baseline ---
-  AIR: { nd: 1.0, Vd: 999.0 },
-
-  // --- SCHOTT (heel gangbaar in foto/cine) ---
-  "N-BK7HT":   { nd: 1.5168,  Vd: 64.17 },
-  "N-BK10":    { nd: 1.49782, Vd: 66.95 },
-
-  "N-K5":      { nd: 1.52249, Vd: 59.48 },
-  "N-KF9":     { nd: 1.52346, Vd: 51.54 },
-  "N-PK52A":   { nd: 1.49700, Vd: 81.61 },
-  "N-ZK7A":    { nd: 1.508054, Vd: 61.04 },
-
-  // Borosilicate / barium crowns
-  "N-BAK1":    { nd: 1.5725,  Vd: 57.55 },
-  "N-BAK2":    { nd: 1.53996, Vd: 59.71 },
-  "N-BAK4":    { nd: 1.56883, Vd: 55.98 },
-
-  // Barium / “BALF”
-  "N-BALF4":   { nd: 1.57956, Vd: 53.87 },
-  "N-BALF5":   { nd: 1.54739, Vd: 53.63 },
-
-  // Barium flints / special flints
-  "N-BAF4":    { nd: 1.60568, Vd: 43.72 },
-  "N-BAF10":   { nd: 1.67003, Vd: 47.11 },
-  "N-BAF51":   { nd: 1.65224, Vd: 44.96 },
-  "N-BAF52":   { nd: 1.60863, Vd: 46.6 },
-  "N-BASF2":   { nd: 1.66446, Vd: 36.0 },
-
-  // Dense crowns / short flints / “SK”
-  "N-SK2":     { nd: 1.60738, Vd: 56.65 },
-  "N-SK4":     { nd: 1.61272, Vd: 58.63 },
-  "N-SK5":     { nd: 1.58913, Vd: 61.27 },
-  "N-SK11":    { nd: 1.56384, Vd: 60.8 },
-  "N-SK14":    { nd: 1.60311, Vd: 60.6 },
-  "N-SK16":    { nd: 1.62041, Vd: 60.32 },
-
-  // “SSK” (veel gebruikt als partner in correctiegroepen)
-  "N-SSK2":    { nd: 1.62229, Vd: 53.27 },
-  "N-SSK5":    { nd: 1.65844, Vd: 50.88 },
-  "N-SSK8":    { nd: 1.61773, Vd: 49.83 },
-
-  // “PSK”
-  "N-PSK3":    { nd: 1.55232, Vd: 63.46 },
-  "N-PSK53A":  { nd: 1.61800, Vd: 63.39 },
-
-  // “KZFS” (correctie / high performance partners)
-  "N-KZFS2":   { nd: 1.55836, Vd: 54.01 },
-  "N-KZFS4":   { nd: 1.61336, Vd: 44.49 },
-  "N-KZFS5":   { nd: 1.65412, Vd: 39.7 },
-  "N-KZFS8":   { nd: 1.72047, Vd: 34.7 },
-
-  // “LAK” (lanthanum crowns — super cinema-typisch)
-  "N-LAK9":    { nd: 1.69100, Vd: 54.71 },
-  "N-LAK10":   { nd: 1.72003, Vd: 50.62 },
-  "N-LAK22":   { nd: 1.65113, Vd: 55.89 },
-  "N-LAK28":   { nd: 1.74429, Vd: 50.77 },
-  "N-LAK34":   { nd: 1.72916, Vd: 54.5 },
-
-  // “LAF” (lanthanum flints)
-  "N-LAF2":    { nd: 1.74397, Vd: 44.85 },
-  "N-LAF7":    { nd: 1.7495,  Vd: 34.82 },
-  "N-LAF21":   { nd: 1.7880,  Vd: 47.49 },
-  "N-LAF34":   { nd: 1.7725,  Vd: 49.62 },
-
-  // “LASF” (high-index lanthanum flints — heel veel cinema correctie)
-  "N-LASF9":   { nd: 1.85025, Vd: 32.17 },
-  "N-LASF40":  { nd: 1.83404, Vd: 37.3 },
-  "N-LASF41":  { nd: 1.83501, Vd: 43.13 },
-  "N-LASF43":  { nd: 1.8061,  Vd: 40.61 },
-  "N-LASF44":  { nd: 1.8042,  Vd: 46.5 },
-  "N-LASF45":  { nd: 1.80107, Vd: 34.97 },
-
-  // Classic “F” / “SF” families (flints) — ook super common
-  "N-F2":      { nd: 1.62005, Vd: 36.43 },
-  "N-FK5":     { nd: 1.48749, Vd: 70.41 },
-  "N-FK58":    { nd: 1.45600, Vd: 90.9 },
-
-  "N-SF1":     { nd: 1.71736, Vd: 29.62 },
-  "N-SF2":     { nd: 1.64769, Vd: 33.82 },
-  "N-SF4":     { nd: 1.75513, Vd: 27.38 },
-  "N-SF5":     { nd: 1.67271, Vd: 32.25 },
-  "N-SF6":     { nd: 1.80518, Vd: 25.36 },
-  "N-SF8":     { nd: 1.68894, Vd: 31.31 },
-  "N-SF10":    { nd: 1.72828, Vd: 28.53 },
-  "N-SF11":    { nd: 1.78472, Vd: 25.68 },
-  "N-SF15":    { nd: 1.69892, Vd: 30.2 },
-  "N-SF57":    { nd: 1.84666, Vd: 23.78 },
-  "N-SF66":    { nd: 1.92286, Vd: 20.88 }
-};
-  // Wavelengths (Fraunhofer + Hg g) nm
-  const WL = {
-    C: 656.2725,
-    d: 587.5618,
-    F: 486.1327,
-    g: 435.8343,
-  };
-
-  // --- Sellmeier + Cauchy dispersion ---
-  function sellmeierN_um(glass, lambda_um){
-    const s = glass.sellmeier;
-    const L2 = lambda_um * lambda_um;
-    let n2 = 1.0;
-    for (let i=0;i<3;i++){
-      n2 += (s.B[i] * L2) / (L2 - s.C[i]);
-    }
-    return Math.sqrt(n2);
-  }
-
-  function fitCauchyFrom3(nC, nd, nF){
-    const lC = WL.C / 1000, ld = WL.d / 1000, lF = WL.F / 1000;
-    const M = [
-      [1, 1/(lC*lC), 1/(lC*lC*lC*lC)],
-      [1, 1/(ld*ld), 1/(ld*ld*ld*ld)],
-      [1, 1/(lF*lF), 1/(lF*lF*lF*lF)],
-    ];
-    const y = [nC, nd, nF];
-
-    const A = M.map(r=>r.slice());
-    const b = y.slice();
-
-    for (let i=0;i<3;i++){
-      let piv=i;
-      for (let r=i+1;r<3;r++) if (Math.abs(A[r][i]) > Math.abs(A[piv][i])) piv=r;
-      if (piv!==i){ [A[i],A[piv]]=[A[piv],A[i]]; [b[i],b[piv]]=[b[piv],b[i]]; }
-
-      const div = A[i][i] || 1e-12;
-      for (let j=i;j<3;j++) A[i][j] /= div;
-      b[i] /= div;
-
-      for (let r=0;r<3;r++){
-        if (r===i) continue;
-        const f = A[r][i];
-        for (let j=i;j<3;j++) A[r][j] -= f*A[i][j];
-        b[r] -= f*b[i];
-      }
-    }
-    return { A:b[0], B:b[1], C:b[2] };
-  }
-
-  function cauchyN_um(cfit, lambda_um){
-    const L2 = lambda_um*lambda_um;
-    return cfit.A + cfit.B/L2 + cfit.C/(L2*L2);
-  }
-
-  const _cauchyCache = new Map();
-
-  function glassN_fromNdVd(ndRaw, vdRaw, lambdaNm) {
-    const nd = Number(ndRaw);
-    if (!Number.isFinite(nd) || nd <= 1) return 1.0;
-    const Vd = (Number.isFinite(Number(vdRaw)) && Number(vdRaw) > 0) ? Number(vdRaw) : 999;
-
-    const key = `custom_ndvd::${nd.toFixed(8)}::${Vd.toFixed(8)}`;
-    let fit = _cauchyCache.get(key);
-    if (!fit) {
-      const dN = (nd - 1) / Math.max(10, Vd);
-      const nF = nd + 0.6 * dN;
-      const nC = nd - 0.4 * dN;
-      fit = fitCauchyFrom3(nC, nd, nF);
-      _cauchyCache.set(key, fit);
-    }
-    return cauchyN_um(fit, lambdaNm / 1000);
-  }
-
+  const GLASS_DB = LBMaterials.catalog;
+  const WL = LBMaterials.wavelengths;
+  function glassN_fromNdVd(nd, vd, lambdaNm) { return LBMaterials.index({glass:"CUSTOM",nd,vd},lambdaNm); }
   function getSurfaceCustomGlass(surface) {
-    if (!surface || typeof surface !== "object") return null;
-    const nd = Number(surface.nd ?? surface.glass_nd);
-    if (!Number.isFinite(nd) || nd <= 1) return null;
-    const vdRaw = Number(surface.vd ?? surface.glass_vd);
-    const Vd = (Number.isFinite(vdRaw) && vdRaw > 0) ? vdRaw : 999;
-    return { nd, Vd };
+    const nd=Number(surface?.nd ?? surface?.glass_nd),Vd=Number(surface?.vd ?? surface?.glass_vd);
+    return nd>1 && Vd>0 && Number.isFinite(nd+Vd) ? {nd,Vd} : null;
   }
-
-  function glassN_lambda(glassName, lambdaNm){
-    const g = GLASS_DB[glassName] || GLASS_DB.AIR;
-    if (glassName === "AIR") return 1.0;
-
-    const lambda_um = lambdaNm / 1000;
-
-    if (g.sellmeier && g.sellmeier.B && g.sellmeier.C){
-      return sellmeierN_um(g, lambda_um);
-    }
-
-    const key = glassName + "::cauchy";
-    let fit = _cauchyCache.get(key);
-    if (!fit){
-      const nd = Number(g.nd || 1.5168);
-      const Vd = Math.max(10, Number(g.Vd || 50));
-      const dN = (nd - 1) / Vd; // nF - nC
-      const nF = nd + 0.6 * dN;
-      const nC = nd - 0.4 * dN;
-      fit = fitCauchyFrom3(nC, nd, nF);
-      _cauchyCache.set(key, fit);
-    }
-    return cauchyN_um(fit, lambda_um);
-  }
+  function glassN_lambda(name, nm) { return LBMaterials.index(name,nm); }
 
   function wavePresetToLambdaNm(w){
     const ww = String(w || "d");
@@ -635,58 +447,12 @@ const SENSOR_PRESETS = {
     if (v) ui.wavePreset.value = v;
   }
 
-function glassN(glassName, wavePresetOrNm = "d") {
-  // accepteer zowel "d"/"c"/"F"/"g" ALS lambdaNm als number
-  const lambdaNm =
-    (typeof wavePresetOrNm === "number" && Number.isFinite(wavePresetOrNm))
-      ? wavePresetOrNm
-      : wavePresetToLambdaNm(wavePresetOrNm);
+function glassN(glass, wave = "d") { return LBMaterials.index(glass, typeof wave === "number" ? wave : wavePresetToLambdaNm(wave)); }
 
-  if (glassName && typeof glassName === "object") {
-    const custom = getSurfaceCustomGlass(glassName);
-    if (custom) return glassN_fromNdVd(custom.nd, custom.Vd, lambdaNm);
-
-    const fallbackName = String(glassName.glass ?? "AIR");
-    const key = resolveGlassName(fallbackName);
-    if (key === "AIR" && fallbackName !== "AIR") warnMissingGlass(fallbackName);
-    return glassN_lambda(key, lambdaNm);
-  }
-
-  // resolve aliases + waarschuwing als onbekend
-  const key = resolveGlassName(String(glassName ?? "AIR"));
-  if (key === "AIR" && glassName !== "AIR") warnMissingGlass(glassName);
-
-  // echte dispersie (Sellmeier indien aanwezig, anders Cauchy-fit)
-  return glassN_lambda(key, lambdaNm);
-}
-
-function surfaceN(surface, wavePresetOrNm = "d") {
-  const custom = getSurfaceCustomGlass(surface);
-  if (custom) {
-    const lambdaNm =
-      (typeof wavePresetOrNm === "number" && Number.isFinite(wavePresetOrNm))
-        ? wavePresetOrNm
-        : wavePresetToLambdaNm(wavePresetOrNm);
-    return glassN_fromNdVd(custom.nd, custom.Vd, lambdaNm);
-  }
-  return glassN(String(surface?.glass ?? "AIR"), wavePresetOrNm);
-}
+function surfaceN(surface, wave = "d") { return glassN(surface,wave); }
 
    // -------------------- GLASS ALIASES (keep existing preset names working) --------------------
-const GLASS_ALIASES = {
-  // element modal defaults
-  BK7: "N-BK7HT",
-  F2: "N-F2",
-
-  // your preset names
-  LASF35: "N-LASF43",     // kies de beste match in jouw DB
-  LASFN31: "N-LASF43",    // idem
-  LF5: "N-SF5",           // of N-F2 als je liever minder extreme flint wil
-
-  // SCHOTT / OHARA style names you used
-  "S-LAM3": "N-LAK9",     // lanthanum crown-ish
-  "S-BAH11": "N-BAK4"     // barium crown-ish (of N-BAF10 als je meer flint wil)
-};
+const GLASS_ALIASES = {}; // No implicit material substitutions.
 
 function normalizeGlassInput(name) {
   const raw = String(name ?? "").trim();
@@ -711,37 +477,32 @@ function getGlassOptionNames(surfaces = []) {
 }
 
 // helper: resolve any name to a real GLASS_DB key
-function resolveGlassName(name) {
-  const key = normalizeGlassInput(name);
-  if (GLASS_DB[key]) return key;
-  const alias = GLASS_ALIASES[key];
-  if (alias && GLASS_DB[alias]) return alias;
-  return "AIR";
-}
+function resolveGlassName(name) { return LBMaterials.material(name).name; }
 
 // OPTIONAL: warn once per missing glass, so you immediately see what's broken
 const _glassWarned = new Set();
 function warnMissingGlass(name) {
   if (!_glassWarned.has(name)) {
     _glassWarned.add(name);
-    console.warn(`[GLASS_DB] Unknown glass "${name}" (resolved to AIR). Add alias or DB entry.`);
+    console.warn(`[GLASS_DB] Unknown glass "${name}" is unsupported. Select a catalog glass or supply material data.`);
   }
 }
 
   // -------------------- built-in lenses --------------------
   function demoLensSimple() {
     return {
-      name: "Demo (simple)",
+      name: "Demo (illustrative, substituted catalog glasses)",
+      notes: ["Legacy approximate glass aliases replaced explicitly; nd/Vd dispersion is APPROXIMATE."],
       surfaces: [
         { type: "OBJ", R: 0.0, t: 10.0, ap: 22.0, glass: "AIR", stop: false },
-        { type: "1", R: 42.0, t: 10.0, ap: 22.0, glass: "LASF35", stop: false },
+        { type: "1", R: 42.0, t: 10.0, ap: 22.0, glass: "N-LASF43", stop: false },
         { type: "2", R: -140.0, t: 10.0, ap: 21.0, glass: "AIR", stop: false },
-        { type: "3", R: -30.0, t: 10.0, ap: 19.0, glass: "LASFN31", stop: false },
+        { type: "3", R: -30.0, t: 10.0, ap: 19.0, glass: "N-LASF43", stop: false },
         { type: "STOP", R: 0.0, t: 10.0, ap: 14.0, glass: "AIR", stop: true },
         { type: "5", R: 12.42, t: 10.0, ap: 8.5, glass: "AIR", stop: false },
         { type: "AST", R: 0.0, t: 6.4, ap: 8.5, glass: "AIR", stop: false },
-        { type: "7", R: -18.93, t: 10.0, ap: 11.0, glass: "LF5", stop: false },
-        { type: "8", R: 59.6, t: 10.0, ap: 13.0, glass: "LASFN31", stop: false },
+        { type: "7", R: -18.93, t: 10.0, ap: 11.0, glass: "N-SF5", stop: false },
+        { type: "8", R: 59.6, t: 10.0, ap: 13.0, glass: "N-LASF43", stop: false },
         { type: "9", R: -40.49, t: 10.0, ap: 13.0, glass: "AIR", stop: false },
         { type: "IMS", R: 0.0, t: 0.0, ap: 12.0, glass: "AIR", stop: false },
       ],
@@ -753,15 +514,15 @@ function warnMissingGlass(name) {
       name: "OMIT 50mm (concept v1 — scaled Double-Gauss base)",
       notes: [
         "Scaled from Double-Gauss base; used as geometric sanity for this 2D meridional tracer.",
-        "Not optimized; coatings/stop/entrance pupil are not modeled.",
+        "Illustrative preset; legacy S-LAM3/S-BAH11 substitutions are now explicit N-LAK9/N-BAK4. Dispersion APPROXIMATE; transmission unavailable.",
       ],
       surfaces: [
         { type: "OBJ", R: 0.0, t: 0.0, ap: 60.0, glass: "AIR", stop: false },
 
-        { type: "1", R: 37.4501, t: 4.49102, ap: 16.46707, glass: "S-LAM3", stop: false },
+        { type: "1", R: 37.4501, t: 4.49102, ap: 16.46707, glass: "N-LAK9", stop: false },
         { type: "2", R: 135.07984, t: 0.0499, ap: 16.46707, glass: "AIR", stop: false },
 
-        { type: "3", R: 19.59581, t: 8.23852, ap: 13.72255, glass: "S-BAH11", stop: false },
+        { type: "3", R: 19.59581, t: 8.23852, ap: 13.72255, glass: "N-BAK4", stop: false },
         { type: "4", R: 0.0, t: 0.998, ap: 12.22555, glass: "N-SF5", stop: false },
 
         { type: "5", R: 12.7994, t: 5.48403, ap: 9.73054, glass: "AIR", stop: false },
@@ -769,10 +530,10 @@ function warnMissingGlass(name) {
         { type: "STOP", R: 0.0, t: 6.48703, ap: 9.28144, glass: "AIR", stop: true },
 
         { type: "7", R: -15.90319, t: 3.50798, ap: 9.23154, glass: "N-SF5", stop: false },
-        { type: "8", R: 0.0, t: 4.48104, ap: 10.47904, glass: "S-LAM3", stop: false },
+        { type: "8", R: 0.0, t: 4.48104, ap: 10.47904, glass: "N-LAK9", stop: false },
         { type: "9", R: -21.71158, t: 0.0499, ap: 10.47904, glass: "AIR", stop: false },
 
-        { type: "10", R: 110.3493, t: 3.98204, ap: 11.47705, glass: "S-BAH11", stop: false },
+        { type: "10", R: 110.3493, t: 3.98204, ap: 11.47705, glass: "N-BAK4", stop: false },
         { type: "11", R: -44.30639, t: 30.6477, ap: 11.47705, glass: "AIR", stop: false },
 
         { type: "IMS", R: 0.0, t: 0.0, ap: 12.77, glass: "AIR", stop: false },
@@ -1127,6 +888,8 @@ function warnMissingGlass(name) {
   }
 
   function sanitizeLens(obj) {
+  if (obj?.schemaVersion > 2) throw new Error("Unsupported future project schema");
+  if (obj?.kind === "LensBuilderProject") obj = {...obj.lens, project:obj.project, schemaVersion:2};
   const rawAutofocusMode = String(obj?.import_options?.autofocus_mode || "").trim().toLowerCase();
   const autofocusMode = (
     rawAutofocusMode === "chart-mid" ||
@@ -1171,6 +934,9 @@ function warnMissingGlass(name) {
   ) !== false;
 
   const safe = {
+    schemaVersion:2,
+    project: obj?.project ? clone(obj.project) : null,
+    importReport: obj?.importReport ? clone(obj.importReport) : null,
     name: String(obj?.name ?? "No name"),
     notes: Array.isArray(obj?.notes) ? obj.notes.map(String) : [],
     surfaces: Array.isArray(obj?.surfaces) ? obj.surfaces : [],
@@ -1205,7 +971,7 @@ function warnMissingGlass(name) {
     const glassVdRaw = Number(s?.vd ?? s?.glass_vd ?? s?.zmx?.vd ?? s?.zmx?.Vd ?? s?.zmx?.glass_vd);
     const glassNd = (Number.isFinite(glassNdRaw) && glassNdRaw > 1) ? glassNdRaw : null;
     const glassVd = (glassNd != null)
-      ? ((Number.isFinite(glassVdRaw) && glassVdRaw > 0) ? glassVdRaw : 999)
+      ? ((Number.isFinite(glassVdRaw) && glassVdRaw > 0) ? glassVdRaw : null)
       : null;
     const originalGlass = (() => {
       if (s?.originalGlass != null && String(s.originalGlass).trim() !== "") return String(s.originalGlass).trim();
@@ -1214,6 +980,11 @@ function warnMissingGlass(name) {
       return String(s?.glass ?? "").trim() || null;
     })();
     return {
+      surfaceType: String(s?.surfaceType || "STANDARD"),
+      conic:Number(s?.conic || 0),
+      aspheric:clone(s?.aspheric || {}),
+      coating:s?.coating ?? null,
+      group:s?.group ?? null,
       type: String(s?.type ?? ""),
       surfaceLabel: String(s?.surfaceLabel ?? s?.label ?? "").trim(),
       surfaceLabelAuto: Boolean(s?.surfaceLabelAuto ?? false),
@@ -1276,6 +1047,13 @@ function warnMissingGlass(name) {
   }
 
   let lens = sanitizeLens(omit50ConceptV1());
+  const editHistory = new LBHistory();
+  let historyRestoring = false;
+  function recordHistory() { if (!historyRestoring) editHistory.record(lens); }
+  function restoreHistory(direction) {
+    const snapshot=editHistory[direction](); if(!snapshot)return;
+    historyRestoring=true;try{loadLens(snapshot);}finally{historyRestoring=false;}
+  }
   let _lastParaxialFailSignature = "";
   let _lastZemaxTraceDebugSignature = "";
   const HEAVY_RENDER_DEBOUNCE_MS = 180;
@@ -1641,7 +1419,12 @@ function warnMissingGlass(name) {
   }
 
   function loadLens(obj) {
-    lens = sanitizeLens(obj);
+    const next = sanitizeLens(obj);
+    for (const surface of next.surfaces) {
+      LBMaterials.material(surface);
+      if (surface.surfaceType !== "STANDARD" || surface.conic !== 0 || Object.values(surface.aspheric).some(v=>Number(v)!==0)) throw new Error("Unsupported native optical surface model");
+    }
+    lens = next;
     verifyPanelExpanded = false;
     focusRuntime.lastAutoKey = "";
     focusRuntime.lastAutoMetric = null;
@@ -1727,6 +1510,7 @@ function warnMissingGlass(name) {
 
   // -------------------- table build + events --------------------
   function buildTable() {
+    recordHistory();
     clampSelected();
     if (!ui.tbody) return;
     generateSurfaceLabels(lens.surfaces);
@@ -1768,8 +1552,8 @@ tr.innerHTML = `
         <td style="width:110px">
           <select class="cellSelect" data-k="glass" data-i="${idx}">
             ${glassOptionNames.map((name) =>
-              `<option value="${name}" ${name === glassValue ? "selected" : ""}>${
-                (name === glassValue && hasCustomGlass) ? customGlassLabel : name
+              `<option value="${escapeAttr(name)}" ${name === glassValue ? "selected" : ""}>${
+                escapeAttr((name === glassValue && hasCustomGlass) ? customGlassLabel : name)
               }</option>`
             ).join("")}
           </select>
@@ -1990,107 +1774,24 @@ function onCellCommit(e) {
     console.warn(`[trace] ${tag}`, payload);
   }
 
-  function refract(I, N, n1, n2) {
-    I = normalize(I);
-    N = normalize(N);
-    if (dot(I, N) > 0) N = mul(N, -1);
-    const cosi = -dot(N, I);
-    const eta = n1 / n2;
-    const k = 1 - eta * eta * (1 - cosi * cosi);
-    if (k < 0) return null;
-    const T = add(mul(I, eta), mul(N, eta * cosi - Math.sqrt(k)));
-    return normalize(T);
-  }
+  function refract(I,N,n1,n2) {
+ const d=LBOptics.refract({...I,z:0},{...N,z:0},n1,n2);return d?{x:d.x,y:d.y}:null;
+}
 
-  function intersectSurface(ray, surf) {
-    if (!validateRayForTrace(ray)) return null;
-    const vx = Number(surf?.vx);
-    const R = Number(surf?.R ?? 0);
-    const ap = getSurfaceOpticalAp(surf);
-    if (!Number.isFinite(vx) || !Number.isFinite(R) || !Number.isFinite(ap) || ap <= 0) return null;
-
-    if (Math.abs(R) < 1e-9) {
-      if (Math.abs(ray.d.x) < 1e-12) return null;
-
-      const tRaw = (vx - ray.p.x) / ray.d.x;
-      if (!Number.isFinite(tRaw) || tRaw <= -HIT_T_EPS) return null;
-      const t = tRaw < 0 ? 0 : tRaw;
-
-      const hit = add(ray.p, mul(ray.d, t));
-      const vignetted = Math.abs(hit.y) > ap + HIT_T_EPS;
-
-      const N = { x: -1, y: 0 };
-      return { hit, t, vignetted, normal: N };
-    }
-
-    const cx = vx + R;
-    const rad = Math.abs(R);
-
-    const px = ray.p.x - cx;
-    const py = ray.p.y;
-    const dx = ray.d.x;
-    const dy = ray.d.y;
-
-    const A = dx * dx + dy * dy;
-    if (!Number.isFinite(A) || Math.abs(A) < 1e-18) return null;
-    const B = 2 * (px * dx + py * dy);
-    const C = px * px + py * py - rad * rad;
-
-    const disc = B * B - 4 * A * C;
-    if (disc < 0) return null;
-
-    const sdisc = Math.sqrt(disc);
-    const t1 = (-B - sdisc) / (2 * A);
-    const t2 = (-B + sdisc) / (2 * A);
-
-    const signR = Math.sign(R) || 1;
-    const evalRoot = (t) => {
-      if (!Number.isFinite(t)) {
-        return { t, positive: false, inside: null, hit: null, xExpected: null, branchError: null, branchOk: false };
-      }
-      const hit = add(ray.p, mul(ray.d, t));
-      const inside = rad * rad - hit.y * hit.y;
-      const xExpected = cx - signR * Math.sqrt(Math.max(0, inside));
-      const branchError = Math.abs(hit.x - xExpected);
-      const nonNegative = t >= -HIT_T_EPS;
-      const branchOk = nonNegative && inside >= -SURFACE_BRANCH_EPS && branchError <= SURFACE_BRANCH_EPS;
-      const tClamped = t < 0 ? 0 : t;
-      return { t: tClamped, nonNegative, inside, hit, xExpected, branchError, branchOk };
-    };
-
-    const roots = [evalRoot(t1), evalRoot(t2)];
-    let chosen = null;
-    for (const r of roots) {
-      if (!r.branchOk) continue;
-      if (!chosen || r.t < chosen.t) chosen = r;
-    }
-    if (!chosen) {
-      const fallback = roots
-        .filter((r) => r.nonNegative && r.inside >= -SURFACE_BRANCH_EPS && Number.isFinite(r.branchError))
-        .sort((a, b) => a.branchError - b.branchError)[0] || null;
-      const fallbackTol = Math.max(SURFACE_BRANCH_EPS * 50, 1e-4);
-      if (fallback && fallback.branchError <= fallbackTol) chosen = fallback;
-    }
-
-    maybeLogNegativeSurfaceBranch2D(surf, roots, chosen);
-    if (!chosen) return null;
-
-    const hit = chosen.hit;
-    const t = chosen.t;
-    const vignetted = Math.abs(hit.y) > ap + HIT_T_EPS;
-    const Nout = normalize({ x: hit.x - cx, y: hit.y });
-    return { hit, t, vignetted, normal: Nout };
-  }
+  function intersectSurface(ray,surf) {
+ const h=LBOptics.intersect({p:{...ray.p,z:0},d:{...ray.d,z:0}},{...surf,ap:getSurfaceOpticalAp(surf)});
+ return h?{...h,hit:{x:h.hit.x,y:h.hit.y},normal:{x:h.normal.x,y:h.normal.y}}:null;
+}
 
   const _surfacePositionCache = new WeakMap();
 
   function computeVertices(surfaces, lensShift = 0, sensorShift = 0) {
     if (!Array.isArray(surfaces)) return 0;
     const key = [
-      Number(lensShift).toFixed(6),
-      Number(sensorShift).toFixed(6),
+      Number(lensShift),
+      Number(sensorShift),
       surfaces.length,
-      ...surfaces.map((s) => `${String(s?.type || "")}:${Number(s?.t ?? 0).toFixed(6)}`),
+      ...surfaces.map((s) => `${String(s?.type || "")}:${Number(s?.t ?? 0)}`),
     ].join("|");
     const cached = _surfacePositionCache.get(surfaces);
     if (cached?.key === key && Array.isArray(cached.vx) && cached.vx.length === surfaces.length) {
@@ -2152,106 +1853,9 @@ function onCellCommit(e) {
   function add3(a,b){ return { x:a.x+b.x, y:a.y+b.y, z:a.z+b.z }; }
   function mul3(a,s){ return { x:a.x*s, y:a.y*s, z:a.z*s }; }
 
-  function refract3(I, N, n1, n2){
-    I = normalize3(I);
-    N = normalize3(N);
-    if (dot3(I, N) > 0) N = mul3(N, -1);
+  function refract3(I,N,n1,n2) { return LBOptics.refract(I,N,n1,n2); }
 
-    const cosi = -dot3(N, I);
-    const eta = n1 / n2;
-    const k = 1 - eta*eta*(1 - cosi*cosi);
-    if (k < 0) return null;
-
-    const T = add3(mul3(I, eta), mul3(N, eta*cosi - Math.sqrt(k)));
-    return normalize3(T);
-  }
-
-  function intersectSurface3D(ray, surf){
-    if (!validateRay3DForTrace(ray)) return null;
-    const vx = Number(surf?.vx);
-    const R = Number(surf?.R ?? 0);
-    const ap = getSurfaceOpticalAp(surf);
-    if (!Number.isFinite(vx) || !Number.isFinite(R) || !Number.isFinite(ap) || ap <= 0) return null;
-
-    const isPlane = Math.abs(R) < 1e-9;
-
-    if (isPlane){
-      if (Math.abs(ray.d.x) < 1e-12) return null;
-      const tRaw = (vx - ray.p.x) / ray.d.x;
-      if (!Number.isFinite(tRaw) || tRaw <= -HIT_T_EPS) return null;
-      const t = tRaw < 0 ? 0 : tRaw;
-
-      const hit = add3(ray.p, mul3(ray.d, t));
-      const r = Math.hypot(hit.y, hit.z);
-      const vignetted = r > ap + HIT_T_EPS;
-
-      const N = { x:-1, y:0, z:0 };
-      return { hit, t, vignetted, normal: N };
-    }
-
-    const cx = vx + R;
-    const rad = Math.abs(R);
-
-    const px = ray.p.x - cx;
-    const py = ray.p.y;
-    const pz = ray.p.z;
-    const dx = ray.d.x;
-    const dy = ray.d.y;
-    const dz = ray.d.z;
-
-    const A = dx*dx + dy*dy + dz*dz;
-    if (!Number.isFinite(A) || Math.abs(A) < 1e-18) return null;
-    const B = 2 * (px*dx + py*dy + pz*dz);
-    const C = px*px + py*py + pz*pz - rad*rad;
-
-    const disc = B*B - 4*A*C;
-    if (disc < 0) return null;
-
-    const sdisc = Math.sqrt(disc);
-    const t1 = (-B - sdisc) / (2*A);
-    const t2 = (-B + sdisc) / (2*A);
-
-    const signR = Math.sign(R) || 1;
-    const evalRoot = (t) => {
-      if (!Number.isFinite(t)) {
-        return { t, positive: false, r2: null, inside: null, hit: null, xExpected: null, branchError: null, branchOk: false };
-      }
-      const hit = add3(ray.p, mul3(ray.d, t));
-      const r2 = hit.y * hit.y + hit.z * hit.z;
-      const inside = rad * rad - r2;
-      const xExpected = cx - signR * Math.sqrt(Math.max(0, inside));
-      const branchError = Math.abs(hit.x - xExpected);
-      const nonNegative = t >= -HIT_T_EPS;
-      const branchOk = nonNegative && inside >= -SURFACE_BRANCH_EPS && branchError <= SURFACE_BRANCH_EPS;
-      const tClamped = t < 0 ? 0 : t;
-      return { t: tClamped, nonNegative, r2, inside, hit, xExpected, branchError, branchOk };
-    };
-
-    const roots = [evalRoot(t1), evalRoot(t2)];
-    let chosen = null;
-    for (const r of roots) {
-      if (!r.branchOk) continue;
-      if (!chosen || r.t < chosen.t) chosen = r;
-    }
-    if (!chosen) {
-      const fallback = roots
-        .filter((r) => r.nonNegative && r.inside >= -SURFACE_BRANCH_EPS && Number.isFinite(r.branchError))
-        .sort((a, b) => a.branchError - b.branchError)[0] || null;
-      const fallbackTol = Math.max(SURFACE_BRANCH_EPS * 50, 1e-4);
-      if (fallback && fallback.branchError <= fallbackTol) chosen = fallback;
-    }
-
-    maybeLogNegativeSurfaceBranch3D(surf, roots, chosen);
-    if (!chosen) return null;
-
-    const hit = chosen.hit;
-    const t = chosen.t;
-    const r = Math.hypot(hit.y, hit.z);
-    const vignetted = r > ap + HIT_T_EPS;
-
-    const Nout = normalize3({ x: hit.x - cx, y: hit.y, z: hit.z });
-    return { hit, t, vignetted, normal: Nout };
-  }
+  function intersectSurface3D(ray,surf) { return LBOptics.intersect(ray,{...surf,ap:getSurfaceOpticalAp(surf)}); }
 
   function traceRayReverse3D(ray, surfaces, wavePreset){
     let vignetted = false;
@@ -3580,7 +3184,7 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
     };
   }
 
-  function estimateTStopApprox(efl, surfaces, wavePreset = "d") {
+  function estimateGeometricFNumber(efl, surfaces, wavePreset = "d") {
     if (!Number.isFinite(efl) || efl <= 0) return null;
 
     const ep = estimateEntrancePupil(surfaces, wavePreset);
@@ -5219,7 +4823,7 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
     const lambdaVerifyNm = getActiveAnalysisLambdaNm({ preferZemax: preferZemax });
 
     const verifyParax = estimateEflBflParaxial(lens.surfaces, lambdaVerifyNm);
-    const verifyT = estimateTStopApprox(verifyParax.efl, lens.surfaces, lambdaVerifyNm);
+    const verifyT = estimateGeometricFNumber(verifyParax.efl, lens.surfaces, lambdaVerifyNm);
     const verifyEP = estimateEntrancePupil(lens.surfaces, lambdaVerifyNm);
 
     const fields = Array.isArray(z.fields) ? z.fields : [];
@@ -5239,7 +4843,7 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
     if (ui.verifySummary) {
       const eflTxt = Number.isFinite(verifyParax?.efl) ? `${verifyParax.efl.toFixed(3)}mm` : "—";
       const bflTxt = Number.isFinite(verifyParax?.bfl) ? `${verifyParax.bfl.toFixed(3)}mm` : "—";
-      const tTxt = Number.isFinite(verifyT) ? `T≈${verifyT.toFixed(3)}` : "T≈—";
+      const tTxt = Number.isFinite(verifyT) ? `f/≈${verifyT.toFixed(3)}` : "f/≈—";
       ui.verifySummary.textContent = `Verify @ ${lambdaVerifyNm.toFixed(1)}nm • EFL ${eflTxt} • BFL ${bflTxt} • ${tTxt}`;
     }
     if (ui.verifyWave) {
@@ -5589,7 +5193,7 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
         paraxialSource = "nominal_fallback";
       }
     }
-    let T = estimateTStopApprox(efl, tStopSurfaceRef, wavePreset);
+    let T = estimateGeometricFNumber(efl, tStopSurfaceRef, wavePreset);
     if (!Number.isFinite(Number(T))) {
       const importedConfigFno = Number(lens?.zemax?.configAperture);
       if (Number.isFinite(importedConfigFno) && importedConfigFno > 0) T = importedConfigFno;
@@ -5626,14 +5230,14 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
 
     if (ui.efl) ui.efl.textContent = `Focal Length: ${efl == null ? "—" : efl.toFixed(2)}mm`;
     if (ui.bfl) ui.bfl.textContent = `BFL: ${bfl == null ? "—" : bfl.toFixed(2)}mm`;
-    if (ui.tstop) ui.tstop.textContent = `T≈ ${T == null ? "—" : "T" + T.toFixed(2)}`;
+    if (ui.tstop) ui.tstop.textContent = `f/≈ ${T == null ? "—" : T.toFixed(2)}`;
     if (ui.vig) ui.vig.textContent = `Vignette: ${vigPct}%`;
     if (ui.fov) ui.fov.textContent = fovTxt;
     if (ui.cov) ui.cov.textContent = covers ? "COV: YES" : "COV: NO";
 
     if (ui.eflTop) ui.eflTop.textContent = ui.efl?.textContent || `EFL: ${efl == null ? "—" : efl.toFixed(2)}mm`;
     if (ui.bflTop) ui.bflTop.textContent = ui.bfl?.textContent || `BFL: ${bfl == null ? "—" : bfl.toFixed(2)}mm`;
-    if (ui.tstopTop) ui.tstopTop.textContent = ui.tstop?.textContent || `T≈ ${T == null ? "—" : "T" + T.toFixed(2)}`;
+    if (ui.tstopTop) ui.tstopTop.textContent = ui.tstop?.textContent || `f/≈ ${T == null ? "—" : T.toFixed(2)}`;
     if (ui.fovTop) ui.fovTop.textContent = fovTxt;
     if (ui.covTop) ui.covTop.textContent = ui.cov?.textContent || (covers ? "COV: YES" : "COV: NO");
 
@@ -5654,7 +5258,7 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
     updateZemaxVerifyPanel({ sensorX: displaySensorX });
 
     const eflTxt = efl == null ? "—" : `${efl.toFixed(2)}mm`;
-    const tTxt   = T == null ? "—" : `T${T.toFixed(2)}`;
+    const tTxt   = T == null ? "—" : `f/${T.toFixed(2)}`;
     const focusTxt = `Focus shift: ${focusCtx.focusShiftMm.toFixed(2)}mm (${focusMode}/${focusMechanism}, optical pose)`;
     const flangeTxt = `Flange reference: 52.00mm from displayed sensor plane`;
 
@@ -6403,8 +6007,8 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
       const keys = Object.keys(GLASS_DB);
       elUI.g1.innerHTML = keys.map((k) => `<option value="${k}">${k}</option>`).join("");
       elUI.g2.innerHTML = keys.map((k) => `<option value="${k}">${k}</option>`).join("");
-      elUI.g1.value = "BK7";
-      elUI.g2.value = "F2";
+      elUI.g1.value = "N-BK7HT";
+      elUI.g2.value = "N-F2";
       elUI.g1.dataset._filled = "1";
     }
 
@@ -6529,8 +6133,8 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
     else if (form.includes("meniscus")) form = "weakmeniscus";
     else if (form.includes("biconvex")) form = "symmetric";
 
-    const glass1 = String(elUI.g1?.value ?? "BK7");
-    const glass2 = String(elUI.g2?.value ?? "F2");
+    const glass1 = String(elUI.g1?.value ?? "N-BK7HT");
+    const glass2 = String(elUI.g2?.value ?? "N-F2");
 
     return { f, ap, ct, gap, rearAir, frontAir, type, mode, form, glass1, glass2 };
   }
@@ -7223,6 +6827,8 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
   }
 
  function performRenderPreview() {
+  let previewSeed=0x12345678;
+  const random=()=>{previewSeed=(Math.imul(1664525,previewSeed)+1013904223)>>>0;return previewSeed/4294967296;};
   if (!renderEngineEnabled) {
     hidePreviewProgress();
     finishPreviewRender();
@@ -7772,8 +7378,8 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
 
           for (let iy = 0; iy < lutPupilSqrt; iy++) {
             for (let ix = 0; ix < lutPupilSqrt; ix++) {
-              const uu = (ix + Math.random()) / lutPupilSqrt;
-              const vv = (iy + Math.random()) / lutPupilSqrt;
+              const uu = (ix + random()) / lutPupilSqrt;
+              const vv = (iy + random()) / lutPupilSqrt;
 
               const pp = samplePupilDisk(uu, vv);
               const target = { x: xStop, y: pp.y, z: pp.z };
@@ -8017,12 +7623,12 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
           let wSum = 0;
 
           for (let s = 0; s < spp; s++) {
-            const jx = (Math.random() - 0.5) * (sensorWv / W) * 0.6;
-            const jy = (Math.random() - 0.5) * (sensorHv / H) * 0.6;
+            const jx = (random() - 0.5) * (sensorWv / W) * 0.6;
+            const jy = (random() - 0.5) * (sensorHv / H) * 0.6;
 
             const pS = { x: startX, y: sx + jx, z: sy + jy };
 
-            const pp = samplePupilDisk(Math.random(), Math.random());
+            const pp = samplePupilDisk(random(), random());
             const target = { x: xStop, y: pp.y, z: pp.z };
             const dir0 = normalize3({ x: target.x - pS.x, y: target.y - pS.y, z: target.z - pS.z });
 
@@ -8100,7 +7706,7 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
   }
   }
 
-  // -------------------- toolbar actions: Scale → FL, Set T --------------------
+  // -------------------- toolbar actions: Scale → FL, Set f/ --------------------
   function scaleSurfaceDimensions(s, k, options = {}) {
     if (!s || !Number.isFinite(k) || k <= 0) return;
 
@@ -8312,22 +7918,22 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
     modal.setAttribute("aria-hidden", "false");
   }
 
-  function setTargetTStop() {
+  function setTargetFNumber() {
     const wavePreset = ui.wavePreset?.value || "d";
     const { efl } = estimateEflBflParaxial(lens.surfaces, wavePreset);
     if (!Number.isFinite(efl) || efl <= 0) {
-      if (ui.footerWarn) ui.footerWarn.textContent = "Set T: EFL unknown (try Scale→FL or fix geometry).";
+      if (ui.footerWarn) ui.footerWarn.textContent = "Set f/: EFL unknown (try Scale→FL or fix geometry).";
       return;
     }
 
     const stopIdx = findStopSurfaceIndex(lens.surfaces);
     if (stopIdx < 0) {
-      if (ui.footerWarn) ui.footerWarn.textContent = "Set T: no STOP surface marked.";
+      if (ui.footerWarn) ui.footerWarn.textContent = "Set f/: no STOP surface marked.";
       return;
     }
 
-    const currentT = estimateTStopApprox(efl, lens.surfaces, wavePreset);
-    const targetT = num(prompt("Target T-stop? (approx)", currentT ? currentT.toFixed(2) : "2.00"), currentT || 2.0);
+    const currentT = estimateGeometricFNumber(efl, lens.surfaces, wavePreset);
+    const targetT = num(prompt("Target geometric f-number?", currentT ? currentT.toFixed(2) : "2.00"), currentT || 2.0);
     if (!Number.isFinite(targetT) || targetT <= 0) return;
 
     const stopSurf = lens.surfaces[stopIdx];
@@ -8343,7 +7949,7 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
     const evalAtAp = (ap) => {
       stopSurf.ap = ap;
       stopSurf.ap_optical = ap;
-      const t = estimateTStopApprox(efl, lens.surfaces, wavePreset);
+      const t = estimateGeometricFNumber(efl, lens.surfaces, wavePreset);
       return Number.isFinite(t) ? t : null;
     };
 
@@ -8380,7 +7986,7 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
     renderAll();
     scheduleRenderPreview();
 
-    if (ui.footerWarn) ui.footerWarn.textContent = `Set T: stop ap → ${lens.surfaces[stopIdx].ap.toFixed(2)}mm (semi-diam) for T${targetT.toFixed(2)} @ EFL ${efl.toFixed(2)}mm.`;
+    if (ui.footerWarn) ui.footerWarn.textContent = `Set f/: stop ap → ${lens.surfaces[stopIdx].ap.toFixed(2)}mm (semi-diam) for f/${targetT.toFixed(2)} @ EFL ${efl.toFixed(2)}mm.`;
   }
 
   // -------------------- New Lens modal --------------------
@@ -8401,10 +8007,10 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
         name: "Tessar-ish (simple)",
         surfaces: [
           { type: "OBJ", R: 0, t: 0, ap: 60, glass: "AIR", stop: false },
-          { type: "1", R: 70, t: 4.5, ap: 18, glass: "BK7", stop: false },
+          { type: "1", R: 70, t: 4.5, ap: 18, glass: "N-BK7HT", stop: false },
           { type: "2", R: -35, t: 1.2, ap: 18, glass: "AIR", stop: false },
           { type: "STOP", R: 0, t: 6.0, ap: 8, glass: "AIR", stop: true },
-          { type: "4", R: -50, t: 3.8, ap: 16, glass: "F2", stop: false },
+          { type: "4", R: -50, t: 3.8, ap: 16, glass: "N-F2", stop: false },
           { type: "5", R: 120, t: 18, ap: 16, glass: "AIR", stop: false },
           { type: "IMS", R: 0, t: 0, ap: 12.77, glass: "AIR", stop: false },
         ],
@@ -8672,623 +8278,7 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
   }
 
   // -------------------- load lens JSON --------------------
-  function parseZemaxFirstNumber(s) {
-    const m = String(s ?? "").replace(/,/g, ".").match(/[-+]?\d*\.?\d+(?:[eE][-+]?\d+)?/);
-    return m ? Number(m[0]) : NaN;
-  }
-
-  function parseZemaxNumberList(s) {
-    const m = String(s ?? "").replace(/,/g, ".").match(/[-+]?\d*\.?\d+(?:[eE][-+]?\d+)?/g);
-    if (!m) return [];
-    return m
-      .map((v) => Number(v))
-      .filter((v) => Number.isFinite(v));
-  }
-
-  function unitTokenToMmScale(token) {
-    const u = String(token ?? "").trim().toUpperCase();
-    if (u === "MM" || u === "MILLIMETER" || u === "MILLIMETERS") return 1;
-    if (u === "CM" || u === "CENTIMETER" || u === "CENTIMETERS") return 10;
-    if (u === "M" || u === "METER" || u === "METERS") return 1000;
-    if (u === "IN" || u === "INCH" || u === "INCHES") return 25.4;
-    return 1;
-  }
-
-  function stripOptionalQuotes(s) {
-    const raw = String(s ?? "").trim();
-    if (!raw) return "";
-    if ((raw.startsWith('"') && raw.endsWith('"')) || (raw.startsWith("'") && raw.endsWith("'"))) {
-      return raw.slice(1, -1).trim();
-    }
-    return raw;
-  }
-
-  function sourceNameToLensName(sourceName = "Zemax import") {
-    return String(sourceName || "Zemax import").replace(/\.(zmx|seq|txt)$/i, "");
-  }
-
-  function isLikelyZemaxSequentialText(txt) {
-    if (!txt) return false;
-    const s = String(txt);
-    const hasSurf = /(^|\n)\s*SURF\s+-?\d+/im.test(s);
-    const hasModeSeq = /(^|\n)\s*MODE\s+SEQ\b/im.test(s);
-    const hasCurv = /(^|\n)\s*CURV\s+/im.test(s);
-    return hasSurf && (hasModeSeq || hasCurv);
-  }
-
-  function parseZemaxGlassLine(line) {
-    const parts = String(line || "").trim().split(/\s+/).filter(Boolean);
-    const glass = parts[1] ? String(parts[1]).trim() : "AIR";
-    const glassUp = glass.toUpperCase();
-
-    if (glassUp === "___BLANK") {
-      const ndFixed = parseZemaxFirstNumber(parts[4]);
-      const vdFixed = parseZemaxFirstNumber(parts[5]);
-      let nd = (Number.isFinite(ndFixed) && ndFixed > 1) ? ndFixed : NaN;
-      let vd = (Number.isFinite(vdFixed) && vdFixed > 0) ? vdFixed : NaN;
-
-      // Fallback for variant formatting; still prefer the explicit slots above.
-      if (!Number.isFinite(nd) || !Number.isFinite(vd)) {
-        const nums = parts
-          .slice(2)
-          .map((p) => parseZemaxFirstNumber(p))
-          .filter((n) => Number.isFinite(n));
-        for (let i = 0; i < nums.length; i++) {
-          const n = nums[i];
-          if (n > 1.2 && n < 3.0) {
-            nd = n;
-            for (let j = i + 1; j < nums.length; j++) {
-              if (nums[j] > 1) { vd = nums[j]; break; }
-            }
-            break;
-          }
-        }
-      }
-
-      return {
-        glass,
-        nd: Number.isFinite(nd) ? nd : null,
-        vd: Number.isFinite(vd) ? vd : null,
-      };
-    }
-
-    const nums = parts
-      .slice(2)
-      .map((p) => parseZemaxFirstNumber(p))
-      .filter((n) => Number.isFinite(n));
-
-    let nd = NaN;
-    let ndIdx = -1;
-    for (let i = 0; i < nums.length; i++) {
-      const n = nums[i];
-      if (n > 1.2 && n < 3.0) {
-        nd = n;
-        ndIdx = i;
-        break;
-      }
-    }
-
-    let vd = NaN;
-    if (ndIdx >= 0) {
-      for (let i = ndIdx + 1; i < nums.length; i++) {
-        const v = nums[i];
-        if (v > 1) {
-          vd = v;
-          break;
-        }
-      }
-    }
-
-    if (!Number.isFinite(nd) && nums.length >= 2) {
-      const ndTail = nums[nums.length - 2];
-      const vdTail = nums[nums.length - 1];
-      if (ndTail > 1.2 && ndTail < 3.0 && vdTail > 1) {
-        nd = ndTail;
-        vd = vdTail;
-      }
-    }
-
-    if (Number.isFinite(nd) && !Number.isFinite(vd)) vd = 999;
-
-    return {
-      glass,
-      nd: Number.isFinite(nd) ? nd : null,
-      vd: Number.isFinite(vd) ? vd : null,
-    };
-  }
-
-  function extractLikelyZemaxLinesFromText(txt) {
-    const all = String(txt || "").replace(/\r/g, "").split("\n");
-    if (!all.length) return [];
-    const idxVers = all.findIndex((ln) => /^\s*VERS\b/i.test(ln));
-    const idxModeSeq = all.findIndex((ln) => /^\s*MODE\s+SEQ\b/i.test(ln));
-    const idxModeAny = all.findIndex((ln) => /^\s*MODE\b/i.test(ln));
-    const idxSurf = all.findIndex((ln) => /^\s*SURF\s+-?\d+/i.test(ln));
-    let start = -1;
-
-    const preferred = [idxVers, idxModeSeq].filter((n) => n >= 0);
-    if (preferred.length) {
-      start = Math.min(...preferred);
-    } else if (idxModeAny >= 0) {
-      start = idxModeAny;
-    } else if (idxSurf >= 0) {
-      start = idxSurf;
-    }
-
-    if (start < 0) return all;
-    return all.slice(start);
-  }
-
-  function parseZemaxMultiConfigLines(lines, unitScaleDefault = 1) {
-    const out = {
-      count: 1,
-      configsByIndex: new Map(),
-    };
-    if (!Array.isArray(lines) || !lines.length) return out;
-
-    let unitScaleToMm = Number.isFinite(Number(unitScaleDefault)) ? Number(unitScaleDefault) : 1;
-    const ensureConfig = (cfgIndex) => {
-      const idx = Number.isFinite(Number(cfgIndex)) ? Math.max(1, Math.trunc(Number(cfgIndex))) : 1;
-      if (!out.configsByIndex.has(idx)) {
-        out.configsByIndex.set(idx, {
-          index: idx,
-          label: null,
-          aperture: null,
-          thicknessOverrides: {},
-          fieldOverrides: { vdx: {}, vdy: {}, vcx: {}, vcy: {} },
-        });
-      }
-      return out.configsByIndex.get(idx);
-    };
-
-    for (const raw of lines) {
-      const line = String(raw || "").trim();
-      if (!line) continue;
-
-      const mUnit = line.match(/^UNIT\s+([A-Za-z]+)/i);
-      if (mUnit) {
-        unitScaleToMm = unitTokenToMmScale(mUnit[1]);
-        continue;
-      }
-
-      const mNum = line.match(/^MNUM\s+(\d+)/i);
-      if (mNum) {
-        out.count = Math.max(out.count, Math.max(1, Math.trunc(Number(mNum[1]))));
-        continue;
-      }
-
-      const mOffQuoted = line.match(/^MOFF\s+0\s+(\d+)\s+"([^"]*)"/i);
-      if (mOffQuoted) {
-        const cfg = ensureConfig(Number(mOffQuoted[1]));
-        const label = String(mOffQuoted[2] || "").trim();
-        if (label) cfg.label = label;
-        continue;
-      }
-      const mOffBare = line.match(/^MOFF\s+0\s+(\d+)\s+(.+)$/i);
-      if (mOffBare) {
-        const cfg = ensureConfig(Number(mOffBare[1]));
-        const label = stripOptionalQuotes(String(mOffBare[2] || "")).trim();
-        if (label) cfg.label = label;
-        continue;
-      }
-
-      const mAper = line.match(/^APER\s+0\s+(\d+)\s+([-+0-9.Ee]+)/i);
-      if (mAper) {
-        const cfg = ensureConfig(Number(mAper[1]));
-        const val = Number(mAper[2]);
-        if (Number.isFinite(val)) cfg.aperture = val;
-        continue;
-      }
-
-      const mThic = line.match(/^THIC\s+(\d+)\s+(\d+)\s+([-+0-9.Ee]+)/i);
-      if (mThic) {
-        const surfNo = Math.max(0, Math.trunc(Number(mThic[1])));
-        const cfg = ensureConfig(Number(mThic[2]));
-        const val = Number(mThic[3]);
-        if (Number.isFinite(val)) cfg.thicknessOverrides[String(surfNo)] = val * unitScaleToMm;
-        continue;
-      }
-
-      const mFv = line.match(/^FV(DX|DY|CX|CY)\s+(\d+)\s+(\d+)\s+([-+0-9.Ee]+)/i);
-      if (mFv) {
-        const axis = String(mFv[1] || "").toLowerCase();
-        const fieldIndex = Math.max(0, Math.trunc(Number(mFv[2])));
-        const cfg = ensureConfig(Number(mFv[3]));
-        const val = Number(mFv[4]);
-        if (!Number.isFinite(val)) continue;
-        const key = `v${axis}`;
-        if (!cfg.fieldOverrides[key]) cfg.fieldOverrides[key] = {};
-        cfg.fieldOverrides[key][String(fieldIndex)] = val;
-      }
-    }
-
-    for (let i = 1; i <= out.count; i++) ensureConfig(i);
-    return out;
-  }
-
-  function buildZoomConfigsFromMeta(multiConfig, surfaces) {
-    if (!multiConfig || typeof multiConfig !== "object") return [];
-    const map = multiConfig.configsByIndex instanceof Map ? multiConfig.configsByIndex : new Map();
-    if (!map.size && !(Number(multiConfig.count) > 1)) return [];
-
-    const knownSurfNos = new Set(
-      (Array.isArray(surfaces) ? surfaces : [])
-        .map((s) => Number(s?.zmx?.surf))
-        .filter((n) => Number.isFinite(n))
-        .map((n) => Math.max(0, Math.trunc(n)))
-    );
-
-    const count = Math.max(1, Number.isFinite(Number(multiConfig.count)) ? Math.trunc(Number(multiConfig.count)) : 1);
-    for (let i = 1; i <= count; i++) {
-      if (!map.has(i)) {
-        map.set(i, {
-          index: i,
-          label: null,
-          aperture: null,
-          thicknessOverrides: {},
-          fieldOverrides: { vdx: {}, vdy: {}, vcx: {}, vcy: {} },
-        });
-      }
-    }
-
-    const list = Array.from(map.values())
-      .map((cfg, arrIdx) => {
-        const index = Math.max(1, Math.trunc(Number(cfg?.index || (arrIdx + 1))));
-        const label = (cfg?.label != null && String(cfg.label).trim() !== "")
-          ? String(cfg.label).trim()
-          : null;
-        const aperture = Number.isFinite(Number(cfg?.aperture)) ? Number(cfg.aperture) : null;
-
-        const thicknessOverrides = {};
-        for (const [k, v] of Object.entries(cfg?.thicknessOverrides || {})) {
-          const surfNo = Math.max(0, Math.trunc(Number(k)));
-          const val = Number(v);
-          if (!Number.isFinite(surfNo) || !Number.isFinite(val)) continue;
-          // Keep known surface overrides, but also keep unknown keys for diagnostics and round-trip.
-          if (knownSurfNos.size > 0 && !knownSurfNos.has(surfNo)) {
-            thicknessOverrides[String(surfNo)] = val;
-            continue;
-          }
-          thicknessOverrides[String(surfNo)] = val;
-        }
-
-        const fieldOverrides = {
-          vdx: sanitizeZoomFieldOverrideMap(cfg?.fieldOverrides?.vdx),
-          vdy: sanitizeZoomFieldOverrideMap(cfg?.fieldOverrides?.vdy),
-          vcx: sanitizeZoomFieldOverrideMap(cfg?.fieldOverrides?.vcx),
-          vcy: sanitizeZoomFieldOverrideMap(cfg?.fieldOverrides?.vcy),
-        };
-
-        const overrideSurfaceNumbers = Object.keys(thicknessOverrides)
-          .map((n) => Number(n))
-          .filter((n) => Number.isFinite(n))
-          .sort((a, b) => a - b);
-
-        return {
-          index,
-          label,
-          aperture,
-          thicknessOverrides,
-          fieldOverrides,
-          overrideSurfaceNumbers,
-        };
-      })
-      .sort((a, b) => a.index - b.index);
-
-    const hasThic = list.some((cfg) => Object.keys(cfg.thicknessOverrides || {}).length > 0);
-    if (!hasThic && list.length <= 1) return [];
-    return list;
-  }
-
-  function parseZemaxSequentialText(txt, sourceName = "Zemax file") {
-    const lines = extractLikelyZemaxLinesFromText(txt);
-    if (!lines.length) throw new Error("Empty file");
-
-    let unitScaleToMm = 1;
-    const parsed = [];
-    let cur = null;
-
-    const zemaxMeta = {
-      source: "zemax",
-      name: null,
-      version: null,
-      mode: null,
-      fieldType: "angle_deg",
-      wavelengthsByIndex: new Map(),
-      primaryWavelengthIndex: null,
-      fieldsRaw: {
-        yfln: [],
-        fwgn: [],
-        vdx: [],
-        vdy: [],
-        vcx: [],
-        vcy: [],
-      },
-      multiConfig: parseZemaxMultiConfigLines(lines, unitScaleToMm),
-    };
-
-    const pushCur = () => {
-      if (!cur) return;
-      parsed.push(cur);
-      cur = null;
-    };
-
-    for (const raw of lines) {
-      const line = String(raw || "").trim();
-      if (!line) continue;
-      if (line.startsWith("!") || line.startsWith("#") || line.startsWith("//")) continue;
-
-      const up = line.toUpperCase();
-
-      if (/^VERS\b/i.test(line)) {
-        zemaxMeta.version = stripOptionalQuotes(line.replace(/^VERS\b/i, ""));
-        continue;
-      }
-      if (/^MODE\b/i.test(line)) {
-        zemaxMeta.mode = stripOptionalQuotes(line.replace(/^MODE\b/i, "")).toUpperCase();
-        continue;
-      }
-      if (/^NAME\b/i.test(line)) {
-        const nm = stripOptionalQuotes(line.replace(/^NAME\b/i, ""));
-        if (nm) zemaxMeta.name = nm;
-        continue;
-      }
-      if (/^PWAV\b/i.test(line)) {
-        const nums = parseZemaxNumberList(line.replace(/^PWAV\b/i, ""));
-        if (nums.length) zemaxMeta.primaryWavelengthIndex = Math.max(1, Math.round(nums[0]));
-        continue;
-      }
-      if (/^WAVM\b/i.test(line)) {
-        const nums = parseZemaxNumberList(line.replace(/^WAVM\b/i, ""));
-        if (nums.length) {
-          let idx = 0;
-          // Zemax WAVM format is typically: WAVM <idx> <lambda_um> <weight>
-          // Use the wavelength slot (2nd numeric token), not the weight token.
-          let lam = (nums.length >= 2) ? nums[1] : nums[nums.length - 1];
-          if (nums.length >= 2) idx = Math.round(nums[0]);
-          if (!Number.isFinite(idx) || idx <= 0) idx = zemaxMeta.wavelengthsByIndex.size + 1;
-          if (Number.isFinite(lam) && lam > 0) {
-            const lamNm = lam < 10 ? lam * 1000 : lam;
-            zemaxMeta.wavelengthsByIndex.set(idx, lamNm);
-          }
-        }
-        continue;
-      }
-      if (/^FTYP\b/i.test(line)) {
-        const nums = parseZemaxNumberList(line.replace(/^FTYP\b/i, ""));
-        const ftyp = nums.length ? Math.round(nums[0]) : 0;
-        // 0 in Zemax is angular fields; keep default as angle_deg.
-        if (ftyp === 0) zemaxMeta.fieldType = "angle_deg";
-        else if (ftyp === 1) zemaxMeta.fieldType = "image_height";
-        continue;
-      }
-      if (/^YFLN\b/i.test(line)) {
-        zemaxMeta.fieldsRaw.yfln = parseZemaxNumberList(line.replace(/^YFLN\b/i, ""));
-        continue;
-      }
-      if (/^FWGN\b/i.test(line)) {
-        zemaxMeta.fieldsRaw.fwgn = parseZemaxNumberList(line.replace(/^FWGN\b/i, ""));
-        continue;
-      }
-      if (/^VDXN?\b/i.test(line)) {
-        zemaxMeta.fieldsRaw.vdx = parseZemaxNumberList(line.replace(/^VDXN?\b/i, ""));
-        continue;
-      }
-      if (/^VDYN?\b/i.test(line)) {
-        zemaxMeta.fieldsRaw.vdy = parseZemaxNumberList(line.replace(/^VDYN?\b/i, ""));
-        continue;
-      }
-      if (/^VCXN?\b/i.test(line)) {
-        zemaxMeta.fieldsRaw.vcx = parseZemaxNumberList(line.replace(/^VCXN?\b/i, ""));
-        continue;
-      }
-      if (/^VCYN?\b/i.test(line)) {
-        zemaxMeta.fieldsRaw.vcy = parseZemaxNumberList(line.replace(/^VCYN?\b/i, ""));
-        continue;
-      }
-
-      if (up.startsWith("UNIT")) {
-        const parts = up.split(/\s+/);
-        unitScaleToMm = unitTokenToMmScale(parts[1] || "MM");
-        continue;
-      }
-
-      const mSurf = up.match(/^SURF\s+(-?\d+)/);
-      if (mSurf) {
-        pushCur();
-        cur = {
-          idx: Number(mSurf[1]),
-          CURV: 0,
-          DISZ: 0,
-          DIAM: NaN,
-          GLAS: "AIR",
-          ORIGINAL_GLASS: "AIR",
-          nd: null,
-          vd: null,
-          GLAS_ND: null,
-          GLAS_VD: null,
-          STOP: false,
-        };
-        continue;
-      }
-
-      if (!cur) continue;
-
-      if (up.startsWith("CURV")) {
-        const v = parseZemaxFirstNumber(line.slice(4));
-        if (Number.isFinite(v)) cur.CURV = v;
-        continue;
-      }
-
-      if (up.startsWith("DISZ")) {
-        const v = parseZemaxFirstNumber(line.slice(4));
-        if (Number.isFinite(v)) cur.DISZ = v;
-        continue;
-      }
-
-      if (up.startsWith("DIAM")) {
-        const v = parseZemaxFirstNumber(line.slice(4));
-        if (Number.isFinite(v)) cur.DIAM = Math.abs(v);
-        continue;
-      }
-
-      if (up.startsWith("GLAS")) {
-        const parsedGlass = parseZemaxGlassLine(line);
-        const glassName = String(parsedGlass.glass || "AIR").trim();
-        const isBlank = glassName.toUpperCase() === "___BLANK";
-        cur.ORIGINAL_GLASS = glassName || "AIR";
-        cur.GLAS = isBlank ? "CUSTOM" : glassName;
-        cur.nd = parsedGlass.nd;
-        cur.vd = parsedGlass.vd;
-        cur.GLAS_ND = parsedGlass.nd;
-        cur.GLAS_VD = parsedGlass.vd;
-        continue;
-      }
-
-      if (/^STOP\b/i.test(line)) {
-        cur.STOP = true;
-        continue;
-      }
-    }
-
-    pushCur();
-    if (!parsed.length) throw new Error("No SURF blocks found");
-
-    parsed.sort((a, b) => a.idx - b.idx);
-    const surfaces = parsed.map((s, i) => {
-      const isFirst = i === 0;
-      const isLast = i === parsed.length - 1;
-      const curv = Number(s.CURV || 0);
-      const R = Math.abs(curv) < 1e-12 ? 0 : (1 / curv) * unitScaleToMm;
-      const t = Number.isFinite(Number(s.DISZ)) ? Number(s.DISZ) * unitScaleToMm : 0;
-      const apSemi = Number.isFinite(Number(s.DIAM)) ? Math.max(0.01, Number(s.DIAM) * unitScaleToMm) : 10;
-
-      const g = String(s.GLAS || "AIR").trim();
-      const glass = (!g || g === "-" || /^MIRROR$/i.test(g)) ? "AIR" : g;
-      const originalGlass = String(s.ORIGINAL_GLASS || g || "AIR").trim();
-      const glassNd = (Number.isFinite(Number(s.nd ?? s.GLAS_ND)) && Number(s.nd ?? s.GLAS_ND) > 1)
-        ? Number(s.nd ?? s.GLAS_ND)
-        : null;
-      const glassVd = (glassNd != null)
-        ? ((Number.isFinite(Number(s.vd ?? s.GLAS_VD)) && Number(s.vd ?? s.GLAS_VD) > 0) ? Number(s.vd ?? s.GLAS_VD) : 999)
-        : null;
-
-      return {
-        type: isFirst ? "OBJ" : (isLast ? "IMS" : String(i)),
-        R,
-        t,
-        ap: apSemi,
-        ap_optical: apSemi,
-        ap_mech: null,
-        draw_mode: "optical",
-        shoulder_mode: "none",
-        shoulder_depth: 0,
-        bevel: 0,
-        edge_thickness_mode: "auto",
-        glass,
-        originalGlass,
-        nd: glassNd,
-        vd: glassVd,
-        glass_nd: glassNd,
-        glass_vd: glassVd,
-        stop: isLast ? false : !!s.STOP,
-        zmx: {
-          surf: s.idx,
-          curv: curv,
-          baseCurv: curv,
-          disz: t,
-          disz_raw: Number(s.DISZ),
-          baseDisz: t,
-          diam: Number(s.DIAM),
-          glass_name: originalGlass,
-          nd: glassNd,
-          vd: glassVd,
-          glass_nd: glassNd,
-          glass_vd: glassVd,
-        },
-      };
-    });
-    if (!surfaces.length) throw new Error("No valid surfaces after parse");
-
-    const sortedWaveIdx = Array.from(zemaxMeta.wavelengthsByIndex.keys()).sort((a, b) => a - b);
-    const wavelengthsNm = sortedWaveIdx
-      .map((idx) => Number(zemaxMeta.wavelengthsByIndex.get(idx)))
-      .filter((v) => Number.isFinite(v) && v > 0);
-
-    const primaryWavelengthIndex = Number.isFinite(Number(zemaxMeta.primaryWavelengthIndex))
-      ? Math.max(1, Math.round(Number(zemaxMeta.primaryWavelengthIndex)))
-      : null;
-    const primaryWavelengthNm = (primaryWavelengthIndex != null && zemaxMeta.wavelengthsByIndex.has(primaryWavelengthIndex))
-      ? Number(zemaxMeta.wavelengthsByIndex.get(primaryWavelengthIndex))
-      : null;
-
-    const yfln = Array.isArray(zemaxMeta.fieldsRaw.yfln) ? zemaxMeta.fieldsRaw.yfln : [];
-    const fwgn = Array.isArray(zemaxMeta.fieldsRaw.fwgn) ? zemaxMeta.fieldsRaw.fwgn : [];
-    const vdx = Array.isArray(zemaxMeta.fieldsRaw.vdx) ? zemaxMeta.fieldsRaw.vdx : [];
-    const vdy = Array.isArray(zemaxMeta.fieldsRaw.vdy) ? zemaxMeta.fieldsRaw.vdy : [];
-    const vcx = Array.isArray(zemaxMeta.fieldsRaw.vcx) ? zemaxMeta.fieldsRaw.vcx : [];
-    const vcy = Array.isArray(zemaxMeta.fieldsRaw.vcy) ? zemaxMeta.fieldsRaw.vcy : [];
-    const fieldCount = Math.max(yfln.length, fwgn.length, vdx.length, vdy.length, vcx.length, vcy.length, 0);
-    const fields = [];
-    for (let i = 0; i < fieldCount; i++) {
-      const angleDegRaw = Number(yfln[i]);
-      const angleDeg = Number.isFinite(angleDegRaw) ? angleDegRaw : (i === 0 ? 0 : null);
-      if (angleDeg == null) continue;
-      const weightRaw = Number(fwgn[i]);
-      fields.push({
-        index: i,
-        angleDeg,
-        weight: Number.isFinite(weightRaw) ? Math.max(0, weightRaw) : 1,
-        vdx: Number.isFinite(Number(vdx[i])) ? Number(vdx[i]) : 0,
-        vdy: Number.isFinite(Number(vdy[i])) ? Number(vdy[i]) : 0,
-        vcx: Number.isFinite(Number(vcx[i])) ? Number(vcx[i]) : 0,
-        vcy: Number.isFinite(Number(vcy[i])) ? Number(vcy[i]) : 0,
-      });
-    }
-
-    const zoomConfigs = buildZoomConfigsFromMeta(zemaxMeta.multiConfig, surfaces);
-    const zoom = zoomConfigs.length
-      ? { activeConfig: Number(zoomConfigs[0]?.index || 1), configs: zoomConfigs }
-      : null;
-    const imsSurfaceNumber = Number(surfaces?.[surfaces.length - 1]?.zmx?.surf);
-
-    const lensName = zemaxMeta.name || sourceNameToLensName(sourceName);
-    return {
-      name: lensName,
-      zemaxName: zemaxMeta.name || null,
-      zemaxVersion: zemaxMeta.version || null,
-      notes: [
-        "Imported from Zemax sequential text.",
-        "Mapping: R = 1/CURV, t = DISZ, glass = GLAS, ap = DIAM (semi-diameter).",
-        "GLAS lines with explicit nd/Vd are preserved per surface (e.g. ___BLANK).",
-        "Default draw mode for Zemax import is optical-only (no inferred mechanical shoulders).",
-      ],
-      import_options: {
-        use_same_ap_for_optics_and_mechanics: false,
-        preserve_ims_aperture: true,
-        use_zemax_fields: fields.length > 0,
-        match_zemax_wavelength: false,
-      },
-      zemax: {
-        source: "zemax",
-        name: zemaxMeta.name || null,
-        version: zemaxMeta.version || null,
-        mode: zemaxMeta.mode || null,
-        fieldType: zemaxMeta.fieldType || "angle_deg",
-        wavelengthsNm,
-        primaryWavelengthIndex,
-        primaryWavelengthNm,
-        fields,
-        zoomConfigCount: zoomConfigs.length,
-        currentConfigIndex: zoom ? zoom.activeConfig : null,
-        currentConfigLabel: zoom ? (zoom.configs[0]?.label || `Config ${zoom.activeConfig}`) : null,
-        configAperture: zoom ? (Number.isFinite(Number(zoom.configs[0]?.aperture)) ? Number(zoom.configs[0].aperture) : null) : null,
-        imsSurfaceNumber: Number.isFinite(imsSurfaceNumber) ? imsSurfaceNumber : null,
-      },
-      ...(zoom ? { zoom } : {}),
-      surfaces,
-    };
-  }
+  const {parseZemaxFirstNumber,parseZemaxNumberList,unitTokenToMmScale,stripOptionalQuotes,sourceNameToLensName,isLikelyZemaxSequentialText,extractLikelyZemaxLinesFromText,parseZemaxSequentialText} = LBZemax;
 
   function importZemaxText(rawText, sourceName = "pasted_zmx", opts = {}) {
     const text = String(rawText ?? "").trim();
@@ -9306,7 +8296,13 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
       throw new Error("This does not look like a Zemax sequential file.");
     }
 
-    const parsed = parseZemaxSequentialText(normalizedBlock, sourceName);
+    let parsed;
+    try { parsed = parseZemaxSequentialText(normalizedBlock, sourceName); }
+    catch(error) {
+      if(error.importReport)window.dispatchEvent(new CustomEvent("lensbuilder:import-report",{detail:error.importReport}));
+      throw error;
+    }
+    window.dispatchEvent(new CustomEvent("lensbuilder:import-report",{detail:parsed.importReport}));
     parsed.importSource = String(opts.importSource || "zmx_text");
     parsed.originalZmxText = text;
     parsed.zemaxName = parsed.zemaxName || parsed.zemax?.name || null;
@@ -9662,7 +8658,7 @@ function wireUI() {
   on("#btnRemove", "click", removeSelected);
 
   on("#btnScaleToFocal", "click", openScaleToFocalModal);
-  on("#btnSetTStop", "click", setTargetTStop);
+  on("#btnSetTStop", "click", setTargetFNumber);
   on("#btnAutoFocus", "click", autoFocus);
   on("#btnRenderEngine", "click", toggleRenderEngine);
   on("#btnDebugOverlay", "click", toggleDebugOverlay);
@@ -9779,6 +8775,7 @@ function wireUI() {
 
   // selection hotkeys
   window.addEventListener("keydown", (e) => {
+    if (document.querySelector("dialog[open]")) return;
     if (e.key === "Escape" && isZmxPasteModalOpen()) {
       e.preventDefault();
       closeZmxPasteModal();
@@ -9876,5 +8873,15 @@ function boot() {
   }
 }
 
+window.LensBuilder = {
+  snapshot:()=>{syncFocusStateToLens();const value=clone(lens);value.surfaces.forEach(s=>delete s.vx);return value;},
+  sensor:getSensorWH,
+  load:loadLens,
+  adopt:(candidate,project)=>{recordHistory();const next=clone(candidate);next.focus={mode:"manual",mechanism:"move-ims",shiftMm:0,autoRefocusOnDistanceChange:false};next.zoom=null;next.project=project;loadLens(next);recordHistory();},
+  undo:()=>restoreHistory("undo"),redo:()=>restoreHistory("redo"),
+  setPreview:setRenderEngineEnabled,
+  parseZemax:parseZemaxSequentialText,
+  importZemax:importZemaxText
+};
 boot();
 })();

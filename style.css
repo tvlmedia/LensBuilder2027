@@ -91,7 +91,9 @@ body{
 .toolbar{
   display:flex;
   align-items:center;
-  justify-content:flex-end;
+  justify-content:flex-start;
+  min-width:0;
+  flex:1;
   gap:10px;
 
   flex-wrap:nowrap;
@@ -715,3 +717,24 @@ input:disabled {
   opacity: 0.45;
   cursor: not-allowed;
 }
+
+/* Integrated scientific workspace; original editor remains intact. */
+.designer { width:min(1500px,96vw); max-width:96vw; max-height:94vh; background:#101722; color:#dce5f1; border:1px solid #3c4e66; border-radius:12px; padding:22px; }
+.designer::backdrop { background:#000a; }
+.designerHeader { display:flex; justify-content:space-between; gap:16px; align-items:start; border-bottom:1px solid #304058; margin-bottom:12px; }
+.designer h2 { margin:0; font-size:22px; }.designer h3 {font-size:15px;margin:20px 0 10px;}
+.designerHeader p,.designer .hint { color:#aab9cd; line-height:1.5; }
+.designerGrid { display:grid; grid-template-columns:minmax(330px,.85fr) minmax(460px,1.3fr); gap:24px; }
+.designInputs { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.designInputs label { display:flex; flex-direction:column; gap:5px; font-size:12px; color:#b8c6d8; }
+.designer input[type=number],.designer select,.designer textarea { width:100%; box-sizing:border-box; color:#e7edf7; background:#0b111b; border:1px solid #33465f; border-radius:5px; padding:7px; font-family:var(--mono,monospace); }
+.designer textarea { margin-top:10px;resize:vertical; }
+.designer table { width:100%; border-collapse:collapse; font-size:12px; margin:12px 0; }
+.designer td,.designer th { padding:7px 5px; border-bottom:1px solid #2b394d; text-align:right; font-variant-numeric:tabular-nums; }
+.designer td:first-child,.designer th:first-child {text-align:left;}
+.designer th {color:#9eafc6;font-weight:500;}
+.variableScroll { max-height:250px;overflow:auto; }.variableScroll input[type=number]{min-width:76px;}.variableScroll th{position:sticky;top:0;background:#101722;}
+.designActions { display:flex; flex-wrap:wrap;gap:7px;margin:14px 0; }.designCheck{display:flex;align-items:center;gap:8px;margin-top:12px;font-size:12px;}
+.designNotice { white-space:pre-line; font-size:12px; line-height:1.6; color:#ccbd94; background:#252319; padding:10px 12px; border-radius:5px; }
+#designStatus {white-space:pre-line;line-height:1.5;}.designer canvas { width:100%; background:#0b111b; border-radius:5px; }.designer pre {white-space:pre-wrap;overflow-wrap:anywhere;}
+@media(max-width:1000px){.designerGrid{grid-template-columns:1fr;}.designer{padding:14px;}}
