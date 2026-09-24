@@ -1,9 +1,16 @@
-(function(root){
-"use strict";
-const I=root.LBImport||require("./report.js");
+(function (root) {
+  "use strict";
+  const I = root.LBImport || require("./report.js");
+  const M = root.LBMaterials || require("../materials/catalog.js");
+  function failReport(report) {
+    report.blocked = true;
+    const error = new Error(I.describe(report));
+    error.importReport = report;
+    throw error;
+  }
   function sanitizeZoomFieldOverrideMap(src) {
     const out = {};
-    const obj = (src && typeof src === "object") ? src : {};
+    const obj = src && typeof src === "object" ? src : {};
     for (const [k, v] of Object.entries(obj)) {
       const keyNum = Number(k);
       const valNum = Number(v);
@@ -14,20 +21,24 @@ const I=root.LBImport||require("./report.js");
   }
 
   function parseZemaxFirstNumber(s) {
-    const m = String(s ?? "").replace(/,/g, ".").match(/[-+]?\d*\.?\d+(?:[eE][-+]?\d+)?/);
+    const m = String(s ?? "")
+      .replace(/,/g, ".")
+      .match(/[-+]?\d*\.?\d+(?:[eE][-+]?\d+)?/);
     return m ? Number(m[0]) : NaN;
   }
 
   function parseZemaxNumberList(s) {
-    const m = String(s ?? "").replace(/,/g, ".").match(/[-+]?\d*\.?\d+(?:[eE][-+]?\d+)?/g);
+    const m = String(s ?? "")
+      .replace(/,/g, ".")
+      .match(/[-+]?\d*\.?\d+(?:[eE][-+]?\d+)?/g);
     if (!m) return [];
-    return m
-      .map((v) => Number(v))
-      .filter((v) => Number.isFinite(v));
+    return m.map((v) => Number(v)).filter((v) => Number.isFinite(v));
   }
 
   function unitTokenToMmScale(token) {
-    const u = String(token ?? "").trim().toUpperCase();
+    const u = String(token ?? "")
+      .trim()
+      .toUpperCase();
     if (u === "MM" || u === "MILLIMETER" || u === "MILLIMETERS") return 1;
     if (u === "CM" || u === "CENTIMETER" || u === "CENTIMETERS") return 10;
     if (u === "M" || u === "METER" || u === "METERS") return 1000;
@@ -38,14 +49,20 @@ const I=root.LBImport||require("./report.js");
   function stripOptionalQuotes(s) {
     const raw = String(s ?? "").trim();
     if (!raw) return "";
-    if ((raw.startsWith('"') && raw.endsWith('"')) || (raw.startsWith("'") && raw.endsWith("'"))) {
+    if (
+      (raw.startsWith('"') && raw.endsWith('"')) ||
+      (raw.startsWith("'") && raw.endsWith("'"))
+    ) {
       return raw.slice(1, -1).trim();
     }
     return raw;
   }
 
   function sourceNameToLensName(sourceName = "Zemax import") {
-    return String(sourceName || "Zemax import").replace(/\.(zmx|seq|txt)$/i, "");
+    return String(sourceName || "Zemax import").replace(
+      /\.(zmx|seq|txt)$/i,
+      "",
+    );
   }
 
   function isLikelyZemaxSequentialText(txt) {
@@ -58,15 +75,18 @@ const I=root.LBImport||require("./report.js");
   }
 
   function parseZemaxGlassLine(line) {
-    const parts = String(line || "").trim().split(/\s+/).filter(Boolean);
+    const parts = String(line || "")
+      .trim()
+      .split(/\s+/)
+      .filter(Boolean);
     const glass = parts[1] ? String(parts[1]).trim() : "AIR";
     const glassUp = glass.toUpperCase();
 
     if (glassUp === "___BLANK") {
       const ndFixed = parseZemaxFirstNumber(parts[4]);
       const vdFixed = parseZemaxFirstNumber(parts[5]);
-      let nd = (Number.isFinite(ndFixed) && ndFixed > 1) ? ndFixed : NaN;
-      let vd = (Number.isFinite(vdFixed) && vdFixed > 0) ? vdFixed : NaN;
+      let nd = Number.isFinite(ndFixed) && ndFixed > 1 ? ndFixed : NaN;
+      let vd = Number.isFinite(vdFixed) && vdFixed > 0 ? vdFixed : NaN;
 
       // Fallback for variant formatting; still prefer the explicit slots above.
       if (!Number.isFinite(nd) || !Number.isFinite(vd)) {
@@ -79,7 +99,10 @@ const I=root.LBImport||require("./report.js");
           if (n > 1.2 && n < 3.0) {
             nd = n;
             for (let j = i + 1; j < nums.length; j++) {
-              if (nums[j] > 1) { vd = nums[j]; break; }
+              if (nums[j] > 1) {
+                vd = nums[j];
+                break;
+              }
             }
             break;
           }
@@ -139,7 +162,9 @@ const I=root.LBImport||require("./report.js");
   }
 
   function extractLikelyZemaxLinesFromText(txt) {
-    const all = String(txt || "").replace(/\r/g, "").split("\n");
+    const all = String(txt || "")
+      .replace(/\r/g, "")
+      .split("\n");
     if (!all.length) return [];
     const idxVers = all.findIndex((ln) => /^\s*VERS\b/i.test(ln));
     const idxModeSeq = all.findIndex((ln) => /^\s*MODE\s+SEQ\b/i.test(ln));
@@ -167,9 +192,13 @@ const I=root.LBImport||require("./report.js");
     };
     if (!Array.isArray(lines) || !lines.length) return out;
 
-    let unitScaleToMm = Number.isFinite(Number(unitScaleDefault)) ? Number(unitScaleDefault) : 1;
+    let unitScaleToMm = Number.isFinite(Number(unitScaleDefault))
+      ? Number(unitScaleDefault)
+      : 1;
     const ensureConfig = (cfgIndex) => {
-      const idx = Number.isFinite(Number(cfgIndex)) ? Math.max(1, Math.trunc(Number(cfgIndex))) : 1;
+      const idx = Number.isFinite(Number(cfgIndex))
+        ? Math.max(1, Math.trunc(Number(cfgIndex)))
+        : 1;
       if (!out.configsByIndex.has(idx)) {
         out.configsByIndex.set(idx, {
           index: idx,
@@ -194,7 +223,10 @@ const I=root.LBImport||require("./report.js");
 
       const mNum = line.match(/^MNUM\s+(\d+)/i);
       if (mNum) {
-        out.count = Math.max(out.count, Math.max(1, Math.trunc(Number(mNum[1]))));
+        out.count = Math.max(
+          out.count,
+          Math.max(1, Math.trunc(Number(mNum[1]))),
+        );
         continue;
       }
 
@@ -226,11 +258,14 @@ const I=root.LBImport||require("./report.js");
         const surfNo = Math.max(0, Math.trunc(Number(mThic[1])));
         const cfg = ensureConfig(Number(mThic[2]));
         const val = Number(mThic[3]);
-        if (Number.isFinite(val)) cfg.thicknessOverrides[String(surfNo)] = val * unitScaleToMm;
+        if (Number.isFinite(val))
+          cfg.thicknessOverrides[String(surfNo)] = val * unitScaleToMm;
         continue;
       }
 
-      const mFv = line.match(/^FV(DX|DY|CX|CY)\s+(\d+)\s+(\d+)\s+([-+0-9.Ee]+)/i);
+      const mFv = line.match(
+        /^FV(DX|DY|CX|CY)\s+(\d+)\s+(\d+)\s+([-+0-9.Ee]+)/i,
+      );
       if (mFv) {
         const axis = String(mFv[1] || "").toLowerCase();
         const fieldIndex = Math.max(0, Math.trunc(Number(mFv[2])));
@@ -249,17 +284,25 @@ const I=root.LBImport||require("./report.js");
 
   function buildZoomConfigsFromMeta(multiConfig, surfaces) {
     if (!multiConfig || typeof multiConfig !== "object") return [];
-    const map = multiConfig.configsByIndex instanceof Map ? multiConfig.configsByIndex : new Map();
+    const map =
+      multiConfig.configsByIndex instanceof Map
+        ? multiConfig.configsByIndex
+        : new Map();
     if (!map.size && !(Number(multiConfig.count) > 1)) return [];
 
     const knownSurfNos = new Set(
       (Array.isArray(surfaces) ? surfaces : [])
         .map((s) => Number(s?.zmx?.surf))
         .filter((n) => Number.isFinite(n))
-        .map((n) => Math.max(0, Math.trunc(n)))
+        .map((n) => Math.max(0, Math.trunc(n))),
     );
 
-    const count = Math.max(1, Number.isFinite(Number(multiConfig.count)) ? Math.trunc(Number(multiConfig.count)) : 1);
+    const count = Math.max(
+      1,
+      Number.isFinite(Number(multiConfig.count))
+        ? Math.trunc(Number(multiConfig.count))
+        : 1,
+    );
     for (let i = 1; i <= count; i++) {
       if (!map.has(i)) {
         map.set(i, {
@@ -274,11 +317,14 @@ const I=root.LBImport||require("./report.js");
 
     const list = Array.from(map.values())
       .map((cfg, arrIdx) => {
-        const index = Math.max(1, Math.trunc(Number(cfg?.index || (arrIdx + 1))));
-        const label = (cfg?.label != null && String(cfg.label).trim() !== "")
-          ? String(cfg.label).trim()
+        const index = Math.max(1, Math.trunc(Number(cfg?.index || arrIdx + 1)));
+        const label =
+          cfg?.label != null && String(cfg.label).trim() !== ""
+            ? String(cfg.label).trim()
+            : null;
+        const aperture = Number.isFinite(Number(cfg?.aperture))
+          ? Number(cfg.aperture)
           : null;
-        const aperture = Number.isFinite(Number(cfg?.aperture)) ? Number(cfg.aperture) : null;
 
         const thicknessOverrides = {};
         for (const [k, v] of Object.entries(cfg?.thicknessOverrides || {})) {
@@ -316,7 +362,9 @@ const I=root.LBImport||require("./report.js");
       })
       .sort((a, b) => a.index - b.index);
 
-    const hasThic = list.some((cfg) => Object.keys(cfg.thicknessOverrides || {}).length > 0);
+    const hasThic = list.some(
+      (cfg) => Object.keys(cfg.thicknessOverrides || {}).length > 0,
+    );
     if (!hasThic && list.length <= 1) return [];
     return list;
   }
@@ -324,7 +372,7 @@ const I=root.LBImport||require("./report.js");
   function parseZemaxSequentialText(txt, sourceName = "Zemax file") {
     const lines = extractLikelyZemaxLinesFromText(txt);
     const report = I.inspect(lines.join("\n"));
-    if(report.failed.length)throw new Error(I.describe(report));
+    if (report.failed.length) failReport(report);
     if (!lines.length) throw new Error("Empty file");
 
     let unitScaleToMm = 1;
@@ -359,7 +407,8 @@ const I=root.LBImport||require("./report.js");
     for (const raw of lines) {
       const line = String(raw || "").trim();
       if (!line) continue;
-      if (line.startsWith("!") || line.startsWith("#") || line.startsWith("//")) continue;
+      if (line.startsWith("!") || line.startsWith("#") || line.startsWith("//"))
+        continue;
 
       const up = line.toUpperCase();
 
@@ -368,7 +417,9 @@ const I=root.LBImport||require("./report.js");
         continue;
       }
       if (/^MODE\b/i.test(line)) {
-        zemaxMeta.mode = stripOptionalQuotes(line.replace(/^MODE\b/i, "")).toUpperCase();
+        zemaxMeta.mode = stripOptionalQuotes(
+          line.replace(/^MODE\b/i, ""),
+        ).toUpperCase();
         continue;
       }
       if (/^NAME\b/i.test(line)) {
@@ -378,7 +429,8 @@ const I=root.LBImport||require("./report.js");
       }
       if (/^PWAV\b/i.test(line)) {
         const nums = parseZemaxNumberList(line.replace(/^PWAV\b/i, ""));
-        if (nums.length) zemaxMeta.primaryWavelengthIndex = Math.max(1, Math.round(nums[0]));
+        if (nums.length)
+          zemaxMeta.primaryWavelengthIndex = Math.max(1, Math.round(nums[0]));
         continue;
       }
       if (/^WAVM\b/i.test(line)) {
@@ -387,9 +439,10 @@ const I=root.LBImport||require("./report.js");
           let idx = 0;
           // Zemax WAVM format is typically: WAVM <idx> <lambda_um> <weight>
           // Use the wavelength slot (2nd numeric token), not the weight token.
-          let lam = (nums.length >= 2) ? nums[1] : nums[nums.length - 1];
+          let lam = nums.length >= 2 ? nums[1] : nums[nums.length - 1];
           if (nums.length >= 2) idx = Math.round(nums[0]);
-          if (!Number.isFinite(idx) || idx <= 0) idx = zemaxMeta.wavelengthsByIndex.size + 1;
+          if (!Number.isFinite(idx) || idx <= 0)
+            idx = zemaxMeta.wavelengthsByIndex.size + 1;
           if (Number.isFinite(lam) && lam > 0) {
             const lamNm = lam < 10 ? lam * 1000 : lam;
             zemaxMeta.wavelengthsByIndex.set(idx, lamNm);
@@ -406,27 +459,39 @@ const I=root.LBImport||require("./report.js");
         continue;
       }
       if (/^YFLN\b/i.test(line)) {
-        zemaxMeta.fieldsRaw.yfln = parseZemaxNumberList(line.replace(/^YFLN\b/i, ""));
+        zemaxMeta.fieldsRaw.yfln = parseZemaxNumberList(
+          line.replace(/^YFLN\b/i, ""),
+        );
         continue;
       }
       if (/^FWGN\b/i.test(line)) {
-        zemaxMeta.fieldsRaw.fwgn = parseZemaxNumberList(line.replace(/^FWGN\b/i, ""));
+        zemaxMeta.fieldsRaw.fwgn = parseZemaxNumberList(
+          line.replace(/^FWGN\b/i, ""),
+        );
         continue;
       }
       if (/^VDXN?\b/i.test(line)) {
-        zemaxMeta.fieldsRaw.vdx = parseZemaxNumberList(line.replace(/^VDXN?\b/i, ""));
+        zemaxMeta.fieldsRaw.vdx = parseZemaxNumberList(
+          line.replace(/^VDXN?\b/i, ""),
+        );
         continue;
       }
       if (/^VDYN?\b/i.test(line)) {
-        zemaxMeta.fieldsRaw.vdy = parseZemaxNumberList(line.replace(/^VDYN?\b/i, ""));
+        zemaxMeta.fieldsRaw.vdy = parseZemaxNumberList(
+          line.replace(/^VDYN?\b/i, ""),
+        );
         continue;
       }
       if (/^VCXN?\b/i.test(line)) {
-        zemaxMeta.fieldsRaw.vcx = parseZemaxNumberList(line.replace(/^VCXN?\b/i, ""));
+        zemaxMeta.fieldsRaw.vcx = parseZemaxNumberList(
+          line.replace(/^VCXN?\b/i, ""),
+        );
         continue;
       }
       if (/^VCYN?\b/i.test(line)) {
-        zemaxMeta.fieldsRaw.vcy = parseZemaxNumberList(line.replace(/^VCYN?\b/i, ""));
+        zemaxMeta.fieldsRaw.vcy = parseZemaxNumberList(
+          line.replace(/^VCYN?\b/i, ""),
+        );
         continue;
       }
 
@@ -498,26 +563,65 @@ const I=root.LBImport||require("./report.js");
     if (!parsed.length) throw new Error("No SURF blocks found");
 
     parsed.sort((a, b) => a.idx - b.idx);
+    report.materialWarnings = [];
+    for (const [i, s] of parsed.entries()) {
+      const entry = {
+        line:
+          report.supported.find(
+            (e) => e.surface === s.idx && e.keyword === "SURF",
+          )?.line || 0,
+        surface: s.idx,
+        keyword: "SURF",
+      };
+      if (i > 0 && i < parsed.length - 1 && !(s.DIAM > 0))
+        report.failed.push({
+          ...entry,
+          keyword: "DIAM",
+          reason: "Missing clear aperture; no diameter is invented",
+        });
+      if (i > 0 && s.idx === parsed[i - 1].idx)
+        report.failed.push({ ...entry, reason: "Duplicate surface number" });
+      try {
+        const mat = M.material({ glass: s.GLAS, nd: s.nd, vd: s.vd });
+        if (mat.model === "nd-vd-approximate")
+          report.materialWarnings.push(
+            `APPROXIMATE material at surface ${s.idx}: ${mat.name}`,
+          );
+      } catch (e) {
+        report.failed.push({ ...entry, keyword: "GLAS", reason: e.message });
+      }
+    }
+    if (report.failed.length) failReport(report);
     const surfaces = parsed.map((s, i) => {
       const isFirst = i === 0;
       const isLast = i === parsed.length - 1;
       const curv = Number(s.CURV || 0);
       const R = Math.abs(curv) < 1e-12 ? 0 : (1 / curv) * unitScaleToMm;
-      const t = Number.isFinite(Number(s.DISZ)) ? Number(s.DISZ) * unitScaleToMm : 0;
-      const apSemi = Number.isFinite(Number(s.DIAM)) ? Math.max(0.01, Number(s.DIAM) * unitScaleToMm) : 10;
+      const t = Number.isFinite(Number(s.DISZ))
+        ? Number(s.DISZ) * unitScaleToMm
+        : 0;
+      const apSemi = Number.isFinite(Number(s.DIAM))
+        ? Math.max(0.01, Number(s.DIAM) * unitScaleToMm)
+        : 10;
 
       const g = String(s.GLAS || "AIR").trim();
-      const glass = (!g || g === "-") ? "AIR" : g;
+      const glass = !g || g === "-" ? "AIR" : g;
       const originalGlass = String(s.ORIGINAL_GLASS || g || "AIR").trim();
-      const glassNd = (Number.isFinite(Number(s.nd ?? s.GLAS_ND)) && Number(s.nd ?? s.GLAS_ND) > 1)
-        ? Number(s.nd ?? s.GLAS_ND)
-        : null;
-      const glassVd = (glassNd != null)
-        ? ((Number.isFinite(Number(s.vd ?? s.GLAS_VD)) && Number(s.vd ?? s.GLAS_VD) > 0) ? Number(s.vd ?? s.GLAS_VD) : null)
-        : null;
+      const glassNd =
+        Number.isFinite(Number(s.nd ?? s.GLAS_ND)) &&
+        Number(s.nd ?? s.GLAS_ND) > 1
+          ? Number(s.nd ?? s.GLAS_ND)
+          : null;
+      const glassVd =
+        glassNd != null
+          ? Number.isFinite(Number(s.vd ?? s.GLAS_VD)) &&
+            Number(s.vd ?? s.GLAS_VD) > 0
+            ? Number(s.vd ?? s.GLAS_VD)
+            : null
+          : null;
 
       return {
-        type: isFirst ? "OBJ" : (isLast ? "IMS" : String(i)),
+        type: isFirst ? "OBJ" : isLast ? "IMS" : String(i),
         R,
         t,
         ap: apSemi,
@@ -553,29 +657,59 @@ const I=root.LBImport||require("./report.js");
     });
     if (!surfaces.length) throw new Error("No valid surfaces after parse");
 
-    const sortedWaveIdx = Array.from(zemaxMeta.wavelengthsByIndex.keys()).sort((a, b) => a - b);
+    const sortedWaveIdx = Array.from(zemaxMeta.wavelengthsByIndex.keys()).sort(
+      (a, b) => a - b,
+    );
     const wavelengthsNm = sortedWaveIdx
       .map((idx) => Number(zemaxMeta.wavelengthsByIndex.get(idx)))
       .filter((v) => Number.isFinite(v) && v > 0);
 
-    const primaryWavelengthIndex = Number.isFinite(Number(zemaxMeta.primaryWavelengthIndex))
+    const primaryWavelengthIndex = Number.isFinite(
+      Number(zemaxMeta.primaryWavelengthIndex),
+    )
       ? Math.max(1, Math.round(Number(zemaxMeta.primaryWavelengthIndex)))
       : null;
-    const primaryWavelengthNm = (primaryWavelengthIndex != null && zemaxMeta.wavelengthsByIndex.has(primaryWavelengthIndex))
-      ? Number(zemaxMeta.wavelengthsByIndex.get(primaryWavelengthIndex))
-      : null;
+    const primaryWavelengthNm =
+      primaryWavelengthIndex != null &&
+      zemaxMeta.wavelengthsByIndex.has(primaryWavelengthIndex)
+        ? Number(zemaxMeta.wavelengthsByIndex.get(primaryWavelengthIndex))
+        : null;
 
-    const yfln = Array.isArray(zemaxMeta.fieldsRaw.yfln) ? zemaxMeta.fieldsRaw.yfln : [];
-    const fwgn = Array.isArray(zemaxMeta.fieldsRaw.fwgn) ? zemaxMeta.fieldsRaw.fwgn : [];
-    const vdx = Array.isArray(zemaxMeta.fieldsRaw.vdx) ? zemaxMeta.fieldsRaw.vdx : [];
-    const vdy = Array.isArray(zemaxMeta.fieldsRaw.vdy) ? zemaxMeta.fieldsRaw.vdy : [];
-    const vcx = Array.isArray(zemaxMeta.fieldsRaw.vcx) ? zemaxMeta.fieldsRaw.vcx : [];
-    const vcy = Array.isArray(zemaxMeta.fieldsRaw.vcy) ? zemaxMeta.fieldsRaw.vcy : [];
-    const fieldCount = Math.max(yfln.length, fwgn.length, vdx.length, vdy.length, vcx.length, vcy.length, 0);
+    const yfln = Array.isArray(zemaxMeta.fieldsRaw.yfln)
+      ? zemaxMeta.fieldsRaw.yfln
+      : [];
+    const fwgn = Array.isArray(zemaxMeta.fieldsRaw.fwgn)
+      ? zemaxMeta.fieldsRaw.fwgn
+      : [];
+    const vdx = Array.isArray(zemaxMeta.fieldsRaw.vdx)
+      ? zemaxMeta.fieldsRaw.vdx
+      : [];
+    const vdy = Array.isArray(zemaxMeta.fieldsRaw.vdy)
+      ? zemaxMeta.fieldsRaw.vdy
+      : [];
+    const vcx = Array.isArray(zemaxMeta.fieldsRaw.vcx)
+      ? zemaxMeta.fieldsRaw.vcx
+      : [];
+    const vcy = Array.isArray(zemaxMeta.fieldsRaw.vcy)
+      ? zemaxMeta.fieldsRaw.vcy
+      : [];
+    const fieldCount = Math.max(
+      yfln.length,
+      fwgn.length,
+      vdx.length,
+      vdy.length,
+      vcx.length,
+      vcy.length,
+      0,
+    );
     const fields = [];
     for (let i = 0; i < fieldCount; i++) {
       const angleDegRaw = Number(yfln[i]);
-      const angleDeg = Number.isFinite(angleDegRaw) ? angleDegRaw : (i === 0 ? 0 : null);
+      const angleDeg = Number.isFinite(angleDegRaw)
+        ? angleDegRaw
+        : i === 0
+          ? 0
+          : null;
       if (angleDeg == null) continue;
       const weightRaw = Number(fwgn[i]);
       fields.push({
@@ -589,9 +723,15 @@ const I=root.LBImport||require("./report.js");
       });
     }
 
-    const zoomConfigs = buildZoomConfigsFromMeta(zemaxMeta.multiConfig, surfaces);
+    const zoomConfigs = buildZoomConfigsFromMeta(
+      zemaxMeta.multiConfig,
+      surfaces,
+    );
     const zoom = zoomConfigs.length
-      ? { activeConfig: Number(zoomConfigs[0]?.index || 1), configs: zoomConfigs }
+      ? {
+          activeConfig: Number(zoomConfigs[0]?.index || 1),
+          configs: zoomConfigs,
+        }
       : null;
     const imsSurfaceNumber = Number(surfaces?.[surfaces.length - 1]?.zmx?.surf);
 
@@ -625,15 +765,33 @@ const I=root.LBImport||require("./report.js");
         fields,
         zoomConfigCount: zoomConfigs.length,
         currentConfigIndex: zoom ? zoom.activeConfig : null,
-        currentConfigLabel: zoom ? (zoom.configs[0]?.label || `Config ${zoom.activeConfig}`) : null,
-        configAperture: zoom ? (Number.isFinite(Number(zoom.configs[0]?.aperture)) ? Number(zoom.configs[0].aperture) : null) : null,
-        imsSurfaceNumber: Number.isFinite(imsSurfaceNumber) ? imsSurfaceNumber : null,
+        currentConfigLabel: zoom
+          ? zoom.configs[0]?.label || `Config ${zoom.activeConfig}`
+          : null,
+        configAperture: zoom
+          ? Number.isFinite(Number(zoom.configs[0]?.aperture))
+            ? Number(zoom.configs[0].aperture)
+            : null
+          : null,
+        imsSurfaceNumber: Number.isFinite(imsSurfaceNumber)
+          ? imsSurfaceNumber
+          : null,
       },
       ...(zoom ? { zoom } : {}),
       surfaces,
     };
   }
 
-
-const api={parseZemaxFirstNumber,parseZemaxNumberList,unitTokenToMmScale,stripOptionalQuotes,sourceNameToLensName,isLikelyZemaxSequentialText,extractLikelyZemaxLinesFromText,parseZemaxSequentialText};root.LBZemax=api;if(typeof module!=="undefined")module.exports=api;
+  const api = {
+    parseZemaxFirstNumber,
+    parseZemaxNumberList,
+    unitTokenToMmScale,
+    stripOptionalQuotes,
+    sourceNameToLensName,
+    isLikelyZemaxSequentialText,
+    extractLikelyZemaxLinesFromText,
+    parseZemaxSequentialText,
+  };
+  root.LBZemax = api;
+  if (typeof module !== "undefined") module.exports = api;
 })(globalThis);
