@@ -756,3 +756,9 @@ input:disabled {
 .searchLab header { position:sticky; top:-24px; z-index:1; background:#101721; padding:12px 0; }
 .searchLab input:not([type=checkbox]), .searchLab textarea, .searchLab select { background:#0b121c; color:#dfe7f2; border:1px solid #364054; border-radius:6px; padding:8px; box-sizing:border-box; }
 .searchLab textarea { line-height:1.45; }
+.measurementLab { margin:28px 0; padding:18px; border:1px solid #364054; border-radius:10px; }
+.measurementLab input[type=number] { width:110px; }.measurementLab input[type=text]{min-width:100px;}
+.meritScroll { overflow:auto; max-height:440px; }.meritScroll select{min-width:120px;}
+#measureMatrix { overflow:auto; max-height:520px; margin:18px 0; }#measureMatrix th{min-width:110px;}
+#measureGraph { width:100%; max-height:240px; background:#0b121c; }#measureWaves{display:flex;gap:18px;flex-wrap:wrap;}
+#measureData{max-height:300px;overflow:auto;}

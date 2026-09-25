@@ -1,6 +1,6 @@
 # LensBuilder2027
 
-A browser lens editor and optical-analysis workspace for spherical photographic/cinema lens experiments. The original surface editor, lens drawing, ray view, autofocus and test-chart preview are preserved. **Analyze / Auto Optimize** provides local optimization. **Search Lab** adds seeded Differential Evolution, uniform exploration, sensitivity, a worker pool, resumable experiments and a diverse candidate archive. All optimization is numerical and runs without AI/LLMs or cloud APIs.
+A browser lens editor and optical-analysis workspace for spherical photographic/cinema lens experiments. The original surface editor, lens drawing, ray view, autofocus and test-chart preview are preserved. **Analyze / Auto Optimize** provides local optimization. **Search Lab** adds seeded Differential Evolution, uniform exploration, sensitivity, a worker pool, resumable experiments and a diverse candidate archive. The measurement laboratory adds multiple apertures, explicit focus/reference-plane definitions, ray fans, zonal spherical-aberration diagnostics and pupil maps. All optimization is numerical and runs without AI/LLMs or cloud APIs.
 
 ## Run
 
@@ -45,3 +45,5 @@ Tests include analytical optics, catalog values, importer compatibility, determi
 See [audit](docs/AUDIT.md), [architecture](docs/ARCHITECTURE.md), [optical engine](docs/OPTICAL_ENGINE.md), [conventions](docs/SIGN_CONVENTION.md), [analysis](docs/ANALYSIS.md), [merit](docs/MERIT_FUNCTION.md), [optimization](docs/OPTIMIZATION.md), [import](docs/ZEMAX_IMPORT.md), [validation](docs/VALIDATION.md) and [roadmap](docs/ROADMAP.md).
 
 For large searches, use [Search Lab instructions and limitations](docs/SEARCH_LAB.md) and [measured worker benchmarks](docs/SEARCH_BENCHMARK.md). Start with a short run to verify your bounds and hard constraints, then increase the evaluation budget.
+
+Version 0.4 changes distortion to a fixed paraxial reference-plane definition and keeps old sensor-plane mapping separately. Old optimization checkpoints require a new experiment because their objectives changed. See [optical metric definitions](docs/OPTICAL_METRICS.md) and [multi-aperture workflow](docs/MULTI_APERTURE_ANALYSIS.md).

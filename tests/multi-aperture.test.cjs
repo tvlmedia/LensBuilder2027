@@ -315,3 +315,32 @@ test("spherical longitudinal fan tends to paraxial focus for small pupil zones",
   );
   assert.ok(Math.abs(p.longitudinalFocusXMm - row.paraxialFocusXMm) < 0.0001);
 });
+
+test("well-behaved singlet converges under independent denser pupil sampling", () => {
+  const lens = {
+    surfaces: [
+      { type: "OBJ", glass: "AIR", R: 0, t: 0, ap: 5 },
+      { type: "1", glass: "N-BK7", R: 50, t: 5, ap: 1, stop: true },
+      { type: "2", glass: "AIR", R: -50, t: 50, ap: 3 },
+      { type: "IMS", glass: "AIR", R: 0, t: 0, ap: 10 },
+    ],
+  };
+  const s = { targetEflMm: 50, imageCircleMm: 1 },
+    search = A.evaluate(lens, { ...s, pupilGrid: 9 }),
+    dense = A.evaluate(lens, {
+      ...s,
+      pupilGrid: 19,
+      pupilPattern: "sunflower",
+    }),
+    denser = A.evaluate(lens, {
+      ...s,
+      pupilGrid: 41,
+      pupilPattern: "sunflower",
+    });
+  for (let i = 0; i < dense.fields.length; i++) {
+    assert.ok(
+      Math.abs(search.fields[i].rmsMm / dense.fields[i].rmsMm - 1) < 0.05,
+    );
+    near(dense.fields[i].rmsMm, denser.fields[i].rmsMm, 1e-6);
+  }
+});

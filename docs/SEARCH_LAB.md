@@ -58,3 +58,7 @@ Restore checks schema/state/bounds; resume re-evaluates stored population/archiv
 ## Current omissions
 
 LHS/Sobol, CMA-ES, Pareto/crowding selection, adaptive promising-candidate promotion, automatic sensitivity→global→refinement pipelines, field-curvature/ray-fan/astigmatism analysis, glass/aperture/asphere variation, true image-coverage certification and from-scratch topology generation remain future increments. There is no ML or LLM component planned for any of them.
+
+## Version 0.4: measurement laboratory
+
+[Multi-aperture analysis](MULTI_APERTURE_ANALYSIS.md) adds aperture-specific and cross-aperture merit, a structured operand editor, numerical presets, common-scale comparison and JSON/CSV diagnostics. The original definition of distortion changed: see [investigation and equations](OPTICAL_METRICS.md). Checkpoint engine versions changed accordingly; prior score histories cannot be silently resumed. Geometric field-curvature/astigmatic diagnostics are now experimental, rather than entirely unavailable. Coma, diffraction, transmission and from-scratch generation remain unavailable. The above description of older limits is superseded where the new documents explicitly say so.

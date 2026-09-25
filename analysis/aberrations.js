@@ -2,6 +2,19 @@
   "use strict";
   const O = root.LBOptics || require("../optics/core.js");
   const STATUS = {
+    spherical: {
+      method: "GEOMETRIC zonal axial intercept",
+      validation:
+        "VALIDATED symmetry and paraxial limit; external reference pending",
+    },
+    lateralColor: {
+      method: "GEOMETRIC signed chief offsets at fixed sensor, d reference",
+      validation: "VALIDATED on-axis symmetry; external reference pending",
+    },
+    fNumber: {
+      method: "PARAXIAL entrance-pupil diameter",
+      validation: "VALIDATED matrix/iris invariants; not transmission",
+    },
     distortion: {
       method: "GEOMETRIC chief ray at d-line paraxial focus",
       validation: "VALIDATED analytic/invariance tests",

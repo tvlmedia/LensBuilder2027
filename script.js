@@ -7919,74 +7919,18 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
   }
 
   function setTargetFNumber() {
-    const wavePreset = ui.wavePreset?.value || "d";
-    const { efl } = estimateEflBflParaxial(lens.surfaces, wavePreset);
-    if (!Number.isFinite(efl) || efl <= 0) {
-      if (ui.footerWarn) ui.footerWarn.textContent = "Set f/: EFL unknown (try Scale→FL or fix geometry).";
-      return;
-    }
-
-    const stopIdx = findStopSurfaceIndex(lens.surfaces);
-    if (stopIdx < 0) {
-      if (ui.footerWarn) ui.footerWarn.textContent = "Set f/: no STOP surface marked.";
-      return;
-    }
-
-    const currentT = estimateGeometricFNumber(efl, lens.surfaces, wavePreset);
-    const targetT = num(prompt("Target geometric f-number?", currentT ? currentT.toFixed(2) : "2.00"), currentT || 2.0);
-    if (!Number.isFinite(targetT) || targetT <= 0) return;
-
-    const stopSurf = lens.surfaces[stopIdx];
-    const loMin = AP_MIN;
-    const hiMax = maxApForSurface(stopSurf);
-    const prevAp = getSurfaceOpticalAp(stopSurf);
-
-    let lo = loMin;
-    let hi = hiMax;
-    let bestAp = prevAp;
-    let bestErr = Infinity;
-
-    const evalAtAp = (ap) => {
-      stopSurf.ap = ap;
-      stopSurf.ap_optical = ap;
-      const t = estimateGeometricFNumber(efl, lens.surfaces, wavePreset);
-      return Number.isFinite(t) ? t : null;
-    };
-
-    const tLo = evalAtAp(lo);
-    const tHi = evalAtAp(hi);
-
-    if (tLo == null || tHi == null) {
-      const guessAp = Math.max(loMin, Math.min(efl / (2 * targetT), hiMax));
-      bestAp = guessAp;
-    } else {
-      for (let iter = 0; iter < 28; iter++) {
-        const mid = 0.5 * (lo + hi);
-        const tMid = evalAtAp(mid);
-        if (tMid == null) { hi = mid; continue; }
-
-        const err = Math.abs(tMid - targetT);
-        if (err < bestErr) {
-          bestErr = err;
-          bestAp = mid;
-        }
-
-        // Larger aperture -> lower T, so tMid > target means aperture must grow.
-        if (tMid > targetT) lo = mid;
-        else hi = mid;
-      }
-    }
-
-    const stopAp = Math.max(loMin, Math.min(bestAp, hiMax));
-    lens.surfaces[stopIdx].ap = stopAp;
-    lens.surfaces[stopIdx].ap_optical = stopAp;
-
-    clampAllApertures(lens.surfaces);
-    buildTable();
-    renderAll();
-    scheduleRenderPreview();
-
-    if (ui.footerWarn) ui.footerWarn.textContent = `Set f/: stop ap → ${lens.surfaces[stopIdx].ap.toFixed(2)}mm (semi-diam) for f/${targetT.toFixed(2)} @ EFL ${efl.toFixed(2)}mm.`;
+    try {
+      const first = LBOptics.paraxial(LBOptics.compile(lens));
+      const text = prompt("Target paraxial f-number (d-line)? No sensor refocus.", first.fNumber.toFixed(2));
+      if (text === null) return;
+      const target = Number(text), index = lens.surfaces.findIndex(s=>s.stop);
+      const result = LBMultiAperture.atAperture(lens, target, {maxStopRadiusMm:maxApForSurface(lens.surfaces[index])});
+      recordHistory();
+      lens.surfaces[index].ap = result.stopRadiusMm;
+      lens.surfaces[index].ap_optical = result.stopRadiusMm;
+      buildTable(); renderAll(); scheduleRenderPreview();
+      if(ui.footerWarn)ui.footerWarn.textContent=`Set f/: paraxial f/${target.toFixed(2)}, stop radius ${result.stopRadiusMm.toFixed(4)} mm. Prescription image gap unchanged; pupil clipping may limit throughput.`;
+    } catch(e) {if(ui.footerWarn)ui.footerWarn.textContent=`Set f/: ${e.message}`;}
   }
 
   // -------------------- New Lens modal --------------------

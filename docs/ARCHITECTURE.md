@@ -26,3 +26,5 @@ Native prescription JSON schema 2 is backward compatible with unversioned prescr
 - `ui/search-lab.js`: Search Lab configuration, run lifecycle, throttled progress, saved experiments, selected candidate comparisons and guarded adoption.
 
 Generation bookkeeping happens on the main thread; expensive evaluation and refinement do not. No runtime dependencies or AI services are added. [Search Lab](SEARCH_LAB.md) documents algorithm, persistence and scientific limits.
+
+Version 0.4 adds `analysis/aberrations.js` (pure diagnostic algebra/fans/status), `analysis/multi-aperture.js` (physical iris settings and evaluation composition) and `ui/measurement-lab.js` (aperture/merit controls, plots/presets/exports). The worker pool and parameter search architecture are retained; the evaluator visits required apertures and short-circuits safe failures.

@@ -1,13 +1,14 @@
 {
   "name": "lensbuilder2027",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "private": true,
   "scripts": {
     "test": "node --test tests/*.test.cjs",
     "check": "node tools/check.cjs",
     "start": "node tools/server.cjs",
     "benchmark": "node tools/benchmark.cjs",
-    "benchmark:search": "node tools/benchmark-search.cjs"
+    "benchmark:search": "node tools/benchmark-search.cjs",
+    "benchmark:apertures": "node tools/benchmark-apertures.cjs"
   },
   "engines": {
     "node": ">=20"

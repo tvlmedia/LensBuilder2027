@@ -471,14 +471,17 @@
     const result = M.evaluate(system, spec, s.operands),
       a = result.analysis;
     rays += a.rows.reduce((n, r) => n + r.launched, 0);
-    const errors = a.errors.join("; ");
-    const reason = /BFL/.test(errors)
-      ? "BFL"
-      : /rays|chief/.test(errors)
-        ? "ray survival or chief failure"
-        : /Numerical/.test(errors)
-          ? "numerical"
-          : "geometry or material";
+    const errors = [...a.errors, ...result.merit.errors].join("; ");
+    const reason =
+      a.valid && !result.merit.valid
+        ? "merit unavailable"
+        : /BFL/.test(errors)
+          ? "BFL"
+          : /rays|chief/.test(errors)
+            ? "ray survival or chief failure"
+            : /Numerical/.test(errors)
+              ? "numerical"
+              : "geometry or material";
     const out = {
       score: result.merit.valid ? result.merit.total : null,
       reason: result.merit.valid ? null : reason,
