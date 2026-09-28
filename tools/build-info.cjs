@@ -27,6 +27,8 @@ const baseCommit = cp
   .execFileSync("git", ["rev-parse", "HEAD"], { cwd: root, encoding: "utf8" })
   .trim();
 const info = {
+  applicationVersion: require("../package.json").version,
+  synthesisEngineVersion: "synthesis-1",
   engineVersion: "lb2027-spherical-0.4.0",
   searchEngineVersion: "numerical-lab-2",
   baseCommit,

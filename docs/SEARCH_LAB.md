@@ -62,3 +62,7 @@ LHS/Sobol, CMA-ES, Pareto/crowding selection, adaptive promising-candidate promo
 ## Version 0.4: measurement laboratory
 
 [Multi-aperture analysis](MULTI_APERTURE_ANALYSIS.md) adds aperture-specific and cross-aperture merit, a structured operand editor, numerical presets, common-scale comparison and JSON/CSV diagnostics. The original definition of distortion changed: see [investigation and equations](OPTICAL_METRICS.md). Checkpoint engine versions changed accordingly; prior score histories cannot be silently resumed. Geometric field-curvature/astigmatic diagnostics are now experimental, rather than entirely unavailable. Coma, diffraction, transmission and from-scratch generation remain unavailable. The above description of older limits is superseded where the new documents explicitly say so.
+
+## Continuing a synthesized prescription
+
+New Lens candidates can be loaded with CONTINUE SEARCH FROM THIS DESIGN. The base, generated parameter bounds, full specification and merit operands transfer into Search Lab. Disable an individual radius/thickness/stop variable to lock it, or every variable attached to an element to lock that element. Glass remains fixed. The synthesis specification adds mandatory geometry/EFL/rear-clearance checks and solves a real iris for the target aperture at every evaluation. It preserves one common image plane and the configured focus policy. See [Lens synthesis](LENS_SYNTHESIS.md) for the exact scope.

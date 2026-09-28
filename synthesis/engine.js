@@ -71,6 +71,7 @@
       software,
       spec,
       operands: objective,
+      meritPreset: ops ? "CUSTOM_OPERANDS" : "TECHNICAL_BALANCED_v1",
       configurationHash: hash([spec, objective, allocation]),
       selected,
       allocation,
@@ -229,6 +230,7 @@
         score: a.score,
         initialScore: job.initialScore,
         searchMetrics: a.metrics,
+        status: "MEETS HARD SPEC",
       };
       s.archive.push(out);
     }

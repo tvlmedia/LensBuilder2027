@@ -369,7 +369,7 @@
       const p = document.createElement("p"),
         first = item.dense?.analysis?.firstOrder || P.firstOrder(item.system).p,
         counts = P.construction(item.system);
-      p.textContent = `${counts.elements} elements / ${counts.groups} groups · ${counts.glasses.join(", ")}\nEFL ${fmt(first?.eflMm)} mm · f/${fmt(first?.fNumber)} · BFL ${fmt(first?.bflMm)} mm · rear-to-image ${fmt(first?.imageDistanceMm)} mm · optical length ${fmt(item.system.surfaces.slice(1, -1).reduce((n, a) => n + a.t, 0))} mm · diameter ${fmt(2 * Math.max(...item.system.surfaces.slice(1, -1).map((a) => a.ap)))} mm\nTECHNICAL_BALANCED_v1: initial ${fmt(item.initialScore)} → search ${fmt(item.score)} → dense ${fmt(item.dense?.score)}\n${Object.entries(
+      p.textContent = `${counts.elements} elements / ${counts.groups} groups · ${counts.glasses.join(", ")}\nEFL ${fmt(first?.eflMm)} mm · f/${fmt(first?.fNumber)} · BFL ${fmt(first?.bflMm)} mm · rear-to-image ${fmt(first?.imageDistanceMm)} mm · optical length ${fmt(item.system.surfaces.slice(1, -1).reduce((n, a) => n + a.t, 0))} mm · diameter ${fmt(2 * Math.max(...item.system.surfaces.slice(1, -1).map((a) => a.ap)))} mm\n${state.meritPreset || "TECHNICAL_BALANCED_v1"}: initial ${fmt(item.initialScore)} → search ${fmt(item.score)} → dense ${fmt(item.dense?.score)}\n${Object.entries(
         item.checks || {},
       )
         .map(([k, v]) => k + ": " + (v ? "PASS" : "FAIL"))

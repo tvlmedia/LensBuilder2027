@@ -79,3 +79,7 @@ The algebraic minimum is independently tested using prescribed linear ray famili
 ## Pupil maps and unavailable metrics
 
 Pupil maps record every attempted normalized entrance-disk sample, success/failure and reason. Green reaches the image, red is lost. This reveals sampled clipping, not natural irradiance weighting, transmission or a validated cat-eye ratio. Coma scalar analysis is unavailable; fans/spots expose raw asymmetric structure without inventing a coma score. PSF, MTF, wavefront/OPD, diffraction, radiometry and manufacturing performance remain unavailable.
+
+## Synthesis compliance
+
+Synthesis hard checks are evaluated separately from soft merit. Minimum BFL protects both the paraxial BFL and the actual last-vertex-to-common-image-plane distance; these two measured distances are reported separately. Flange focal distance is metadata unless the user supplies explicit rear-envelope stations. The image-circle diameter defines ideal normalized-field angles, with radius = diameter/2. The coverage check is sampled pupil survival at those angles, not certified real image coverage. A DENSE VALIDATED status means configured hard compliance under the declared resampling, not sufficient cinema resolution or correction.
