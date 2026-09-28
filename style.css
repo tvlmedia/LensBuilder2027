@@ -762,3 +762,17 @@ input:disabled {
 #measureMatrix { overflow:auto; max-height:520px; margin:18px 0; }#measureMatrix th{min-width:110px;}
 #measureGraph { width:100%; max-height:240px; background:#0b121c; }#measureWaves{display:flex;gap:18px;flex-wrap:wrap;}
 #measureData{max-height:300px;overflow:auto;}
+
+/* Specification-driven synthesis workspace. */
+.synthesisPanel { z-index: 6100; }
+.synthesisPanel header h2 { margin: 0; font-size: 30px; }
+.synthesisEyebrow { color: #67d9a9; letter-spacing: .12em; font-size: 11px; }
+.synthesisIntro { margin: 20px 0; border-left: 3px solid #67d9a9; padding: 4px 20px; max-width: 950px; }
+.synthesisPanel .labConfig { grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); }
+.synthesisPanel canvas { background: #0e1724; max-width:100%; border:1px solid #31435a; border-radius:8px; }
+.synthesisPanel pre { white-space: pre-wrap; overflow-wrap: anywhere; }
+.synthesisPanel details { border: 1px solid #31435a; padding:14px; margin:16px 0; border-radius:8px; }
+.synthesisCandidate { border:1px solid #31435a; border-radius:12px; padding:20px; margin:18px 0; background:#121f30; }
+.synthesisCandidate p { white-space:pre-line; line-height:1.7; }
+.synthesisCandidate .btn { margin:8px 8px 0 0; }
+.synthesisCandidate > input { float:right; }

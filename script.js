@@ -902,6 +902,7 @@ function warnMissingGlass(name) {
   const importOptions = {
     use_same_ap_for_optics_and_mechanics:
       obj?.import_options?.use_same_ap_for_optics_and_mechanics !== false,
+    preserve_optical_apertures: obj?.import_options?.preserve_optical_apertures === true,
     preserve_ims_aperture:
       obj?.import_options?.preserve_ims_aperture === true,
     use_zemax_fields:
@@ -936,6 +937,7 @@ function warnMissingGlass(name) {
   const safe = {
     schemaVersion:2,
     project: obj?.project ? clone(obj.project) : null,
+    synthesis: obj?.synthesis ? clone(obj.synthesis) : null,
     importReport: obj?.importReport ? clone(obj.importReport) : null,
     name: String(obj?.name ?? "No name"),
     notes: Array.isArray(obj?.notes) ? obj.notes.map(String) : [],
@@ -985,6 +987,7 @@ function warnMissingGlass(name) {
       aspheric:clone(s?.aspheric || {}),
       coating:s?.coating ?? null,
       group:s?.group ?? null,
+      element:s?.element ?? null,
       type: String(s?.type ?? ""),
       surfaceLabel: String(s?.surfaceLabel ?? s?.label ?? "").trim(),
       surfaceLabelAuto: Boolean(s?.surfaceLabelAuto ?? false),
@@ -1963,6 +1966,7 @@ function onCellCommit(e) {
   }
 
   function shouldBypassApertureClampForSurface(s) {
+    if (lens?.import_options?.preserve_optical_apertures) return true;
     if (!isZemaxImportedLens()) return false;
     const surfNo = Number(s?.zmx?.surf);
     if (Number.isFinite(surfNo) && surfNo >= 0) return true;
@@ -8821,7 +8825,18 @@ window.LensBuilder = {
   snapshot:()=>{syncFocusStateToLens();const value=clone(lens);value.surfaces.forEach(s=>delete s.vx);return value;},
   sensor:getSensorWH,
   load:loadLens,
-  adopt:(candidate,project)=>{recordHistory();const next=clone(candidate);next.focus={mode:"manual",mechanism:"move-ims",shiftMm:0,autoRefocusOnDistanceChange:false};next.zoom=null;next.project=project;loadLens(next);recordHistory();},
+  adopt:(candidate,project)=>{
+    recordHistory();
+    const next=clone(candidate);
+    next.focus={mode:"manual",mechanism:"move-ims",shiftMm:0,autoRefocusOnDistanceChange:false};
+    next.zoom=null;next.project=project;
+    next.import_options={...next.import_options,preserve_optical_apertures:true,preserve_ims_aperture:true};
+    // Loading rebuilds the table and synchronizes IMS metadata. Record one
+    // completed change, not intermediate normalization states.
+    historyRestoring=true;
+    try { loadLens(next); } finally { historyRestoring=false; }
+    recordHistory();
+  },
   undo:()=>restoreHistory("undo"),redo:()=>restoreHistory("redo"),
   setPreview:setRenderEngineEnabled,
   parseZemax:parseZemaxSequentialText,

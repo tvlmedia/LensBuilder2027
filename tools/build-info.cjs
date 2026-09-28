@@ -9,6 +9,7 @@ for (const dir of [
   "optics",
   "analysis",
   "design",
+  "synthesis",
   "optimization",
   "import",
   "ui",

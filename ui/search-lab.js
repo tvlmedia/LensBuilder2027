@@ -428,6 +428,35 @@
       "Restored. Resume rechecks saved rankings; imported validation must be rerun.",
     );
   }
+  window.LBSearchLab = {
+    show: () => {
+      panel.hidden = false;
+    },
+    loadGenerated: (input, spec, variables, operands) => {
+      if (running || validationBusy)
+        throw Error("Pause Search Lab before loading a generated design");
+      base = structuredClone(input);
+      delete base.project;
+      state = null;
+      $("labResults").replaceChildren();
+      $("labComparison").replaceChildren();
+      $("labProgress").textContent = "";
+      controls();
+      put("labSpec", spec);
+      put("labVariables", variables);
+      put("labOperands", operands);
+      $("labBase").textContent = base.name + " · generated prescription";
+      document.dispatchEvent(
+        new CustomEvent("lb-base-captured", { detail: base }),
+      );
+      panel.hidden = false;
+      results();
+      draw();
+      message(
+        "Generated candidate loaded as search base. Disable individual R/t/stopPosition variables to lock them; disable every variable for an element to lock that element. Glass is fixed in geometry search. Load experiment base before adopting results if editor differs.",
+      );
+    },
+  };
   button.onclick = guard(() => {
     panel.hidden = false;
     if (!base) capture();
@@ -515,7 +544,9 @@
     }
   });
   $("labList").onclick = guard(async () => {
-    const rows = await LBExperiments.list();
+    const rows = (await LBExperiments.list()).filter(
+      (a) => a.version !== "synthesis-1",
+    );
     $("labSaved").replaceChildren();
     rows.forEach((r) => {
       const o = document.createElement("option");

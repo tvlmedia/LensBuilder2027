@@ -234,6 +234,31 @@
     return { valid: Number.isFinite(total), total, breakdown, errors: [] };
   }
   function evaluate(system, spec, operands = defaultOperands(spec)) {
+    if (spec.synthesis) {
+      const P = root.LBSynthesisPhysics || require("../synthesis/physics.js");
+      const prepared = P.prepare(system, spec.synthesis);
+      if (!prepared.ok)
+        return {
+          analysis: {
+            valid: false,
+            errors: [prepared.code, ...prepared.errors],
+            rows: [],
+            fields: [],
+            synthesisChecks: prepared.checks,
+          },
+          merit: {
+            valid: false,
+            total: Infinity,
+            breakdown: [],
+            errors: [prepared.code],
+          },
+        };
+      system = prepared.system;
+      spec = {
+        ...spec,
+        maxStopRadiusMm: system.surfaces.find((a) => a.stop).ap,
+      };
+    }
     const analysis = spec.apertures
       ? (
           root.LBMultiAperture || require("../analysis/multi-aperture.js")

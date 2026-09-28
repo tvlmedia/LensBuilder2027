@@ -435,7 +435,13 @@
     };
   }
   function evaluate(s, vector, dense = false) {
-    const system = prescription(s, vector);
+    let system = prescription(s, vector);
+    if (s.spec.synthesis) {
+      const P = root.LBSynthesisPhysics || require("../synthesis/physics.js");
+      const prepared = P.prepare(system, s.spec.synthesis);
+      if (!prepared.ok) return { score: null, reason: prepared.code, rays: 0 };
+      system = prepared.system;
+    }
     let rays = 0;
     // Optional coarse gate only rejects physical/ray failures; it never ranks against standard merit.
     if (s.config.coarse && !dense && !s.spec.apertures) {
