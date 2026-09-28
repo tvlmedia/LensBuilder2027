@@ -58,8 +58,18 @@ Timings are machine-specific Node measurements, not browser guarantees or a spee
 
 ## Remaining quality boundaries
 
-Paraxial entrance-pupil disk sampling, approximate legacy materials, finite-conjugate preview heuristics and geometric preview brightness remain explicitly limited. No manufactured-lens accuracy, full Zemax compatibility, diffraction/MTF, autonomous design, optical character scoring or tolerance yield is claimed. The next technical gate is independent real-pupil and multi-field comparison against trusted reference exports before expanding autonomous design.
+Paraxial entrance-pupil disk sampling, approximate legacy materials, finite-conjugate preview heuristics and geometric preview brightness remain explicitly limited. No manufactured-lens accuracy, full Zemax compatibility, diffraction/MTF, production-ready autonomous design, optical character scoring or tolerance yield is claimed. The next technical gate is independent real-pupil and multi-field comparison against trusted reference exports before expanding autonomous design.
 
 ## Numerical Search Lab follow-up
 
 The subsequent DE/worker-pool milestone has its own [benchmark and validation record](SEARCH_BENCHMARK.md) and [scope](SEARCH_LAB.md). It includes mathematical-function optimization and worker-count-invariant replay tests. The historical local-optimizer benchmark above remains unchanged.
+
+## Milestone 3: from-scratch synthesis
+
+81 automated tests pass (61 preserved baseline tests plus 20 synthesis tests). Added coverage includes all four generators, serialization, repeatable signed power/geometry, true cementing, EFL and physical iris, diameter/radius interpretation, sensor limits, sag/edge/air/rear-envelope rejection, BFL and actual image clearance, parameter/stop bounds, genuine raytraced improvement, whole-pipeline resume and corrupted-rank rejection, real worker-count invariance, glass trial reoptimization and total small-budget bounds.
+
+Browser checks: NEW LENS entry and manual/numerical choices; Cooke generation; pause during global search; reload and IndexedDB restore; numerical resume through dense results; common-config comparison of two candidates; glass operation; adoption; a single Undo restores all previous R/t/aperture editor cells; Continue Search starts a fresh real Search Lab run. The adoption test exposed and fixed intermediate history records during editor normalization. Synthesis checkpoints are kept separate in saved-experiment selectors.
+
+Reproducible Cooke/Double-Gauss/OMIT experiments, measured funnel rates and limitations are recorded in [SYNTHESIS_BENCHMARK.md](SYNTHESIS_BENCHMARK.md). No multi-day soak or 10M optical run is claimed.
+
+A separate localhost server mounted at `/LensBuilder2027/` completed a two-worker Double-Gauss synthesis and dense validation without browser console errors. This verifies project-relative assets/worker paths locally; it is not a claim that the branch has been published to GitHub Pages. Twelve stored dense benchmark prescriptions were independently rerun under the final engine and reproduced their saved dense merits and compliance.

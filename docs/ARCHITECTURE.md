@@ -26,3 +26,11 @@ Native prescription JSON schema 2 is backward compatible with unversioned prescr
 - `ui/search-lab.js`: Search Lab configuration, run lifecycle, throttled progress, saved experiments, selected candidate comparisons and guarded adoption.
 
 Generation bookkeeping happens on the main thread; expensive evaluation and refinement do not. No runtime dependencies or AI services are added. [Search Lab](SEARCH_LAB.md) documents algorithm, persistence and scientific limits.
+
+Version 0.4 adds `analysis/aberrations.js` (pure diagnostic algebra/fans/status), `analysis/multi-aperture.js` (physical iris settings and evaluation composition) and `ui/measurement-lab.js` (aperture/merit controls, plots/presets/exports). The worker pool and parameter search architecture are retained; the evaluator visits required apertures and short-circuits safe failures.
+
+## From-scratch synthesis (0.5)
+
+`synthesis/forms.js`, `specification.js`, `seeds.js` and `physics.js` supply structural families, normalized requirements, deterministic power-derived prescriptions, physical iris solving and additional hard constraints. `synthesis/engine.js` is a checkpointable stage coordinator using the existing DE, coordinate search and evaluator pool. `synthesis/glass.js` performs explicit single-glass trials with reoptimization. `ui/synthesis.js` adds the New Lens entry point, persistence and candidate workflow. No original optimizer is replaced.
+
+Only specifications carrying `synthesis` invoke the new pre-merit physical constraint/iris solve. Legacy Search Lab measurements retain their existing behavior. Global/dense evaluations use the existing workers; synthesis seed/local stages yield in small main-thread chunks. Adoption suppresses intermediate table/history records and preserves validated apertures and seed metadata. `LBSearchLab.loadGenerated` is the explicit bridge for continuing a generated design.

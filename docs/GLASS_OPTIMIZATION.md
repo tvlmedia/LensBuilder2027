@@ -1,0 +1,16 @@
+# Verified glass selection and substitution
+
+The existing catalog was audited for synthesis: only records with verified SCHOTT Sellmeier coefficients are eligible. This currently means **N-BK7, N-BK7HT and N-F2**, over the existing 400–700 nm analysis scope. The original broader nd/Vd table remains available to other explicitly approximate workflows, but is not silently used for synthesis. Manufacturer density, availability, transmission and cost data have not been added or invented.
+
+The initial representative subset defaults to N-BK7 crown and N-F2 flint. Thus the current search explores only two materially distinct dispersion models. N-BK7HT has the same refractive model as N-BK7 in this catalog, and substituting between them is skipped as an optically duplicate proposal. This restricted glass basis is a significant limitation for fast, well-corrected cinema designs.
+
+Stages actually implemented:
+
+1. Generate representative glass assignments with the topology's power roles.
+2. Optimize continuous geometry with those glasses fixed.
+3. On a selected result, **OPTIMIZE GLASS** enumerates single-element substitutions from that frozen parent within the allowed verified list. Candidates are ordered by `abs(Δnd) + abs(ΔVd)/100`; no missing partial-dispersion metadata is guessed.
+4. Recompute first order and uniformly scale the substituted geometry to target EFL. Check hard geometry/mechanics/material constraints. Invalid candidates are rejected before costly tracing.
+5. Raytrace every physically admissible substitute using the same merit configuration, then run up to 200 local geometry evaluations per substitution. A candidate is accepted only if its search merit improves and fresh aperture sizing plus dense analysis pass; when the parent has a dense result, the new dense merit must also improve on it.
+6. Save trials, rejection codes, scale factors, before/after merits and evaluation counts with the candidate. No substitution is accepted solely on index/Abbe similarity.
+
+This is an explicit additional operation, not hidden expenditure inside the original synthesis budget. The run button currently does not automatically execute the discrete glass stage. It explores one substitution at a time from the selected parent, not simultaneous combinatorial glass assignments. Fixed glass is the default in Continue Search; launch the explicit glass operation when you want it changed. An interrupted additional glass pass can be rerun from its saved parent.

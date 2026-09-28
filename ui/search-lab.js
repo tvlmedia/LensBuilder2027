@@ -77,6 +77,9 @@
       throw Error("Pause before changing the configuration");
     base = bridge.snapshot();
     delete base.project;
+    document.dispatchEvent(
+      new CustomEvent("lb-base-captured", { detail: base }),
+    );
     let first;
     try {
       first = LBOptics.paraxial(LBOptics.compile(base));
@@ -294,7 +297,7 @@
             metrics: a.dense.metrics,
           });
           message(
-            "Dense-validated candidate adopted as one undoable editor change.",
+            "Dense-validated candidate adopted as one undoable editor change; multi-aperture candidates use their primary validated iris.",
           );
         });
         cell.append(b);
@@ -390,6 +393,9 @@
   function load(s) {
     state = E.restore(s);
     base = state.input;
+    document.dispatchEvent(
+      new CustomEvent("lb-base-captured", { detail: base }),
+    );
     verified = false;
     state.archive.forEach((a) => delete a.dense);
     lastSave = s.checkpointAt ? Date.parse(s.checkpointAt) : 0;
@@ -422,6 +428,35 @@
       "Restored. Resume rechecks saved rankings; imported validation must be rerun.",
     );
   }
+  window.LBSearchLab = {
+    show: () => {
+      panel.hidden = false;
+    },
+    loadGenerated: (input, spec, variables, operands) => {
+      if (running || validationBusy)
+        throw Error("Pause Search Lab before loading a generated design");
+      base = structuredClone(input);
+      delete base.project;
+      state = null;
+      $("labResults").replaceChildren();
+      $("labComparison").replaceChildren();
+      $("labProgress").textContent = "";
+      controls();
+      put("labSpec", spec);
+      put("labVariables", variables);
+      put("labOperands", operands);
+      $("labBase").textContent = base.name + " · generated prescription";
+      document.dispatchEvent(
+        new CustomEvent("lb-base-captured", { detail: base }),
+      );
+      panel.hidden = false;
+      results();
+      draw();
+      message(
+        "Generated candidate loaded as search base. Disable individual R/t/stopPosition variables to lock them; disable every variable for an element to lock that element. Glass is fixed in geometry search. Load experiment base before adopting results if editor differs.",
+      );
+    },
+  };
   button.onclick = guard(() => {
     panel.hidden = false;
     if (!base) capture();
@@ -509,7 +544,9 @@
     }
   });
   $("labList").onclick = guard(async () => {
-    const rows = await LBExperiments.list();
+    const rows = (await LBExperiments.list()).filter(
+      (a) => a.version !== "synthesis-1",
+    );
     $("labSaved").replaceChildren();
     rows.forEach((r) => {
       const o = document.createElement("option");
@@ -601,6 +638,16 @@
     const items = selected();
     if (items.length < 2 || items.length > 6)
       throw Error("Select 2–6 candidates");
+    document.dispatchEvent(
+      new CustomEvent("lb-compare-apertures", {
+        detail: {
+          items,
+          configuration: state.spec,
+          software: state.software,
+          base: state.input,
+        },
+      }),
+    );
     const host = $("labComparison");
     host.replaceChildren();
     items.forEach((a) => {
@@ -652,7 +699,9 @@
         canvas.width = 360;
         canvas.height = 180;
         const ctx = canvas.getContext("2d"),
-          rows = a.dense.analysis.rows.filter((r) => r.field === 1),
+          rows = (
+            a.dense.analysis.apertures?.[0]?.analysis || a.dense.analysis
+          ).rows.filter((r) => r.field === 1),
           hits = rows.flatMap((r) => r.hits);
         const cy = hits.reduce((n, h) => n + h.y, 0) / hits.length,
           cz = hits.reduce((n, h) => n + h.z, 0) / hits.length,

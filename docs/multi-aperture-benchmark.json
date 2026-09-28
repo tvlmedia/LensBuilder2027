@@ -1,0 +1,191 @@
+{
+  "date": "2026-09-24T19:26:03.546Z",
+  "node": "v24.16.0",
+  "system": "Bundled Biotar, same fixed image plane, six fields F/d/C",
+  "cases": [
+    {
+      "apertures": "existing physical stop",
+      "dense": false,
+      "workers": 1,
+      "count": 32,
+      "valid": 32,
+      "evaluationsPerSecond": 254.00605248796947,
+      "meanWallMs": 3.9369140625
+    },
+    {
+      "apertures": "existing physical stop",
+      "dense": false,
+      "workers": 4,
+      "count": 32,
+      "valid": 32,
+      "evaluationsPerSecond": 708.9691106146454,
+      "meanWallMs": 1.4104986875000005
+    },
+    {
+      "apertures": "existing physical stop",
+      "dense": true,
+      "workers": 1,
+      "count": 32,
+      "valid": 32,
+      "evaluationsPerSecond": 48.52229085762601,
+      "meanWallMs": 20.60908465625
+    },
+    {
+      "apertures": "existing physical stop",
+      "dense": true,
+      "workers": 4,
+      "count": 32,
+      "valid": 32,
+      "evaluationsPerSecond": 135.34291680455254,
+      "meanWallMs": 7.38863934375
+    },
+    {
+      "apertures": [
+        2
+      ],
+      "dense": false,
+      "workers": 1,
+      "count": 32,
+      "valid": 32,
+      "evaluationsPerSecond": 244.67832667979053,
+      "meanWallMs": 4.0869986874999995
+    },
+    {
+      "apertures": [
+        2
+      ],
+      "dense": false,
+      "workers": 4,
+      "count": 32,
+      "valid": 32,
+      "evaluationsPerSecond": 657.5584546348889,
+      "meanWallMs": 1.520777343749998
+    },
+    {
+      "apertures": [
+        2
+      ],
+      "dense": true,
+      "workers": 1,
+      "count": 32,
+      "valid": 32,
+      "evaluationsPerSecond": 46.47746784631766,
+      "meanWallMs": 21.515802093750004
+    },
+    {
+      "apertures": [
+        2
+      ],
+      "dense": true,
+      "workers": 4,
+      "count": 32,
+      "valid": 32,
+      "evaluationsPerSecond": 135.2429354056496,
+      "meanWallMs": 7.394101562499998
+    },
+    {
+      "apertures": [
+        2,
+        2.8
+      ],
+      "dense": false,
+      "workers": 1,
+      "count": 32,
+      "valid": 32,
+      "evaluationsPerSecond": 123.60696734311256,
+      "meanWallMs": 8.090158843750004
+    },
+    {
+      "apertures": [
+        2,
+        2.8
+      ],
+      "dense": false,
+      "workers": 4,
+      "count": 32,
+      "valid": 32,
+      "evaluationsPerSecond": 355.7794000947825,
+      "meanWallMs": 2.8107304687499948
+    },
+    {
+      "apertures": [
+        2,
+        2.8
+      ],
+      "dense": true,
+      "workers": 1,
+      "count": 32,
+      "valid": 32,
+      "evaluationsPerSecond": 23.398005161246047,
+      "meanWallMs": 42.738686187499994
+    },
+    {
+      "apertures": [
+        2,
+        2.8
+      ],
+      "dense": true,
+      "workers": 4,
+      "count": 32,
+      "valid": 32,
+      "evaluationsPerSecond": 72.21717736341296,
+      "meanWallMs": 13.84712109374999
+    },
+    {
+      "apertures": [
+        2,
+        2.8,
+        4,
+        5.6
+      ],
+      "dense": false,
+      "workers": 1,
+      "count": 32,
+      "valid": 32,
+      "evaluationsPerSecond": 66.71631597606988,
+      "meanWallMs": 14.988837218749978
+    },
+    {
+      "apertures": [
+        2,
+        2.8,
+        4,
+        5.6
+      ],
+      "dense": false,
+      "workers": 4,
+      "count": 32,
+      "valid": 32,
+      "evaluationsPerSecond": 211.92590935106287,
+      "meanWallMs": 4.7186302187500075
+    },
+    {
+      "apertures": [
+        2,
+        2.8,
+        4,
+        5.6
+      ],
+      "dense": true,
+      "workers": 1,
+      "count": 32,
+      "valid": 32,
+      "evaluationsPerSecond": 12.066042354653232,
+      "meanWallMs": 82.87721612500002
+    },
+    {
+      "apertures": [
+        2,
+        2.8,
+        4,
+        5.6
+      ],
+      "dense": true,
+      "workers": 4,
+      "count": 32,
+      "valid": 32,
+      "evaluationsPerSecond": 36.120403414111784,
+      "meanWallMs": 27.685183593750025
+    }
+  ]
+}

@@ -1,7 +1,10 @@
 importScripts(
   "../materials/catalog.js",
   "../optics/core.js",
+  "../analysis/aberrations.js",
   "../analysis/evaluate.js",
+  "../analysis/multi-aperture.js",
+  "../synthesis/physics.js",
   "../design/merit.js",
   "./search.js",
   "./explorer.js",

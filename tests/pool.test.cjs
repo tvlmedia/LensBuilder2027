@@ -45,3 +45,19 @@ test("worker failure is surfaced and closing rejects pending evaluations", async
     p.close();
   }
 });
+
+test("multi-aperture worker results and dense diagnostics match pure evaluator", async () => {
+  const s = make();
+  s.spec.apertures = [2, 2.8, 4, 5.6];
+  s.operands = M.defaultOperands(s.spec);
+  const p = new Pool(2, adapter);
+  try {
+    await p.init(s);
+    const v = s.variables.map((v) => v.value);
+    const [r] = await p.evaluate([v], true);
+    assert.deepEqual(r, E.evaluate(s, v, true));
+    assert.equal(r.analysis.apertures.length, 4);
+  } finally {
+    p.close();
+  }
+});

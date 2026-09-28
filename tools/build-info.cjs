@@ -9,6 +9,7 @@ for (const dir of [
   "optics",
   "analysis",
   "design",
+  "synthesis",
   "optimization",
   "import",
   "ui",
@@ -26,8 +27,10 @@ const baseCommit = cp
   .execFileSync("git", ["rev-parse", "HEAD"], { cwd: root, encoding: "utf8" })
   .trim();
 const info = {
-  engineVersion: "lb2027-spherical-0.2.0",
-  searchEngineVersion: "numerical-lab-1",
+  applicationVersion: require("../package.json").version,
+  synthesisEngineVersion: "synthesis-1",
+  engineVersion: "lb2027-spherical-0.4.0",
+  searchEngineVersion: "numerical-lab-2",
   baseCommit,
   sourceSha256: hash.digest("hex"),
   note: "Source fingerprint identifies this exact working source; baseCommit is its recorded Git parent at stamping time.",
