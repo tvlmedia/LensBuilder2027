@@ -1,6 +1,6 @@
 {
   "name": "lensbuilder2027",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "private": true,
   "scripts": {
     "test": "node --test tests/*.test.cjs",
@@ -9,7 +9,8 @@
     "benchmark": "node tools/benchmark.cjs",
     "benchmark:search": "node tools/benchmark-search.cjs",
     "benchmark:apertures": "node tools/benchmark-apertures.cjs",
-    "benchmark:synthesis": "node tools/benchmark-synthesis.cjs"
+    "benchmark:synthesis": "node tools/benchmark-synthesis.cjs",
+    "benchmark:refinement": "node tools/benchmark-refinement.cjs"
   },
   "engines": {
     "node": ">=20"

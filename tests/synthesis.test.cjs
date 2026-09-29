@@ -320,3 +320,39 @@ test("expanded glass checkpoint resumes during seed selection", async () => {
   assert.deepEqual(restored.counts, state.counts);
   assert.deepEqual(restored.results, state.results);
 });
+
+test("geometry refinement accepts only fresh dense improvement and preserves its input", async () => {
+  const R = require("../synthesis/refine");
+  const experiment = require("../docs/glass-exploration-benchmark.json").experiments[0];
+  const record = experiment.results.filter(r => r.status === "DENSE VALIDATED")
+    .sort((a,b) => a.denseScore-b.denseScore)[0];
+  const item = { system: record.prescription, ordinal: record.ordinal,
+    topology: record.topology, status: record.status };
+  const original = structuredClone(item);
+  const refined = await R.optimize(item, experiment.specification, experiment.operands,
+    { maxEvaluations: 500 });
+  assert.deepEqual(item, original);
+  assert.ok(refined.geometryRefinement.evaluations <= 500);
+  assert.equal(refined.geometryRefinement.denseEvaluations, 2);
+  assert.equal(refined.geometryRefinement.accepted, true);
+  assert.ok(refined.geometryRefinement.afterDenseScore < refined.geometryRefinement.beforeDenseScore);
+  assert.equal(refined.status, "DENSE VALIDATED");
+  assert.ok(P.prepare(refined.system, experiment.specification).ok);
+  const plateauOps = [{ metric: "efl", aperture: 4, target: [49,51], scale: 1, weight: 1 }];
+  const unchanged = await R.optimize(item, experiment.specification, plateauOps, { maxEvaluations: 40 });
+  assert.equal(unchanged.geometryRefinement.accepted, false);
+  assert.deepEqual(unchanged.system, item.system);
+  assert.throws(() => S.specification({localSearchPolicy: "unknown"}));
+});
+
+test("accelerated synthesis local stage resumes identically", async () => {
+  const state = E.create({topology: "cooke",budget: 1000,localSearchPolicy:"pattern-v1"});
+  while (!state.local && !state.done) await E.step(state);
+  assert.ok(state.local);
+  assert.equal(state.local.algorithm, "bounded-pattern-extrapolation-v1");
+  const restored = E.restore(JSON.parse(JSON.stringify(state)));
+  while (!state.done) await E.step(state);
+  while (!restored.done) await E.step(restored);
+  assert.deepEqual(state.results, restored.results);
+  assert.deepEqual(state.counts, restored.counts);
+});

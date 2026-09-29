@@ -222,3 +222,21 @@ test("low-NA geometric RMS, distortion and color agree with independent thick-le
       1e-8,
   );
 });
+
+test("accelerated pattern search improves optics and resumes a pending combined step", () => {
+  const variables = [{ surface: 13, key: "t", min: 30, max: 46 }];
+  const state = S.create(input, spec, variables, D.defaultOperands(spec),
+    { maxEvaluations: 100, patternAcceleration: true });
+  while (!state.pendingPattern && !state.done) S.advance(state);
+  a.ok(state.pendingPattern, "exercise combined extrapolation checkpoint");
+  const resumed = S.resume(JSON.parse(JSON.stringify(state)));
+  const bad = structuredClone(state); bad.sweepVector[0] = Infinity;
+  a.throws(() => S.resume(bad), /pattern checkpoint/);
+  while (!state.done) S.advance(state);
+  while (!resumed.done) S.advance(resumed);
+  a.deepEqual(state, resumed);
+  a.ok(state.evaluations <= 100);
+  a.ok(state.bestScore < state.initialScore * 0.5);
+  a.ok(S.finish(state).accepted);
+  a.ok(state.history.every((h,i) => !i || h.score <= state.history[i-1].score));
+});

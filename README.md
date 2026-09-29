@@ -53,3 +53,7 @@ Version 0.5 adds [from-scratch synthesis](docs/LENS_SYNTHESIS.md), [structural d
 ### Verified glass exploration (0.5.1)
 
 In **NEW LENS → GENERATE & OPTIMIZE → Materials & analysis**, use **Use expanded verified glass set** to explore eight distinct SCHOTT models. The original two-glass default remains available. See [glass selection and provenance](docs/GLASS_OPTIMIZATION.md) and [measured comparison](docs/GLASS_EXPLORATION.md).
+
+### Further geometry refinement (0.5.2)
+
+Use **REFINE GEOMETRY** on a generated candidate to continue for up to 3000 evaluations; a replacement must pass fresh dense validation and improve its score. New UI runs also use accelerated pattern refinement, with the legacy method still selectable. See [measured comparison and checkpoint behavior](docs/GEOMETRY_REFINEMENT.md).

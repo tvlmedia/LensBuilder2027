@@ -14,3 +14,5 @@ Remaining gates:
 6. Deliberate numerical Omit character targets and matched prime sets, only after the technical/measurement foundation is adequate.
 
 Diffraction PSF/MTF, T-stop, manufacturing cost and production certification remain unavailable.
+
+Delivered in 0.5.2: bounded combined-displacement local refinement, deterministic synthesis checkpoint replay, and explicit dense-gated refinement of existing candidates. The [paired benchmark](GEOMETRY_REFINEMENT.md) measures modest algorithmic gains at equal extra budget; it does not close the optical-quality or external-validation gates.
