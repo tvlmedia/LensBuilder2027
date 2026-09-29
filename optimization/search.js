@@ -85,7 +85,8 @@
     return {
       schemaVersion: 1,
       engineVersion: VERSION,
-      algorithm: "bounded-coordinate-pattern-search",
+      algorithm: options.patternAcceleration ? "bounded-pattern-extrapolation-v1" : "bounded-coordinate-pattern-search",
+      ...(options.patternAcceleration ? { sweepVector: vector.slice(), pendingPattern: false } : {}),
       seed,
       seedUsage: "Deterministic algorithm; no random sampling",
       id: options.id || `run-${Date.now()}`,
@@ -115,6 +116,27 @@
   }
   function advance(state) {
     if (state.done) return state;
+    if (state.pendingPattern) {
+      const vector = state.bestVector.map((x, i) => Math.max(state.variables[i].min,
+        Math.min(state.variables[i].max, 2 * x - state.sweepVector[i])));
+      if (vector.some((x, i) => x !== state.bestVector[i])) {
+        const result = Merit.evaluate(prescription(state, vector), state.spec, state.operands);
+        state.evaluations++;
+        if (result.merit.valid) {
+          state.validCandidates++;
+          if (result.merit.total < state.bestScore) {
+            state.bestScore = result.merit.total;
+            state.bestVector = vector;
+          }
+        }
+      }
+      state.pendingPattern = false;
+      state.sweepVector = state.bestVector.slice();
+      state.sweepStart = state.bestScore;
+      state.history.push({ evaluations: state.evaluations, score: state.bestScore });
+      state.done = state.evaluations >= state.maxEvaluations;
+      return state;
+    }
     const n = state.variables.length,
       i = Math.floor(state.cursor / 2),
       sign = state.cursor % 2 === 0 ? 1 : -1,
@@ -143,7 +165,12 @@
     if (state.cursor === 2 * n) {
       state.cursor = 0;
       state.iteration++;
-      if (state.bestScore >= state.sweepStart - 1e-12) state.step *= 0.5;
+      const improved = state.bestScore < state.sweepStart - 1e-12;
+      if (!improved) state.step *= 0.5;
+      if (state.algorithm === "bounded-pattern-extrapolation-v1") {
+        state.pendingPattern = improved;
+        if (!improved) state.sweepVector = state.bestVector.slice();
+      }
       state.sweepStart = state.bestScore;
       state.history.push({
         evaluations: state.evaluations,
@@ -158,10 +185,16 @@
     if (
       s.schemaVersion !== 1 ||
       s.engineVersion !== VERSION ||
-      s.algorithm !== "bounded-coordinate-pattern-search"
+      !["bounded-coordinate-pattern-search", "bounded-pattern-extrapolation-v1"].includes(s.algorithm)
     )
       throw new Error("Checkpoint engine/schema mismatch");
     validateVariables(s.input, s.variables);
+    if (s.algorithm === "bounded-pattern-extrapolation-v1" && (
+      typeof s.pendingPattern !== "boolean" ||
+      !Array.isArray(s.sweepVector) || s.sweepVector.length !== s.variables.length ||
+      s.sweepVector.some((x, i) => !Number.isFinite(x) || x < s.variables[i].min || x > s.variables[i].max) ||
+      (s.pendingPattern && s.cursor !== 0)))
+      throw new Error("Invalid pattern checkpoint state");
     Merit.validateOperands(s.operands);
     if (
       !Number.isFinite(s.bestScore) ||

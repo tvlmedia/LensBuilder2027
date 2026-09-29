@@ -349,7 +349,8 @@
               analysisSpec(s.spec),
               G.variables(item.system, s.spec),
               s.operands,
-              { maxEvaluations: Math.min(100000, budget), seed: s.spec.seed },
+              { maxEvaluations: Math.min(100000, budget), seed: s.spec.seed,
+                patternAcceleration: s.spec.localSearchPolicy === "pattern-v1" },
             );
             s.counts.local++;
           } catch (e) {

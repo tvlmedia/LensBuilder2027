@@ -152,3 +152,14 @@ test("clipping and misses are distinct expected ray outcomes", () => {
   );
 });
 module.exports = { singlet, close };
+
+test("expanded SCHOTT Sellmeier models reproduce manufacturer nd and Vd", () => {
+  const records = require("../docs/glass-catalog-provenance.json").records;
+  for (const g of records) {
+    const nd = M.index(g.name, M.wavelengths.d);
+    close(nd, g.nd, 0.000006);
+    close((nd - 1) / (M.index(g.name, M.wavelengths.F) - M.index(g.name, M.wavelengths.C)), g.Vd, 0.006);
+    a.ok(M.index(g.name, 400) > nd && nd > M.index(g.name, 700));
+    a.equal(M.material(g.name).model, "sellmeier");
+  }
+});

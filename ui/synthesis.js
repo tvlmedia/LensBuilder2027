@@ -21,7 +21,7 @@
  <details><summary>Advanced specification, bounds policy & merit</summary><p>Read controls before editing JSON. Advanced JSON is applied when you press Apply advanced specification. Fields, wavelengths, mechanical envelope stations and budget fractions are editable here. Radius bounds preserve sign; iris position stays in air. Glass choices stay fixed during geometry search.</p><button class="btn" id="synthesisRead">Read controls into advanced specification</button><label>NewLensSpecification JSON<textarea id="synthesisSpec" rows="18"></textarea></label><button class="btn" id="synthesisApply">Apply advanced specification</button><label>TECHNICAL_BALANCED_v1 operands (blank = generate from aperture configuration)<textarea id="synthesisOperands" rows="12"></textarea></label><button class="btn" id="synthesisMerit">Build inspectable default operands</button></details>
  <div class="labActions"><button class="btn btnPrimary" id="synthesisStart">Start numerical synthesis</button><button class="btn" id="synthesisPause">Pause & checkpoint</button><button class="btn" id="synthesisResume">Resume synthesis</button><button class="btn" id="synthesisStop">Stop after batch</button><button class="btn" id="synthesisExport">Export synthesis experiment</button><label>Import synthesis checkpoint<input id="synthesisImport" type="file" accept=".json"></label><button class="btn" id="synthesisList">Refresh synthesis experiments</button><select id="synthesisSaved" aria-label="Saved synthesis experiments"></select><button class="btn" id="synthesisRestore">Restore synthesis autosave</button></div>
  <p role="status" id="synthesisMessage">Enter a specification, then start.</p><pre id="synthesisProgress"></pre><canvas id="synthesisLive" width="1000" height="240" aria-label="Current generated lens and real rays"></canvas>
- <h3>Candidate prescriptions</h3><p>All candidates use the same dense validation configuration. Merit is specific to the visible operands. Choose candidates to compare; adoption is one undoable editor change. The editor preview sensor remains independently configurable; the validated image circle is stored with the experiment. Optimize Glass is an additional search of up to 200 geometry evaluations per substitution.</p><button class="btn" id="synthesisCompare">Compare selected in measurement laboratory</button><button class="btn" id="synthesisCSV">Export results CSV</button><div id="synthesisResults"></div></div>`;
+ <h3>Candidate prescriptions</h3><p>All candidates use the same dense validation configuration. Merit is specific to the visible operands. Choose candidates to compare; adoption is one undoable editor change. The editor preview sensor remains independently configurable; the validated image circle is stored with the experiment. Refine geometry runs up to 3000 additional evaluations and accepts only a fresh dense-validated improvement. Optimize Glass is an additional search of up to 200 geometry evaluations per substitution.</p><button class="btn" id="synthesisCompare">Compare selected in measurement laboratory</button><button class="btn" id="synthesisCSV">Export results CSV</button><div id="synthesisResults"></div></div>`;
   document.body.append(panel);
   const groups = [
     [
@@ -60,6 +60,7 @@
       "Materials & analysis",
       [
         ["allowedGlasses", "Verified SCHOTT glasses (comma separated)", "text"],
+        ["seedGlassPolicy", "Glass pairs during seed generation", "select"],
         ["maxUniqueGlasses", "Maximum unique glass types"],
         ["fields", "Normalized fields 0–1 (comma separated)", "text"],
         ["wavelengths", "Wavelengths nm (comma separated)", "text"],
@@ -73,6 +74,7 @@
       "Search",
       [
         ["topology", "Topology", "select"],
+        ["localSearchPolicy", "Local refinement method", "select"],
         ["budget", "Complete funnel budget"],
         ["workers", "Workers"],
         ["seed", "Random seed"],
@@ -97,7 +99,13 @@
         input.type = type;
         if (type === "number") input.step = "any";
       } else
-        for (const f of [
+        for (const f of key === "localSearchPolicy" ? [
+          { id: "coordinate-v1", name: "Coordinate search (legacy)" },
+          { id: "pattern-v1", name: "Accelerated pattern search" },
+        ] : key === "seedGlassPolicy" ? [
+          { id: "first-pair-v1", name: "First crown / flint pair (legacy)" },
+          { id: "sample-pairs-v1", name: "Explore allowed crown / flint pairs" },
+        ] : [
           { id: "auto", name: "AUTO · explore suitable families" },
           ...LBDesignForms.forms,
         ]) {
@@ -132,7 +140,7 @@
   select.onchange = () => {
     if (+select.value) $("syn_budget").value = select.value;
   };
-  let advanced = LBSynthesisSpec.specification(),
+  let advanced = LBSynthesisSpec.specification({ localSearchPolicy: "pattern-v1" }),
     state = null,
     pool = null,
     running = false,
@@ -141,6 +149,16 @@
     busy = false,
     lastSave = 0,
     lastPaint = 0;
+  const glassPreset = document.createElement("button");
+  glassPreset.className = "btn";
+  glassPreset.id = "synthesisGlassPreset";
+  glassPreset.textContent = "Use expanded verified glass set";
+  $("syn_allowedGlasses").parentElement.after(glassPreset);
+  glassPreset.onclick = () => {
+    $("syn_allowedGlasses").value = "N-BK7,N-F2,N-LAK22,N-SK16,N-SF6,N-SF10,N-BAK4,N-PK52A";
+    $("syn_seedGlassPolicy").value = "sample-pairs-v1";
+    message("Eight distinct verified glass models selected. Seeds explore crown/flint pairs; each seed uses two glass types. Start a new run to apply.");
+  };
   function message(t) {
     $("synthesisMessage").textContent = t;
   }
@@ -157,6 +175,8 @@
       for (const [key, , type] of fields) {
         const input = $("syn_" + key);
         if (type === "checkbox") input.checked = s[key];
+        else if (key === "seedGlassPolicy") input.value = s[key] || "first-pair-v1";
+        else if (key === "localSearchPolicy") input.value = s[key] || "coordinate-v1";
         else if (key === "wavelengths")
           input.value = s[key].map((w) => w.nm).join(",");
         else if (key === "apertures")
@@ -327,6 +347,7 @@
         );
       }
       await save();
+      if (state.done) message("Synthesis complete. Review dense-validated candidates below; Refine geometry can continue a selected design.");
     } catch (e) {
       message(
         "Paused: " +
@@ -414,6 +435,29 @@
         ],
         ["Inspect multi-aperture metrics", () => compare([item])],
         [
+          "REFINE GEOMETRY",
+          async () => {
+            if (running || busy) throw Error("Pause synthesis first");
+            busy = true;
+            draw();
+            message("Refining geometry with up to 3000 evaluations, followed by independent dense validation…");
+            try {
+              const refined = await LBGeometryRefinement.optimize(item, state.spec, state.operands,
+                { yield: () => new Promise(r => setTimeout(r, 0)) });
+              state.results[index] = refined;
+              await save();
+              render();
+              const a = refined.geometryRefinement;
+              message(a.accepted
+                ? `Geometry improved: dense merit ${fmt(a.beforeDenseScore)} → ${fmt(a.afterDenseScore)}. All hard checks passed.`
+                : "No validated improvement; the original candidate was retained.");
+            } finally {
+              busy = false;
+              draw();
+            }
+          },
+        ],
+        [
           "OPTIMIZE GLASS",
           async () => {
             if (running || busy) throw Error("Pause synthesis first");
@@ -459,6 +503,8 @@
           checks: item.checks,
           breakdown: item.dense?.breakdown,
           glassSearch: item.glassSearch,
+          geometryRefinement: item.geometryRefinement,
+          geometryRefinements: item.geometryRefinements,
         },
         null,
         2,

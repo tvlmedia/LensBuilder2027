@@ -49,3 +49,11 @@ For large searches, use [Search Lab instructions and limitations](docs/SEARCH_LA
 Version 0.4 changes distortion to a fixed paraxial reference-plane definition and keeps old sensor-plane mapping separately. Old optimization checkpoints require a new experiment because their objectives changed. See [optical metric definitions](docs/OPTICAL_METRICS.md) and [multi-aperture workflow](docs/MULTI_APERTURE_ANALYSIS.md).
 
 Version 0.5 adds [from-scratch synthesis](docs/LENS_SYNTHESIS.md), [structural design forms](docs/DESIGN_FORMS.md), [seed generation](docs/SEED_GENERATION.md) and [verified glass substitution](docs/GLASS_OPTIMIZATION.md). See the [synthesis experiments and funnel benchmark](docs/SYNTHESIS_BENCHMARK.md) for actual Cooke, Double Gauss and harder f/2 results. Densely validated hard constraints do not certify adequate optical correction. Run `npm run benchmark:synthesis -- --omit` to reproduce all three experiments.
+
+### Verified glass exploration (0.5.1)
+
+In **NEW LENS → GENERATE & OPTIMIZE → Materials & analysis**, use **Use expanded verified glass set** to explore eight distinct SCHOTT models. The original two-glass default remains available. See [glass selection and provenance](docs/GLASS_OPTIMIZATION.md) and [measured comparison](docs/GLASS_EXPLORATION.md).
+
+### Further geometry refinement (0.5.2)
+
+Use **REFINE GEOMETRY** on a generated candidate to continue for up to 3000 evaluations; a replacement must pass fresh dense validation and improve its score. New UI runs also use accelerated pattern refinement, with the legacy method still selectable. See [measured comparison and checkpoint behavior](docs/GEOMETRY_REFINEMENT.md).

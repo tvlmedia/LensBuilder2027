@@ -5,6 +5,10 @@
     F = root.LBDesignForms || require("./forms.js"),
     G = root.LBMaterials || require("../materials/catalog.js");
   function specification(raw = {}) {
+    if (raw.localSearchPolicy != null && !["coordinate-v1", "pattern-v1"].includes(raw.localSearchPolicy))
+      throw Error("Unknown local search policy");
+    if (raw.seedGlassPolicy != null && !["first-pair-v1", "sample-pairs-v1"].includes(raw.seedGlassPolicy))
+      throw Error("Unknown seed glass policy");
     const s = {
       name: "NEW_LENS",
       topology: "auto",

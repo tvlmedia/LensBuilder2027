@@ -130,6 +130,147 @@
     source,
     transmission: null,
   };
+  // SCHOTT June 2025 AGF, retrieved 2026-09-29; formula 2 (Sellmeier).
+  for (const glass of [
+  {
+    "name": "N-LAK22",
+    "manufacturer": "SCHOTT",
+    "nd": 1.65113,
+    "Vd": 55.89,
+    "model": "sellmeier",
+    "B": [
+      1.14229781,
+      0.535138441,
+      1.04088385
+    ],
+    "C": [
+      0.00585778594,
+      0.0198546147,
+      100.834017
+    ],
+    "rangeNm": [
+      400,
+      700
+    ],
+    "source": "https://media.schott.com/api/public/content/a79c07aa61da4c05a2c0bbab93d09a7f?download=true&v=3b65e351",
+    "transmission": null
+  },
+  {
+    "name": "N-SK16",
+    "manufacturer": "SCHOTT",
+    "nd": 1.62041,
+    "Vd": 60.32,
+    "model": "sellmeier",
+    "B": [
+      1.34317774,
+      0.241144399,
+      0.994317969
+    ],
+    "C": [
+      0.00704687339,
+      0.0229005,
+      92.7508526
+    ],
+    "rangeNm": [
+      400,
+      700
+    ],
+    "source": "https://media.schott.com/api/public/content/a79c07aa61da4c05a2c0bbab93d09a7f?download=true&v=3b65e351",
+    "transmission": null
+  },
+  {
+    "name": "N-SF6",
+    "manufacturer": "SCHOTT",
+    "nd": 1.80518,
+    "Vd": 25.36,
+    "model": "sellmeier",
+    "B": [
+      1.77931763,
+      0.338149866,
+      2.08734474
+    ],
+    "C": [
+      0.0133714182,
+      0.0617533621,
+      174.01759
+    ],
+    "rangeNm": [
+      400,
+      700
+    ],
+    "source": "https://media.schott.com/api/public/content/a79c07aa61da4c05a2c0bbab93d09a7f?download=true&v=3b65e351",
+    "transmission": null
+  },
+  {
+    "name": "N-SF10",
+    "manufacturer": "SCHOTT",
+    "nd": 1.72828,
+    "Vd": 28.53,
+    "model": "sellmeier",
+    "B": [
+      1.62153902,
+      0.256287842,
+      1.64447552
+    ],
+    "C": [
+      0.0122241457,
+      0.0595736775,
+      147.468793
+    ],
+    "rangeNm": [
+      400,
+      700
+    ],
+    "source": "https://media.schott.com/api/public/content/a79c07aa61da4c05a2c0bbab93d09a7f?download=true&v=3b65e351",
+    "transmission": null
+  },
+  {
+    "name": "N-BAK4",
+    "manufacturer": "SCHOTT",
+    "nd": 1.56883,
+    "Vd": 55.98,
+    "model": "sellmeier",
+    "B": [
+      1.28834642,
+      0.132817724,
+      0.945395373
+    ],
+    "C": [
+      0.00779980626,
+      0.0315631177,
+      105.965875
+    ],
+    "rangeNm": [
+      400,
+      700
+    ],
+    "source": "https://media.schott.com/api/public/content/a79c07aa61da4c05a2c0bbab93d09a7f?download=true&v=3b65e351",
+    "transmission": null
+  },
+  {
+    "name": "N-PK52A",
+    "manufacturer": "SCHOTT",
+    "nd": 1.497,
+    "Vd": 81.61,
+    "model": "sellmeier",
+    "B": [
+      1.029607,
+      0.1880506,
+      0.736488165
+    ],
+    "C": [
+      0.00516800155,
+      0.0166658798,
+      138.964129
+    ],
+    "rangeNm": [
+      400,
+      700
+    ],
+    "source": "https://media.schott.com/api/public/content/a79c07aa61da4c05a2c0bbab93d09a7f?download=true&v=3b65e351",
+    "transmission": null
+  }
+]) catalog[glass.name] = glass;
   // These legacy names are NOT silently treated as material equivalences.
   const substitutions = {
     BK7: "N-BK7HT",

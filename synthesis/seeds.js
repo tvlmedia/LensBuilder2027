@@ -24,8 +24,15 @@
       ),
       u = (a, b) => a + (b - a) * r(),
       efl = s.targetEflMm;
-    const crown = s.allowedGlasses.filter((g) => G.catalog[g].Vd > 50)[0],
-      flint = s.allowedGlasses.filter((g) => G.catalog[g].Vd < 50)[0],
+    // A separate stream preserves geometry draws and legacy checkpoint replay.
+    const glassRandom = rng((s.seed ^ Math.imul(ordinal + 1, 2246822519)) >>> 0),
+      choose = (list) => list[s.seedGlassPolicy === "sample-pairs-v1"
+        ? Math.floor(glassRandom() * list.length) : 0],
+      distinct = (list) => list.filter((name, i) => !list.slice(0, i).some(
+        (other) => JSON.stringify([G.catalog[name].B, G.catalog[name].C]) ===
+          JSON.stringify([G.catalog[other].B, G.catalog[other].C])));
+    const crown = choose(distinct(s.allowedGlasses.filter((g) => G.catalog[g].Vd > 50))),
+      flint = choose(distinct(s.allowedGlasses.filter((g) => G.catalog[g].Vd < 50))),
       surfaces = [
         { type: "OBJ", R: 0, t: 0, ap: 1, glass: "AIR", stop: false },
       ],

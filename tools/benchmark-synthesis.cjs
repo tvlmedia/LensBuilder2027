@@ -68,6 +68,10 @@ function compact(s) {
   };
 }
 async function run() {
+  const expanded = process.argv.includes("--glass-exploration"),
+    outputPath = path.resolve(__dirname, expanded
+      ? "../docs/glass-exploration-benchmark.json"
+      : "../docs/synthesis-benchmark.json");
   const targets = [
     {
       name: "COOKE_VALIDATION",
@@ -109,6 +113,10 @@ async function run() {
     const s = S.create(
       {
         ...target,
+        ...(expanded ? {
+          allowedGlasses: ["N-BK7", "N-F2", "N-LAK22", "N-SK16", "N-SF6", "N-SF10", "N-BAK4", "N-PK52A"],
+          seedGlassPolicy: "sample-pairs-v1",
+        } : {}),
         workers: 4,
         archiveSize: target.topology === "auto" ? 8 : 6,
       },
@@ -130,7 +138,7 @@ async function run() {
     }
     output.experiments.push(compact(s));
     fs.writeFileSync(
-      path.resolve(__dirname, "../docs/synthesis-benchmark.json"),
+      outputPath,
       JSON.stringify(output, null, 2) + "\n",
     );
     const best = s.results
@@ -175,7 +183,7 @@ async function run() {
     }
   }
   fs.writeFileSync(
-    path.resolve(__dirname, "../docs/synthesis-benchmark.json"),
+    outputPath,
     JSON.stringify(output, null, 2) + "\n",
   );
   console.log(
