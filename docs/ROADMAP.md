@@ -7,7 +7,7 @@ The [synthesis benchmark](SYNTHESIS_BENCHMARK.md) demonstrates newly generated p
 Remaining gates:
 
 1. Independent external optical-reference comparisons; real-pupil and image-coverage validation.
-2. Broader manufacturer-verified glass catalog, better power/bending strategies, sensitivity-driven search and improved correction of fast large-field lenses.
+2. Eight distinct manufacturer-verified glass models and optional deterministic seed-pair exploration are now available. Further glass expansion, better power/bending strategies, sensitivity-driven search and improved correction of fast large-field lenses.
 3. Explicit Pareto selection, richer variable-lock UI, improved budget redistribution and adaptive promotion.
 4. Multi-day browser/storage soak tests and worker-based synthesis seed/local stages.
 5. Supplied production mount envelope, tolerancing/manufacturability analysis and real transmission data.

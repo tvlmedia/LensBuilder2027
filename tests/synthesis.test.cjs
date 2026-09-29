@@ -288,3 +288,35 @@ test("checkpoint population ranks are measured again before resume", async () =>
   raw.current.scores[i] += 1;
   assert.throws(() => E.restore(raw), /rankings changed/);
 });
+
+test("expanded glass seeds explore reproducible pairs without changing legacy seeds", () => {
+  const allowedGlasses = ["N-BK7", "N-F2", "N-LAK22", "N-SK16", "N-SF6", "N-SF10", "N-BAK4", "N-PK52A"];
+  const legacy = S.specification({ topology: "cooke" });
+  const first = S.specification({ topology: "cooke", allowedGlasses });
+  const varied = S.specification({ ...first, seedGlassPolicy: "sample-pairs-v1" });
+  const used = new Set();
+  for (let i = 0; i < 100; i++) {
+    assert.deepEqual(G.generate(first, "cooke", i), G.generate(legacy, "cooke", i));
+    const a = G.generate(varied, "cooke", i);
+    assert.deepEqual(a, G.generate(varied, "cooke", i));
+    if (a.ok) {
+      const glasses = P.construction(a.system).glasses;
+      assert.equal(glasses.length, 2);
+      glasses.forEach(g => used.add(g));
+      assert.ok(Math.abs(O.paraxial(O.compile(a.system)).eflMm - 50) < 1e-8);
+    }
+  }
+  assert.deepEqual([...used].sort(), allowedGlasses.sort());
+  assert.throws(() => S.specification({ seedGlassPolicy: "unrecognized" }));
+});
+
+test("expanded glass checkpoint resumes during seed selection", async () => {
+  const state = E.create({ topology: "cooke", budget: 256,
+    allowedGlasses: ["N-BK7", "N-F2", "N-LAK22", "N-SF6"], seedGlassPolicy: "sample-pairs-v1" });
+  await E.step(state);
+  const restored = E.restore(JSON.parse(JSON.stringify(state)));
+  while (!state.done) await E.step(state);
+  while (!restored.done) await E.step(restored);
+  assert.deepEqual(restored.counts, state.counts);
+  assert.deepEqual(restored.results, state.results);
+});

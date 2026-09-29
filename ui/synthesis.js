@@ -60,6 +60,7 @@
       "Materials & analysis",
       [
         ["allowedGlasses", "Verified SCHOTT glasses (comma separated)", "text"],
+        ["seedGlassPolicy", "Glass pairs during seed generation", "select"],
         ["maxUniqueGlasses", "Maximum unique glass types"],
         ["fields", "Normalized fields 0–1 (comma separated)", "text"],
         ["wavelengths", "Wavelengths nm (comma separated)", "text"],
@@ -97,7 +98,10 @@
         input.type = type;
         if (type === "number") input.step = "any";
       } else
-        for (const f of [
+        for (const f of key === "seedGlassPolicy" ? [
+          { id: "first-pair-v1", name: "First crown / flint pair (legacy)" },
+          { id: "sample-pairs-v1", name: "Explore allowed crown / flint pairs" },
+        ] : [
           { id: "auto", name: "AUTO · explore suitable families" },
           ...LBDesignForms.forms,
         ]) {
@@ -141,6 +145,16 @@
     busy = false,
     lastSave = 0,
     lastPaint = 0;
+  const glassPreset = document.createElement("button");
+  glassPreset.className = "btn";
+  glassPreset.id = "synthesisGlassPreset";
+  glassPreset.textContent = "Use expanded verified glass set";
+  $("syn_allowedGlasses").parentElement.after(glassPreset);
+  glassPreset.onclick = () => {
+    $("syn_allowedGlasses").value = "N-BK7,N-F2,N-LAK22,N-SK16,N-SF6,N-SF10,N-BAK4,N-PK52A";
+    $("syn_seedGlassPolicy").value = "sample-pairs-v1";
+    message("Eight distinct verified glass models selected. Seeds explore crown/flint pairs; each seed uses two glass types. Start a new run to apply.");
+  };
   function message(t) {
     $("synthesisMessage").textContent = t;
   }
@@ -157,6 +171,7 @@
       for (const [key, , type] of fields) {
         const input = $("syn_" + key);
         if (type === "checkbox") input.checked = s[key];
+        else if (key === "seedGlassPolicy") input.value = s[key] || "first-pair-v1";
         else if (key === "wavelengths")
           input.value = s[key].map((w) => w.nm).join(",");
         else if (key === "apertures")
