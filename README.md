@@ -57,3 +57,7 @@ In **NEW LENS → GENERATE & OPTIMIZE → Materials & analysis**, use **Use expa
 ### Further geometry refinement (0.5.2)
 
 Use **REFINE GEOMETRY** on a generated candidate to continue for up to 3000 evaluations; a replacement must pass fresh dense validation and improve its score. New UI runs also use accelerated pattern refinement, with the legacy method still selectable. See [measured comparison and checkpoint behavior](docs/GEOMETRY_REFINEMENT.md).
+
+### Whole-material glass refinement (0.5.3)
+
+**OPTIMIZE GLASS** now explores whole-material replacements as well as individual elements, so repeated crown/flint elements can change without exceeding a two-glass limit. Each viable result receives fresh dense validation and the best dense score is retained. [Measured improvements and limits](docs/GLASS_FAMILY_REFINEMENT.md).
