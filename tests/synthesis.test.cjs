@@ -243,7 +243,7 @@ test("glass substitution is re-traced and re-optimized with an explicit audit tr
   const item = { system, topology: "cooke", ordinal: 0 };
   const r = await Glass.optimize(item, s, E.operands(s), { perTrialBudget: 8 });
   assert.ok(r.glassSearch.evaluations > 0);
-  assert.equal(r.glassSearch.trials.length, 3);
+  assert.equal(r.glassSearch.trials.length, 4);
   assert.ok(r.glassSearch.trials.every((t) => typeof t.status === "string"));
   assert.ok(P.prepare(r.system, s).ok);
 });
@@ -355,4 +355,46 @@ test("accelerated synthesis local stage resumes identically", async () => {
   while (!restored.done) await E.step(restored);
   assert.deepEqual(state.results, restored.results);
   assert.deepEqual(state.counts, restored.counts);
+});
+
+test("whole-material replacement preserves interface power and the two-glass limit", () => {
+  const Glass = require("../synthesis/glass"), Materials = require("../materials/catalog");
+  const e = require("../docs/refinement-benchmark.json").experiments[1];
+  const parent = e.methods[1].prescription;
+  const family = Glass.proposals(parent, e.specification).find(p =>
+    p.scope === "material-family" && p.fromGlass === "N-LAK22" && p.glass === "N-SK16");
+  assert.ok(family);
+  const changed = Glass.substitute(parent, family);
+  assert.equal(P.construction(changed).glasses.length, 2);
+  const single = Glass.substitute(parent, {...family, surfaces:[family.surfaces[0]],scope:"single-element"});
+  assert.equal(P.construction(single).glasses.length, 3);
+  for (let i=1;i<parent.surfaces.length-1;i++) {
+    const a=parent.surfaces[i],b=changed.surfaces[i];
+    if (!a.R) { assert.equal(b.R,0); continue; }
+    const oldPower=(Materials.index(a.glass)-Materials.index(parent.surfaces[i-1].glass))/a.R;
+    const newPower=(Materials.index(b.glass)-Materials.index(changed.surfaces[i-1].glass))/b.R;
+    assert.ok(Math.abs(oldPower-newPower)<1e-12);
+  }
+  assert.ok(family.surfaces.every(i=>changed.surfaces[i].glass === "N-SK16"));
+  assert.ok(family.surfaces.every(i=>parent.surfaces[i].glass === "N-LAK22"));
+  const all=Glass.proposals(parent,e.specification);
+  assert.equal(new Set(all.map(p=>JSON.stringify([p.surfaces,p.glass]))).size,all.length);
+});
+
+test("glass refinement remeasures cached merit and retains the best dense trial", async () => {
+  const Glass=require("../synthesis/glass"),e=require("../docs/refinement-benchmark.json").experiments[0];
+  const parent=e.methods[1].prescription;
+  const item={system:parent,ordinal:1,topology:"cooke",dense:{prescription:parent,score:-100}};
+  const original=structuredClone(item);
+  const result=await Glass.optimize(item,e.specification,e.operands,{perTrialBudget:8});
+  assert.deepEqual(item,original);
+  const audit=result.glassSearch;
+  assert.ok(Math.abs(audit.initialDenseScore-e.methods[1].afterDenseScore)<1e-8);
+  const valid=audit.trials.filter(t=>Number.isFinite(t.denseScore));
+  assert.ok(valid.length);
+  assert.equal(audit.finalDenseScore,Math.min(audit.initialDenseScore,...valid.map(t=>t.denseScore)));
+  assert.equal(result.dense.score,audit.finalDenseScore);
+  assert.ok(audit.trials.filter(t=>t.status === "ACCEPTED").every(t=>t.denseScore<t.previousBestDenseScore));
+  assert.equal(result.glassSearches.length,1);
+  await assert.rejects(Glass.optimize(item,e.specification,e.operands,{perTrialBudget:0}),/budget/);
 });

@@ -16,3 +16,5 @@ Remaining gates:
 Diffraction PSF/MTF, T-stop, manufacturing cost and production certification remain unavailable.
 
 Delivered in 0.5.2: bounded combined-displacement local refinement, deterministic synthesis checkpoint replay, and explicit dense-gated refinement of existing candidates. The [paired benchmark](GEOMETRY_REFINEMENT.md) measures modest algorithmic gains at equal extra budget; it does not close the optical-quality or external-validation gates.
+
+Delivered in 0.5.3: whole-material glass substitutions with interface-power initialization and strict dense-incumbent acceptance. The [glass-family comparison](GLASS_FAMILY_REFINEMENT.md) improves two of three fixed parents without relaxing their two-glass constraint.
