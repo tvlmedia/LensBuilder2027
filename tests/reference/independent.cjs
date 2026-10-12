@@ -45,3 +45,27 @@ function compile(system, index) {
   let x=0;return system.surfaces.slice(1,-1).map(s=>{const r={x,R:s.R,ap:s.ap,n:index(s),stop:s.stop};x+=s.t;return r;});
 }
 module.exports={sag,hit,bend,trace,firstOrder,compile};
+// Independent skew-ray extension: Newton sag graph and angular Snell in the
+// incidence plane, rather than the production vector quadratic expression.
+function skew(surfaces, position, direction, imageX){
+ let p=position.slice(),d=direction.slice(),n=1;
+ const dot=(a,b)=>a.reduce((s,x,i)=>s+x*b[i],0),unit=a=>a.map(x=>x/Math.hypot(...a));
+ d=unit(d);
+ for(const s of surfaces){
+  let t=(s.x-p[0])/d[0],h,slopeY,slopeZ;
+  for(let i=0;i<40;i++){
+   h=p.map((x,j)=>x+t*d[j]);const r2=h[1]**2+h[2]**2;
+   if(s.R&&r2>=s.R**2)return null;
+   const den=s.R?Math.sign(s.R)*Math.sqrt(s.R**2-r2):Infinity;
+   slopeY=h[1]/den;slopeZ=h[2]/den;
+   const residual=h[0]-s.x-sag(s.R,Math.sqrt(r2));if(Math.abs(residual)<1e-12)break;
+   t-=residual/(d[0]-slopeY*d[1]-slopeZ*d[2]);
+  }
+  if(Math.hypot(h[1],h[2])>s.ap)return null;
+  const normal=unit([1,-slopeY,-slopeZ]),cos=dot(d,normal),tangent=d.map((x,i)=>x-cos*normal[i]),sin=Math.hypot(...tangent),transmitted=n/s.n*sin;
+  if(transmitted>1)return null;
+  const angle=Math.asin(transmitted);d=normal.map((x,i)=>Math.cos(angle)*x+(sin>0?Math.sin(angle)*tangent[i]/sin:0));p=h;n=s.n;
+ }
+ return p.map((x,i)=>x+(imageX-p[0])/d[0]*d[i]);
+}
+module.exports.skew=skew;

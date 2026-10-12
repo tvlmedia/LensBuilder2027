@@ -51,3 +51,29 @@ test('weighted spot covariance and focus use independently calculated moments',(
  const variance=hits.reduce((sum,h)=>sum+h.weight*((h.y-1/8)**2+(h.z-2/8)**2),0)/8;near(s.rmsMm**2,variance);
  const f=D.focus(hits),varianceAt=x=>{const out=hits.map(h=>({...h,y:h.y+x*h.slopeY,z:h.z+x*h.slopeZ}));const w=A.statistics(out);return w.rmsMm**2;};assert.ok(varianceAt(f.bestRmsShiftMm)<varianceAt(f.bestRmsShiftMm-.01));assert.ok(varianceAt(f.bestRmsShiftMm)<varianceAt(f.bestRmsShiftMm+.01));
 });
+test('independent three-dimensional skew trace checks sagittal propagation away from a meridional plane',()=>{
+ for(const f of suite.cases.filter(f=>f.id!=='analytic-singlet')){
+  const c=O.compile(f.system),ref=R.compile(f.system,index);
+  for(const y of [-1,1])for(const z of [-.7,.7]){
+   const p=[c.startX,y,z],d=[1,.015,-.009],expected=R.skew(ref,p,d,c.imageX),actual=O.trace(c,{p:{x:p[0],y,z},d:{x:d[0],y:d[1],z:d[2]}});assert.ok(expected&&actual.ok);near(actual.hit.y,expected[1],2e-8);near(actual.hit.z,expected[2],2e-8);
+  }
+ }
+});
+test('independent rays reconstruct RMS, survival, lateral/longitudinal color and distortion conventions',()=>{
+ const f=suite.cases.find(f=>f.id==='cooke'),spec={...f.specification,pupilGrid:5,diagnostics:true},measured=A.evaluate(f.system,spec);assert.ok(measured.valid);
+ const waves=[{nm:486.1327,weight:1},{nm:587.5618,weight:2},{nm:656.2725,weight:1}],samples=[];
+ for(let i=0;i<5;i++)for(let j=0;j<5;j++){const y=(2*i+1)/5-1,z=(2*j+1)/5-1;if(y*y+z*z<=1)samples.push({y,z});}
+ const refs=waves.map(w=>R.compile(f.system,s=>index(s,w.nm))),first=refs.map(R.firstOrder);
+ near(measured.longitudinalColorMm,first[0].bfl-first[2].bfl,2e-5);
+ for(const field of spec.fields){const angle=Math.atan(field*spec.imageCircleMm/(2*spec.targetEflMm)),all=[],chiefs=[],survivals=[];
+  for(let wi=0;wi<waves.length;wi++){
+   const c=O.compile(f.system,waves[wi].nm),chief=O.aimChief(c,angle);let accepted=0;
+   chiefs.push(R.trace(refs[wi],{x:chief.p.x,y:chief.p.y,angle},c.imageX).y);
+   for(const q of samples){const hit=R.skew(refs[wi],[chief.p.x,chief.p.y+q.y*first[wi].pupilRadius,q.z*first[wi].pupilRadius],[1,Math.tan(angle),0],c.imageX);if(hit){accepted++;all.push({y:hit[1],z:hit[2],w:waves[wi].weight/samples.length});}}
+   survivals.push(accepted/samples.length);
+  }
+  const total=all.reduce((s,h)=>s+h.w,0),cy=all.reduce((s,h)=>s+h.w*h.y,0)/total,cz=all.reduce((s,h)=>s+h.w*h.z,0)/total,rms=Math.sqrt(all.reduce((s,h)=>s+h.w*((h.y-cy)**2+(h.z-cz)**2),0)/total),actual=measured.fields.find(x=>x.field===field);
+  near(actual.rmsMm,rms,2e-7);near(actual.rayFraction,Math.min(...survivals));near(actual.lateralChiefColorMm,Math.max(...chiefs)-Math.min(...chiefs),2e-8);
+  if(field){const c=O.compile(f.system),chief=O.aimChief(c,angle),p=first[1],ref=refs[1],height=R.trace(ref,{x:chief.p.x,y:chief.p.y,angle},ref.at(-1).x+p.bfl).y,ideal=p.efl*Math.tan(angle);near(actual.distortionPercent,100*(height-ideal)/ideal,2e-5);}
+ }
+});

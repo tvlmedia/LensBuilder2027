@@ -2,7 +2,7 @@
 
 ## Scope and independent reference
 
-`tests/reference/independent.cjs` does not import the optical engine. It intersects a sag graph by Newton iteration and applies scalar angular Snell refraction. Production uses a stable sphere quadratic and vector Snell refraction. The reference traces meridional rays through all seven frozen prescriptions (including separated elements and cemented interfaces), positive/negative radii, planes, and three wavelengths. Chief rays computed by production must reach the stop center in the reference implementation. This is an independent implementation cross-check, **not Zemax validation** and not a proof for every possible optical system.
+`tests/reference/independent.cjs` does not import the optical engine. It intersects a sag graph by Newton iteration and applies scalar angular Snell refraction. Production uses a stable sphere quadratic and vector Snell refraction. An additional independent 3D reference uses Newton sag intersections and angular Snell in the incidence plane for skew rays. The reference traces meridional rays through the frozen prescription suite (including separated elements and cemented interfaces), positive/negative radii, planes, and three wavelengths. Independent skew rays also reconstruct sampled RMS, pupil survival, lateral/longitudinal color and distortion for the frozen Cooke. Chief rays computed by production must reach the stop center in the reference implementation. This is an independent implementation cross-check, **not Zemax validation** and not a proof for every possible optical system.
 
 First order is checked using two differential real rays, independently of production matrix multiplication, at both front and rear stop locations. EFL, BFL, both principal planes, entrance pupil location/radius, geometric f-number and finite-conjugate magnification are checked, including negative power. A thick singlet additionally has fixed analytical expectations from the thick-lens equation. Manufacturer Sellmeier coefficients are evaluated with an algebraically different expression and checked against tabulated nd/Vd.
 
@@ -32,6 +32,7 @@ Lengths are mm, x is the optical axis increasing toward the image, y tangential 
 | Astigmatism | tangential best-focus shift minus sagittal shift; geometric diagnostic, not a Seidel coefficient |
 | Field curvature | best radial-RMS plane shift minus the on-axis best radial-RMS shift |
 | Ray fans | transverse image error along each pupil diameter; all wavelengths referenced to d chief at fixed sensor |
+| Coma-even diagnostic | At d, mean tangential fan at ±0.8 pupil minus fan at zero pupil, mm; contains higher-order even terms and is not a Seidel coefficient |
 | Spherical diagnostic | on-axis zonal outgoing axial intercept relative to same-wavelength paraxial focus; no fitted Seidel coefficient |
 
 Search samples a regular disk grid, final validation uses an independently positioned fourfold sunflower disk. Both approximate the **paraxial entrance pupil**, centered on a numerically aimed chief. Pupil aberration and radiometric pupil mapping are not solved. Sampling convergence is evidence, not proof of exact pupil integration. The image plane is a single physical gap variable, never independently refocused per field during merit evaluation.
