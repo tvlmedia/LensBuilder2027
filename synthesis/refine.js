@@ -12,8 +12,27 @@
   }
   async function optimize(item, spec, operands, options = {}) {
     // Re-measure the parent under the same dense objective; never trust cached scores.
-    const parent = item.dense?.prescription || item.system,
-      before = validate(parent, item, spec, operands);
+    const parent = item.dense?.prescription || item.system;
+    if (options.method && options.method !== "pattern") {
+      const X = root.LBOpticalExperiment || require("../optimization/experiment.js");
+      const run = await X.optimize(parent, S.analysisSpec(spec), G.variables(parent, spec), operands,
+        { method: options.method, budget: options.maxEvaluations ?? 3000, seed: spec.seed, yield: options.yield });
+      const compliance = S.compliance(run.result, spec);
+      const accepted = run.accepted && compliance.status === "DENSE VALIDATED";
+      const audit = { algorithm: run.method, evaluations: run.evaluations,
+        denseEvaluations: 2, validationEvaluations: run.validationEvaluations, accepted,
+        initialSearchScore: null, finalSearchScore: run.searchScore,
+        beforeDenseScore: run.before.score, afterDenseScore: run.after.score,
+        intermediate: run.intermediate, history: run.history, validatedHistory: run.validatedHistory,
+        stages: run.stages, rejections: run.rejections,
+        parameters: G.variables(parent, spec).map(v => ({ surface: v.surface, key: v.key, min: v.min, max: v.max })),
+        reason: accepted ? "Improved on intermediate and dense sampling; hard constraints passed"
+          : "No validated improvement; retained parent" };
+      return { ...structuredClone(item),
+        ...(accepted ? { system: run.system, score: run.searchScore, dense: run.result, ...compliance } : {}),
+        geometryRefinement: audit, geometryRefinements: [...(item.geometryRefinements || []), audit] };
+    }
+    const before = validate(parent, item, spec, operands);
     if (S.compliance(before, spec).status !== "DENSE VALIDATED")
       throw Error("Geometry refinement needs a dense-valid parent");
     const local = L.create(parent, S.analysisSpec(spec), G.variables(parent, spec), operands,

@@ -18,3 +18,14 @@ Diffraction PSF/MTF, T-stop, manufacturing cost and production certification rem
 Delivered in 0.5.2: bounded combined-displacement local refinement, deterministic synthesis checkpoint replay, and explicit dense-gated refinement of existing candidates. The [paired benchmark](GEOMETRY_REFINEMENT.md) measures modest algorithmic gains at equal extra budget; it does not close the optical-quality or external-validation gates.
 
 Delivered in 0.5.3: whole-material glass substitutions with interface-power initialization and strict dense-incumbent acceptance. The [glass-family comparison](GLASS_FAMILY_REFINEMENT.md) improves two of three fixed parents without relaxing their two-glass constraint.
+
+## Milestone 4 — 0.6.0 numerical optimization
+
+- Independent meridional and skew Snell/Newton reference tracing; analytical thick lens and finite-height first-order checks, including pupils, negative power and stop relocation.
+- Immutable seven-prescription optical suite, including the exact 0.5.3 OMIT50 and a deliberately defocused case.
+- Normalized radius/curvature DLS with central differences, derivative stability and pupil-discontinuity checks, coupled steps, damping and explicit schema-versioned iteration checkpoints.
+- Equal-budget coordinate/pattern/DE/DLS/hybrid/multistart/block/weight-continuation experiments across three seeds; machine-readable JSON/CSV and convergence histories.
+- Optional spherical-zonal, even-fan coma, astigmatism and field-curvature residuals; verified-glass partial-dispersion diagnostics and audited glass/geometry alternation.
+- Focused New Lens method selector and refinement diagnostics; existing synthesis and Search Lab protocols preserved.
+
+See [optical validation](OPTICAL_VALIDATION.md), [methods and limitations](OPTIMIZATION_METHODS.md) and [measured comparisons](OPTIMIZATION_BENCHMARKS.md). Active-constraint derivatives remain conservative, DLS is sequential, and multi-stage refinement has no mid-phase checkpoint. Physical aperture-opening continuation, symmetry/group-power coordinates, rigorous pupil mapping, diffraction PSF/MTF, transmission and fabrication tolerance analysis remain future work. Geometric improvement is not a production-lens certification.

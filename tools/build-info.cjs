@@ -31,6 +31,7 @@ const info = {
   synthesisEngineVersion: "synthesis-1",
   engineVersion: "lb2027-spherical-0.4.0",
   searchEngineVersion: "numerical-lab-2",
+  dlsEngineVersion: "bounded-dls-1",
   baseCommit,
   sourceSha256: hash.digest("hex"),
   note: "Source fingerprint identifies this exact working source; baseCommit is its recorded Git parent at stamping time.",

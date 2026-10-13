@@ -36,7 +36,7 @@
       method: "GEOMETRIC paraxial-pupil sampling",
       validation: "APPROXIMATE; not illumination",
     },
-    coma: { method: "UNAVAILABLE" },
+    coma: { method: "GEOMETRIC even tangential fan at ±0.8 pupil; not a Seidel coefficient" },
     psf: { method: "UNAVAILABLE" },
     mtf: { method: "UNAVAILABLE" },
     tStop: { method: "UNAVAILABLE" },
@@ -123,6 +123,15 @@
       }
     return out;
   }
-  root.LBAberrations = { STATUS, focus, fans };
+  function components(row, zone = 0.8) {
+    const ray = q => row?.fans?.find(r => r.axis === "tangential" && Math.abs(r.pupil - q) < 1e-8 && r.ok);
+    const a = ray(-zone), b = ray(zone), chief = ray(0);
+    return {
+      comaEvenMm: a && b && chief ? (a.transverseMm + b.transverseMm) / 2 - chief.transverseMm : null,
+      sphericalZonalMm: a && b && Number.isFinite(a.longitudinalFocusXMm) && Number.isFinite(b.longitudinalFocusXMm)
+        ? (a.longitudinalFocusXMm + b.longitudinalFocusXMm) / 2 - row.paraxialFocusXMm : null,
+    };
+  }
+  root.LBAberrations = { STATUS, focus, fans, components };
   if (typeof module !== "undefined") module.exports = root.LBAberrations;
 })(globalThis);

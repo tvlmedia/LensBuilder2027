@@ -1,0 +1,1467 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "9e6a69b363dffaa226b7f65bd4c3eac44fe5ffed",
+  "sourceHashes": {
+    "optimization/dls.js": "b9186a7f22e28c7ddab1715809f75a8c7ad7f2fad0225a2f70b77765965a61e3",
+    "optimization/experiment.js": "3eb5112bc0832c3c75ee315a4de72c01f02f24e5553fc20308961afaf36e07c5",
+    "optics/core.js": "73eacde69372391c15fc65a57ee0ed11333d46fe85c36e2a31979266d08adba2",
+    "design/merit.js": "e5bade327abbcbec55ba844a113fd1a6601f4536c2717b36f7bc42cd0d609878"
+  },
+  "suiteSHA256": "97f98a1643532cfb6064dee176fa46b94fb15be62cd12977509b450686c3d454",
+  "timestamp": "2026-10-13T21:01:37.513Z",
+  "input": "omit50",
+  "workerScaling": [
+    {
+      "workers": 1,
+      "method": "de",
+      "evaluations": 240,
+      "elapsedMs": 149.91491599999995,
+      "evaluationsPerSecond": 1600.908077752584,
+      "identicalOrderedResult": true
+    },
+    {
+      "workers": 2,
+      "method": "de",
+      "evaluations": 240,
+      "elapsedMs": 117.0743329999998,
+      "evaluationsPerSecond": 2049.979648399965,
+      "identicalOrderedResult": true
+    },
+    {
+      "workers": 4,
+      "method": "de",
+      "evaluations": 240,
+      "elapsedMs": 110.2784999999999,
+      "evaluationsPerSecond": 2176.3081652361993,
+      "identicalOrderedResult": true
+    }
+  ],
+  "rays": {
+    "count": 100000,
+    "valid": 100000,
+    "elapsedMs": 223.0185,
+    "perSecond": 448393.29472667066
+  },
+  "merit": {
+    "evaluations": 50,
+    "elapsedMs": 380.528958,
+    "perSecond": 131.39604476566538
+  },
+  "localThroughput": [
+    {
+      "method": "dls-curvature",
+      "evaluations": 400,
+      "elapsedMs": 2872.781459,
+      "jacobian": {
+        "diagnostics": [
+          {
+            "parameter": 0,
+            "status": "reliable",
+            "step": 0.0001,
+            "relativeChange": 8.612495508180826e-7,
+            "norm": 198.36076489963293
+          },
+          {
+            "parameter": 1,
+            "status": "reliable",
+            "step": 0.0001,
+            "relativeChange": 3.4443568809659567e-9,
+            "norm": 20.685913050818332
+          },
+          {
+            "parameter": 2,
+            "status": "reliable",
+            "step": 0.0001,
+            "relativeChange": 3.721698630549469e-8,
+            "norm": 42.7657064952311
+          },
+          {
+            "parameter": 3,
+            "status": "reliable",
+            "step": 0.0001,
+            "relativeChange": 9.327237462496394e-10,
+            "norm": 21.411172344672167
+          },
+          {
+            "parameter": 4,
+            "status": "reliable",
+            "step": 0.0001,
+            "relativeChange": 6.311851628415283e-7,
+            "norm": 205.95665424641692
+          },
+          {
+            "parameter": 5,
+            "status": "reliable",
+            "step": 0.0001,
+            "relativeChange": 1.2565015923062749e-8,
+            "norm": 25.57384034821493
+          },
+          {
+            "parameter": 6,
+            "status": "reliable",
+            "step": 0.0001,
+            "relativeChange": 1.0608540828618291e-9,
+            "norm": 9.90923448220115
+          },
+          {
+            "parameter": 7,
+            "status": "reliable",
+            "step": 0.0001,
+            "relativeChange": 3.466005644660877e-9,
+            "norm": 13.034724822989546
+          },
+          {
+            "parameter": 8,
+            "status": "reliable",
+            "step": 0.0001,
+            "relativeChange": 4.0244325030330093e-7,
+            "norm": 182.91612057320384
+          },
+          {
+            "parameter": 9,
+            "status": "reliable",
+            "step": 0.0001,
+            "relativeChange": 2.0035781701597676e-7,
+            "norm": 166.2850852116603
+          },
+          {
+            "parameter": 10,
+            "status": "reliable",
+            "step": 0.0001,
+            "relativeChange": 2.3222314851439535e-9,
+            "norm": 5.4176512217467945
+          },
+          {
+            "parameter": 11,
+            "status": "reliable",
+            "step": 0.0001,
+            "relativeChange": 2.173271567914814e-9,
+            "norm": 4.965073536865648
+          },
+          {
+            "parameter": 12,
+            "status": "reliable",
+            "step": 0.0001,
+            "relativeChange": 5.270227326380036e-9,
+            "norm": 10.137872399362392
+          },
+          {
+            "parameter": 13,
+            "status": "reliable",
+            "step": 0.0001,
+            "relativeChange": 1.0733548108424182e-7,
+            "norm": 169.42111773763165
+          },
+          {
+            "parameter": 14,
+            "status": "reliable",
+            "step": 0.0001,
+            "relativeChange": 2.2674126698635589e-10,
+            "norm": 8.494705614166177
+          },
+          {
+            "parameter": 15,
+            "status": "reliable",
+            "step": 0.0001,
+            "relativeChange": 1.0666644806666712e-9,
+            "norm": 17.665901310260715
+          },
+          {
+            "parameter": 16,
+            "status": "reliable",
+            "step": 0.0001,
+            "relativeChange": 4.3621692005976695e-10,
+            "norm": 13.53784113687734
+          },
+          {
+            "parameter": 17,
+            "status": "reliable",
+            "step": 0.0001,
+            "relativeChange": 8.241404793967142e-8,
+            "norm": 192.30648757548798
+          },
+          {
+            "parameter": 18,
+            "status": "reliable",
+            "step": 0.0001,
+            "relativeChange": 7.404513096743743e-7,
+            "norm": 151.00575742951492
+          },
+          {
+            "parameter": 19,
+            "status": "reliable",
+            "step": 0.0001,
+            "relativeChange": 5.7611638553625575e-8,
+            "norm": 0.9256951499934297
+          }
+        ],
+        "coupled": [
+          {
+            "a": 0,
+            "b": 2,
+            "cosine": -0.9940293188829534
+          },
+          {
+            "a": 1,
+            "b": 3,
+            "cosine": 0.9883527219175384
+          },
+          {
+            "a": 4,
+            "b": 8,
+            "cosine": -0.9958590956400403
+          },
+          {
+            "a": 5,
+            "b": 7,
+            "cosine": 0.9980087658748478
+          },
+          {
+            "a": 9,
+            "b": 13,
+            "cosine": -0.9896667510198895
+          },
+          {
+            "a": 9,
+            "b": 15,
+            "cosine": 0.9815952944179657
+          },
+          {
+            "a": 10,
+            "b": 12,
+            "cosine": 0.9940972066630994
+          },
+          {
+            "a": 13,
+            "b": 15,
+            "cosine": -0.9984898615330832
+          },
+          {
+            "a": 13,
+            "b": 17,
+            "cosine": 0.9960208154947316
+          },
+          {
+            "a": 14,
+            "b": 16,
+            "cosine": 0.987511656874682
+          },
+          {
+            "a": 15,
+            "b": 17,
+            "cosine": -0.9988022511801538
+          }
+        ],
+        "columnNormRatio": 222.48863921116873,
+        "evaluations": 80,
+        "elapsedMs": 572.5837909999996,
+        "dampedPivotRatio": 1422632.585644144
+      }
+    },
+    {
+      "method": "hybrid",
+      "evaluations": 400,
+      "elapsedMs": 1919.1377499999999,
+      "jacobian": {
+        "diagnostics": [
+          {
+            "parameter": 0,
+            "status": "reliable",
+            "step": 0.0001,
+            "relativeChange": 8.546782322961049e-7,
+            "norm": 198.20801771497568
+          },
+          {
+            "parameter": 1,
+            "status": "reliable",
+            "step": 0.0001,
+            "relativeChange": 1.9354091045021304e-9,
+            "norm": 20.682770215355735
+          },
+          {
+            "parameter": 2,
+            "status": "reliable",
+            "step": 0.0001,
+            "relativeChange": 3.688441833907513e-8,
+            "norm": 42.707797022284815
+          },
+          {
+            "parameter": 3,
+            "status": "reliable",
+            "step": 0.0001,
+            "relativeChange": 1.4655948616736369e-9,
+            "norm": 21.36608495534787
+          },
+          {
+            "parameter": 4,
+            "status": "reliable",
+            "step": 0.0001,
+            "relativeChange": 6.252092088714164e-7,
+            "norm": 205.82767347095958
+          },
+          {
+            "parameter": 5,
+            "status": "reliable",
+            "step": 0.0001,
+            "relativeChange": 1.2712530617466094e-8,
+            "norm": 25.518559569518
+          },
+          {
+            "parameter": 6,
+            "status": "reliable",
+            "step": 0.0001,
+            "relativeChange": 4.381245187200943e-9,
+            "norm": 9.868233655131093
+          },
+          {
+            "parameter": 7,
+            "status": "reliable",
+            "step": 0.0001,
+            "relativeChange": 3.6450688987443843e-9,
+            "norm": 13.012282650588817
+          },
+          {
+            "parameter": 8,
+            "status": "reliable",
+            "step": 0.0001,
+            "relativeChange": 3.99557060431543e-7,
+            "norm": 182.9119377265313
+          },
+          {
+            "parameter": 9,
+            "status": "reliable",
+            "step": 0.0001,
+            "relativeChange": 1.985256262685406e-7,
+            "norm": 166.32251397079213
+          },
+          {
+            "parameter": 10,
+            "status": "reliable",
+            "step": 0.0001,
+            "relativeChange": 3.505005110249004e-9,
+            "norm": 5.388599121281542
+          },
+          {
+            "parameter": 11,
+            "status": "reliable",
+            "step": 0.0001,
+            "relativeChange": 2.175627021045128e-9,
+            "norm": 4.967579614984337
+          },
+          {
+            "parameter": 12,
+            "status": "reliable",
+            "step": 0.0001,
+            "relativeChange": 4.692547722426436e-9,
+            "norm": 10.07879516202569
+          },
+          {
+            "parameter": 13,
+            "status": "reliable",
+            "step": 0.0001,
+            "relativeChange": 1.0657004714757357e-7,
+            "norm": 169.4638116114125
+          },
+          {
+            "parameter": 14,
+            "status": "reliable",
+            "step": 0.0001,
+            "relativeChange": 5.327070450472412e-10,
+            "norm": 8.494085155323303
+          },
+          {
+            "parameter": 15,
+            "status": "reliable",
+            "step": 0.0001,
+            "relativeChange": 1.1870950021359497e-9,
+            "norm": 17.665343663247107
+          },
+          {
+            "parameter": 16,
+            "status": "reliable",
+            "step": 0.0001,
+            "relativeChange": 6.471955870471278e-10,
+            "norm": 13.527431291398507
+          },
+          {
+            "parameter": 17,
+            "status": "reliable",
+            "step": 0.0001,
+            "relativeChange": 8.181602211133292e-8,
+            "norm": 192.40278929233577
+          },
+          {
+            "parameter": 18,
+            "status": "reliable",
+            "step": 0.0001,
+            "relativeChange": 7.342060595995964e-7,
+            "norm": 150.9825723380196
+          },
+          {
+            "parameter": 19,
+            "status": "reliable",
+            "step": 0.0001,
+            "relativeChange": 4.235158476133054e-9,
+            "norm": 0.9263745017450891
+          }
+        ],
+        "coupled": [
+          {
+            "a": 0,
+            "b": 2,
+            "cosine": -0.9940653421829312
+          },
+          {
+            "a": 1,
+            "b": 3,
+            "cosine": 0.9883067089658042
+          },
+          {
+            "a": 4,
+            "b": 8,
+            "cosine": -0.9958945961717582
+          },
+          {
+            "a": 5,
+            "b": 7,
+            "cosine": 0.9980336109331219
+          },
+          {
+            "a": 9,
+            "b": 13,
+            "cosine": -0.9897573915606579
+          },
+          {
+            "a": 9,
+            "b": 15,
+            "cosine": 0.9815875752613724
+          },
+          {
+            "a": 10,
+            "b": 12,
+            "cosine": 0.994067993988015
+          },
+          {
+            "a": 13,
+            "b": 15,
+            "cosine": -0.9984553098148206
+          },
+          {
+            "a": 13,
+            "b": 17,
+            "cosine": 0.9960207117266812
+          },
+          {
+            "a": 14,
+            "b": 16,
+            "cosine": 0.9873536531203998
+          },
+          {
+            "a": 15,
+            "b": 17,
+            "cosine": -0.9988294832401335
+          }
+        ],
+        "columnNormRatio": 222.1862465808642,
+        "evaluations": 80,
+        "elapsedMs": 565.5311249999995,
+        "dampedPivotRatio": 789434.2506680877
+      }
+    }
+  ],
+  "sensitivity": {
+    "description": "Physical diagnostic residuals per normalized parameter; scales=1 mm, 1 percentage point or 1 fraction. Independent of the unchanged benchmark merit.",
+    "operands": [
+      {
+        "metric": "rms",
+        "field": 0,
+        "aperture": 2,
+        "target": 0,
+        "weight": 1,
+        "scale": 1
+      },
+      {
+        "metric": "rms",
+        "field": 1,
+        "aperture": 2,
+        "target": 0,
+        "weight": 1,
+        "scale": 1
+      },
+      {
+        "metric": "sphericalZonal",
+        "field": 0,
+        "aperture": 2,
+        "target": 0,
+        "weight": 1,
+        "scale": 1
+      },
+      {
+        "metric": "comaEven",
+        "field": 0.3,
+        "aperture": 2,
+        "target": 0,
+        "weight": 1,
+        "scale": 1
+      },
+      {
+        "metric": "astigmatism",
+        "field": 1,
+        "aperture": 2,
+        "target": 0,
+        "weight": 1,
+        "scale": 1
+      },
+      {
+        "metric": "fieldCurvature",
+        "field": 1,
+        "aperture": 2,
+        "target": 0,
+        "weight": 1,
+        "scale": 1
+      },
+      {
+        "metric": "longitudinalColor",
+        "aperture": 2,
+        "target": 0,
+        "weight": 1,
+        "scale": 1
+      },
+      {
+        "metric": "lateralColor",
+        "field": 1,
+        "aperture": 2,
+        "target": 0,
+        "weight": 1,
+        "scale": 1
+      },
+      {
+        "metric": "distortion",
+        "field": 1,
+        "aperture": 2,
+        "target": 0,
+        "weight": 1,
+        "scale": 1
+      },
+      {
+        "metric": "rayLoss",
+        "aperture": 2,
+        "target": 0,
+        "weight": 1,
+        "scale": 1
+      }
+    ],
+    "variables": [
+      {
+        "surface": 1,
+        "key": "R",
+        "min": 37.38965216750189,
+        "max": 64.80873042366996,
+        "enabled": true
+      },
+      {
+        "surface": 1,
+        "key": "t",
+        "min": 5.018716022464481,
+        "max": 9.320472613148324,
+        "enabled": true
+      },
+      {
+        "surface": 2,
+        "key": "R",
+        "min": 169.6389942137715,
+        "max": 294.0409233038706,
+        "enabled": true
+      },
+      {
+        "surface": 2,
+        "key": "t",
+        "min": 3.8150802134058486,
+        "max": 7.085148967753718,
+        "enabled": true
+      },
+      {
+        "surface": 3,
+        "key": "R",
+        "min": 31.068662351110465,
+        "max": 53.85234807525814,
+        "enabled": true
+      },
+      {
+        "surface": 3,
+        "key": "t",
+        "min": 3.0359337720163095,
+        "max": 5.638162719458861,
+        "enabled": true
+      },
+      {
+        "surface": 4,
+        "key": "R",
+        "min": 92.33023916062344,
+        "max": 160.0390812117473,
+        "enabled": true
+      },
+      {
+        "surface": 4,
+        "key": "t",
+        "min": 1.6020848800622358,
+        "max": 2.975300491544152,
+        "enabled": true
+      },
+      {
+        "surface": 5,
+        "key": "R",
+        "min": 33.95546209180693,
+        "max": 58.85613429246535,
+        "enabled": true
+      },
+      {
+        "surface": 7,
+        "key": "R",
+        "min": -60.377575085826024,
+        "max": -34.833216395668856,
+        "enabled": true
+      },
+      {
+        "surface": 7,
+        "key": "t",
+        "min": 2.7795422465953745,
+        "max": 5.16200702939141,
+        "enabled": true
+      },
+      {
+        "surface": 8,
+        "key": "R",
+        "min": -228.03690257119126,
+        "max": -131.55975148337956,
+        "enabled": true
+      },
+      {
+        "surface": 8,
+        "key": "t",
+        "min": 5.222529948835808,
+        "max": 9.698984190695072,
+        "enabled": true
+      },
+      {
+        "surface": 9,
+        "key": "R",
+        "min": -60.31099598630724,
+        "max": -34.794805376715715,
+        "enabled": true
+      },
+      {
+        "surface": 9,
+        "key": "t",
+        "min": 1.6426916935272575,
+        "max": 3.05071314512205,
+        "enabled": true
+      },
+      {
+        "surface": 10,
+        "key": "R",
+        "min": -564.5001759800765,
+        "max": -325.67317845004413,
+        "enabled": true
+      },
+      {
+        "surface": 10,
+        "key": "t",
+        "min": 4.405600769800854,
+        "max": 8.181830001058728,
+        "enabled": true
+      },
+      {
+        "surface": 11,
+        "key": "R",
+        "min": -50.99522093052638,
+        "max": -29.42031976761137,
+        "enabled": true
+      },
+      {
+        "surface": 11,
+        "key": "t",
+        "min": 20.364221460172224,
+        "max": 35.364221460172224,
+        "enabled": true
+      },
+      {
+        "surface": 6,
+        "key": "stopPosition",
+        "min": -0.40603308209518996,
+        "max": 0.40603308209518996,
+        "enabled": true
+      }
+    ],
+    "stateVector": [
+      0.40909090909090917,
+      0.5,
+      0.40909090909090906,
+      0.5,
+      0.40909090909090917,
+      0.5,
+      0.4090909090909091,
+      0.5000000000000001,
+      0.4090909090909091,
+      0.5909090909090907,
+      0.5,
+      0.5909090909090909,
+      0.5,
+      0.5909090909090909,
+      0.5,
+      0.5909090909090907,
+      0.5,
+      0.5909090909090907,
+      0.5,
+      0.5
+    ],
+    "baselineResiduals": [
+      0.10338856576541866,
+      0.30820686030244976,
+      -1.5955920809068544,
+      -0.012920374014628866,
+      2.2491677807924386,
+      -1.2542382096739901,
+      -0.23305239930043342,
+      0.007881620776494458,
+      2.4716509489224907,
+      0
+    ],
+    "columns": [
+      [
+        -0.9444277627330966,
+        1.9546625743188661,
+        2.0225890816050196,
+        -0.008068788659443271,
+        -0.7069944297022346,
+        -1.2024166359947408,
+        -0.13289598054910812,
+        0.20805798047973667,
+        10.42874822265727,
+        0
+      ],
+      [
+        -0.05693795928699008,
+        0.12256157924828148,
+        0.11526781435122757,
+        0.006541097223866643,
+        0.3341882317320355,
+        0.07789061692964339,
+        -0.020059384127080193,
+        0.030416489877893582,
+        1.3049753641958262,
+        0
+      ],
+      [
+        0.18578239685304587,
+        -0.41380819798542134,
+        -0.46140933704919007,
+        -0.0185601434399274,
+        1.5538100088940965,
+        1.404070901498411,
+        0.021355673567313715,
+        -0.05009617467521821,
+        -3.505738398712488,
+        0
+      ],
+      [
+        -0.044793078068372516,
+        0.09622714337909066,
+        0.08472871797948756,
+        0.007773723189608006,
+        0.4180197970171662,
+        0.12737540498353184,
+        -0.022316488674789525,
+        0.04056210752167999,
+        1.392550190275621,
+        0
+      ],
+      [
+        -0.8961205733350186,
+        1.7652791178207616,
+        2.3867371839969564,
+        -0.15220370761070967,
+        0.8638880394729043,
+        0.36279298954999817,
+        -0.061490292537769164,
+        0.11104822380758606,
+        6.899076572253193,
+        0
+      ],
+      [
+        -0.11915179328705894,
+        0.23401394506905593,
+        0.27842268011113447,
+        -0.009289082387731185,
+        0.5228064080853301,
+        0.2828225903406256,
+        -0.03735266592030939,
+        0.041861004405063795,
+        1.9411014370485091,
+        0
+      ],
+      [
+        -0.030370928914419393,
+        0.06584735867842806,
+        0.07157816980907228,
+        0.002183554590473591,
+        -0.16187118533128597,
+        -0.12821825561060152,
+        -0.09735864573201525,
+        0.030090587017639336,
+        0.3209305245466254,
+        0
+      ],
+      [
+        -0.06265647216563419,
+        0.12297673808725484,
+        0.14660858553838807,
+        -0.004869434433452113,
+        0.26641207997002425,
+        0.14524650784775162,
+        -0.018318933072691834,
+        0.017820653717137702,
+        0.993587064761492,
+        0
+      ],
+      [
+        0.7277788926697559,
+        -1.4906848582774135,
+        -1.9858718573573242,
+        0.08722034078090246,
+        0.7701703160201134,
+        1.041073117449276,
+        0.2560528127304451,
+        -0.131859763570219,
+        -5.832530978722161,
+        0
+      ],
+      [
+        -0.5043096050473539,
+        1.0908734285158816,
+        0.38880033542909587,
+        0.2623325174067048,
+        -2.230422971707391,
+        -1.9963878549744685,
+        -0.1396341975024029,
+        -0.016770598314508334,
+        -0.14443093792948503,
+        0
+      ],
+      [
+        -0.00030361818101343196,
+        -0.02799110083717693,
+        0.003786569209296431,
+        -0.054979597847726325,
+        0.9568836006534909,
+        0.8450581167629423,
+        0.002503622447136422,
+        -0.020297017542247886,
+        -0.8069227143314706,
+        0
+      ],
+      [
+        0.013879965801710803,
+        -0.027704016885565785,
+        -0.023479736341869284,
+        -0.004139484239829017,
+        0.05720176333490201,
+        0.02900642665615294,
+        0.043860140408469306,
+        0.005084178376080217,
+        0.023550942747085912,
+        0
+      ],
+      [
+        -0.0009764126936151474,
+        -0.0533467392882514,
+        0.010111472619200867,
+        -0.10862867553917965,
+        1.8961056793642683,
+        1.6625753648114028,
+        0.004552566963411664,
+        -0.0347491572938452,
+        -1.545718058699741,
+        0
+      ],
+      [
+        0.4344509004398922,
+        -0.8302324192882571,
+        -0.24559648267086231,
+        -0.18983331468991338,
+        0.08617940841393334,
+        -0.341008814925825,
+        0.008814261178713423,
+        0.028662644737664777,
+        1.4599885398025592,
+        0
+      ],
+      [
+        -0.02228392030512172,
+        0.04944260643735543,
+        0.0446419926447561,
+        -0.03698016302955409,
+        0.4515294461837627,
+        0.27225433840705193,
+        0.0069671019176098525,
+        -0.005067765513899758,
+        -0.058079865130622466,
+        0
+      ],
+      [
+        -0.04331484355551973,
+        0.07683483998210949,
+        0.08425601038197783,
+        0.013375055707420813,
+        -0.07790326343570797,
+        -0.014242979633483088,
+        -0.0008442681576070754,
+        -0.005002193965708557,
+        -0.3670048658488412,
+        0
+      ],
+      [
+        -0.03028591590556462,
+        0.05770193768128706,
+        0.06364942464642809,
+        -0.06450643606825679,
+        0.844427329496078,
+        0.5904954731161816,
+        0.015503003005790106,
+        -0.015518819438398168,
+        -0.5957919172239201,
+        0
+      ],
+      [
+        0.41291461450376765,
+        -0.8214599323941307,
+        0.023715185903938618,
+        -0.03489960542335524,
+        -0.8264189443929482,
+        -1.230645523409013,
+        0.017165071000135868,
+        0.0578510208626426,
+        2.2907842534269918,
+        0
+      ],
+      [
+        -0.754037606689878,
+        1.7044044268083036,
+        0,
+        0.11609036185689092,
+        3.108624468950438e-11,
+        1.3322676295501878e-11,
+        0,
+        0.0025398141190180468,
+        0,
+        0
+      ],
+      [
+        0.00000821578957643787,
+        -0.01301725965741074,
+        2.842170943040401e-10,
+        0.024919946133294957,
+        0.16780995290677225,
+        0.15496541811765852,
+        0,
+        0.004156656956411098,
+        0.04191876428638608,
+        0
+      ]
+    ],
+    "diagnostics": [
+      {
+        "parameter": 0,
+        "status": "reliable",
+        "step": 0.0001,
+        "relativeChange": 2.4438790037080025e-7,
+        "norm": 10.934759582334385
+      },
+      {
+        "parameter": 1,
+        "status": "reliable",
+        "step": 0.0001,
+        "relativeChange": 1.310092882259569e-9,
+        "norm": 1.3614806984433327
+      },
+      {
+        "parameter": 2,
+        "status": "reliable",
+        "step": 0.0001,
+        "relativeChange": 4.897219312637127e-9,
+        "norm": 4.134961116000116
+      },
+      {
+        "parameter": 3,
+        "status": "reliable",
+        "step": 0.0001,
+        "relativeChange": 4.2014422207645664e-10,
+        "norm": 1.4665639626526514
+      },
+      {
+        "parameter": 4,
+        "status": "reliable",
+        "step": 0.0001,
+        "relativeChange": 2.712530217763213e-7,
+        "norm": 7.6243173079144295
+      },
+      {
+        "parameter": 5,
+        "status": "reliable",
+        "step": 0.0001,
+        "relativeChange": 2.656170546443034e-9,
+        "norm": 2.0666162353899153
+      },
+      {
+        "parameter": 6,
+        "status": "reliable",
+        "step": 0.0001,
+        "relativeChange": 4.441133756637587e-9,
+        "norm": 0.40793286567265896
+      },
+      {
+        "parameter": 7,
+        "status": "reliable",
+        "step": 0.0001,
+        "relativeChange": 1.0232997435979741e-9,
+        "norm": 1.0585401546588582
+      },
+      {
+        "parameter": 8,
+        "status": "reliable",
+        "step": 0.0001,
+        "relativeChange": 1.6873932022518438e-7,
+        "norm": 6.517780380963036
+      },
+      {
+        "parameter": 9,
+        "status": "reliable",
+        "step": 0.0001,
+        "relativeChange": 1.4322675381160153e-7,
+        "norm": 3.2657782263075483
+      },
+      {
+        "parameter": 10,
+        "status": "reliable",
+        "step": 0.0001,
+        "relativeChange": 3.1631534401502796e-10,
+        "norm": 1.511658902680432
+      },
+      {
+        "parameter": 11,
+        "status": "reliable",
+        "step": 0.0001,
+        "relativeChange": 6.120478322458101e-9,
+        "norm": 0.0902564211420758
+      },
+      {
+        "parameter": 12,
+        "status": "reliable",
+        "step": 0.0001,
+        "relativeChange": 2.0861485893319543e-10,
+        "norm": 2.9605059359485586
+      },
+      {
+        "parameter": 13,
+        "status": "reliable",
+        "step": 0.0001,
+        "relativeChange": 1.6252245255683912e-7,
+        "norm": 1.7973779378991799
+      },
+      {
+        "parameter": 14,
+        "status": "reliable",
+        "step": 0.0001,
+        "relativeChange": 1.3285046149491574e-9,
+        "norm": 0.536423660405629
+      },
+      {
+        "parameter": 15,
+        "status": "reliable",
+        "step": 0.0001,
+        "relativeChange": 1.6713756036516435e-9,
+        "norm": 0.3950288887165996
+      },
+      {
+        "parameter": 16,
+        "status": "reliable",
+        "step": 0.0001,
+        "relativeChange": 3.950070268503199e-10,
+        "norm": 1.195680009001304
+      },
+      {
+        "parameter": 17,
+        "status": "reliable",
+        "step": 0.0001,
+        "relativeChange": 9.129340794189626e-8,
+        "norm": 2.880254475539527
+      },
+      {
+        "parameter": 18,
+        "status": "reliable",
+        "step": 0.0001,
+        "relativeChange": 9.93230345073371e-7,
+        "norm": 1.8673646096031071
+      },
+      {
+        "parameter": 19,
+        "status": "reliable",
+        "step": 0.0001,
+        "relativeChange": 2.0312107224291006e-9,
+        "norm": 0.23396447280533575
+      }
+    ],
+    "coupled": [
+      {
+        "a": 0,
+        "b": 8,
+        "cosine": -0.9864156044546799
+      },
+      {
+        "a": 1,
+        "b": 3,
+        "cosine": 0.998000069182996
+      },
+      {
+        "a": 1,
+        "b": 5,
+        "cosine": 0.9949164904896742
+      },
+      {
+        "a": 1,
+        "b": 7,
+        "cosine": 0.9945783651753799
+      },
+      {
+        "a": 3,
+        "b": 5,
+        "cosine": 0.9936419146187008
+      },
+      {
+        "a": 3,
+        "b": 7,
+        "cosine": 0.9930594713710478
+      },
+      {
+        "a": 5,
+        "b": 7,
+        "cosine": 0.9999801096711285
+      },
+      {
+        "a": 10,
+        "b": 12,
+        "cosine": 0.9998985480753041
+      },
+      {
+        "a": 10,
+        "b": 16,
+        "cosine": 0.9905141827096962
+      },
+      {
+        "a": 12,
+        "b": 16,
+        "cosine": 0.9912953957518905
+      }
+    ],
+    "columnNormRatio": 121.15215121505423,
+    "evaluations": 80,
+    "elapsedMs": 1171.1699170000002
+  },
+  "sampling": [
+    {
+      "grid": 19,
+      "score": 250.58807027848798,
+      "elapsedMs": 58.2290839999996,
+      "apertures": [
+        {
+          "fNumber": 2,
+          "centerRmsMm": 0.11227076626129356,
+          "edgeRmsMm": 0.328063536400534
+        },
+        {
+          "fNumber": 2.8,
+          "centerRmsMm": 0.12655646420801883,
+          "edgeRmsMm": 0.16723900413232487
+        },
+        {
+          "fNumber": 4,
+          "centerRmsMm": 0.12233506558342906,
+          "edgeRmsMm": 0.10093836055176622
+        },
+        {
+          "fNumber": 5.6,
+          "centerRmsMm": 0.09901315337881861,
+          "edgeRmsMm": 0.06826940566367183
+        }
+      ]
+    },
+    {
+      "grid": 25,
+      "score": 250.31713787544717,
+      "elapsedMs": 90.96258299999954,
+      "apertures": [
+        {
+          "fNumber": 2,
+          "centerRmsMm": 0.11277765709000498,
+          "edgeRmsMm": 0.3275283287702694
+        },
+        {
+          "fNumber": 2.8,
+          "centerRmsMm": 0.12661120743924617,
+          "edgeRmsMm": 0.16698378808778247
+        },
+        {
+          "fNumber": 4,
+          "centerRmsMm": 0.12210530999928203,
+          "edgeRmsMm": 0.10084530793672805
+        },
+        {
+          "fNumber": 5.6,
+          "centerRmsMm": 0.09901275442107497,
+          "edgeRmsMm": 0.06823531322294037
+        }
+      ]
+    },
+    {
+      "grid": 31,
+      "score": 250.54762471194294,
+      "elapsedMs": 137.12554200000068,
+      "apertures": [
+        {
+          "fNumber": 2,
+          "centerRmsMm": 0.11250200410494117,
+          "edgeRmsMm": 0.3277119372439772
+        },
+        {
+          "fNumber": 2.8,
+          "centerRmsMm": 0.1264587619397594,
+          "edgeRmsMm": 0.16707021065298966
+        },
+        {
+          "fNumber": 4,
+          "centerRmsMm": 0.12218532348509827,
+          "edgeRmsMm": 0.10087669673607885
+        },
+        {
+          "fNumber": 5.6,
+          "centerRmsMm": 0.09881406162680177,
+          "edgeRmsMm": 0.06824679599695162
+        }
+      ]
+    },
+    {
+      "grid": 41,
+      "score": 250.25049849416604,
+      "elapsedMs": 248.94079200000033,
+      "apertures": [
+        {
+          "fNumber": 2,
+          "centerRmsMm": 0.11279952620850088,
+          "edgeRmsMm": 0.32768168025042516
+        },
+        {
+          "fNumber": 2.8,
+          "centerRmsMm": 0.12649973667086936,
+          "edgeRmsMm": 0.16705566421010443
+        },
+        {
+          "fNumber": 4,
+          "centerRmsMm": 0.12216344242140557,
+          "edgeRmsMm": 0.10087138260733627
+        },
+        {
+          "fNumber": 5.6,
+          "centerRmsMm": 0.09889897874001874,
+          "edgeRmsMm": 0.06824484751358502
+        }
+      ]
+    }
+  ],
+  "glasses": [
+    {
+      "name": "N-BK7",
+      "nd": 1.5168000345005883,
+      "Vd": 64.16733623749799,
+      "PgF": 0.534930221628593
+    },
+    {
+      "name": "N-F2",
+      "nd": 1.6200531373031555,
+      "Vd": 36.430934774098034,
+      "PgF": 0.5880993233724116
+    },
+    {
+      "name": "N-LAK22",
+      "nd": 1.6511304534373294,
+      "Vd": 55.891754027922886,
+      "PgF": 0.546695260391211
+    },
+    {
+      "name": "N-SK16",
+      "nd": 1.6204099650808939,
+      "Vd": 60.323649156671834,
+      "PgF": 0.5411964944945274
+    },
+    {
+      "name": "N-SF6",
+      "nd": 1.8051801846158335,
+      "Vd": 25.35972929463037,
+      "PgF": 0.6157574946387094
+    },
+    {
+      "name": "N-SF10",
+      "nd": 1.7282770663068054,
+      "Vd": 28.532647569330596,
+      "PgF": 0.606625310202194
+    },
+    {
+      "name": "N-BAK4",
+      "nd": 1.5688274865292562,
+      "Vd": 55.97579988765163,
+      "PgF": 0.5486729878831957
+    },
+    {
+      "name": "N-PK52A",
+      "nd": 1.4970000692449992,
+      "Vd": 81.61031221150535,
+      "PgF": 0.5376566230651563
+    }
+  ],
+  "thinAchromatPairs": [
+    {
+      "crown": "N-BK7",
+      "flint": "N-F2",
+      "crownPower": 0.04626940255546207,
+      "flintPower": -0.02626940255546207,
+      "primaryColorPower": 1.0842021724855044e-19,
+      "secondaryColorPower": -0.00003833886080281809,
+      "assumption": "Thin contact achromat, diagnostic only; actual separated/cemented lens must be traced and reoptimized"
+    },
+    {
+      "crown": "N-BK7",
+      "flint": "N-SF6",
+      "crownPower": 0.03306946307303352,
+      "flintPower": -0.013069463073033513,
+      "primaryColorPower": 0,
+      "secondaryColorPower": -0.000041655376034451116,
+      "assumption": "Thin contact achromat, diagnostic only; actual separated/cemented lens must be traced and reoptimized"
+    },
+    {
+      "crown": "N-BK7",
+      "flint": "N-SF10",
+      "crownPower": 0.0360139732579277,
+      "flintPower": -0.0160139732579277,
+      "primaryColorPower": 0,
+      "secondaryColorPower": -0.000040238930802079134,
+      "assumption": "Thin contact achromat, diagnostic only; actual separated/cemented lens must be traced and reoptimized"
+    },
+    {
+      "crown": "N-LAK22",
+      "flint": "N-F2",
+      "crownPower": 0.05744028891994139,
+      "flintPower": -0.03744028891994139,
+      "primaryColorPower": 2.168404344971009e-19,
+      "secondaryColorPower": -0.00004255120243518314,
+      "assumption": "Thin contact achromat, diagnostic only; actual separated/cemented lens must be traced and reoptimized"
+    },
+    {
+      "crown": "N-LAK22",
+      "flint": "N-SF6",
+      "crownPower": 0.03661188834750143,
+      "flintPower": -0.01661188834750143,
+      "primaryColorPower": 1.0842021724855044e-19,
+      "secondaryColorPower": -0.00004523921020684361,
+      "assumption": "Thin contact achromat, diagnostic only; actual separated/cemented lens must be traced and reoptimized"
+    },
+    {
+      "crown": "N-LAK22",
+      "flint": "N-SF10",
+      "crownPower": 0.04085787970635258,
+      "flintPower": -0.020857879706352583,
+      "primaryColorPower": -1.0842021724855044e-19,
+      "secondaryColorPower": -0.000043809946718608415,
+      "assumption": "Thin contact achromat, diagnostic only; actual separated/cemented lens must be traced and reoptimized"
+    },
+    {
+      "crown": "N-SK16",
+      "flint": "N-F2",
+      "crownPower": 0.05049543403964935,
+      "flintPower": -0.03049543403964935,
+      "primaryColorPower": 0,
+      "secondaryColorPower": -0.000039261197473730905,
+      "assumption": "Thin contact achromat, diagnostic only; actual separated/cemented lens must be traced and reoptimized"
+    },
+    {
+      "crown": "N-SK16",
+      "flint": "N-SF6",
+      "crownPower": 0.03450622778835626,
+      "flintPower": -0.014506227788356262,
+      "primaryColorPower": 0,
+      "secondaryColorPower": -0.00004265025228199833,
+      "assumption": "Thin contact achromat, diagnostic only; actual separated/cemented lens must be traced and reoptimized"
+    },
+    {
+      "crown": "N-SK16",
+      "flint": "N-SF10",
+      "crownPower": 0.03795014069685173,
+      "flintPower": -0.017950140696851732,
+      "primaryColorPower": 0,
+      "secondaryColorPower": -0.00004116184608271014,
+      "assumption": "Thin contact achromat, diagnostic only; actual separated/cemented lens must be traced and reoptimized"
+    },
+    {
+      "crown": "N-BAK4",
+      "flint": "N-F2",
+      "crownPower": 0.05727929004619695,
+      "flintPower": -0.03727929004619695,
+      "primaryColorPower": 0,
+      "secondaryColorPower": -0.00004034444367884138,
+      "assumption": "Thin contact achromat, diagnostic only; actual separated/cemented lens must be traced and reoptimized"
+    },
+    {
+      "crown": "N-BAK4",
+      "flint": "N-SF6",
+      "crownPower": 0.036566286138895274,
+      "flintPower": -0.016566286138895273,
+      "primaryColorPower": 1.0842021724855044e-19,
+      "secondaryColorPower": -0.00004382306772627128,
+      "assumption": "Thin contact achromat, diagnostic only; actual separated/cemented lens must be traced and reoptimized"
+    },
+    {
+      "crown": "N-BAK4",
+      "flint": "N-SF10",
+      "crownPower": 0.0407940015333313,
+      "flintPower": -0.0207940015333313,
+      "primaryColorPower": 0,
+      "secondaryColorPower": -0.000042234450071035985,
+      "assumption": "Thin contact achromat, diagnostic only; actual separated/cemented lens must be traced and reoptimized"
+    },
+    {
+      "crown": "N-PK52A",
+      "flint": "N-F2",
+      "crownPower": 0.036127240719317305,
+      "flintPower": -0.016127240719317305,
+      "primaryColorPower": 0,
+      "secondaryColorPower": -0.000022329966975370512,
+      "assumption": "Thin contact achromat, diagnostic only; actual separated/cemented lens must be traced and reoptimized"
+    },
+    {
+      "crown": "N-PK52A",
+      "flint": "N-SF6",
+      "crownPower": 0.029016699198337565,
+      "flintPower": -0.009016699198337566,
+      "primaryColorPower": 0,
+      "secondaryColorPower": -0.000027768911013408628,
+      "assumption": "Thin contact achromat, diagnostic only; actual separated/cemented lens must be traced and reoptimized"
+    },
+    {
+      "crown": "N-PK52A",
+      "flint": "N-SF10",
+      "crownPower": 0.030751282205682785,
+      "flintPower": -0.01075128220568279,
+      "primaryColorPower": -5.421010862427522e-20,
+      "secondaryColorPower": -0.000025987837860611614,
+      "assumption": "Thin contact achromat, diagnostic only; actual separated/cemented lens must be traced and reoptimized"
+    }
+  ]
+}

@@ -43,6 +43,16 @@
   function metric(result, o) {
     const f = result.fields.find((f) => Math.abs(f.field - o.field) < 1e-8);
     switch (o.metric) {
+      case "fieldCurvature":
+        return f?.diagnosticFocus?.fieldCurvatureRelativeToAxisMm;
+      case "astigmatism":
+        return f?.diagnosticFocus?.astigmaticDifferenceMm;
+      case "comaEven":
+      case "sphericalZonal": {
+        const D = root.LBAberrations || require("../analysis/aberrations.js");
+        const row = result.rows.find(r => r.field === o.field && r.nm === 587.5618);
+        return D.components(row)[o.metric === "comaEven" ? "comaEvenMm" : "sphericalZonalMm"];
+      }
       case "bfl":
         return result.firstOrder.bflMm;
       case "pupilSurvival":
@@ -100,6 +110,7 @@
         throw Error("Ratio floor must be positive");
       if (
         ![
+          "fieldCurvature", "astigmatism", "comaEven", "sphericalZonal",
           "bfl",
           "pupilSurvival",
           "efl",
@@ -140,7 +151,7 @@
       if (o.type && o.type !== "TARGET RANGE" && Array.isArray(o.target))
         throw new Error("This operand type needs a scalar target");
       if (
-        ["rms", "tangentialRms", "sagittalRms"].includes(o.metric) &&
+        ["rms", "tangentialRms", "sagittalRms", "fieldCurvature", "astigmatism", "comaEven", "sphericalZonal"].includes(o.metric) &&
         (!Number.isFinite(o.field) || o.field < 0 || o.field > 1)
       )
         throw new Error("RMS operand needs a field in [0,1]");
@@ -234,6 +245,8 @@
     return { valid: Number.isFinite(total), total, breakdown, errors: [] };
   }
   function evaluate(system, spec, operands = defaultOperands(spec)) {
+    if (operands.some(o => o.enabled !== false && ["fieldCurvature", "astigmatism", "comaEven", "sphericalZonal"].includes(o.metric)))
+      spec = { ...spec, diagnostics: true };
     if (spec.synthesis) {
       const P = root.LBSynthesisPhysics || require("../synthesis/physics.js");
       const prepared = P.prepare(system, spec.synthesis);
