@@ -1,0 +1,2287 @@
+{
+  "schemaVersion": 1,
+  "startingMethod": "block-dls",
+  "startingSeed": 1003,
+  "startingDenseScore": 211.6991817575039,
+  "additionalBudgets": {
+    "rounds": 2,
+    "geometryPerRound": 500,
+    "perGlassTrial": 100
+  },
+  "elapsedMs": 11301.414458000001,
+  "prescription": {
+    "name": "OMIT50_TECHNICAL_FOUNDATION · Modified Double Gauss · 8520",
+    "surfaces": [
+      {
+        "type": "OBJ",
+        "R": 0,
+        "t": 0,
+        "ap": 1,
+        "glass": "AIR",
+        "stop": false
+      },
+      {
+        "type": "SPH",
+        "R": 52.760740779683005,
+        "t": 7.298755793933621,
+        "glass": "N-LAK22",
+        "ap": 26.800727472401586,
+        "stop": false,
+        "group": 0,
+        "element": 0,
+        "ap_optical": 26.800727472401586
+      },
+      {
+        "type": "SPH",
+        "R": 289.3624901585444,
+        "t": 5.138677017783336,
+        "glass": "AIR",
+        "ap": 26.800727472401586,
+        "stop": false,
+        "group": 0,
+        "element": 0,
+        "ap_optical": 26.800727472401586
+      },
+      {
+        "type": "SPH",
+        "R": 37.618766042792615,
+        "t": 4.337540694861379,
+        "glass": "N-LAK22",
+        "ap": 18.518065356723056,
+        "stop": false,
+        "group": 1,
+        "element": 1,
+        "ap_optical": 18.518065356723056
+      },
+      {
+        "type": "SPH",
+        "R": 160.0390812117473,
+        "t": 2.550007835977561,
+        "glass": "N-SF10",
+        "ap": 18.518065356723056,
+        "stop": false,
+        "group": 1,
+        "element": 2,
+        "ap_optical": 18.518065356723056
+      },
+      {
+        "type": "SPH",
+        "R": 43.41349570729476,
+        "t": 8.914051497196896,
+        "glass": "AIR",
+        "ap": 18.518065356723056,
+        "stop": false,
+        "group": 1,
+        "element": 2,
+        "ap_optical": 18.518065356723056
+      },
+      {
+        "type": "STOP",
+        "R": 0,
+        "t": 1.0541428553605612,
+        "glass": "AIR",
+        "ap": 8.401642750646396,
+        "stop": true,
+        "group": null,
+        "element": null,
+        "ap_optical": 8.401642750646396
+      },
+      {
+        "type": "SPH",
+        "R": -41.74779638936237,
+        "t": 4.08724652116356,
+        "glass": "N-SF10",
+        "ap": 12.352216742580381,
+        "stop": false,
+        "group": 2,
+        "element": 3,
+        "ap_optical": 12.352216742580381
+      },
+      {
+        "type": "SPH",
+        "R": -131.55975148337956,
+        "t": 7.115841332447658,
+        "glass": "N-LAK22",
+        "ap": 12.352216742580381,
+        "stop": false,
+        "group": 2,
+        "element": 4,
+        "ap_optical": 12.352216742580381
+      },
+      {
+        "type": "SPH",
+        "R": -39.26910594393732,
+        "t": 1.6426916935272575,
+        "glass": "AIR",
+        "ap": 12.352216742580381,
+        "stop": false,
+        "group": 2,
+        "element": 4,
+        "ap_optical": 12.352216742580381
+      },
+      {
+        "type": "SPH",
+        "R": -564.5001759800765,
+        "t": 7.60308504244804,
+        "glass": "N-LAK22",
+        "ap": 15.346628716903975,
+        "stop": false,
+        "group": 3,
+        "element": 5,
+        "ap_optical": 15.346628716903975
+      },
+      {
+        "type": "SPH",
+        "R": -45.34952942523991,
+        "t": 27.090728005068087,
+        "glass": "AIR",
+        "ap": 15.346628716903975,
+        "stop": false,
+        "group": 3,
+        "element": 5,
+        "ap_optical": 15.346628716903975
+      },
+      {
+        "type": "IMS",
+        "R": 0,
+        "t": 0,
+        "ap": 23.15,
+        "glass": "AIR",
+        "stop": false
+      }
+    ],
+    "synthesis": {
+      "topology": "modified-gauss",
+      "ordinal": 8520,
+      "seed": 1001,
+      "powers": [
+        {
+          "group": 0,
+          "element": 0,
+          "role": 1,
+          "thinPower": 0.014123077907138949,
+          "glass": "N-SK16",
+          "frontCurvature": 0.026571204042185236,
+          "rearCurvature": 0.0038070985280233664
+        },
+        {
+          "group": 1,
+          "element": 1,
+          "role": 1,
+          "thinPower": 0.008614600173254819,
+          "glass": "N-SK16",
+          "frontCurvature": 0.019985687879161794,
+          "rearCurvature": 0.006100352926278532
+        },
+        {
+          "group": 1,
+          "element": 2,
+          "role": -1,
+          "thinPower": -0.013099366004099649,
+          "glass": "N-SF10",
+          "frontCurvature": 0.006100352926278532,
+          "rearCurvature": 0.0240871420346166
+        },
+        {
+          "group": 2,
+          "element": 3,
+          "role": -1,
+          "thinPower": -0.009696445878804288,
+          "glass": "N-SF10",
+          "frontCurvature": -0.019849403016937293,
+          "rearCurvature": -0.006535176430102263
+        },
+        {
+          "group": 2,
+          "element": 4,
+          "role": 1,
+          "thinPower": 0.00952171082940707,
+          "glass": "N-SK16",
+          "frontCurvature": -0.006535176430102263,
+          "rearCurvature": -0.021882626286368764
+        },
+        {
+          "group": 3,
+          "element": 5,
+          "role": 1,
+          "thinPower": 0.01547901086930271,
+          "glass": "N-SK16",
+          "frontCurvature": -0.0036289932030488135,
+          "rearCurvature": -0.028578642210192722
+        }
+      ],
+      "origin": "generated from specification; no input prescription"
+    }
+  },
+  "finalDenseScore": 211.6991817575039,
+  "rounds": 2,
+  "history": [
+    {
+      "round": 0,
+      "stage": "geometry",
+      "algorithm": "block-dls",
+      "evaluations": 500,
+      "denseEvaluations": 2,
+      "validationEvaluations": 4,
+      "accepted": false,
+      "initialSearchScore": null,
+      "finalSearchScore": 188.7006232738437,
+      "beforeDenseScore": 211.6991817575039,
+      "afterDenseScore": 211.6991817575039,
+      "intermediate": {
+        "before": 210.9856456363464,
+        "after": 210.9856456363464
+      },
+      "history": [
+        {
+          "evaluations": 1,
+          "score": 188.7006232738437,
+          "phase": "block"
+        },
+        {
+          "evaluations": 126,
+          "score": 188.7006232738437,
+          "phase": "block"
+        },
+        {
+          "evaluations": 251,
+          "score": 188.7006232738437,
+          "phase": "block"
+        },
+        {
+          "evaluations": 376,
+          "score": 188.7006232738437,
+          "phase": "block"
+        }
+      ],
+      "validatedHistory": [
+        {
+          "evaluations": 0,
+          "score": 211.6991817575039
+        },
+        {
+          "evaluations": 500,
+          "score": 211.6991817575039
+        }
+      ],
+      "stages": [
+        {
+          "method": "block",
+          "variables": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            9,
+            11,
+            13,
+            15,
+            17,
+            18
+          ],
+          "evaluations": 125
+        },
+        {
+          "method": "block",
+          "variables": [
+            1,
+            3,
+            5,
+            7,
+            10,
+            12,
+            14,
+            16,
+            18,
+            19
+          ],
+          "evaluations": 125
+        },
+        {
+          "method": "block",
+          "variables": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            9,
+            11,
+            13,
+            15,
+            17,
+            18
+          ],
+          "evaluations": 125
+        },
+        {
+          "method": "block",
+          "variables": [
+            1,
+            3,
+            5,
+            7,
+            10,
+            12,
+            14,
+            16,
+            18,
+            19
+          ],
+          "evaluations": 125
+        }
+      ],
+      "rejections": {
+        "AIR_CLEARANCE": 212
+      },
+      "parameters": [
+        {
+          "surface": 1,
+          "key": "R",
+          "min": 39.57055558476225,
+          "max": 68.58896301358791
+        },
+        {
+          "surface": 1,
+          "key": "t",
+          "min": 5.1091290557535345,
+          "max": 9.488382532113707
+        },
+        {
+          "surface": 2,
+          "key": "R",
+          "min": 217.0218676189083,
+          "max": 376.1712372061077
+        },
+        {
+          "surface": 2,
+          "key": "t",
+          "min": 3.5970739124483355,
+          "max": 6.680280123118337
+        },
+        {
+          "surface": 3,
+          "key": "R",
+          "min": 28.21407453209446,
+          "max": 48.9043958556304
+        },
+        {
+          "surface": 3,
+          "key": "t",
+          "min": 3.0362784864029653,
+          "max": 5.638802903319792
+        },
+        {
+          "surface": 4,
+          "key": "R",
+          "min": 120.02931090881046,
+          "max": 208.05080557527148
+        },
+        {
+          "surface": 4,
+          "key": "t",
+          "min": 1.7850054851842927,
+          "max": 3.315010186770829
+        },
+        {
+          "surface": 5,
+          "key": "R",
+          "min": 32.560121780471064,
+          "max": 56.43754441948319
+        },
+        {
+          "surface": 7,
+          "key": "R",
+          "min": -54.27213530617109,
+          "max": -31.310847292021776
+        },
+        {
+          "surface": 7,
+          "key": "t",
+          "min": 2.861072564814492,
+          "max": 5.3134204775126275
+        },
+        {
+          "surface": 8,
+          "key": "R",
+          "min": -171.02767692839342,
+          "max": -98.66981361253467
+        },
+        {
+          "surface": 8,
+          "key": "t",
+          "min": 4.9810889327133605,
+          "max": 9.250593732181956
+        },
+        {
+          "surface": 9,
+          "key": "R",
+          "min": -51.049837727118515,
+          "max": -29.45182945795299
+        },
+        {
+          "surface": 9,
+          "key": "t",
+          "min": 1.1498841854690802,
+          "max": 2.135499201585435
+        },
+        {
+          "surface": 10,
+          "key": "R",
+          "min": -733.8502287740995,
+          "max": -423.37513198505735
+        },
+        {
+          "surface": 10,
+          "key": "t",
+          "min": 5.322159529713629,
+          "max": 9.884010555182451
+        },
+        {
+          "surface": 11,
+          "key": "R",
+          "min": -58.95438825281188,
+          "max": -34.012147068929934
+        },
+        {
+          "surface": 11,
+          "key": "t",
+          "min": 19.590728005068087,
+          "max": 34.59072800506809
+        },
+        {
+          "surface": 6,
+          "key": "stopPosition",
+          "min": -0.31624285660816837,
+          "max": 0.31624285660816837
+        }
+      ],
+      "reason": "No validated improvement; retained parent"
+    },
+    {
+      "round": 0,
+      "stage": "glass",
+      "accepted": false,
+      "intermediateBefore": 210.9856456363464,
+      "intermediateAfter": 210.9856456363464,
+      "evaluations": 670,
+      "denseEvaluations": 7,
+      "trials": [
+        {
+          "surfaces": [
+            1
+          ],
+          "surface": 1,
+          "fromGlass": "N-LAK22",
+          "glass": "N-SK16",
+          "scope": "single-element",
+          "distance": 0.07502000000000009,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 0.9908609808952841,
+          "status": "AIR_CLEARANCE"
+        },
+        {
+          "surfaces": [
+            1,
+            3,
+            8,
+            10
+          ],
+          "surface": 1,
+          "fromGlass": "N-LAK22",
+          "glass": "N-SK16",
+          "scope": "material-family",
+          "distance": 0.07502000000000009,
+          "initialization": "preserve-surface-power",
+          "status": "INVALID_EDGE_THICKNESS"
+        },
+        {
+          "surfaces": [
+            3
+          ],
+          "surface": 3,
+          "fromGlass": "N-LAK22",
+          "glass": "N-SK16",
+          "scope": "single-element",
+          "distance": 0.07502000000000009,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 0.9849678149466804,
+          "status": "AIR_CLEARANCE"
+        },
+        {
+          "surfaces": [
+            8
+          ],
+          "surface": 8,
+          "fromGlass": "N-LAK22",
+          "glass": "N-SK16",
+          "scope": "single-element",
+          "distance": 0.07502000000000009,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 0.9831200291905905,
+          "status": "AIR_CLEARANCE"
+        },
+        {
+          "surfaces": [
+            10
+          ],
+          "surface": 10,
+          "fromGlass": "N-LAK22",
+          "glass": "N-SK16",
+          "scope": "single-element",
+          "distance": 0.07502000000000009,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 0.9818647577374482,
+          "status": "AIR_CLEARANCE"
+        },
+        {
+          "surfaces": [
+            1
+          ],
+          "surface": 1,
+          "fromGlass": "N-LAK22",
+          "glass": "N-BAK4",
+          "scope": "single-element",
+          "distance": 0.0832,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 0.9749912856671459,
+          "status": "AIR_CLEARANCE"
+        },
+        {
+          "surfaces": [
+            1,
+            3,
+            8,
+            10
+          ],
+          "surface": 1,
+          "fromGlass": "N-LAK22",
+          "glass": "N-BAK4",
+          "scope": "material-family",
+          "distance": 0.0832,
+          "initialization": "preserve-surface-power",
+          "status": "INVALID_EDGE_THICKNESS"
+        },
+        {
+          "surfaces": [
+            3
+          ],
+          "surface": 3,
+          "fromGlass": "N-LAK22",
+          "glass": "N-BAK4",
+          "scope": "single-element",
+          "distance": 0.0832,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 0.9591159046073696,
+          "status": "AIR_CLEARANCE"
+        },
+        {
+          "surfaces": [
+            8
+          ],
+          "surface": 8,
+          "fromGlass": "N-LAK22",
+          "glass": "N-BAK4",
+          "scope": "single-element",
+          "distance": 0.0832,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 0.9541631856161206,
+          "status": "AIR_CLEARANCE"
+        },
+        {
+          "surfaces": [
+            10
+          ],
+          "surface": 10,
+          "fromGlass": "N-LAK22",
+          "glass": "N-BAK4",
+          "scope": "single-element",
+          "distance": 0.0832,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 0.9508798823452242,
+          "status": "AIR_CLEARANCE"
+        },
+        {
+          "surfaces": [
+            4
+          ],
+          "surface": 4,
+          "fromGlass": "N-SF10",
+          "glass": "N-SF6",
+          "scope": "single-element",
+          "distance": 0.10859999999999999,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 0.9728209087782339,
+          "status": "AIR_CLEARANCE"
+        },
+        {
+          "surfaces": [
+            4,
+            7
+          ],
+          "surface": 4,
+          "fromGlass": "N-SF10",
+          "glass": "N-SF6",
+          "scope": "material-family",
+          "distance": 0.10859999999999999,
+          "initialization": "preserve-surface-power",
+          "status": "INVALID_EDGE_THICKNESS"
+        },
+        {
+          "surfaces": [
+            7
+          ],
+          "surface": 7,
+          "fromGlass": "N-SF10",
+          "glass": "N-SF6",
+          "scope": "single-element",
+          "distance": 0.10859999999999999,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 0.9718324688726594,
+          "status": "AIR_CLEARANCE"
+        },
+        {
+          "surfaces": [
+            4
+          ],
+          "surface": 4,
+          "fromGlass": "N-SF10",
+          "glass": "N-F2",
+          "scope": "single-element",
+          "distance": 0.18723000000000004,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 1.0389269747781205,
+          "status": "MATERIAL_INVALID"
+        },
+        {
+          "surfaces": [
+            4,
+            7
+          ],
+          "surface": 4,
+          "fromGlass": "N-SF10",
+          "glass": "N-F2",
+          "scope": "material-family",
+          "distance": 0.18723000000000004,
+          "initialization": "preserve-surface-power",
+          "status": "INVALID_EDGE_THICKNESS"
+        },
+        {
+          "surfaces": [
+            7
+          ],
+          "surface": 7,
+          "fromGlass": "N-SF10",
+          "glass": "N-F2",
+          "scope": "single-element",
+          "distance": 0.18723000000000004,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 1.0401416307716544,
+          "status": "MATERIAL_INVALID"
+        },
+        {
+          "surfaces": [
+            1
+          ],
+          "surface": 1,
+          "fromGlass": "N-LAK22",
+          "glass": "N-BK7",
+          "scope": "single-element",
+          "distance": 0.21713000000000007,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 0.9591576322188322,
+          "status": "AIR_CLEARANCE"
+        },
+        {
+          "surfaces": [
+            1,
+            3,
+            8,
+            10
+          ],
+          "surface": 1,
+          "fromGlass": "N-LAK22",
+          "glass": "N-BK7",
+          "scope": "material-family",
+          "distance": 0.21713000000000007,
+          "initialization": "preserve-surface-power",
+          "status": "INVALID_EDGE_THICKNESS"
+        },
+        {
+          "surfaces": [
+            3
+          ],
+          "surface": 3,
+          "fromGlass": "N-LAK22",
+          "glass": "N-BK7",
+          "scope": "single-element",
+          "distance": 0.21713000000000007,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 0.933093596007867,
+          "status": "AIR_CLEARANCE"
+        },
+        {
+          "surfaces": [
+            8
+          ],
+          "surface": 8,
+          "fromGlass": "N-LAK22",
+          "glass": "N-BK7",
+          "scope": "single-element",
+          "distance": 0.21713000000000007,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 0.925005933444242,
+          "status": "INVALID_EDGE_THICKNESS"
+        },
+        {
+          "surfaces": [
+            10
+          ],
+          "surface": 10,
+          "fromGlass": "N-LAK22",
+          "glass": "N-BK7",
+          "scope": "single-element",
+          "distance": 0.21713000000000007,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 0.9197872403812143,
+          "status": "INVALID_EDGE_THICKNESS"
+        },
+        {
+          "surfaces": [
+            1
+          ],
+          "surface": 1,
+          "fromGlass": "N-LAK22",
+          "glass": "N-F2",
+          "scope": "single-element",
+          "distance": 0.22568,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 0.9907506513918634,
+          "status": "AIR_CLEARANCE"
+        },
+        {
+          "surfaces": [
+            1,
+            3,
+            8,
+            10
+          ],
+          "surface": 1,
+          "fromGlass": "N-LAK22",
+          "glass": "N-F2",
+          "scope": "material-family",
+          "distance": 0.22568,
+          "initialization": "preserve-surface-power",
+          "status": "INVALID_EDGE_THICKNESS"
+        },
+        {
+          "surfaces": [
+            3
+          ],
+          "surface": 3,
+          "fromGlass": "N-LAK22",
+          "glass": "N-F2",
+          "scope": "single-element",
+          "distance": 0.22568,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 0.9847888143285414,
+          "status": "AIR_CLEARANCE"
+        },
+        {
+          "surfaces": [
+            8
+          ],
+          "surface": 8,
+          "fromGlass": "N-LAK22",
+          "glass": "N-F2",
+          "scope": "single-element",
+          "distance": 0.22568,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 0.9829195600778399,
+          "status": "AIR_CLEARANCE"
+        },
+        {
+          "surfaces": [
+            10
+          ],
+          "surface": 10,
+          "fromGlass": "N-LAK22",
+          "glass": "N-F2",
+          "scope": "single-element",
+          "distance": 0.22568,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 0.9816499098214017,
+          "status": "AIR_CLEARANCE"
+        },
+        {
+          "surfaces": [
+            1
+          ],
+          "surface": 1,
+          "fromGlass": "N-LAK22",
+          "glass": "N-SF10",
+          "scope": "single-element",
+          "distance": 0.35075000000000006,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 1.0245312913384375,
+          "before": 7439.539777229612,
+          "after": 952.1548755506242,
+          "localEvaluations": 100,
+          "denseScore": 963.1670921327539,
+          "previousBestDenseScore": 211.6991817575039,
+          "status": "NO_DENSE_IMPROVEMENT"
+        },
+        {
+          "surfaces": [
+            1,
+            3,
+            8,
+            10
+          ],
+          "surface": 1,
+          "fromGlass": "N-LAK22",
+          "glass": "N-SF10",
+          "scope": "material-family",
+          "distance": 0.35075000000000006,
+          "initialization": "preserve-surface-power",
+          "firstOrderScale": 0.9787082906897246,
+          "status": "AIR_CLEARANCE"
+        },
+        {
+          "surfaces": [
+            3
+          ],
+          "surface": 3,
+          "fromGlass": "N-LAK22",
+          "glass": "N-SF10",
+          "scope": "single-element",
+          "distance": 0.35075000000000006,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 1.03917556351793,
+          "before": 3952.426689605589,
+          "after": 522.2197697771308,
+          "localEvaluations": 100,
+          "denseScore": 538.3725920463114,
+          "previousBestDenseScore": 211.6991817575039,
+          "status": "NO_DENSE_IMPROVEMENT"
+        },
+        {
+          "surfaces": [
+            4
+          ],
+          "surface": 4,
+          "fromGlass": "N-SF10",
+          "glass": "N-LAK22",
+          "scope": "single-element",
+          "distance": 0.35075000000000006,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 1.0278929644992527,
+          "before": 1841.3358539836806,
+          "after": 349.40784709768485,
+          "localEvaluations": 100,
+          "denseScore": 371.60315715103974,
+          "previousBestDenseScore": 211.6991817575039,
+          "status": "NO_DENSE_IMPROVEMENT"
+        },
+        {
+          "surfaces": [
+            4,
+            7
+          ],
+          "surface": 4,
+          "fromGlass": "N-SF10",
+          "glass": "N-LAK22",
+          "scope": "material-family",
+          "distance": 0.35075000000000006,
+          "initialization": "preserve-surface-power",
+          "firstOrderScale": 0.9734441338821967,
+          "status": "AIR_CLEARANCE"
+        },
+        {
+          "surfaces": [
+            7
+          ],
+          "surface": 7,
+          "fromGlass": "N-SF10",
+          "glass": "N-LAK22",
+          "scope": "single-element",
+          "distance": 0.35075000000000006,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 1.028781894954753,
+          "before": 650.6096571247701,
+          "after": 215.0271646519425,
+          "localEvaluations": 100,
+          "denseScore": 242.45388815750928,
+          "previousBestDenseScore": 211.6991817575039,
+          "status": "NO_DENSE_IMPROVEMENT"
+        },
+        {
+          "surfaces": [
+            8
+          ],
+          "surface": 8,
+          "fromGlass": "N-LAK22",
+          "glass": "N-SF10",
+          "scope": "single-element",
+          "distance": 0.35075000000000006,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 1.0438116500771277,
+          "before": 828.9118650960553,
+          "after": 342.02817490791836,
+          "localEvaluations": 100,
+          "denseScore": 383.22603444649195,
+          "previousBestDenseScore": 211.6991817575039,
+          "status": "NO_DENSE_IMPROVEMENT"
+        },
+        {
+          "surfaces": [
+            10
+          ],
+          "surface": 10,
+          "fromGlass": "N-LAK22",
+          "glass": "N-SF10",
+          "scope": "single-element",
+          "distance": 0.35075000000000006,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 1.0471057211082415,
+          "before": 923.3745351462555,
+          "after": 405.82313096983364,
+          "localEvaluations": 100,
+          "denseScore": 448.243824139904,
+          "previousBestDenseScore": 211.6991817575039,
+          "status": "NO_DENSE_IMPROVEMENT"
+        },
+        {
+          "surfaces": [
+            1
+          ],
+          "surface": 1,
+          "fromGlass": "N-LAK22",
+          "glass": "N-PK52A",
+          "scope": "single-element",
+          "distance": 0.41132999999999986,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 0.9531812439017806,
+          "status": "AIR_CLEARANCE"
+        },
+        {
+          "surfaces": [
+            1,
+            3,
+            8,
+            10
+          ],
+          "surface": 1,
+          "fromGlass": "N-LAK22",
+          "glass": "N-PK52A",
+          "scope": "material-family",
+          "distance": 0.41132999999999986,
+          "initialization": "preserve-surface-power",
+          "status": "INVALID_EDGE_THICKNESS"
+        },
+        {
+          "surfaces": [
+            3
+          ],
+          "surface": 3,
+          "fromGlass": "N-LAK22",
+          "glass": "N-PK52A",
+          "scope": "single-element",
+          "distance": 0.41132999999999986,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 0.9232053718818523,
+          "status": "INVALID_EDGE_THICKNESS"
+        },
+        {
+          "surfaces": [
+            8
+          ],
+          "surface": 8,
+          "fromGlass": "N-LAK22",
+          "glass": "N-PK52A",
+          "scope": "single-element",
+          "distance": 0.41132999999999986,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 0.9139237299890047,
+          "status": "INVALID_EDGE_THICKNESS"
+        },
+        {
+          "surfaces": [
+            10
+          ],
+          "surface": 10,
+          "fromGlass": "N-LAK22",
+          "glass": "N-PK52A",
+          "scope": "single-element",
+          "distance": 0.41132999999999986,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 0.9079999427381861,
+          "status": "INVALID_EDGE_THICKNESS"
+        },
+        {
+          "surfaces": [
+            4
+          ],
+          "surface": 4,
+          "fromGlass": "N-SF10",
+          "glass": "N-SK16",
+          "scope": "single-element",
+          "distance": 0.42577000000000015,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 1.038800444254875,
+          "status": "MATERIAL_INVALID"
+        },
+        {
+          "surfaces": [
+            4,
+            7
+          ],
+          "surface": 4,
+          "fromGlass": "N-SF10",
+          "glass": "N-SK16",
+          "scope": "material-family",
+          "distance": 0.42577000000000015,
+          "initialization": "preserve-surface-power",
+          "status": "INVALID_EDGE_THICKNESS"
+        },
+        {
+          "surfaces": [
+            7
+          ],
+          "surface": 7,
+          "fromGlass": "N-SF10",
+          "glass": "N-SK16",
+          "scope": "single-element",
+          "distance": 0.42577000000000015,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 1.0400114728010894,
+          "status": "MATERIAL_INVALID"
+        },
+        {
+          "surfaces": [
+            4
+          ],
+          "surface": 4,
+          "fromGlass": "N-SF10",
+          "glass": "N-BAK4",
+          "scope": "single-element",
+          "distance": 0.43395000000000006,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 1.0570505865789799,
+          "status": "MATERIAL_INVALID"
+        },
+        {
+          "surfaces": [
+            4,
+            7
+          ],
+          "surface": 4,
+          "fromGlass": "N-SF10",
+          "glass": "N-BAK4",
+          "scope": "material-family",
+          "distance": 0.43395000000000006,
+          "initialization": "preserve-surface-power",
+          "status": "INVALID_EDGE_THICKNESS"
+        },
+        {
+          "surfaces": [
+            7
+          ],
+          "surface": 7,
+          "fromGlass": "N-SF10",
+          "glass": "N-BAK4",
+          "scope": "single-element",
+          "distance": 0.43395000000000006,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 1.0587574496428622,
+          "status": "MATERIAL_INVALID"
+        },
+        {
+          "surfaces": [
+            1
+          ],
+          "surface": 1,
+          "fromGlass": "N-LAK22",
+          "glass": "N-SF6",
+          "scope": "single-element",
+          "distance": 0.45935000000000004,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 1.0488840144205882,
+          "status": "BFL_TOO_SHORT"
+        },
+        {
+          "surfaces": [
+            1,
+            3,
+            8,
+            10
+          ],
+          "surface": 1,
+          "fromGlass": "N-LAK22",
+          "glass": "N-SF6",
+          "scope": "material-family",
+          "distance": 0.45935000000000004,
+          "initialization": "preserve-surface-power",
+          "status": "INVALID_EDGE_THICKNESS"
+        },
+        {
+          "surfaces": [
+            3
+          ],
+          "surface": 3,
+          "fromGlass": "N-LAK22",
+          "glass": "N-SF6",
+          "scope": "single-element",
+          "distance": 0.45935000000000004,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 1.0779283882070272,
+          "status": "BFL_TOO_SHORT"
+        },
+        {
+          "surfaces": [
+            8
+          ],
+          "surface": 8,
+          "fromGlass": "N-LAK22",
+          "glass": "N-SF6",
+          "scope": "single-element",
+          "distance": 0.45935000000000004,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 1.0871806219842584,
+          "status": "MATERIAL_INVALID"
+        },
+        {
+          "surfaces": [
+            10
+          ],
+          "surface": 10,
+          "fromGlass": "N-LAK22",
+          "glass": "N-SF6",
+          "scope": "single-element",
+          "distance": 0.45935000000000004,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 1.0939395496146906,
+          "status": "MATERIAL_INVALID"
+        },
+        {
+          "surfaces": [
+            4
+          ],
+          "surface": 4,
+          "fromGlass": "N-SF10",
+          "glass": "N-BK7",
+          "scope": "single-element",
+          "distance": 0.5678800000000002,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 1.0753690074085096,
+          "status": "MATERIAL_INVALID"
+        },
+        {
+          "surfaces": [
+            4,
+            7
+          ],
+          "surface": 4,
+          "fromGlass": "N-SF10",
+          "glass": "N-BK7",
+          "scope": "material-family",
+          "distance": 0.5678800000000002,
+          "initialization": "preserve-surface-power",
+          "status": "INVALID_EDGE_THICKNESS"
+        },
+        {
+          "surfaces": [
+            7
+          ],
+          "surface": 7,
+          "fromGlass": "N-SF10",
+          "glass": "N-BK7",
+          "scope": "single-element",
+          "distance": 0.5678800000000002,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 1.0775137872258234,
+          "status": "MATERIAL_INVALID"
+        },
+        {
+          "surfaces": [
+            4
+          ],
+          "surface": 4,
+          "fromGlass": "N-SF10",
+          "glass": "N-PK52A",
+          "scope": "single-element",
+          "distance": 0.7620799999999999,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 1.0823149450541945,
+          "status": "BFL_TOO_SHORT"
+        },
+        {
+          "surfaces": [
+            4,
+            7
+          ],
+          "surface": 4,
+          "fromGlass": "N-SF10",
+          "glass": "N-PK52A",
+          "scope": "material-family",
+          "distance": 0.7620799999999999,
+          "initialization": "preserve-surface-power",
+          "status": "INVALID_EDGE_THICKNESS"
+        },
+        {
+          "surfaces": [
+            7
+          ],
+          "surface": 7,
+          "fromGlass": "N-SF10",
+          "glass": "N-PK52A",
+          "scope": "single-element",
+          "distance": 0.7620799999999999,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 1.0846086203207674,
+          "status": "MATERIAL_INVALID"
+        }
+      ],
+      "initialScore": 188.7006232738437,
+      "finalScore": 188.7006232738437,
+      "initialDenseScore": 211.6991817575039,
+      "finalDenseScore": 211.6991817575039,
+      "strategy": "single-element and optional material-family substitutions from frozen parent; first-order EFL scale; local reoptimization; fresh dense incumbent ranking"
+    },
+    {
+      "round": 1,
+      "stage": "geometry",
+      "algorithm": "block-dls",
+      "evaluations": 500,
+      "denseEvaluations": 2,
+      "validationEvaluations": 4,
+      "accepted": false,
+      "initialSearchScore": null,
+      "finalSearchScore": 188.7006232738437,
+      "beforeDenseScore": 211.6991817575039,
+      "afterDenseScore": 211.6991817575039,
+      "intermediate": {
+        "before": 210.9856456363464,
+        "after": 210.9856456363464
+      },
+      "history": [
+        {
+          "evaluations": 1,
+          "score": 188.7006232738437,
+          "phase": "block"
+        },
+        {
+          "evaluations": 126,
+          "score": 188.7006232738437,
+          "phase": "block"
+        },
+        {
+          "evaluations": 251,
+          "score": 188.7006232738437,
+          "phase": "block"
+        },
+        {
+          "evaluations": 376,
+          "score": 188.7006232738437,
+          "phase": "block"
+        }
+      ],
+      "validatedHistory": [
+        {
+          "evaluations": 0,
+          "score": 211.6991817575039
+        },
+        {
+          "evaluations": 500,
+          "score": 211.6991817575039
+        }
+      ],
+      "stages": [
+        {
+          "method": "block",
+          "variables": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            9,
+            11,
+            13,
+            15,
+            17,
+            18
+          ],
+          "evaluations": 125
+        },
+        {
+          "method": "block",
+          "variables": [
+            1,
+            3,
+            5,
+            7,
+            10,
+            12,
+            14,
+            16,
+            18,
+            19
+          ],
+          "evaluations": 125
+        },
+        {
+          "method": "block",
+          "variables": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            9,
+            11,
+            13,
+            15,
+            17,
+            18
+          ],
+          "evaluations": 125
+        },
+        {
+          "method": "block",
+          "variables": [
+            1,
+            3,
+            5,
+            7,
+            10,
+            12,
+            14,
+            16,
+            18,
+            19
+          ],
+          "evaluations": 125
+        }
+      ],
+      "rejections": {
+        "AIR_CLEARANCE": 212
+      },
+      "parameters": [
+        {
+          "surface": 1,
+          "key": "R",
+          "min": 39.57055558476225,
+          "max": 68.58896301358791
+        },
+        {
+          "surface": 1,
+          "key": "t",
+          "min": 5.1091290557535345,
+          "max": 9.488382532113707
+        },
+        {
+          "surface": 2,
+          "key": "R",
+          "min": 217.0218676189083,
+          "max": 376.1712372061077
+        },
+        {
+          "surface": 2,
+          "key": "t",
+          "min": 3.5970739124483355,
+          "max": 6.680280123118337
+        },
+        {
+          "surface": 3,
+          "key": "R",
+          "min": 28.21407453209446,
+          "max": 48.9043958556304
+        },
+        {
+          "surface": 3,
+          "key": "t",
+          "min": 3.0362784864029653,
+          "max": 5.638802903319792
+        },
+        {
+          "surface": 4,
+          "key": "R",
+          "min": 120.02931090881046,
+          "max": 208.05080557527148
+        },
+        {
+          "surface": 4,
+          "key": "t",
+          "min": 1.7850054851842927,
+          "max": 3.315010186770829
+        },
+        {
+          "surface": 5,
+          "key": "R",
+          "min": 32.560121780471064,
+          "max": 56.43754441948319
+        },
+        {
+          "surface": 7,
+          "key": "R",
+          "min": -54.27213530617109,
+          "max": -31.310847292021776
+        },
+        {
+          "surface": 7,
+          "key": "t",
+          "min": 2.861072564814492,
+          "max": 5.3134204775126275
+        },
+        {
+          "surface": 8,
+          "key": "R",
+          "min": -171.02767692839342,
+          "max": -98.66981361253467
+        },
+        {
+          "surface": 8,
+          "key": "t",
+          "min": 4.9810889327133605,
+          "max": 9.250593732181956
+        },
+        {
+          "surface": 9,
+          "key": "R",
+          "min": -51.049837727118515,
+          "max": -29.45182945795299
+        },
+        {
+          "surface": 9,
+          "key": "t",
+          "min": 1.1498841854690802,
+          "max": 2.135499201585435
+        },
+        {
+          "surface": 10,
+          "key": "R",
+          "min": -733.8502287740995,
+          "max": -423.37513198505735
+        },
+        {
+          "surface": 10,
+          "key": "t",
+          "min": 5.322159529713629,
+          "max": 9.884010555182451
+        },
+        {
+          "surface": 11,
+          "key": "R",
+          "min": -58.95438825281188,
+          "max": -34.012147068929934
+        },
+        {
+          "surface": 11,
+          "key": "t",
+          "min": 19.590728005068087,
+          "max": 34.59072800506809
+        },
+        {
+          "surface": 6,
+          "key": "stopPosition",
+          "min": -0.31624285660816837,
+          "max": 0.31624285660816837
+        }
+      ],
+      "reason": "No validated improvement; retained parent"
+    },
+    {
+      "round": 1,
+      "stage": "glass",
+      "accepted": false,
+      "intermediateBefore": 210.9856456363464,
+      "intermediateAfter": 210.9856456363464,
+      "evaluations": 670,
+      "denseEvaluations": 7,
+      "trials": [
+        {
+          "surfaces": [
+            1
+          ],
+          "surface": 1,
+          "fromGlass": "N-LAK22",
+          "glass": "N-SK16",
+          "scope": "single-element",
+          "distance": 0.07502000000000009,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 0.9908609808952841,
+          "status": "AIR_CLEARANCE"
+        },
+        {
+          "surfaces": [
+            1,
+            3,
+            8,
+            10
+          ],
+          "surface": 1,
+          "fromGlass": "N-LAK22",
+          "glass": "N-SK16",
+          "scope": "material-family",
+          "distance": 0.07502000000000009,
+          "initialization": "preserve-surface-power",
+          "status": "INVALID_EDGE_THICKNESS"
+        },
+        {
+          "surfaces": [
+            3
+          ],
+          "surface": 3,
+          "fromGlass": "N-LAK22",
+          "glass": "N-SK16",
+          "scope": "single-element",
+          "distance": 0.07502000000000009,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 0.9849678149466804,
+          "status": "AIR_CLEARANCE"
+        },
+        {
+          "surfaces": [
+            8
+          ],
+          "surface": 8,
+          "fromGlass": "N-LAK22",
+          "glass": "N-SK16",
+          "scope": "single-element",
+          "distance": 0.07502000000000009,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 0.9831200291905905,
+          "status": "AIR_CLEARANCE"
+        },
+        {
+          "surfaces": [
+            10
+          ],
+          "surface": 10,
+          "fromGlass": "N-LAK22",
+          "glass": "N-SK16",
+          "scope": "single-element",
+          "distance": 0.07502000000000009,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 0.9818647577374482,
+          "status": "AIR_CLEARANCE"
+        },
+        {
+          "surfaces": [
+            1
+          ],
+          "surface": 1,
+          "fromGlass": "N-LAK22",
+          "glass": "N-BAK4",
+          "scope": "single-element",
+          "distance": 0.0832,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 0.9749912856671459,
+          "status": "AIR_CLEARANCE"
+        },
+        {
+          "surfaces": [
+            1,
+            3,
+            8,
+            10
+          ],
+          "surface": 1,
+          "fromGlass": "N-LAK22",
+          "glass": "N-BAK4",
+          "scope": "material-family",
+          "distance": 0.0832,
+          "initialization": "preserve-surface-power",
+          "status": "INVALID_EDGE_THICKNESS"
+        },
+        {
+          "surfaces": [
+            3
+          ],
+          "surface": 3,
+          "fromGlass": "N-LAK22",
+          "glass": "N-BAK4",
+          "scope": "single-element",
+          "distance": 0.0832,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 0.9591159046073696,
+          "status": "AIR_CLEARANCE"
+        },
+        {
+          "surfaces": [
+            8
+          ],
+          "surface": 8,
+          "fromGlass": "N-LAK22",
+          "glass": "N-BAK4",
+          "scope": "single-element",
+          "distance": 0.0832,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 0.9541631856161206,
+          "status": "AIR_CLEARANCE"
+        },
+        {
+          "surfaces": [
+            10
+          ],
+          "surface": 10,
+          "fromGlass": "N-LAK22",
+          "glass": "N-BAK4",
+          "scope": "single-element",
+          "distance": 0.0832,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 0.9508798823452242,
+          "status": "AIR_CLEARANCE"
+        },
+        {
+          "surfaces": [
+            4
+          ],
+          "surface": 4,
+          "fromGlass": "N-SF10",
+          "glass": "N-SF6",
+          "scope": "single-element",
+          "distance": 0.10859999999999999,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 0.9728209087782339,
+          "status": "AIR_CLEARANCE"
+        },
+        {
+          "surfaces": [
+            4,
+            7
+          ],
+          "surface": 4,
+          "fromGlass": "N-SF10",
+          "glass": "N-SF6",
+          "scope": "material-family",
+          "distance": 0.10859999999999999,
+          "initialization": "preserve-surface-power",
+          "status": "INVALID_EDGE_THICKNESS"
+        },
+        {
+          "surfaces": [
+            7
+          ],
+          "surface": 7,
+          "fromGlass": "N-SF10",
+          "glass": "N-SF6",
+          "scope": "single-element",
+          "distance": 0.10859999999999999,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 0.9718324688726594,
+          "status": "AIR_CLEARANCE"
+        },
+        {
+          "surfaces": [
+            4
+          ],
+          "surface": 4,
+          "fromGlass": "N-SF10",
+          "glass": "N-F2",
+          "scope": "single-element",
+          "distance": 0.18723000000000004,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 1.0389269747781205,
+          "status": "MATERIAL_INVALID"
+        },
+        {
+          "surfaces": [
+            4,
+            7
+          ],
+          "surface": 4,
+          "fromGlass": "N-SF10",
+          "glass": "N-F2",
+          "scope": "material-family",
+          "distance": 0.18723000000000004,
+          "initialization": "preserve-surface-power",
+          "status": "INVALID_EDGE_THICKNESS"
+        },
+        {
+          "surfaces": [
+            7
+          ],
+          "surface": 7,
+          "fromGlass": "N-SF10",
+          "glass": "N-F2",
+          "scope": "single-element",
+          "distance": 0.18723000000000004,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 1.0401416307716544,
+          "status": "MATERIAL_INVALID"
+        },
+        {
+          "surfaces": [
+            1
+          ],
+          "surface": 1,
+          "fromGlass": "N-LAK22",
+          "glass": "N-BK7",
+          "scope": "single-element",
+          "distance": 0.21713000000000007,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 0.9591576322188322,
+          "status": "AIR_CLEARANCE"
+        },
+        {
+          "surfaces": [
+            1,
+            3,
+            8,
+            10
+          ],
+          "surface": 1,
+          "fromGlass": "N-LAK22",
+          "glass": "N-BK7",
+          "scope": "material-family",
+          "distance": 0.21713000000000007,
+          "initialization": "preserve-surface-power",
+          "status": "INVALID_EDGE_THICKNESS"
+        },
+        {
+          "surfaces": [
+            3
+          ],
+          "surface": 3,
+          "fromGlass": "N-LAK22",
+          "glass": "N-BK7",
+          "scope": "single-element",
+          "distance": 0.21713000000000007,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 0.933093596007867,
+          "status": "AIR_CLEARANCE"
+        },
+        {
+          "surfaces": [
+            8
+          ],
+          "surface": 8,
+          "fromGlass": "N-LAK22",
+          "glass": "N-BK7",
+          "scope": "single-element",
+          "distance": 0.21713000000000007,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 0.925005933444242,
+          "status": "INVALID_EDGE_THICKNESS"
+        },
+        {
+          "surfaces": [
+            10
+          ],
+          "surface": 10,
+          "fromGlass": "N-LAK22",
+          "glass": "N-BK7",
+          "scope": "single-element",
+          "distance": 0.21713000000000007,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 0.9197872403812143,
+          "status": "INVALID_EDGE_THICKNESS"
+        },
+        {
+          "surfaces": [
+            1
+          ],
+          "surface": 1,
+          "fromGlass": "N-LAK22",
+          "glass": "N-F2",
+          "scope": "single-element",
+          "distance": 0.22568,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 0.9907506513918634,
+          "status": "AIR_CLEARANCE"
+        },
+        {
+          "surfaces": [
+            1,
+            3,
+            8,
+            10
+          ],
+          "surface": 1,
+          "fromGlass": "N-LAK22",
+          "glass": "N-F2",
+          "scope": "material-family",
+          "distance": 0.22568,
+          "initialization": "preserve-surface-power",
+          "status": "INVALID_EDGE_THICKNESS"
+        },
+        {
+          "surfaces": [
+            3
+          ],
+          "surface": 3,
+          "fromGlass": "N-LAK22",
+          "glass": "N-F2",
+          "scope": "single-element",
+          "distance": 0.22568,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 0.9847888143285414,
+          "status": "AIR_CLEARANCE"
+        },
+        {
+          "surfaces": [
+            8
+          ],
+          "surface": 8,
+          "fromGlass": "N-LAK22",
+          "glass": "N-F2",
+          "scope": "single-element",
+          "distance": 0.22568,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 0.9829195600778399,
+          "status": "AIR_CLEARANCE"
+        },
+        {
+          "surfaces": [
+            10
+          ],
+          "surface": 10,
+          "fromGlass": "N-LAK22",
+          "glass": "N-F2",
+          "scope": "single-element",
+          "distance": 0.22568,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 0.9816499098214017,
+          "status": "AIR_CLEARANCE"
+        },
+        {
+          "surfaces": [
+            1
+          ],
+          "surface": 1,
+          "fromGlass": "N-LAK22",
+          "glass": "N-SF10",
+          "scope": "single-element",
+          "distance": 0.35075000000000006,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 1.0245312913384375,
+          "before": 7439.539777229612,
+          "after": 952.1548755506242,
+          "localEvaluations": 100,
+          "denseScore": 963.1670921327539,
+          "previousBestDenseScore": 211.6991817575039,
+          "status": "NO_DENSE_IMPROVEMENT"
+        },
+        {
+          "surfaces": [
+            1,
+            3,
+            8,
+            10
+          ],
+          "surface": 1,
+          "fromGlass": "N-LAK22",
+          "glass": "N-SF10",
+          "scope": "material-family",
+          "distance": 0.35075000000000006,
+          "initialization": "preserve-surface-power",
+          "firstOrderScale": 0.9787082906897246,
+          "status": "AIR_CLEARANCE"
+        },
+        {
+          "surfaces": [
+            3
+          ],
+          "surface": 3,
+          "fromGlass": "N-LAK22",
+          "glass": "N-SF10",
+          "scope": "single-element",
+          "distance": 0.35075000000000006,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 1.03917556351793,
+          "before": 3952.426689605589,
+          "after": 522.2197697771308,
+          "localEvaluations": 100,
+          "denseScore": 538.3725920463114,
+          "previousBestDenseScore": 211.6991817575039,
+          "status": "NO_DENSE_IMPROVEMENT"
+        },
+        {
+          "surfaces": [
+            4
+          ],
+          "surface": 4,
+          "fromGlass": "N-SF10",
+          "glass": "N-LAK22",
+          "scope": "single-element",
+          "distance": 0.35075000000000006,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 1.0278929644992527,
+          "before": 1841.3358539836806,
+          "after": 349.40784709768485,
+          "localEvaluations": 100,
+          "denseScore": 371.60315715103974,
+          "previousBestDenseScore": 211.6991817575039,
+          "status": "NO_DENSE_IMPROVEMENT"
+        },
+        {
+          "surfaces": [
+            4,
+            7
+          ],
+          "surface": 4,
+          "fromGlass": "N-SF10",
+          "glass": "N-LAK22",
+          "scope": "material-family",
+          "distance": 0.35075000000000006,
+          "initialization": "preserve-surface-power",
+          "firstOrderScale": 0.9734441338821967,
+          "status": "AIR_CLEARANCE"
+        },
+        {
+          "surfaces": [
+            7
+          ],
+          "surface": 7,
+          "fromGlass": "N-SF10",
+          "glass": "N-LAK22",
+          "scope": "single-element",
+          "distance": 0.35075000000000006,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 1.028781894954753,
+          "before": 650.6096571247701,
+          "after": 215.0271646519425,
+          "localEvaluations": 100,
+          "denseScore": 242.45388815750928,
+          "previousBestDenseScore": 211.6991817575039,
+          "status": "NO_DENSE_IMPROVEMENT"
+        },
+        {
+          "surfaces": [
+            8
+          ],
+          "surface": 8,
+          "fromGlass": "N-LAK22",
+          "glass": "N-SF10",
+          "scope": "single-element",
+          "distance": 0.35075000000000006,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 1.0438116500771277,
+          "before": 828.9118650960553,
+          "after": 342.02817490791836,
+          "localEvaluations": 100,
+          "denseScore": 383.22603444649195,
+          "previousBestDenseScore": 211.6991817575039,
+          "status": "NO_DENSE_IMPROVEMENT"
+        },
+        {
+          "surfaces": [
+            10
+          ],
+          "surface": 10,
+          "fromGlass": "N-LAK22",
+          "glass": "N-SF10",
+          "scope": "single-element",
+          "distance": 0.35075000000000006,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 1.0471057211082415,
+          "before": 923.3745351462555,
+          "after": 405.82313096983364,
+          "localEvaluations": 100,
+          "denseScore": 448.243824139904,
+          "previousBestDenseScore": 211.6991817575039,
+          "status": "NO_DENSE_IMPROVEMENT"
+        },
+        {
+          "surfaces": [
+            1
+          ],
+          "surface": 1,
+          "fromGlass": "N-LAK22",
+          "glass": "N-PK52A",
+          "scope": "single-element",
+          "distance": 0.41132999999999986,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 0.9531812439017806,
+          "status": "AIR_CLEARANCE"
+        },
+        {
+          "surfaces": [
+            1,
+            3,
+            8,
+            10
+          ],
+          "surface": 1,
+          "fromGlass": "N-LAK22",
+          "glass": "N-PK52A",
+          "scope": "material-family",
+          "distance": 0.41132999999999986,
+          "initialization": "preserve-surface-power",
+          "status": "INVALID_EDGE_THICKNESS"
+        },
+        {
+          "surfaces": [
+            3
+          ],
+          "surface": 3,
+          "fromGlass": "N-LAK22",
+          "glass": "N-PK52A",
+          "scope": "single-element",
+          "distance": 0.41132999999999986,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 0.9232053718818523,
+          "status": "INVALID_EDGE_THICKNESS"
+        },
+        {
+          "surfaces": [
+            8
+          ],
+          "surface": 8,
+          "fromGlass": "N-LAK22",
+          "glass": "N-PK52A",
+          "scope": "single-element",
+          "distance": 0.41132999999999986,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 0.9139237299890047,
+          "status": "INVALID_EDGE_THICKNESS"
+        },
+        {
+          "surfaces": [
+            10
+          ],
+          "surface": 10,
+          "fromGlass": "N-LAK22",
+          "glass": "N-PK52A",
+          "scope": "single-element",
+          "distance": 0.41132999999999986,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 0.9079999427381861,
+          "status": "INVALID_EDGE_THICKNESS"
+        },
+        {
+          "surfaces": [
+            4
+          ],
+          "surface": 4,
+          "fromGlass": "N-SF10",
+          "glass": "N-SK16",
+          "scope": "single-element",
+          "distance": 0.42577000000000015,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 1.038800444254875,
+          "status": "MATERIAL_INVALID"
+        },
+        {
+          "surfaces": [
+            4,
+            7
+          ],
+          "surface": 4,
+          "fromGlass": "N-SF10",
+          "glass": "N-SK16",
+          "scope": "material-family",
+          "distance": 0.42577000000000015,
+          "initialization": "preserve-surface-power",
+          "status": "INVALID_EDGE_THICKNESS"
+        },
+        {
+          "surfaces": [
+            7
+          ],
+          "surface": 7,
+          "fromGlass": "N-SF10",
+          "glass": "N-SK16",
+          "scope": "single-element",
+          "distance": 0.42577000000000015,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 1.0400114728010894,
+          "status": "MATERIAL_INVALID"
+        },
+        {
+          "surfaces": [
+            4
+          ],
+          "surface": 4,
+          "fromGlass": "N-SF10",
+          "glass": "N-BAK4",
+          "scope": "single-element",
+          "distance": 0.43395000000000006,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 1.0570505865789799,
+          "status": "MATERIAL_INVALID"
+        },
+        {
+          "surfaces": [
+            4,
+            7
+          ],
+          "surface": 4,
+          "fromGlass": "N-SF10",
+          "glass": "N-BAK4",
+          "scope": "material-family",
+          "distance": 0.43395000000000006,
+          "initialization": "preserve-surface-power",
+          "status": "INVALID_EDGE_THICKNESS"
+        },
+        {
+          "surfaces": [
+            7
+          ],
+          "surface": 7,
+          "fromGlass": "N-SF10",
+          "glass": "N-BAK4",
+          "scope": "single-element",
+          "distance": 0.43395000000000006,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 1.0587574496428622,
+          "status": "MATERIAL_INVALID"
+        },
+        {
+          "surfaces": [
+            1
+          ],
+          "surface": 1,
+          "fromGlass": "N-LAK22",
+          "glass": "N-SF6",
+          "scope": "single-element",
+          "distance": 0.45935000000000004,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 1.0488840144205882,
+          "status": "BFL_TOO_SHORT"
+        },
+        {
+          "surfaces": [
+            1,
+            3,
+            8,
+            10
+          ],
+          "surface": 1,
+          "fromGlass": "N-LAK22",
+          "glass": "N-SF6",
+          "scope": "material-family",
+          "distance": 0.45935000000000004,
+          "initialization": "preserve-surface-power",
+          "status": "INVALID_EDGE_THICKNESS"
+        },
+        {
+          "surfaces": [
+            3
+          ],
+          "surface": 3,
+          "fromGlass": "N-LAK22",
+          "glass": "N-SF6",
+          "scope": "single-element",
+          "distance": 0.45935000000000004,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 1.0779283882070272,
+          "status": "BFL_TOO_SHORT"
+        },
+        {
+          "surfaces": [
+            8
+          ],
+          "surface": 8,
+          "fromGlass": "N-LAK22",
+          "glass": "N-SF6",
+          "scope": "single-element",
+          "distance": 0.45935000000000004,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 1.0871806219842584,
+          "status": "MATERIAL_INVALID"
+        },
+        {
+          "surfaces": [
+            10
+          ],
+          "surface": 10,
+          "fromGlass": "N-LAK22",
+          "glass": "N-SF6",
+          "scope": "single-element",
+          "distance": 0.45935000000000004,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 1.0939395496146906,
+          "status": "MATERIAL_INVALID"
+        },
+        {
+          "surfaces": [
+            4
+          ],
+          "surface": 4,
+          "fromGlass": "N-SF10",
+          "glass": "N-BK7",
+          "scope": "single-element",
+          "distance": 0.5678800000000002,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 1.0753690074085096,
+          "status": "MATERIAL_INVALID"
+        },
+        {
+          "surfaces": [
+            4,
+            7
+          ],
+          "surface": 4,
+          "fromGlass": "N-SF10",
+          "glass": "N-BK7",
+          "scope": "material-family",
+          "distance": 0.5678800000000002,
+          "initialization": "preserve-surface-power",
+          "status": "INVALID_EDGE_THICKNESS"
+        },
+        {
+          "surfaces": [
+            7
+          ],
+          "surface": 7,
+          "fromGlass": "N-SF10",
+          "glass": "N-BK7",
+          "scope": "single-element",
+          "distance": 0.5678800000000002,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 1.0775137872258234,
+          "status": "MATERIAL_INVALID"
+        },
+        {
+          "surfaces": [
+            4
+          ],
+          "surface": 4,
+          "fromGlass": "N-SF10",
+          "glass": "N-PK52A",
+          "scope": "single-element",
+          "distance": 0.7620799999999999,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 1.0823149450541945,
+          "status": "BFL_TOO_SHORT"
+        },
+        {
+          "surfaces": [
+            4,
+            7
+          ],
+          "surface": 4,
+          "fromGlass": "N-SF10",
+          "glass": "N-PK52A",
+          "scope": "material-family",
+          "distance": 0.7620799999999999,
+          "initialization": "preserve-surface-power",
+          "status": "INVALID_EDGE_THICKNESS"
+        },
+        {
+          "surfaces": [
+            7
+          ],
+          "surface": 7,
+          "fromGlass": "N-SF10",
+          "glass": "N-PK52A",
+          "scope": "single-element",
+          "distance": 0.7620799999999999,
+          "initialization": "unchanged-radii",
+          "firstOrderScale": 1.0846086203207674,
+          "status": "MATERIAL_INVALID"
+        }
+      ],
+      "initialScore": 188.7006232738437,
+      "finalScore": 188.7006232738437,
+      "initialDenseScore": 211.6991817575039,
+      "finalDenseScore": 211.6991817575039,
+      "strategy": "single-element and optional material-family substitutions from frozen parent; first-order EFL scale; local reoptimization; fresh dense incumbent ranking"
+    }
+  ],
+  "budgetPolicy": "Additional geometry budgets plus per-substitution glass budgets; legacy glass evaluations mix paraxial and objective calls. Not an equal-budget comparator."
+}

@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "applicationVersion": "0.6.0",
+  "date": "2026-10-13",
+  "method": "Manual browser automation through actual UI at localhost:8080",
+  "checks": [
+    {
+      "workflow": "New Lens Cooke synthesis",
+      "budget": 5000,
+      "result": "FINISHED; dense-valid candidates"
+    },
+    {
+      "workflow": "DLS curvature refinement",
+      "before": 40.2895,
+      "after": 10.674,
+      "hardChecks": "PASS"
+    },
+    {
+      "workflow": "Search Lab pause/restore/resume",
+      "pausedEvaluations": 1600,
+      "finishedEvaluations": 10000,
+      "bestDenseMerit": 8.29361
+    },
+    {
+      "workflow": "New Lens pause/autosave/restore/resume",
+      "pausedStage": "SEEDS",
+      "pausedSeeds": 384,
+      "finishedBudget": 10000,
+      "result": "FINISHED; dense-valid candidates"
+    },
+    {
+      "workflow": "Block DLS refinement after final iris export fix",
+      "before": 14.0829,
+      "after": 10.2402,
+      "hardChecks": "PASS",
+      "fNumber": 4
+    }
+  ],
+  "consoleErrors": [],
+  "note": "UI numbers are displayed rounded values. These smoke examples are separate from the fixed equal-budget benchmark suite."
+}

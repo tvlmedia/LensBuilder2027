@@ -92,7 +92,7 @@
   const middleBefore=M.evaluate(input,intermediateSpec,operands).merit,middleAfter=M.evaluate(run.candidate,intermediateSpec,operands).merit;
   const accepted=after.score!==null&&after.score<before.score-1e-10&&middleBefore.valid&&middleAfter.valid&&middleAfter.total<middleBefore.total-1e-10;
   const result=accepted?after:before;
-  return {...run,accepted,before,after,result,system:accepted?run.candidate:input,finalScore:result.score,validationEvaluations:4,intermediate:{before:middleBefore.valid?middleBefore.total:null,after:middleAfter.valid?middleAfter.total:null},searchMs,validationMs:performance.now()-validationStart,elapsedMs:performance.now()-start,validatedHistory:[{evaluations:0,score:before.score},{evaluations:run.evaluations,score:result.score}]};
+  return {...run,accepted,before,after,result,system:accepted?after.prescription:input,finalScore:result.score,validationEvaluations:4,intermediate:{before:middleBefore.valid?middleBefore.total:null,after:middleAfter.valid?middleAfter.total:null},searchMs,validationMs:performance.now()-validationStart,elapsedMs:performance.now()-start,validatedHistory:[{evaluations:0,score:before.score},{evaluations:run.evaluations,score:result.score}]};
  }
  const api={METHODS,search,optimize,dense};root.LBOpticalExperiment=api;if(typeof module!=='undefined')module.exports=api;
 })(globalThis);

@@ -14,3 +14,7 @@ test('a multistart iris landing on an exact physical bound survives floating-poi
  const fixture=require('../benchmarks/optical-suite-v1.json').cases.find(f=>f.id==='cooke'),G=require('../synthesis/seeds');
  const r=await X.optimize(fixture.system,S.analysisSpec(fixture.specification),G.variables(fixture.system,fixture.specification),fixture.operands,{method:'multistart',budget:1000,seed:1003});a.ok(Number.isFinite(r.finalScore));a.ok(r.finalScore<=r.before.score);
 });
+test('accepted experiment exports the physically prepared iris, not the unprepared optimizer proposal',async()=>{
+ const fixture=require('../benchmarks/optical-suite-v1.json').cases.find(f=>f.id==='cooke'),G=require('../synthesis/seeds'),O=require('../optics/core');
+ const r=await X.optimize(fixture.system,S.analysisSpec(fixture.specification),G.variables(fixture.system,fixture.specification),fixture.operands,{method:'block-dls',budget:160,seed:1001});a.ok(r.accepted);a.deepEqual(r.system,r.after.prescription);a.ok(Math.abs(O.paraxial(O.compile(r.system)).fNumber-fixture.specification.targetFNumber)<1e-8);
+});
