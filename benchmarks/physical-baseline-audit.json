@@ -4,5 +4,9 @@
   "pr3": "OPEN, unmerged at audit",
   "baselineTestsPassed": 111,
   "recheckedPrescriptions": 189,
-  "maxAbsoluteDenseMeritDifference": 0
+  "maxAbsoluteDenseMeritDifference": 0,
+  "afterPhysicalEngine": {
+    "recheckedPrescriptions": 189,
+    "maxAbsoluteDenseMeritDifference": 0
+  }
 }

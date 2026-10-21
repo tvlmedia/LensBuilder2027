@@ -1,0 +1,1586 @@
+{
+  "schemaVersion": 1,
+  "version": "0.7.0",
+  "environment": {
+    "node": "v24.16.0",
+    "platform": "darwin",
+    "arch": "arm64"
+  },
+  "scope": "Scalar paraxial, uniform pupil amplitude; real-lens convergence gates; off-axis experimental; polychromatic combination unavailable",
+  "mathematical": [
+    {
+      "name": "clear",
+      "grid": 32,
+      "padding": 2,
+      "strehl": 1,
+      "airyEnergy": 0.8385480157520514,
+      "mtfAtNormalized04": 0.5080916030534351,
+      "analyticClearMtf": 0.5046315754686909,
+      "pitchMm": 0.0021999999999999997,
+      "psfMs": 2.044707999999998,
+      "mtfMs": 0.6204159999999987
+    },
+    {
+      "name": "clear",
+      "grid": 32,
+      "padding": 4,
+      "strehl": 1,
+      "airyEnergy": 0.8377792563756145,
+      "mtfAtNormalized04": 0.5080916030534351,
+      "analyticClearMtf": 0.5046315754686909,
+      "pitchMm": 0.0010999999999999998,
+      "psfMs": 1.9746249999999996,
+      "mtfMs": 0.529916
+    },
+    {
+      "name": "clear",
+      "grid": 32,
+      "padding": 8,
+      "strehl": 1,
+      "airyEnergy": 0.8377589164975912,
+      "mtfAtNormalized04": 0.508091603053435,
+      "analyticClearMtf": 0.5046315754686909,
+      "pitchMm": 0.0005499999999999999,
+      "psfMs": 2.1750000000000007,
+      "mtfMs": 1.6681670000000004
+    },
+    {
+      "name": "clear",
+      "grid": 64,
+      "padding": 2,
+      "strehl": 1,
+      "airyEnergy": 0.838468296661869,
+      "mtfAtNormalized04": 0.5048249027237351,
+      "analyticClearMtf": 0.5046315754686909,
+      "pitchMm": 0.0021999999999999997,
+      "psfMs": 0.6812499999999986,
+      "mtfMs": 0.4244999999999983
+    },
+    {
+      "name": "clear",
+      "grid": 64,
+      "padding": 4,
+      "strehl": 1,
+      "airyEnergy": 0.8377512612629142,
+      "mtfAtNormalized04": 0.5048249027237354,
+      "analyticClearMtf": 0.5046315754686909,
+      "pitchMm": 0.0010999999999999998,
+      "psfMs": 2.8127499999999976,
+      "mtfMs": 2.0929590000000005
+    },
+    {
+      "name": "clear",
+      "grid": 64,
+      "padding": 8,
+      "strehl": 1,
+      "airyEnergy": 0.8377206677280816,
+      "mtfAtNormalized04": 0.5048249027237356,
+      "analyticClearMtf": 0.5046315754686909,
+      "pitchMm": 0.0005499999999999999,
+      "psfMs": 11.359875000000002,
+      "mtfMs": 9.246083999999996
+    },
+    {
+      "name": "clear",
+      "grid": 128,
+      "padding": 2,
+      "strehl": 1,
+      "airyEnergy": 0.8385235025925079,
+      "mtfAtNormalized04": 0.5045914396887156,
+      "analyticClearMtf": 0.5046315754686909,
+      "pitchMm": 0.0021999999999999997,
+      "psfMs": 3.3674160000000057,
+      "mtfMs": 2.381999999999991
+    },
+    {
+      "name": "clear",
+      "grid": 128,
+      "padding": 4,
+      "strehl": 1,
+      "airyEnergy": 0.8378143129619784,
+      "mtfAtNormalized04": 0.5045914396887161,
+      "analyticClearMtf": 0.5046315754686909,
+      "pitchMm": 0.0010999999999999998,
+      "psfMs": 8.430374999999998,
+      "mtfMs": 8.265374999999992
+    },
+    {
+      "name": "clear",
+      "grid": 128,
+      "padding": 8,
+      "strehl": 1,
+      "airyEnergy": 0.8377857396015518,
+      "mtfAtNormalized04": 0.5045914396887161,
+      "analyticClearMtf": 0.5046315754686909,
+      "pitchMm": 0.0005499999999999999,
+      "psfMs": 42.489459,
+      "mtfMs": 35.32095899999999
+    },
+    {
+      "name": "defocus",
+      "grid": 32,
+      "padding": 2,
+      "strehl": 0.7283907305286009,
+      "airyEnergy": 0.6907934342208457,
+      "mtfAtNormalized04": 0.3287367320496406,
+      "analyticClearMtf": 0.5046315754686909,
+      "pitchMm": 0.0021999999999999997,
+      "psfMs": 0.15125000000000455,
+      "mtfMs": 0.09512500000002433
+    },
+    {
+      "name": "defocus",
+      "grid": 32,
+      "padding": 4,
+      "strehl": 0.7283907305286009,
+      "airyEnergy": 0.6961672495507053,
+      "mtfAtNormalized04": 0.3287367320496406,
+      "analyticClearMtf": 0.5046315754686909,
+      "pitchMm": 0.0010999999999999998,
+      "psfMs": 0.4735830000000192,
+      "mtfMs": 0.39775000000000205
+    },
+    {
+      "name": "defocus",
+      "grid": 32,
+      "padding": 8,
+      "strehl": 0.7283907305286009,
+      "airyEnergy": 0.6930027393539276,
+      "mtfAtNormalized04": 0.3287367320496405,
+      "analyticClearMtf": 0.5046315754686909,
+      "pitchMm": 0.0005499999999999999,
+      "psfMs": 2.080916000000002,
+      "mtfMs": 1.820791999999983
+    },
+    {
+      "name": "defocus",
+      "grid": 64,
+      "padding": 2,
+      "strehl": 0.7373587508426128,
+      "airyEnergy": 0.6934166396399651,
+      "mtfAtNormalized04": 0.33256756187698644,
+      "analyticClearMtf": 0.5046315754686909,
+      "pitchMm": 0.0021999999999999997,
+      "psfMs": 0.5601249999999993,
+      "mtfMs": 0.3728749999999934
+    },
+    {
+      "name": "defocus",
+      "grid": 64,
+      "padding": 4,
+      "strehl": 0.7373587508426128,
+      "airyEnergy": 0.6986033467539126,
+      "mtfAtNormalized04": 0.3325675618769864,
+      "analyticClearMtf": 0.5046315754686909,
+      "pitchMm": 0.0010999999999999998,
+      "psfMs": 1.712916000000007,
+      "mtfMs": 1.699292000000014
+    },
+    {
+      "name": "defocus",
+      "grid": 64,
+      "padding": 8,
+      "strehl": 0.7373587508426128,
+      "airyEnergy": 0.695468836338471,
+      "mtfAtNormalized04": 0.33256756187698666,
+      "analyticClearMtf": 0.5046315754686909,
+      "pitchMm": 0.0005499999999999999,
+      "psfMs": 10.744500000000016,
+      "mtfMs": 8.747917000000001
+    },
+    {
+      "name": "defocus",
+      "grid": 128,
+      "padding": 2,
+      "strehl": 0.7375027745050848,
+      "airyEnergy": 0.693476537491859,
+      "mtfAtNormalized04": 0.3321497555450809,
+      "analyticClearMtf": 0.5046315754686909,
+      "pitchMm": 0.0021999999999999997,
+      "psfMs": 1.8832089999999653,
+      "mtfMs": 4.578833999999972
+    },
+    {
+      "name": "defocus",
+      "grid": 128,
+      "padding": 4,
+      "strehl": 0.7375027745050848,
+      "airyEnergy": 0.6986544432876233,
+      "mtfAtNormalized04": 0.33214975554508164,
+      "analyticClearMtf": 0.5046315754686909,
+      "pitchMm": 0.0010999999999999998,
+      "psfMs": 8.140541999999982,
+      "mtfMs": 8.404833999999994
+    },
+    {
+      "name": "defocus",
+      "grid": 128,
+      "padding": 8,
+      "strehl": 0.7375027745050848,
+      "airyEnergy": 0.6955295582783139,
+      "mtfAtNormalized04": 0.3321497555450817,
+      "analyticClearMtf": 0.5046315754686909,
+      "pitchMm": 0.0005499999999999999,
+      "psfMs": 37.468999999999994,
+      "mtfMs": 35.05658299999999
+    },
+    {
+      "name": "zernike-coma",
+      "grid": 32,
+      "padding": 2,
+      "strehl": 0.6553237825299173,
+      "airyEnergy": 0.5935006543778427,
+      "mtfAtNormalized04": 0.23495563142154868,
+      "analyticClearMtf": 0.5046315754686909,
+      "pitchMm": 0.0021999999999999997,
+      "psfMs": 1.492666999999983,
+      "mtfMs": 0.09058300000003783
+    },
+    {
+      "name": "zernike-coma",
+      "grid": 32,
+      "padding": 4,
+      "strehl": 0.6553237825299173,
+      "airyEnergy": 0.5962862717385367,
+      "mtfAtNormalized04": 0.23495563142154877,
+      "analyticClearMtf": 0.5046315754686909,
+      "pitchMm": 0.0010999999999999998,
+      "psfMs": 0.3969170000000304,
+      "mtfMs": 0.35495800000001054
+    },
+    {
+      "name": "zernike-coma",
+      "grid": 32,
+      "padding": 8,
+      "strehl": 0.6553237825299173,
+      "airyEnergy": 0.5939603475526165,
+      "mtfAtNormalized04": 0.2349556314215489,
+      "analyticClearMtf": 0.5046315754686909,
+      "pitchMm": 0.0005499999999999999,
+      "psfMs": 1.8347909999999956,
+      "mtfMs": 1.664625000000001
+    },
+    {
+      "name": "zernike-coma",
+      "grid": 64,
+      "padding": 2,
+      "strehl": 0.6700811729717033,
+      "airyEnergy": 0.601525269665623,
+      "mtfAtNormalized04": 0.2473958927973396,
+      "analyticClearMtf": 0.5046315754686909,
+      "pitchMm": 0.0021999999999999997,
+      "psfMs": 0.41941600000001245,
+      "mtfMs": 0.35541699999998855
+    },
+    {
+      "name": "zernike-coma",
+      "grid": 64,
+      "padding": 4,
+      "strehl": 0.6700811729717033,
+      "airyEnergy": 0.6042944283300136,
+      "mtfAtNormalized04": 0.24739589279733998,
+      "analyticClearMtf": 0.5046315754686909,
+      "pitchMm": 0.0010999999999999998,
+      "psfMs": 1.716957999999977,
+      "mtfMs": 1.6877080000000433
+    },
+    {
+      "name": "zernike-coma",
+      "grid": 64,
+      "padding": 8,
+      "strehl": 0.6700811729717033,
+      "airyEnergy": 0.602028147824714,
+      "mtfAtNormalized04": 0.2473958927973392,
+      "analyticClearMtf": 0.5046315754686909,
+      "pitchMm": 0.0005499999999999999,
+      "psfMs": 7.8017920000000345,
+      "mtfMs": 8.308750000000032
+    },
+    {
+      "name": "zernike-coma",
+      "grid": 128,
+      "padding": 2,
+      "strehl": 0.6704132042300437,
+      "airyEnergy": 0.6016723510335612,
+      "mtfAtNormalized04": 0.2469605027269928,
+      "analyticClearMtf": 0.5046315754686909,
+      "pitchMm": 0.0021999999999999997,
+      "psfMs": 1.8994169999999713,
+      "mtfMs": 1.6835839999999962
+    },
+    {
+      "name": "zernike-coma",
+      "grid": 128,
+      "padding": 4,
+      "strehl": 0.6704132042300437,
+      "airyEnergy": 0.6044545888913602,
+      "mtfAtNormalized04": 0.2469605027269925,
+      "analyticClearMtf": 0.5046315754686909,
+      "pitchMm": 0.0010999999999999998,
+      "psfMs": 8.099125000000015,
+      "mtfMs": 9.115124999999978
+    },
+    {
+      "name": "zernike-coma",
+      "grid": 128,
+      "padding": 8,
+      "strehl": 0.6704132042300437,
+      "airyEnergy": 0.6021879312380823,
+      "mtfAtNormalized04": 0.24696050272699105,
+      "analyticClearMtf": 0.5046315754686909,
+      "pitchMm": 0.0005499999999999999,
+      "psfMs": 36.13299999999998,
+      "mtfMs": 35.52541699999995
+    }
+  ],
+  "lenses": [
+    {
+      "id": "analytic-singlet",
+      "settings": {
+        "field": 0,
+        "nm": 587.5618,
+        "targetEflMm": 50,
+        "imageCircleMm": 43.27,
+        "pupilGrid": 64,
+        "pupilExtent": 1.25,
+        "imageShiftMm": 0,
+        "focusPolicy": "fixed-prescription",
+        "removeTilt": false,
+        "allowApproximateMaterials": true,
+        "fNumber": 8
+      },
+      "status": {
+        "opl": "VALIDATED",
+        "wavefront": "VALIDATED EIKONAL / SAMPLED PUPIL",
+        "psf": "EXPERIMENTAL",
+        "mtf": "EXPERIMENTAL",
+        "zernike": "VALIDATED NUMERICAL FIT",
+        "polychromatic": "UNAVAILABLE",
+        "tStop": "UNAVAILABLE",
+        "mtfMerit": "UNAVAILABLE"
+      },
+      "wavefront": {
+        "rmsWaves": 0.15772517357759291,
+        "pvWaves": 0.5258671800341922,
+        "coverage": 1,
+        "validSamples": 2056,
+        "maxAdjacentPhaseWaves": 0.07791457310543992,
+        "maxMappingResidualMm": 9.98650114121787e-9,
+        "reasons": {
+          "blocked": 2040
+        },
+        "elapsedMs": 32.811500000000024
+      },
+      "diffraction": {
+        "strehl": 0.3519249312068254,
+        "pitchMm": 0.00094009888,
+        "encircledEnergy": [
+          {
+            "radiusMm": 0.00573305149249411,
+            "energy": 0.517350366843931
+          },
+          {
+            "radiusMm": 0.01146610298498822,
+            "energy": 0.7563399406598508
+          },
+          {
+            "radiusMm": 0.02866525746247055,
+            "energy": 0.9481947764521033
+          },
+          {
+            "radiusMm": 0.005,
+            "energy": 0.44994964363721124
+          },
+          {
+            "radiusMm": 0.01,
+            "energy": 0.7079117499483166
+          },
+          {
+            "radiusMm": 0.025,
+            "energy": 0.9319453800760125
+          },
+          {
+            "radiusMm": 0.05,
+            "energy": 0.9778035871905287
+          }
+        ],
+        "mtf": [
+          {
+            "frequencyLpMm": 20,
+            "tangential": 0.6974310542298828,
+            "sagittal": 0.6974310542298628
+          },
+          {
+            "frequencyLpMm": 40,
+            "tangential": 0.43439093288604447,
+            "sagittal": 0.43439093288622177
+          },
+          {
+            "frequencyLpMm": 80,
+            "tangential": 0.17991314071412218,
+            "sagittal": 0.17991314071430942
+          }
+        ],
+        "psfMs": 5.723292000000015,
+        "mtfMs": 1.7033330000000433,
+        "estimatedArrayBytes": 3145728
+      },
+      "convergence": {
+        "coarseGrid": 64,
+        "fineGrid": 128,
+        "rmsDeltaWaves": 0.0007518903965328116,
+        "maxMtfDelta": 0.002473786722027471,
+        "strehlDelta": 0.0033299182531884575,
+        "airyEnergyDelta": 0.001375798716449328,
+        "passed": true,
+        "meaning": "Resolution comparison, not a proof of continuous accuracy"
+      },
+      "limitations": [
+        "Uniform amplitude on sampled reference sphere; no coatings, Fresnel loss or calibrated illumination",
+        "Off-axis chief-normal diffraction mapping remains experimental",
+        "No defocus removal; fixed shared physical image plane"
+      ],
+      "elapsedMs": 171.96395799999993
+    },
+    {
+      "id": "analytic-singlet",
+      "settings": {
+        "field": 0,
+        "nm": 587.5618,
+        "targetEflMm": 50,
+        "imageCircleMm": 43.27,
+        "pupilGrid": 64,
+        "pupilExtent": 1.25,
+        "imageShiftMm": 0,
+        "focusPolicy": "fixed-prescription",
+        "removeTilt": false,
+        "allowApproximateMaterials": true,
+        "fNumber": 16
+      },
+      "status": {
+        "opl": "VALIDATED",
+        "wavefront": "VALIDATED EIKONAL / SAMPLED PUPIL",
+        "psf": "VALIDATED SCALAR/PARAXIAL REGIME",
+        "mtf": "VALIDATED SCALAR/PARAXIAL REGIME",
+        "zernike": "VALIDATED NUMERICAL FIT",
+        "polychromatic": "UNAVAILABLE",
+        "tStop": "UNAVAILABLE",
+        "mtfMerit": "UNAVAILABLE"
+      },
+      "wavefront": {
+        "rmsWaves": 0.009775700701789465,
+        "pvWaves": 0.03257552542671478,
+        "coverage": 1,
+        "validSamples": 2056,
+        "maxAdjacentPhaseWaves": 0.004807413228330514,
+        "maxMappingResidualMm": 7.872904340924763e-10,
+        "reasons": {
+          "blocked": 2040
+        },
+        "elapsedMs": 17.383166999999958
+      },
+      "diffraction": {
+        "strehl": 0.9962333777290915,
+        "pitchMm": 0.00188019776,
+        "encircledEnergy": [
+          {
+            "radiusMm": 0.01146610298498822,
+            "energy": 0.8360699338758968
+          },
+          {
+            "radiusMm": 0.02293220596997644,
+            "energy": 0.9115197453165413
+          },
+          {
+            "radiusMm": 0.0573305149249411,
+            "energy": 0.9673722073939058
+          },
+          {
+            "radiusMm": 0.005,
+            "energy": 0.47936096554455554
+          },
+          {
+            "radiusMm": 0.01,
+            "energy": 0.8316200433330148
+          },
+          {
+            "radiusMm": 0.025,
+            "energy": 0.9201556667747349
+          },
+          {
+            "radiusMm": 0.05,
+            "energy": 0.9612244266402832
+          }
+        ],
+        "mtf": [
+          {
+            "frequencyLpMm": 20,
+            "tangential": 0.7603161468284052,
+            "sagittal": 0.7603161468284035
+          },
+          {
+            "frequencyLpMm": 40,
+            "tangential": 0.5309146229288243,
+            "sagittal": 0.530914622928816
+          },
+          {
+            "frequencyLpMm": 80,
+            "tangential": 0.1407845627228569,
+            "sagittal": 0.1407845627228585
+          }
+        ],
+        "psfMs": 2.0245409999999993,
+        "mtfMs": 2.8179999999999836,
+        "estimatedArrayBytes": 3145728
+      },
+      "convergence": {
+        "coarseGrid": 64,
+        "fineGrid": 128,
+        "rmsDeltaWaves": 0.000008105555047432933,
+        "maxMtfDelta": 0.0004834733812823233,
+        "strehlDelta": 0.000006223519321002513,
+        "airyEnergyDelta": 0.00006398839086674268,
+        "passed": true,
+        "meaning": "Resolution comparison, not a proof of continuous accuracy"
+      },
+      "limitations": [
+        "Uniform amplitude on sampled reference sphere; no coatings, Fresnel loss or calibrated illumination",
+        "Off-axis chief-normal diffraction mapping remains experimental",
+        "No defocus removal; fixed shared physical image plane"
+      ],
+      "elapsedMs": 133.16216699999995
+    },
+    {
+      "id": "double-gauss",
+      "settings": {
+        "field": 0,
+        "nm": 587.5618,
+        "targetEflMm": 50,
+        "imageCircleMm": 43.27,
+        "pupilGrid": 64,
+        "pupilExtent": 1.25,
+        "imageShiftMm": 0,
+        "focusPolicy": "fixed-prescription",
+        "removeTilt": false,
+        "allowApproximateMaterials": false,
+        "fNumber": 8
+      },
+      "status": {
+        "opl": "VALIDATED",
+        "wavefront": "VALIDATED EIKONAL / SAMPLED PUPIL",
+        "psf": "UNAVAILABLE",
+        "mtf": "UNAVAILABLE",
+        "zernike": "VALIDATED NUMERICAL FIT",
+        "polychromatic": "UNAVAILABLE",
+        "tStop": "UNAVAILABLE",
+        "mtfMerit": "UNAVAILABLE"
+      },
+      "wavefront": {
+        "rmsWaves": 1.3679778382699053,
+        "pvWaves": 4.719187856957389,
+        "coverage": 1,
+        "validSamples": 2056,
+        "maxAdjacentPhaseWaves": 0.33222467665670696,
+        "maxMappingResidualMm": 9.596981537482206e-9,
+        "reasons": {
+          "blocked": 2040
+        },
+        "elapsedMs": 78.61416699999995
+      },
+      "limitations": [
+        "Phase sampling unresolved: adjacent OPD exceeds 0.25 waves",
+        "Uniform amplitude on sampled reference sphere; no coatings, Fresnel loss or calibrated illumination",
+        "Off-axis chief-normal diffraction mapping remains experimental",
+        "No defocus removal; fixed shared physical image plane"
+      ],
+      "elapsedMs": 87.49900000000002
+    },
+    {
+      "id": "double-gauss",
+      "settings": {
+        "field": 0,
+        "nm": 587.5618,
+        "targetEflMm": 50,
+        "imageCircleMm": 43.27,
+        "pupilGrid": 64,
+        "pupilExtent": 1.25,
+        "imageShiftMm": 0,
+        "focusPolicy": "fixed-prescription",
+        "removeTilt": false,
+        "allowApproximateMaterials": false,
+        "fNumber": 16
+      },
+      "status": {
+        "opl": "VALIDATED",
+        "wavefront": "VALIDATED EIKONAL / SAMPLED PUPIL",
+        "psf": "VALIDATED SCALAR/PARAXIAL REGIME",
+        "mtf": "VALIDATED SCALAR/PARAXIAL REGIME",
+        "zernike": "VALIDATED NUMERICAL FIT",
+        "polychromatic": "UNAVAILABLE",
+        "tStop": "UNAVAILABLE",
+        "mtfMerit": "UNAVAILABLE"
+      },
+      "wavefront": {
+        "rmsWaves": 0.3647765951494531,
+        "pvWaves": 1.2585727181618618,
+        "coverage": 1,
+        "validSamples": 2056,
+        "maxAdjacentPhaseWaves": 0.09468446867332603,
+        "maxMappingResidualMm": 1.1995719328133752e-9,
+        "reasons": {
+          "blocked": 2040
+        },
+        "elapsedMs": 73.75437499999998
+      },
+      "diffraction": {
+        "strehl": 0.03432935274009479,
+        "pitchMm": 0.0018243633396882713,
+        "encircledEnergy": [
+          {
+            "radiusMm": 0.011125605178309947,
+            "energy": 0.056266584031764454
+          },
+          {
+            "radiusMm": 0.022251210356619894,
+            "energy": 0.30232177175686603
+          },
+          {
+            "radiusMm": 0.055628025891549734,
+            "energy": 0.9222796459080244
+          },
+          {
+            "radiusMm": 0.005,
+            "energy": 0.01685173140681929
+          },
+          {
+            "radiusMm": 0.01,
+            "energy": 0.04757615956117783
+          },
+          {
+            "radiusMm": 0.025,
+            "energy": 0.3916372000024915
+          },
+          {
+            "radiusMm": 0.05,
+            "energy": 0.8891528637685995
+          }
+        ],
+        "mtf": [
+          {
+            "frequencyLpMm": 20,
+            "tangential": 0.08545001048063725,
+            "sagittal": 0.08545001048061102
+          },
+          {
+            "frequencyLpMm": 40,
+            "tangential": 0.01410710744880345,
+            "sagittal": 0.014107107448800917
+          },
+          {
+            "frequencyLpMm": 80,
+            "tangential": 0.006932012865051134,
+            "sagittal": 0.006932012864996717
+          }
+        ],
+        "psfMs": 2.025875000000042,
+        "mtfMs": 1.790749999999889,
+        "estimatedArrayBytes": 3145728
+      },
+      "convergence": {
+        "coarseGrid": 64,
+        "fineGrid": 128,
+        "rmsDeltaWaves": 0.00011729249192410363,
+        "maxMtfDelta": 0.0014433237197556022,
+        "strehlDelta": 0.000120119254832525,
+        "airyEnergyDelta": 0.00007524052329043601,
+        "passed": true,
+        "meaning": "Resolution comparison, not a proof of continuous accuracy"
+      },
+      "limitations": [
+        "Uniform amplitude on sampled reference sphere; no coatings, Fresnel loss or calibrated illumination",
+        "Off-axis chief-normal diffraction mapping remains experimental",
+        "No defocus removal; fixed shared physical image plane"
+      ],
+      "elapsedMs": 410.76575
+    }
+  ],
+  "omit50": {
+    "source": "benchmarks/omit50-methods-v1.json",
+    "method": "block-dls",
+    "seed": 1001,
+    "merit": 211.6991817575039,
+    "results": [
+      {
+        "settings": {
+          "field": 0,
+          "nm": 587.5618,
+          "targetEflMm": 50,
+          "imageCircleMm": 46.3,
+          "pupilGrid": 64,
+          "pupilExtent": 1.25,
+          "imageShiftMm": 0,
+          "focusPolicy": "fixed-prescription",
+          "removeTilt": false,
+          "allowApproximateMaterials": false,
+          "fields": [
+            0,
+            0.5,
+            1
+          ],
+          "apertures": [
+            2,
+            2.8,
+            4,
+            5.6
+          ],
+          "verifyConvergence": true,
+          "fNumber": 2
+        },
+        "status": {
+          "opl": "VALIDATED",
+          "wavefront": "EXPERIMENTAL",
+          "psf": "UNAVAILABLE",
+          "mtf": "UNAVAILABLE",
+          "zernike": "EXPERIMENTAL CLIPPED-PUPIL FIT",
+          "polychromatic": "UNAVAILABLE",
+          "tStop": "UNAVAILABLE",
+          "mtfMerit": "UNAVAILABLE"
+        },
+        "wavefront": {
+          "rmsWaves": 9.72181866138709,
+          "pvWaves": 33.154239242263536,
+          "coverage": 0.9727626459143969,
+          "validSamples": 2000,
+          "maxAdjacentPhaseWaves": 2.3161240234118665,
+          "maxMappingResidualMm": 9.955983122544468e-9,
+          "reasons": {
+            "unmapped": 1640,
+            "blocked": 456
+          },
+          "elapsedMs": 66.22683299999994
+        },
+        "limitations": [
+          "Incomplete or folded ray-to-pupil mapping",
+          "Phase sampling unresolved: adjacent OPD exceeds 0.25 waves",
+          "Uniform amplitude on sampled reference sphere; no coatings, Fresnel loss or calibrated illumination",
+          "Off-axis chief-normal diffraction mapping remains experimental",
+          "No defocus removal; fixed shared physical image plane"
+        ],
+        "elapsedMs": 80.02912500000002
+      },
+      {
+        "settings": {
+          "field": 0.5,
+          "nm": 587.5618,
+          "targetEflMm": 50,
+          "imageCircleMm": 46.3,
+          "pupilGrid": 64,
+          "pupilExtent": 1.25,
+          "imageShiftMm": 0,
+          "focusPolicy": "fixed-prescription",
+          "removeTilt": false,
+          "allowApproximateMaterials": false,
+          "fields": [
+            0,
+            0.5,
+            1
+          ],
+          "apertures": [
+            2,
+            2.8,
+            4,
+            5.6
+          ],
+          "verifyConvergence": true,
+          "fNumber": 2
+        },
+        "status": {
+          "opl": "VALIDATED",
+          "wavefront": "EXPERIMENTAL",
+          "psf": "UNAVAILABLE",
+          "mtf": "UNAVAILABLE",
+          "zernike": "EXPERIMENTAL CLIPPED-PUPIL FIT",
+          "polychromatic": "UNAVAILABLE",
+          "tStop": "UNAVAILABLE",
+          "mtfMerit": "UNAVAILABLE"
+        },
+        "wavefront": {
+          "rmsWaves": 7.967805763730506,
+          "pvWaves": 40.99532173153368,
+          "coverage": 0.9747081712062257,
+          "validSamples": 2004,
+          "maxAdjacentPhaseWaves": 5.30797128267514,
+          "maxMappingResidualMm": 5.1308733895997464e-9,
+          "reasons": {
+            "unmapped": 1678,
+            "blocked": 414
+          },
+          "elapsedMs": 71.10787499999992
+        },
+        "limitations": [
+          "Incomplete or folded ray-to-pupil mapping",
+          "Phase sampling unresolved: adjacent OPD exceeds 0.25 waves",
+          "Uniform amplitude on sampled reference sphere; no coatings, Fresnel loss or calibrated illumination",
+          "Off-axis chief-normal diffraction mapping remains experimental",
+          "No defocus removal; fixed shared physical image plane",
+          "PSF coordinates lie in chief-normal image plane; oblique sensor projection and pupil apodization are unvalidated"
+        ],
+        "elapsedMs": 80.3913329999998
+      },
+      {
+        "settings": {
+          "field": 1,
+          "nm": 587.5618,
+          "targetEflMm": 50,
+          "imageCircleMm": 46.3,
+          "pupilGrid": 64,
+          "pupilExtent": 1.25,
+          "imageShiftMm": 0,
+          "focusPolicy": "fixed-prescription",
+          "removeTilt": false,
+          "allowApproximateMaterials": false,
+          "fields": [
+            0,
+            0.5,
+            1
+          ],
+          "apertures": [
+            2,
+            2.8,
+            4,
+            5.6
+          ],
+          "verifyConvergence": true,
+          "fNumber": 2
+        },
+        "status": {
+          "opl": "VALIDATED",
+          "wavefront": "EXPERIMENTAL",
+          "psf": "UNAVAILABLE",
+          "mtf": "UNAVAILABLE",
+          "zernike": "UNAVAILABLE",
+          "polychromatic": "UNAVAILABLE",
+          "tStop": "UNAVAILABLE",
+          "mtfMerit": "UNAVAILABLE"
+        },
+        "wavefront": {
+          "rmsWaves": 35.62801639457039,
+          "pvWaves": 177.43408252160785,
+          "coverage": 0.9250972762645915,
+          "validSamples": 1916,
+          "maxAdjacentPhaseWaves": 12.849716925094782,
+          "maxMappingResidualMm": 9.959456294120471e-9,
+          "reasons": {
+            "unmapped": 1812,
+            "blocked": 368
+          },
+          "elapsedMs": 73.14516600000002
+        },
+        "limitations": [
+          "Incomplete or folded ray-to-pupil mapping",
+          "Phase sampling unresolved: adjacent OPD exceeds 0.25 waves",
+          "Uniform amplitude on sampled reference sphere; no coatings, Fresnel loss or calibrated illumination",
+          "Off-axis chief-normal diffraction mapping remains experimental",
+          "No defocus removal; fixed shared physical image plane",
+          "Zernike fit unavailable: support extends outside the defined unit disk",
+          "PSF coordinates lie in chief-normal image plane; oblique sensor projection and pupil apodization are unvalidated"
+        ],
+        "elapsedMs": 73.259458
+      },
+      {
+        "settings": {
+          "field": 0,
+          "nm": 587.5618,
+          "targetEflMm": 50,
+          "imageCircleMm": 46.3,
+          "pupilGrid": 64,
+          "pupilExtent": 1.25,
+          "imageShiftMm": 0,
+          "focusPolicy": "fixed-prescription",
+          "removeTilt": false,
+          "allowApproximateMaterials": false,
+          "fields": [
+            0,
+            0.5,
+            1
+          ],
+          "apertures": [
+            2,
+            2.8,
+            4,
+            5.6
+          ],
+          "verifyConvergence": true,
+          "fNumber": 2.8
+        },
+        "status": {
+          "opl": "VALIDATED",
+          "wavefront": "EXPERIMENTAL",
+          "psf": "UNAVAILABLE",
+          "mtf": "UNAVAILABLE",
+          "zernike": "EXPERIMENTAL CLIPPED-PUPIL FIT",
+          "polychromatic": "UNAVAILABLE",
+          "tStop": "UNAVAILABLE",
+          "mtfMerit": "UNAVAILABLE"
+        },
+        "wavefront": {
+          "rmsWaves": 8.607688366845538,
+          "pvWaves": 29.4928849645235,
+          "coverage": 0.9844357976653697,
+          "validSamples": 2024,
+          "maxAdjacentPhaseWaves": 1.6548781492952773,
+          "maxMappingResidualMm": 9.924797237215191e-9,
+          "reasons": {
+            "unmapped": 160,
+            "blocked": 1912
+          },
+          "elapsedMs": 88.07695899999999
+        },
+        "limitations": [
+          "Incomplete or folded ray-to-pupil mapping",
+          "Phase sampling unresolved: adjacent OPD exceeds 0.25 waves",
+          "Uniform amplitude on sampled reference sphere; no coatings, Fresnel loss or calibrated illumination",
+          "Off-axis chief-normal diffraction mapping remains experimental",
+          "No defocus removal; fixed shared physical image plane"
+        ],
+        "elapsedMs": 93.38916600000016
+      },
+      {
+        "settings": {
+          "field": 0.5,
+          "nm": 587.5618,
+          "targetEflMm": 50,
+          "imageCircleMm": 46.3,
+          "pupilGrid": 64,
+          "pupilExtent": 1.25,
+          "imageShiftMm": 0,
+          "focusPolicy": "fixed-prescription",
+          "removeTilt": false,
+          "allowApproximateMaterials": false,
+          "fields": [
+            0,
+            0.5,
+            1
+          ],
+          "apertures": [
+            2,
+            2.8,
+            4,
+            5.6
+          ],
+          "verifyConvergence": true,
+          "fNumber": 2.8
+        },
+        "status": {
+          "opl": "VALIDATED",
+          "wavefront": "EXPERIMENTAL",
+          "psf": "UNAVAILABLE",
+          "mtf": "UNAVAILABLE",
+          "zernike": "EXPERIMENTAL CLIPPED-PUPIL FIT",
+          "polychromatic": "UNAVAILABLE",
+          "tStop": "UNAVAILABLE",
+          "mtfMerit": "UNAVAILABLE"
+        },
+        "wavefront": {
+          "rmsWaves": 4.656317536612324,
+          "pvWaves": 22.27526074496324,
+          "coverage": 0.9824902723735408,
+          "validSamples": 2020,
+          "maxAdjacentPhaseWaves": 1.3290653331646771,
+          "maxMappingResidualMm": 9.860112330698116e-9,
+          "reasons": {
+            "unmapped": 176,
+            "blocked": 1900
+          },
+          "elapsedMs": 99.17783299999996
+        },
+        "limitations": [
+          "Incomplete or folded ray-to-pupil mapping",
+          "Phase sampling unresolved: adjacent OPD exceeds 0.25 waves",
+          "Uniform amplitude on sampled reference sphere; no coatings, Fresnel loss or calibrated illumination",
+          "Off-axis chief-normal diffraction mapping remains experimental",
+          "No defocus removal; fixed shared physical image plane",
+          "PSF coordinates lie in chief-normal image plane; oblique sensor projection and pupil apodization are unvalidated"
+        ],
+        "elapsedMs": 104.2160409999999
+      },
+      {
+        "settings": {
+          "field": 1,
+          "nm": 587.5618,
+          "targetEflMm": 50,
+          "imageCircleMm": 46.3,
+          "pupilGrid": 64,
+          "pupilExtent": 1.25,
+          "imageShiftMm": 0,
+          "focusPolicy": "fixed-prescription",
+          "removeTilt": false,
+          "allowApproximateMaterials": false,
+          "fields": [
+            0,
+            0.5,
+            1
+          ],
+          "apertures": [
+            2,
+            2.8,
+            4,
+            5.6
+          ],
+          "verifyConvergence": true,
+          "fNumber": 2.8
+        },
+        "status": {
+          "opl": "VALIDATED",
+          "wavefront": "EXPERIMENTAL",
+          "psf": "UNAVAILABLE",
+          "mtf": "UNAVAILABLE",
+          "zernike": "UNAVAILABLE",
+          "polychromatic": "UNAVAILABLE",
+          "tStop": "UNAVAILABLE",
+          "mtfMerit": "UNAVAILABLE"
+        },
+        "wavefront": {
+          "rmsWaves": 15.764021846179698,
+          "pvWaves": 86.2617313696755,
+          "coverage": 0.9591439688715954,
+          "validSamples": 1988,
+          "maxAdjacentPhaseWaves": 4.314230124085121,
+          "maxMappingResidualMm": 9.992226493745579e-9,
+          "reasons": {
+            "unmapped": 254,
+            "blocked": 1854
+          },
+          "elapsedMs": 106.22941699999978
+        },
+        "limitations": [
+          "Incomplete or folded ray-to-pupil mapping",
+          "Phase sampling unresolved: adjacent OPD exceeds 0.25 waves",
+          "Uniform amplitude on sampled reference sphere; no coatings, Fresnel loss or calibrated illumination",
+          "Off-axis chief-normal diffraction mapping remains experimental",
+          "No defocus removal; fixed shared physical image plane",
+          "Zernike fit unavailable: support extends outside the defined unit disk",
+          "PSF coordinates lie in chief-normal image plane; oblique sensor projection and pupil apodization are unvalidated"
+        ],
+        "elapsedMs": 106.31970799999999
+      },
+      {
+        "settings": {
+          "field": 0,
+          "nm": 587.5618,
+          "targetEflMm": 50,
+          "imageCircleMm": 46.3,
+          "pupilGrid": 64,
+          "pupilExtent": 1.25,
+          "imageShiftMm": 0,
+          "focusPolicy": "fixed-prescription",
+          "removeTilt": false,
+          "allowApproximateMaterials": false,
+          "fields": [
+            0,
+            0.5,
+            1
+          ],
+          "apertures": [
+            2,
+            2.8,
+            4,
+            5.6
+          ],
+          "verifyConvergence": true,
+          "fNumber": 4
+        },
+        "status": {
+          "opl": "VALIDATED",
+          "wavefront": "VALIDATED EIKONAL / SAMPLED PUPIL",
+          "psf": "UNAVAILABLE",
+          "mtf": "UNAVAILABLE",
+          "zernike": "EXPERIMENTAL CLIPPED-PUPIL FIT",
+          "polychromatic": "UNAVAILABLE",
+          "tStop": "UNAVAILABLE",
+          "mtfMerit": "UNAVAILABLE"
+        },
+        "wavefront": {
+          "rmsWaves": 5.221674525040476,
+          "pvWaves": 18.066039181304266,
+          "coverage": 0.9922178988326849,
+          "validSamples": 2040,
+          "maxAdjacentPhaseWaves": 1.1557484531475097,
+          "maxMappingResidualMm": 1.3608302407595044e-9,
+          "reasons": {
+            "blocked": 2056
+          },
+          "elapsedMs": 76.49141600000007
+        },
+        "limitations": [
+          "Phase sampling unresolved: adjacent OPD exceeds 0.25 waves",
+          "Uniform amplitude on sampled reference sphere; no coatings, Fresnel loss or calibrated illumination",
+          "Off-axis chief-normal diffraction mapping remains experimental",
+          "No defocus removal; fixed shared physical image plane"
+        ],
+        "elapsedMs": 81.6639160000002
+      },
+      {
+        "settings": {
+          "field": 0.5,
+          "nm": 587.5618,
+          "targetEflMm": 50,
+          "imageCircleMm": 46.3,
+          "pupilGrid": 64,
+          "pupilExtent": 1.25,
+          "imageShiftMm": 0,
+          "focusPolicy": "fixed-prescription",
+          "removeTilt": false,
+          "allowApproximateMaterials": false,
+          "fields": [
+            0,
+            0.5,
+            1
+          ],
+          "apertures": [
+            2,
+            2.8,
+            4,
+            5.6
+          ],
+          "verifyConvergence": true,
+          "fNumber": 4
+        },
+        "status": {
+          "opl": "VALIDATED",
+          "wavefront": "VALIDATED EIKONAL / SAMPLED PUPIL",
+          "psf": "UNAVAILABLE",
+          "mtf": "UNAVAILABLE",
+          "zernike": "UNAVAILABLE",
+          "polychromatic": "UNAVAILABLE",
+          "tStop": "UNAVAILABLE",
+          "mtfMerit": "UNAVAILABLE"
+        },
+        "wavefront": {
+          "rmsWaves": 2.973932669186827,
+          "pvWaves": 13.600336541227017,
+          "coverage": 0.9844357976653697,
+          "validSamples": 2032,
+          "maxAdjacentPhaseWaves": 0.923715960424321,
+          "maxMappingResidualMm": 9.9475721170694e-9,
+          "reasons": {
+            "blocked": 2064
+          },
+          "elapsedMs": 103.43104199999993
+        },
+        "limitations": [
+          "Phase sampling unresolved: adjacent OPD exceeds 0.25 waves",
+          "Uniform amplitude on sampled reference sphere; no coatings, Fresnel loss or calibrated illumination",
+          "Off-axis chief-normal diffraction mapping remains experimental",
+          "No defocus removal; fixed shared physical image plane",
+          "Zernike fit unavailable: support extends outside the defined unit disk",
+          "PSF coordinates lie in chief-normal image plane; oblique sensor projection and pupil apodization are unvalidated"
+        ],
+        "elapsedMs": 103.49524999999971
+      },
+      {
+        "settings": {
+          "field": 1,
+          "nm": 587.5618,
+          "targetEflMm": 50,
+          "imageCircleMm": 46.3,
+          "pupilGrid": 64,
+          "pupilExtent": 1.25,
+          "imageShiftMm": 0,
+          "focusPolicy": "fixed-prescription",
+          "removeTilt": false,
+          "allowApproximateMaterials": false,
+          "fields": [
+            0,
+            0.5,
+            1
+          ],
+          "apertures": [
+            2,
+            2.8,
+            4,
+            5.6
+          ],
+          "verifyConvergence": true,
+          "fNumber": 4
+        },
+        "status": {
+          "opl": "VALIDATED",
+          "wavefront": "VALIDATED EIKONAL / SAMPLED PUPIL",
+          "psf": "UNAVAILABLE",
+          "mtf": "UNAVAILABLE",
+          "zernike": "UNAVAILABLE",
+          "polychromatic": "UNAVAILABLE",
+          "tStop": "UNAVAILABLE",
+          "mtfMerit": "UNAVAILABLE"
+        },
+        "wavefront": {
+          "rmsWaves": 6.59411920789634,
+          "pvWaves": 37.536394689389475,
+          "coverage": 0.958171206225681,
+          "validSamples": 1986,
+          "maxAdjacentPhaseWaves": 1.8427477930463922,
+          "maxMappingResidualMm": 9.300279096668482e-9,
+          "reasons": {
+            "blocked": 2110
+          },
+          "elapsedMs": 108.51808400000027
+        },
+        "limitations": [
+          "Phase sampling unresolved: adjacent OPD exceeds 0.25 waves",
+          "Uniform amplitude on sampled reference sphere; no coatings, Fresnel loss or calibrated illumination",
+          "Off-axis chief-normal diffraction mapping remains experimental",
+          "No defocus removal; fixed shared physical image plane",
+          "Zernike fit unavailable: support extends outside the defined unit disk",
+          "PSF coordinates lie in chief-normal image plane; oblique sensor projection and pupil apodization are unvalidated"
+        ],
+        "elapsedMs": 108.58033299999988
+      },
+      {
+        "settings": {
+          "field": 0,
+          "nm": 587.5618,
+          "targetEflMm": 50,
+          "imageCircleMm": 46.3,
+          "pupilGrid": 64,
+          "pupilExtent": 1.25,
+          "imageShiftMm": 0,
+          "focusPolicy": "fixed-prescription",
+          "removeTilt": false,
+          "allowApproximateMaterials": false,
+          "fields": [
+            0,
+            0.5,
+            1
+          ],
+          "apertures": [
+            2,
+            2.8,
+            4,
+            5.6
+          ],
+          "verifyConvergence": true,
+          "fNumber": 5.6
+        },
+        "status": {
+          "opl": "VALIDATED",
+          "wavefront": "VALIDATED EIKONAL / SAMPLED PUPIL",
+          "psf": "UNAVAILABLE",
+          "mtf": "UNAVAILABLE",
+          "zernike": "VALIDATED NUMERICAL FIT",
+          "polychromatic": "UNAVAILABLE",
+          "tStop": "UNAVAILABLE",
+          "mtfMerit": "UNAVAILABLE"
+        },
+        "wavefront": {
+          "rmsWaves": 2.9164390731545655,
+          "pvWaves": 10.060793911403199,
+          "coverage": 1,
+          "validSamples": 2056,
+          "maxAdjacentPhaseWaves": 0.7124149806138949,
+          "maxMappingResidualMm": 1.2395820270446843e-10,
+          "reasons": {
+            "blocked": 2040
+          },
+          "elapsedMs": 74.0407909999999
+        },
+        "limitations": [
+          "Phase sampling unresolved: adjacent OPD exceeds 0.25 waves",
+          "Uniform amplitude on sampled reference sphere; no coatings, Fresnel loss or calibrated illumination",
+          "Off-axis chief-normal diffraction mapping remains experimental",
+          "No defocus removal; fixed shared physical image plane"
+        ],
+        "elapsedMs": 79.33283299999994
+      },
+      {
+        "settings": {
+          "field": 0.5,
+          "nm": 587.5618,
+          "targetEflMm": 50,
+          "imageCircleMm": 46.3,
+          "pupilGrid": 64,
+          "pupilExtent": 1.25,
+          "imageShiftMm": 0,
+          "focusPolicy": "fixed-prescription",
+          "removeTilt": false,
+          "allowApproximateMaterials": false,
+          "fields": [
+            0,
+            0.5,
+            1
+          ],
+          "apertures": [
+            2,
+            2.8,
+            4,
+            5.6
+          ],
+          "verifyConvergence": true,
+          "fNumber": 5.6
+        },
+        "status": {
+          "opl": "VALIDATED",
+          "wavefront": "VALIDATED EIKONAL / SAMPLED PUPIL",
+          "psf": "UNAVAILABLE",
+          "mtf": "UNAVAILABLE",
+          "zernike": "UNAVAILABLE",
+          "polychromatic": "UNAVAILABLE",
+          "tStop": "UNAVAILABLE",
+          "mtfMerit": "UNAVAILABLE"
+        },
+        "wavefront": {
+          "rmsWaves": 1.7132629385003213,
+          "pvWaves": 7.430010076147065,
+          "coverage": 0.9883268482490273,
+          "validSamples": 2040,
+          "maxAdjacentPhaseWaves": 0.5527206581068689,
+          "maxMappingResidualMm": 9.997271667724178e-9,
+          "reasons": {
+            "blocked": 2056
+          },
+          "elapsedMs": 104.33075000000008
+        },
+        "limitations": [
+          "Phase sampling unresolved: adjacent OPD exceeds 0.25 waves",
+          "Uniform amplitude on sampled reference sphere; no coatings, Fresnel loss or calibrated illumination",
+          "Off-axis chief-normal diffraction mapping remains experimental",
+          "No defocus removal; fixed shared physical image plane",
+          "Zernike fit unavailable: support extends outside the defined unit disk",
+          "PSF coordinates lie in chief-normal image plane; oblique sensor projection and pupil apodization are unvalidated"
+        ],
+        "elapsedMs": 104.39158399999997
+      },
+      {
+        "settings": {
+          "field": 1,
+          "nm": 587.5618,
+          "targetEflMm": 50,
+          "imageCircleMm": 46.3,
+          "pupilGrid": 64,
+          "pupilExtent": 1.25,
+          "imageShiftMm": 0,
+          "focusPolicy": "fixed-prescription",
+          "removeTilt": false,
+          "allowApproximateMaterials": false,
+          "fields": [
+            0,
+            0.5,
+            1
+          ],
+          "apertures": [
+            2,
+            2.8,
+            4,
+            5.6
+          ],
+          "verifyConvergence": true,
+          "fNumber": 5.6
+        },
+        "status": {
+          "opl": "VALIDATED",
+          "wavefront": "VALIDATED EIKONAL / SAMPLED PUPIL",
+          "psf": "UNAVAILABLE",
+          "mtf": "UNAVAILABLE",
+          "zernike": "UNAVAILABLE",
+          "polychromatic": "UNAVAILABLE",
+          "tStop": "UNAVAILABLE",
+          "mtfMerit": "UNAVAILABLE"
+        },
+        "wavefront": {
+          "rmsWaves": 3.0505968301032564,
+          "pvWaves": 16.66122714134808,
+          "coverage": 0.9552529182879378,
+          "validSamples": 1980,
+          "maxAdjacentPhaseWaves": 0.8561015982226543,
+          "maxMappingResidualMm": 9.771153137361748e-9,
+          "reasons": {
+            "blocked": 2116
+          },
+          "elapsedMs": 104.27712500000007
+        },
+        "limitations": [
+          "Phase sampling unresolved: adjacent OPD exceeds 0.25 waves",
+          "Uniform amplitude on sampled reference sphere; no coatings, Fresnel loss or calibrated illumination",
+          "Off-axis chief-normal diffraction mapping remains experimental",
+          "No defocus removal; fixed shared physical image plane",
+          "Zernike fit unavailable: support extends outside the defined unit disk",
+          "PSF coordinates lie in chief-normal image plane; oblique sensor projection and pupil apodization are unvalidated"
+        ],
+        "elapsedMs": 104.34004199999981
+      }
+    ],
+    "multiFieldMultiApertureMs": 1119.724125,
+    "highResolution": [
+      {
+        "fNumber": 2,
+        "field": 0,
+        "grid": 256,
+        "rmsWaves": 9.704934760969564,
+        "maxAdjacentPhaseWaves": 0.5850349669066084,
+        "reasons": {
+          "unmapped": 26340,
+          "blocked": 7044
+        },
+        "diffractionEligible": false
+      },
+      {
+        "fNumber": 2,
+        "field": 1,
+        "grid": 256,
+        "rmsWaves": 35.47921542451284,
+        "maxAdjacentPhaseWaves": 3.3628964246691595,
+        "reasons": {
+          "unmapped": 28914,
+          "blocked": 6042
+        },
+        "diffractionEligible": false
+      },
+      {
+        "fNumber": 5.6,
+        "field": 0,
+        "grid": 256,
+        "rmsWaves": 2.9124045062086195,
+        "maxAdjacentPhaseWaves": 0.179272879168888,
+        "reasons": {
+          "blocked": 32680
+        },
+        "diffractionEligible": true
+      },
+      {
+        "fNumber": 5.6,
+        "field": 1,
+        "grid": 256,
+        "rmsWaves": 3.0676216092920447,
+        "maxAdjacentPhaseWaves": 0.22790626222212396,
+        "reasons": {
+          "blocked": 33870
+        },
+        "diffractionEligible": true
+      }
+    ],
+    "experimentalStoppedDown": {
+      "settings": {
+        "field": 0,
+        "nm": 587.5618,
+        "targetEflMm": 50,
+        "imageCircleMm": 46.3,
+        "pupilGrid": 256,
+        "pupilExtent": 1.25,
+        "imageShiftMm": 0,
+        "focusPolicy": "fixed-prescription",
+        "removeTilt": false,
+        "allowApproximateMaterials": false,
+        "fNumber": 5.6,
+        "padding": 4,
+        "verifyConvergence": false
+      },
+      "status": {
+        "opl": "VALIDATED",
+        "wavefront": "VALIDATED EIKONAL / SAMPLED PUPIL",
+        "psf": "EXPERIMENTAL",
+        "mtf": "EXPERIMENTAL",
+        "zernike": "EXPERIMENTAL CLIPPED-PUPIL FIT",
+        "polychromatic": "UNAVAILABLE",
+        "tStop": "UNAVAILABLE",
+        "mtfMerit": "UNAVAILABLE"
+      },
+      "wavefront": {
+        "rmsWaves": 2.9124045062086195,
+        "pvWaves": 10.079669646671347,
+        "coverage": 0.9978134110787172,
+        "validSamples": 32856,
+        "maxAdjacentPhaseWaves": 0.179272879168888,
+        "maxMappingResidualMm": 7.785568772569784e-9,
+        "reasons": {
+          "blocked": 32680
+        },
+        "elapsedMs": 1140.5115830000004
+      },
+      "diffraction": {
+        "strehl": 0.0005033231253476101,
+        "pitchMm": 0.000636543151575243,
+        "encircledEnergy": [
+          {
+            "radiusMm": 0.003881862581492865,
+            "energy": 0.000997081816096487
+          },
+          {
+            "radiusMm": 0.00776372516298573,
+            "energy": 0.0033118609715072577
+          },
+          {
+            "radiusMm": 0.019409312907464324,
+            "energy": 0.02069177916254992
+          },
+          {
+            "radiusMm": 0.005,
+            "energy": 0.0018602496350197122
+          },
+          {
+            "radiusMm": 0.01,
+            "energy": 0.005441466261925073
+          },
+          {
+            "radiusMm": 0.025,
+            "energy": 0.0328865206605437
+          },
+          {
+            "radiusMm": 0.05,
+            "energy": 0.13494140759743853
+          }
+        ],
+        "mtf": [
+          {
+            "frequencyLpMm": 20,
+            "tangential": 0.030626799051719906,
+            "sagittal": 0.03062679905166064
+          },
+          {
+            "frequencyLpMm": 40,
+            "tangential": 0.010552573386994047,
+            "sagittal": 0.010552573386762453
+          },
+          {
+            "frequencyLpMm": 80,
+            "tangential": 0.0028938544871644884,
+            "sagittal": 0.002893854487127756
+          }
+        ],
+        "psfMs": 45.08175000000119,
+        "mtfMs": 33.028667000000496,
+        "estimatedArrayBytes": 50331648
+      },
+      "limitations": [
+        "Uniform amplitude on sampled reference sphere; no coatings, Fresnel loss or calibrated illumination",
+        "Off-axis chief-normal diffraction mapping remains experimental",
+        "No defocus removal; fixed shared physical image plane",
+        "Per-prescription convergence not verified"
+      ],
+      "elapsedMs": 1341.0537079999995
+    }
+  },
+  "throughput": [
+    {
+      "opticalPath": false,
+      "rays": 100000,
+      "elapsedMs": 209.08679200000006,
+      "raysPerSecond": 478270.2869151102,
+      "checksum": 2094.020133493614
+    },
+    {
+      "opticalPath": true,
+      "rays": 100000,
+      "elapsedMs": 228.38254199999938,
+      "raysPerSecond": 437861.83971978154,
+      "checksum": 2094.020133493614
+    }
+  ],
+  "memory": {
+    "rss": 452149248,
+    "heapTotal": 178012160,
+    "heapUsed": 84215400,
+    "external": 78527138,
+    "arrayBuffers": 77093115
+  },
+  "plateValidation": "Analytical oblique dispersive plate OPL covered by tests/optical-path.test.cjs; plane plate alone is not a focusing imaging lens"
+}

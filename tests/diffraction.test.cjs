@@ -37,3 +37,6 @@ test('pupil and padding convergence are distinct: padding changes image pitch, n
  const a32=F.calculate(pupil(32)),a64=F.calculate(pupil(64)),a128=F.calculate(pupil(128)),p2=F.calculate(pupil(128),{padding:2});
  const expected=F.circularMTF(.4),f=a128.nominalCircularCutoffLpMm*.4,e=r=>Math.abs(F.sampleCurve(r.otf.tangential,f)-expected);a.ok(e(a128)<.002);a.ok(e(a128)<e(a32));a.ok(e(a64)<.006);near(p2.pitchMm,a128.pitchMm*2,1e-15);near(F.sampleCurve(p2.otf.tangential,f),F.sampleCurve(a128.otf.tangential,f),1e-12);
 });
+test('wavelength changes physical diffraction scale, not the normalized clear-pupil transform',()=>{
+ const red=pupil(64),blue=pupil(64);red.settings.nm=656.2725;blue.settings.nm=486.1327;const r=F.calculate(red),b=F.calculate(blue);near(r.pitchMm/b.pitchMm,red.settings.nm/blue.settings.nm,1e-14);near(r.nominalCircularCutoffLpMm/b.nominalCircularCutoffLpMm,blue.settings.nm/red.settings.nm,1e-14);a.deepEqual(r.psf,b.psf);
+});

@@ -29,3 +29,9 @@ Delivered in 0.5.3: whole-material glass substitutions with interface-power init
 - Focused New Lens method selector and refinement diagnostics; existing synthesis and Search Lab protocols preserved.
 
 See [optical validation](OPTICAL_VALIDATION.md), [methods and limitations](OPTIMIZATION_METHODS.md) and [measured comparisons](OPTIMIZATION_BENCHMARKS.md). Active-constraint derivatives remain conservative, DLS is sequential, and multi-stage refinement has no mid-phase checkpoint. Physical aperture-opening continuation, symmetry/group-power coordinates, rigorous pupil mapping, diffraction PSF/MTF, transmission and fabrication tolerance analysis remain future work. Geometric improvement is not a production-lens certification.
+
+## Milestone 5 — 0.7.0: physical image quality
+
+Implemented independent OPL checks, reference-sphere eikonal mapping, sampled OPD, ANSI/OSA Zernike fits, scalar monochromatic FFT PSF, direct sampled Strehl/energy, complex OTF/PTF and directional MTF. A dedicated finalist worker/UI supports common-focus field/aperture/wavelength sweeps and candidate comparison. Restricted on-axis scalar/paraxial status requires per-prescription convergence. See [physical image quality](PHYSICAL_IMAGE_QUALITY.md) and [validation](DIFFRACTION_VALIDATION.md).
+
+Off-axis diffraction and discrete global-focus diagnostics remain experimental. Combined polychromatic PSF/MTF, quantitative pupil apodization, finite conjugates, high-NA vector diffraction, T-stop and MTF merit operands remain unavailable. OMIT50 f/2 is unresolved at the supported grid limit; no reliable f/2 MTF is claimed. Future work must validate these extensions before production badges or optimization integration.

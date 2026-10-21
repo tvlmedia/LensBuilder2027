@@ -776,3 +776,12 @@ input:disabled {
 .synthesisCandidate p { white-space:pre-line; line-height:1.7; }
 .synthesisCandidate .btn { margin:8px 8px 0 0; }
 .synthesisCandidate > input { float:right; }
+
+/* Tier 5 scientific plots: real samples, independent of the geometric preview. */
+.physicalPlots { display: flex; flex-wrap: wrap; gap: 24px; }
+.physicalPlots figure { flex: 1 1 280px; max-width: 440px; margin: 8px 0; }
+.physicalPlots canvas { display: block; width: 256px; height: 256px; image-rendering: pixelated; margin: 10px 0; }
+.physicalPlots figcaption { max-width: 440px; line-height: 1.5; }
+#physicalMetrics { max-height: 330px; overflow: auto; white-space: pre-wrap; }
+#physicalMtf { max-width: 100%; height: auto; }
+#physicalWarnings { color: #f2b45e; }

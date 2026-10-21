@@ -14,7 +14,7 @@
   panel.className = "searchLab";
   panel.innerHTML = `
 <header><h2>Search Lab · numerical optical experiments</h2><button id="labHide" class="btn">Back to editor (search continues)</button></header>
-<p>Geometric infinity-conjugate analysis · spherical surfaces · offline numerical search. Pupil survival is an estimate, not illumination or certified image coverage. T-stop, PSF and MTF remain unavailable.</p>
+<p>Geometric infinity-conjugate analysis · spherical surfaces · offline numerical search. Pupil survival is an estimate, not illumination or certified image coverage. T-stop remains unavailable. Selected finalists can be loaded into the editor and analyzed separately in Wavefront / PSF / MTF.</p>
 <div class="labConfig"><section><h3>Base lens & targets</h3><button id="labCapture" class="btn">Capture current editor lens</button><p id="labBase"></p>
 <label>Experiment name<input id="labName" value="LENS_SEARCH_001"></label>
 <label>Specification & hard constraints (JSON)<textarea id="labSpec" rows="16"></textarea></label>

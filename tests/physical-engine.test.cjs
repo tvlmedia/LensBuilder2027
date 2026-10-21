@@ -23,3 +23,6 @@ test('browser physical worker matches direct engine and reports malformed reques
  const worker=new Worker(harness,{eval:true}),next=()=>new Promise((resolve,reject)=>{worker.once('message',resolve);worker.once('error',reject);});
  try{const c={...config,verifyConvergence:false},pending=next();worker.postMessage({id:7,type:'analyze',system,config:c});const r=await pending;a.equal(r.type,'result');const local=E.batch(system,c);a.deepEqual(r.result.results[0].status,local.results[0].status);a.deepEqual(r.result.results[0].diffraction.psf,local.results[0].diffraction.psf);const fail=next();worker.postMessage({id:8,type:'nonsense'});a.equal((await fail).type,'error');}finally{await worker.terminate();}
 });
+test('large retained-result batches are rejected before tracing',()=>{
+ a.throws(()=>E.batch(system,{...config,pupilGrid:256,apertures:[16,22,32],fields:[0,.3,.5,.7,.85,1]}),/192 MiB/);
+});
