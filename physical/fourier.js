@@ -1,7 +1,7 @@
 /* Scalar paraxial Fraunhofer diffraction. Cartesian pupil, mm and nm. */
 (function(root){
  'use strict';
- const VERSION='scalar-fft-1';
+ const VERSION='scalar-fft-2',L=root.LBPhysicalLimits||require('./limits.js');
  function fft(re,im,inverse=false){
   const n=re.length;if(n<2||(n&(n-1))||im.length!==n)throw Error('FFT requires equal power-of-two arrays');
   for(let i=1,j=0;i<n;i++){let bit=n>>1;for(;j&bit;bit>>=1)j^=bit;j^=bit;if(i<j){[re[i],re[j]]=[re[j],re[i]];[im[i],im[j]]=[im[j],im[i]];}}
@@ -25,8 +25,8 @@
  function encircled(psf,n,pitchMm,radiiMm){return radiiMm.map(radius=>{let energy=0;for(let y=0;y<n;y++)for(let x=0;x<n;x++)if(Math.hypot(x-n/2,y-n/2)*pitchMm<=radius)energy+=psf[y*n+x];return {radiusMm:radius,energy};});}
  function circularMTF(nu){return nu>=1?0:nu<=0?1:2/Math.PI*(Math.acos(nu)-nu*Math.sqrt(1-nu*nu));}
  function sampleCurve(curve,f){if(!Number.isFinite(f)||f<0)throw Error('Frequency must be nonnegative');if(f>curve.at(-1).frequencyLpMm)return null;const step=curve[1].frequencyLpMm,k=Math.min(curve.length-2,Math.floor(f/step)),t=(f-curve[k].frequencyLpMm)/step;return curve[k].mtf*(1-t)+curve[k+1].mtf*t;}
- function calculate(w,{padding=4}={}){
-  const start=performance.now(),n=w.grid;if(![16,32,64,128,256].includes(n)||![2,4,8].includes(padding)||n*padding>1024)throw Error('Supported FFT: pupil 16–256, padding 2/4/8, at most 1024²');
+ function calculate(w,{padding=4,memoryLimitMiB=512}={}){
+  const start=performance.now(),n=w.grid;L.check(n,padding,{memoryLimitMiB});
   if(w.mask.length!==n*n||w.opdWaves.length!==n*n||!(w.pupilWidthMm>0&&w.reference.radiusMm>0&&w.settings.nm>0))throw Error('Invalid pupil dimensions or physical scale');
   if(!w.diffractionEligible)throw Error('Diffraction unavailable: unresolved pupil sampling');
   const m=n*padding,offset=(m-n)/2,re=new Float64Array(m*m),im=new Float64Array(m*m);let count=0;
@@ -37,7 +37,7 @@
   for(let i=0;i<intensity.length;i++)intensity[i]/=total;
   const psf=shift(intensity,m),waveMm=w.settings.nm*1e-6,pitchMm=waveMm*w.reference.radiusMm/(m*w.pupilWidthMm/n),imageFNumber=w.reference.radiusMm/(2*w.pupilRadiusMm),airyRadiusMm=1.219669891*waveMm*imageFNumber;
   const psfMs=performance.now()-start,otf=transfer(psf,m,pitchMm),ee=encircled(psf,m,pitchMm,[airyRadiusMm,2*airyRadiusMm,5*airyRadiusMm,.005,.01,.025,.05]);
-  return {schemaVersion:1,engineVersion:VERSION,grid:m,padding,pitchMm,psf,otf,encircledEnergy:ee,strehl:peak/(count*count),peakDensityPerMm2:peak/total/(pitchMm*pitchMm),normalization:'Unit total discrete energy; density = pixel energy / pixel area',imageFNumber,nominalCircularCutoffLpMm:1/(waveMm*imageFNumber),airyRadiusMm,parsevalRelativeError:Math.abs(total/(m*m*count)-1),psfMs,mtfMs:otf.elapsedMs,estimatedArrayBytes:8*m*m*6};
+  return {schemaVersion:1,engineVersion:VERSION,grid:m,padding,pitchMm,psf,otf,encircledEnergy:ee,strehl:peak/(count*count),peakDensityPerMm2:peak/total/(pitchMm*pitchMm),normalization:'Unit total discrete energy; density = pixel energy / pixel area',imageFNumber,nominalCircularCutoffLpMm:1/(waveMm*imageFNumber),airyRadiusMm,parsevalRelativeError:Math.abs(total/(m*m*count)-1),psfMs,mtfMs:otf.elapsedMs,pupilAreaMm2:count*(w.pupilWidthMm/n)**2,relativeNominalPupilArea:count*(w.pupilWidthMm/n)**2/(Math.PI*w.pupilRadiusMm**2),estimatedArrayBytes:8*m*m*6};
  }
  const api={VERSION,fft,fft2,shift,transfer,encircled,circularMTF,sampleCurve,calculate};root.LBFourier=api;if(typeof module!=='undefined')module.exports=api;
 })(globalThis);

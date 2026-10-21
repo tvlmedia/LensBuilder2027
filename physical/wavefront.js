@@ -2,7 +2,7 @@
 (function(root){
   'use strict';
   const O=root.LBOptics||require('../optics/core.js'),Multi=root.LBMultiAperture||require('../analysis/multi-aperture.js');
-  const VERSION='reference-sphere-1';
+  const VERSION='reference-sphere-2';
   const sub=(a,b)=>({x:a.x-b.x,y:a.y-b.y,z:a.z-b.z});
   function exitPupil(c){
     let matrix=[1,0,0,1];
@@ -23,7 +23,7 @@
   function settings(raw={}){
     const s={field:0,nm:587.5618,targetEflMm:50,imageCircleMm:43.27,pupilGrid:32,pupilExtent:1.25,imageShiftMm:0,focusPolicy:'fixed-prescription',removeTilt:false,allowApproximateMaterials:false,...raw};
     for(const k of ['nm','targetEflMm','imageCircleMm','pupilExtent'])if(!Number.isFinite(s[k])||s[k]<=0)throw Error(`Invalid ${k}`);
-    if(s.nm<400||s.nm>700||!Number.isFinite(s.field)||s.field<0||s.field>1||![16,32,64,128,256].includes(s.pupilGrid)||s.pupilExtent<1.1||s.pupilExtent>2||!Number.isFinite(s.imageShiftMm))throw Error('Invalid wavefront sampling or field');
+    if(s.nm<400||s.nm>700||!Number.isFinite(s.field)||s.field<0||s.field>1||![16,32,64,128,256,512].includes(s.pupilGrid)||s.pupilExtent<1.1||s.pupilExtent>2||!Number.isFinite(s.imageShiftMm))throw Error('Invalid wavefront sampling or field');
     if(!['fixed-prescription','global-image-shift'].includes(s.focusPolicy)||s.focusPolicy==='fixed-prescription'&&s.imageShiftMm!==0)throw Error('Image shift requires explicit global-image-shift policy');
     if(s.objectDistanceMm!==undefined&&s.objectDistanceMm!==Infinity)throw Error('Only infinity-conjugate physical analysis is supported');
     if(typeof s.removeTilt!=='boolean')throw Error('Tilt removal must be explicit boolean');return s;
@@ -42,9 +42,10 @@
     const reference={image:tr.hit,axis:tr.d,tangent:O.unit({x:-tr.d.y,y:tr.d.x,z:0}),radiusMm:radius,exitPupil:pupil,imagePlaneXMm:c.imageX};
     const intersection=sphereIntersection(tr,reference);if(!intersection)throw Error('Chief/reference sphere intersection failed');
     const referencePath=tr.opticalPathToLastSurfaceMm+intersection.distance;
-    return {s,system,c,chief,reference,referencePath};
+    return {s,system,c,chief,reference,referencePath,entranceRadiusMm:O.paraxial(c).entrancePupilRadiusMm,traceCount:0};
   }
   function atLaunch(g,y,z,clip=false){
+    g.traceCount=(g.traceCount||0)+1;
     const ray={p:{x:g.chief.p.x,y,z},d:g.chief.d},tr=O.trace(g.c,ray,{clip,opticalPath:true});
     if(!tr.ok)return {ok:false,reason:tr.reason};
     const sphere=sphereIntersection(tr,g.reference);if(!sphere)return {ok:false,reason:'reference sphere missed'};
@@ -55,19 +56,25 @@
   function inverse(g,u,v,baseJac){
     const a=baseJac,det=a[0]*a[3]-a[1]*a[2];
     let y=g.chief.p.y+(a[3]*u-a[1]*v)/det,z=(-a[2]*u+a[0]*v)/det;
-    const h=Math.max(1e-6,O.paraxial(g.c).entrancePupilRadiusMm*1e-5);
-    for(let iteration=0;iteration<12;iteration++){
-      const r=atLaunch(g,y,z),ry=atLaunch(g,y+h,z),rz=atLaunch(g,y,z+h);
-      if(!r.ok||!ry.ok||!rz.ok)return {ok:false,kind:'unmapped'};
+    const entrance=g.entranceRadiusMm||O.paraxial(g.c).entrancePupilRadiusMm,h=Math.max(1e-6,entrance*1e-5);
+    let r=atLaunch(g,y,z),maxCondition=0,backtracks=0;
+    // A paraxial guess can lie outside the traceable surface hemisphere.
+    // Restart from the valid chief, then use residual-decreasing steps only.
+    if(!r.ok){y=g.chief.p.y;z=0;r=atLaunch(g,y,z);}
+    for(let iteration=0;iteration<24;iteration++){
+      const ry=atLaunch(g,y+h,z),rz=atLaunch(g,y,z+h);
+      if(!r.ok||!ry.ok||!rz.ok)return {ok:false,kind:'unmapped',detail:r.reason||ry.reason||rz.reason};
       const j=[(ry.u-r.u)/h,(rz.u-r.u)/h,(ry.v-r.v)/h,(rz.v-r.v)/h],d=j[0]*j[3]-j[1]*j[2];
-      if(!Number.isFinite(d)||Math.abs(d)<1e-8||d*det<=0)return {ok:false,kind:'folded mapping'};
-      const du=r.u-u,dv=r.v-v;
-      if(Math.hypot(du,dv)<1e-8){const clipped=atLaunch(g,y,z,true);return clipped.ok?{...clipped,launchY:y,launchZ:z,residualMm:Math.hypot(du,dv),jacobianDeterminant:d}:{ok:false,kind:'blocked',reason:clipped.reason};}
+      const condition=j.reduce((s,x)=>s+x*x,0)/Math.abs(d);maxCondition=Math.max(maxCondition,condition);
+      if(!Number.isFinite(d)||Math.abs(d)<1e-8||d*det<=0||condition>1e8)return {ok:false,kind:'folded mapping'};
+      const du=r.u-u,dv=r.v-v,residual=Math.hypot(du,dv);
+      if(residual<1e-8){const clipped=atLaunch(g,y,z,true);return clipped.ok?{...clipped,launchY:y,launchZ:z,residualMm:residual,jacobianDeterminant:d,maxCondition,backtracks}:{ok:false,kind:'blocked',reason:clipped.reason};}
       const dy=(j[3]*du-j[1]*dv)/d,dz=(-j[2]*du+j[0]*dv)/d;
-      if(Math.hypot(dy,dz)>10*O.paraxial(g.c).entrancePupilRadiusMm)return {ok:false,kind:'unmapped'};
-      y-=dy;z-=dz;
+      let accepted=false;
+      for(let scale=Math.min(1,2*entrance/Math.hypot(dy,dz));scale>=1/1024;scale/=2){const q=atLaunch(g,y-scale*dy,z-scale*dz);if(q.ok&&Math.hypot(q.u-u,q.v-v)<residual){y-=scale*dy;z-=scale*dz;r=q;accepted=true;break;}backtracks++;}
+      if(!accepted)return {ok:false,kind:'unmapped',detail:'No residual-decreasing Newton step'};
     }
-    return {ok:false,kind:'unmapped'};
+    return {ok:false,kind:'unmapped',detail:'Iteration limit'};
   }
   function detrend(values,mask,coordinates,removeTilt){
     const ids=mask.flatMap((v,i)=>v?[i]:[]);if(!ids.length)throw Error('No clear pupil samples');
@@ -80,7 +87,7 @@
       const determinant=xx*yy-xy*xy;if(determinant<1e-20)throw Error('Degenerate tilt fit');tilt=[(yy*xw-xy*yw)/determinant,(xx*yw-xy*xw)/determinant];offset=mean-tilt[0]*xs-tilt[1]*ys;
       for(const i of ids)out[i]=values[i]-offset-tilt[0]*coordinates[i][0]-tilt[1]*coordinates[i][1];
     }
-    const usable=ids.map(i=>out[i]);return {values:out,pistonMm:offset,tiltMmPerNormalizedPupil:tilt,rmsMm:Math.sqrt(usable.reduce((s,v)=>s+v*v,0)/ids.length),pvMm:Math.max(...usable)-Math.min(...usable)};
+    const usable=ids.map(i=>out[i]);return {values:out,pistonMm:offset,tiltMmPerNormalizedPupil:tilt,rmsMm:Math.sqrt(usable.reduce((s,v)=>s+v*v,0)/ids.length),pvMm:usable.reduce((a,v)=>Math.max(a,v),-Infinity)-usable.reduce((a,v)=>Math.min(a,v),Infinity)};
   }
   function sample(input,raw={}){
     const start=performance.now(),g=geometry(input,raw),n=g.s.pupilGrid,radius=g.reference.exitPupil.radiusMm,width=2*g.s.pupilExtent*radius,h=Math.max(radius*1e-4,1e-5);
@@ -88,20 +95,20 @@
     if(!b.ok||!by.ok||!bz.ok)throw Error('Central pupil mapping failed');
     const jac=[(by.u-b.u)/h,(bz.u-b.u)/h,(by.v-b.v)/h,(bz.v-b.v)/h];
     if(Math.abs(jac[0]*jac[3]-jac[1]*jac[2])<1e-8)throw Error('Singular central pupil mapping');
-    const mask=[],rawOpdMm=[],coordinates=[],reasons={},mapping=[];let border=0,maxResidual=0,nominal=0,nominalClear=0;
+    const mask=[],rawOpdMm=[],coordinates=[],reasons={},mapping=[];let border=0,maxResidual=0,nominal=0,nominalClear=0,failedInside=0,maxCondition=0,backtracks=0;const failureDetails={};
     for(let row=0;row<n;row++)for(let col=0;col<n;col++){
       const u=((col+.5)/n-.5)*width,v=((row+.5)/n-.5)*width,q=inverse(g,u,v,jac),inside=u*u+v*v<=radius*radius;
       mask.push(q.ok?1:0);rawOpdMm.push(q.ok?q.opdMm:null);coordinates.push([u/radius,v/radius]);
       if(inside){nominal++;if(q.ok)nominalClear++;}
-      if(q.ok){maxResidual=Math.max(maxResidual,q.residualMm);if(row===0||col===0||row===n-1||col===n-1)border++;mapping.push([q.launchY,q.launchZ]);}
-      else {reasons[q.kind]=(reasons[q.kind]||0)+1;mapping.push(null);}
+      if(q.ok){maxCondition=Math.max(maxCondition,q.maxCondition);backtracks+=q.backtracks;maxResidual=Math.max(maxResidual,q.residualMm);if(row===0||col===0||row===n-1||col===n-1)border++;mapping.push([q.launchY,q.launchZ]);}
+      else {if(inside&&q.kind!=='blocked')failedInside++;const why=q.detail||q.reason||q.kind;failureDetails[why]=(failureDetails[why]||0)+1;reasons[q.kind]=(reasons[q.kind]||0)+1;mapping.push(null);}
     }
     const fit=detrend(rawOpdMm,mask,coordinates,g.s.removeTilt),waveMm=g.s.nm*1e-6,opdWaves=fit.values.map(v=>v===null?null:v/waveMm);
-    let maxPhaseStep=0;for(let y=0;y<n;y++)for(let x=0;x<n;x++){const i=y*n+x;if(!mask[i])continue;for(const j of [x+1<n?i+1:-1,y+1<n?i+n:-1])if(j>=0&&mask[j])maxPhaseStep=Math.max(maxPhaseStep,Math.abs(opdWaves[i]-opdWaves[j]));}
+    let maxPhaseStep=0,maxCurvature=0,unsafeEdges=0;for(let y=0;y<n;y++)for(let x=0;x<n;x++){const i=y*n+x;if(!mask[i])continue;for(const j of [x+1<n?i+1:-1,y+1<n?i+n:-1])if(j>=0&&mask[j]){const delta=Math.abs(opdWaves[i]-opdWaves[j]);maxPhaseStep=Math.max(maxPhaseStep,delta);if(delta>.25)unsafeEdges++;}if(x>0&&x<n-1&&mask[i-1]&&mask[i+1])maxCurvature=Math.max(maxCurvature,Math.abs(opdWaves[i-1]-2*opdWaves[i]+opdWaves[i+1]));if(y>0&&y<n-1&&mask[i-n]&&mask[i+n])maxCurvature=Math.max(maxCurvature,Math.abs(opdWaves[i-n]-2*opdWaves[i]+opdWaves[i+n]));}
     const failures=[];if(reasons.unmapped||reasons['folded mapping'])failures.push('Incomplete or folded ray-to-pupil mapping');if(border)failures.push('Clear pupil reaches sampling boundary');if(maxPhaseStep>.25)failures.push('Phase sampling unresolved: adjacent OPD exceeds 0.25 waves');
     const numericalAperture=radius/g.reference.radiusMm;
     const status=failures.length?'EXPERIMENTAL':g.s.field===0&&numericalAperture<=.05&&nominalClear===nominal?'VALIDATED SCALAR/PARAXIAL REGIME':'EXPERIMENTAL';
-    return {schemaVersion:1,engineVersion:VERSION,settings:g.s,reference:g.reference,referencePathMm:g.referencePath,grid:n,pupilWidthMm:width,pupilRadiusMm:radius,coordinates,mask,rawOpdMm,opdWaves,launchCoordinatesMm:mapping,pistonMm:fit.pistonMm,removedTiltMm:fit.tiltMmPerNormalizedPupil,rmsWaves:fit.rmsMm/waveMm,pvWaves:fit.pvMm/waveMm,rmsMm:fit.rmsMm,pvMm:fit.pvMm,validSamples:mask.reduce((a,b)=>a+b,0),pupilCoverage:nominalClear/nominal,maxMappingResidualMm:maxResidual,maxAdjacentPhaseWaves:maxPhaseStep,numericalAperture,reasons,diffractionEligible:failures.length===0,status,limitations:[...failures,'Uniform amplitude on sampled reference sphere; no coatings, Fresnel loss or calibrated illumination','Off-axis chief-normal diffraction mapping remains experimental','No defocus removal; fixed shared physical image plane'],elapsedMs:performance.now()-start};
+    return {schemaVersion:1,engineVersion:VERSION,settings:g.s,reference:g.reference,referencePathMm:g.referencePath,grid:n,pupilWidthMm:width,pupilRadiusMm:radius,coordinates,mask,rawOpdMm,opdWaves,launchCoordinatesMm:mapping,pistonMm:fit.pistonMm,removedTiltMm:fit.tiltMmPerNormalizedPupil,rmsWaves:fit.rmsMm/waveMm,pvWaves:fit.pvMm/waveMm,rmsMm:fit.rmsMm,pvMm:fit.pvMm,validSamples:mask.reduce((a,b)=>a+b,0),pupilCoverage:nominalClear/nominal,maxMappingResidualMm:maxResidual,maxAdjacentPhaseWaves:maxPhaseStep,numericalAperture,reasons,diagnostics:{traceCount:g.traceCount,failedInsideNominalPupil:failedInside,failureDetails,maxJacobianCondition:maxCondition,backtracks,unresolvedPhaseEdges:unsafeEdges,maxPhaseGradientWavesPerMm:maxPhaseStep/(width/n),maxPhaseCurvatureWavesPerCell2:maxCurvature,clippedSquareFraction:(reasons.blocked||0)/(n*n),missingSquareFraction:((reasons.unmapped||0)+(reasons['folded mapping']||0))/(n*n),borderClearSamples:border,phaseRepresentation:'Unwrapped optical path, not wrapped phase'},diffractionEligible:failures.length===0,status,limitations:[...failures,'Uniform amplitude on sampled reference sphere; no coatings, Fresnel loss or calibrated illumination','Off-axis chief-normal diffraction mapping remains experimental','No defocus removal; fixed shared physical image plane'],elapsedMs:performance.now()-start};
   }
   const api={VERSION,settings,exitPupil,sphereIntersection,geometry,atLaunch,inverse,detrend,sample};root.LBWavefront=api;if(typeof module!=='undefined')module.exports=api;
 })(globalThis);
