@@ -1,6 +1,7 @@
 /* Tier 5 only: explicit fixed sensor, independently sampled convergence check. */
 (function(root){
  'use strict';
+ if(typeof module!=='undefined'&&!root.LB_BUILD)require('../build-info.js');
  const W=root.LBWavefront||require('./wavefront.js'),F=root.LBFourier||require('./fourier.js'),Z=root.LBZernike||require('./zernike.js'),L=root.LBPhysicalLimits||require('./limits.js'),S=root.LBSpectrum||require('./spectrum.js'),C=root.LBPhysicalConvergence||require('./convergence.js');
  const VERSION='physical-2',UNAVAILABLE='UNAVAILABLE',EXPERIMENTAL='EXPERIMENTAL';
  function provenance(system){
@@ -22,12 +23,13 @@
     try{const padded=F.calculate(w,{...settings,padding:(settings.padding||4)*2});padding=C.compare(d,padded,t);}catch(e){padding={passed:false,error:e.message};}
     const passed=pupil.passed&&padding.passed&&rmsDelta<=t.rmsAbsoluteWaves+t.rmsRelative*fine.w.rmsWaves&&airyDelta<=t.energy;
     convergence={coarseGrid:w.grid,fineGrid:fine.w.grid,rmsDeltaWaves:rmsDelta,maxMtfDelta:pupil.maxMtfDelta,strehlDelta:pupil.strehlDelta,airyEnergyDelta:airyDelta,pupil,padding,passed,meaning:'Separate pupil and Fourier-padding comparisons, not proof of physical-model accuracy'};
-    if(passed||!settings.automaticSampling)break;
+    if(passed||!settings.automaticSampling){history.push({grid:fine.w.grid,phaseStepWaves:fine.w.maxAdjacentPhaseWaves,mappingFailures:(fine.w.reasons.unmapped||0)+(fine.w.reasons['folded mapping']||0),traceCount:fine.w.diagnostics.traceCount,ms:fine.w.elapsedMs,role:'Convergence reference'});break;}
    }else if(!settings.automaticSampling){convergence={passed:false,reason:'Finer sample unresolved'};break;}
    current=fine;convergence=null;
   }
   const {w:wavefront,d:diffraction}=current,mappingFailed=!!(wavefront.reasons.unmapped||wavefront.reasons['folded mapping']||wavefront.diagnostics.borderClearSamples),physical=wavefront.settings.field===0&&wavefront.numericalAperture<=.05&&wavefront.pupilCoverage===1?'VALIDATED WITHIN MODEL':'EXPERIMENTAL';
-  const numerical=mappingFailed?'MAPPING FAILURE':!wavefront.diffractionEligible?'INSUFFICIENT SAMPLING':convergence?.passed?'CONVERGED':'NOT CONVERGED';
+  const energyPassed=!!diffraction&&diffraction.parsevalRelativeError<1e-10;
+  const numerical=diffraction&&!energyPassed?'INVALID':mappingFailed?'MAPPING FAILURE':!wavefront.diffractionEligible?'INSUFFICIENT SAMPLING':convergence?.passed?'CONVERGED':'NOT CONVERGED';
   const badge=diffraction?(numerical==='CONVERGED'&&physical==='VALIDATED WITHIN MODEL'?'VALIDATED SCALAR/PARAXIAL REGIME':EXPERIMENTAL):UNAVAILABLE;
   const result={schemaVersion:2,engineVersion:VERSION,...provenance(system),name:system.name||'Lens',settings:wavefront.settings,wavefront,convergence,samplingHistory:history,confidence:{numerical,physical,phaseSampling:wavefront.maxAdjacentPhaseWaves<=.25?'PASS':'INSUFFICIENT SAMPLING',pupilMapping:mappingFailed?'MAPPING FAILURE':'PASS',energyConservation:diffraction?(diffraction.parsevalRelativeError<1e-10?'PASS':'FAIL'):'NOT TESTED',convergence:convergence?.passed?'PASS':'NOT CONVERGED',sensorProjection:wavefront.settings.field===0?'IDENTITY':'EXPERIMENTAL',actualImageHeightMm:wavefront.reference.image.y,chiefIncidenceRad:Math.acos(wavefront.reference.axis.x)},status:{opl:'VALIDATED',wavefront:mappingFailed?EXPERIMENTAL:'VALIDATED EIKONAL / SAMPLED PUPIL',psf:badge,mtf:badge,zernike:UNAVAILABLE,polychromatic:UNAVAILABLE,tStop:UNAVAILABLE,mtfMerit:UNAVAILABLE},limitations:wavefront.limitations.slice()};
   try{result.zernike=Z.fit(wavefront);result.status.zernike=result.zernike.status;}catch(e){result.limitations.push(e.message);}
@@ -37,8 +39,9 @@
   result.elapsedMs=performance.now()-start;return result;
  }
  function spectralGroup(results,wavelengths,config){
-  if(results.some(r=>!r.diffraction))return {status:UNAVAILABLE,confidence:{numerical:'INSUFFICIENT SAMPLING',physical:'UNSUPPORTED'},reason:'At least one required monochromatic PSF is unavailable'};
-  if(config.removeTilt)return {status:UNAVAILABLE,reason:'Polychromatic registration requires retained pupil tilt'};
+  const groupSettings={field:results[0]?.settings.field,fNumber:results[0]?.settings.fNumber,wavelengths:S.weights(wavelengths),focusPolicy:config.focusPolicy||'fixed-prescription'};
+  if(results.some(r=>!r.diffraction))return {status:UNAVAILABLE,settings:groupSettings,confidence:{numerical:'INSUFFICIENT SAMPLING',physical:'UNSUPPORTED'},reason:'At least one required monochromatic PSF is unavailable'};
+  if(config.removeTilt)return {status:UNAVAILABLE,settings:groupSettings,confidence:{numerical:'INVALID',physical:'UNSUPPORTED'},reason:'Polychromatic registration requires retained pupil tilt'};
   const imageX=results[0].wavefront.reference.imagePlaneXMm;if(results.some(r=>Math.abs(r.wavefront.reference.imagePlaneXMm-imageX)>1e-9))throw Error('Spectral channels must share one sensor plane');
   const channels=results.map((r,i)=>({...r.diffraction,...S.sensorTransform(r.wavefront.reference),nm:r.settings.nm,weight:wavelengths[i].weight}));
   const imageGrid=config.imageGrid||{},combined=S.combine(channels,{...imageGrid,memoryLimitMiB:config.memoryLimitMiB||512});
@@ -52,12 +55,12 @@
  function batch(system,config={},progress=()=>{}){
   const fields=config.fields||[config.field??0],apertures=config.apertures||[config.fNumber],wavelengths=config.wavelengths||[{nm:config.nm||587.5618,weight:1}];
   if(!Array.isArray(fields)||!Array.isArray(apertures)||!Array.isArray(wavelengths)||!fields.length||!apertures.length||!wavelengths.length||fields.length*apertures.length*wavelengths.length>72)throw Error('Select 1–72 analysis configurations');
-  S.weights(wavelengths);const active=wavelengths.filter(w=>w.weight>0),count=fields.length*apertures.length*active.length,n=config.automaticSampling?(config.maxPupilGrid||512):(config.pupilGrid||32),m=n*(config.padding||4);
+  S.weights(wavelengths);const active=wavelengths.filter(w=>w.weight>0),count=fields.length*apertures.length*active.length,n=config.automaticSampling!==false&&config.verifyConvergence!==false?Math.max(config.pupilGrid||32,config.maxPupilGrid||256):(config.pupilGrid||32),m=n*(config.padding||4);
   if(count*(24*m*m+128*n*n)>192*1024*1024)throw Error('Analysis exceeds the 192 MiB retained-result estimate; reduce configurations or sampling');
   L.check(n,config.padding||4,config);
-  const start=performance.now(),results=[],spectral=[];
+  const start=performance.now(),results=[],spectral=[];let retainedSpectralBytes=0;
   for(const fNumber of apertures)for(const field of fields){const group=[];for(const {nm}of active){progress({completed:results.length,total:count,field,fNumber,nm});let q;try{q=one(system,{...config,field,fNumber,nm});}catch(e){q={settings:{...config,field,fNumber,nm},confidence:{numerical:'INVALID',physical:'UNSUPPORTED'},status:{opl:UNAVAILABLE,wavefront:UNAVAILABLE,psf:UNAVAILABLE,mtf:UNAVAILABLE},error:e.message};}results.push(q);group.push(q);}
-   if(config.polychromatic){progress({completed:results.length,total:count,stage:'Spectral registration',field,fNumber});try{spectral.push(spectralGroup(group,active,config));}catch(e){spectral.push({status:UNAVAILABLE,settings:{field,fNumber},confidence:{numerical:'INVALID',physical:'UNSUPPORTED'},reason:e.message});}}
+   if(config.polychromatic){progress({completed:results.length,total:count,stage:'Spectral registration',field,fNumber});try{const p=spectralGroup(group,active,config),bytes=p.diffraction?24*p.diffraction.grid**2:0;if(count*(24*m*m+128*n*n)+retainedSpectralBytes+bytes>192*1024*1024)throw Error('Combined monochromatic and spectral results exceed the 192 MiB retained-result estimate; reduce configurations or image grid');retainedSpectralBytes+=bytes;spectral.push(p);}catch(e){spectral.push({status:UNAVAILABLE,settings:{field,fNumber},confidence:{numerical:'INVALID',physical:'UNSUPPORTED'},reason:e.message});}}
   }
   return {schemaVersion:2,engineVersion:VERSION,...provenance(system),system:structuredClone(system),config:structuredClone(config),results,polychromatic:config.polychromatic?{status:spectral.some(r=>r.diffraction)?EXPERIMENTAL:UNAVAILABLE,results:spectral}:{status:UNAVAILABLE,reason:'Spectral combination not requested; separate monochromatic results, no MTF averaging.'},focusPolicy:config.focusPolicy||'fixed-prescription',elapsedMs:performance.now()-start};
  }
@@ -67,8 +70,9 @@
   const trials=offsets.map(imageShiftMm=>{let sum=0,weight=0;try{for(const field of fields)for(const fNumber of apertures)for(const w of wavelengths){if(!(w.weight>0))continue;const q=W.sample(system,{...config,field,fNumber,nm:w.nm,pupilGrid:32,focusPolicy:'global-image-shift',imageShiftMm});if(q.reasons.unmapped||q.reasons['folded mapping'])throw Error('Unmapped pupil');sum+=q.rmsWaves**2*w.weight;weight+=w.weight;}if(!weight)throw Error('No positive spectral weight');return {imageShiftMm,rmsWaves:Math.sqrt(sum/weight)};}catch(e){return {imageShiftMm,error:e.message,rmsWaves:null};}});
   const valid=trials.filter(x=>x.rmsWaves!==null).sort((a,b)=>a.rmsWaves-b.rmsWaves);return {status:'EXPERIMENTAL DIAGNOSTIC',objective:'Minimum weighted mean-square wavefront error over one shared image shift; finite 32² pupil and discrete offsets',trials,best:valid[0]||null,applied:false};
  }
+ function reportRecord(batch){const omitted=new Set(['psf','mask','phaseRiskMask','rawOpdMm','opdWaves','coordinates','launchCoordinatesMm','real','imag']);return JSON.parse(JSON.stringify({...batch,reportNote:'Raster arrays omitted; prescription and exact settings retained for reanalysis'},(key,value)=>omitted.has(key)&&(Array.isArray(value)||ArrayBuffer.isView(value))?undefined:ArrayBuffer.isView(value)?Array.from(value):value));}
  function requestRecord(system,config){W.settings(config);return {schemaVersion:2,engineVersion:VERSION,...provenance(system),kind:'physical-analysis-request',system:structuredClone(system),config:structuredClone(config)};}
  function restore(record){if(!((record?.schemaVersion===1&&record?.engineVersion==='physical-1')||(record?.schemaVersion===2&&record?.engineVersion===VERSION))||record?.kind!=='physical-analysis-request')throw Error('Unsupported physical request schema');return requestRecord(record.system,record.config);}
  function comparisonWarnings(records){if(records.length<2)return [];const warnings=[],first=records[0];for(const r of records.slice(1)){if(JSON.stringify(r.config)!==JSON.stringify(first.config))warnings.push('Different sampling, wavelength, field, aperture or focus configuration; re-run with shared settings');const image=s=>s.surfaces.slice(1,-1).reduce((a,x)=>a+x.t,0);if(Math.abs(image(r.system)-image(first.system))>1e-9)warnings.push('Different prescription image-plane coordinates: fixed focus is relative to each lens, not a common bench position');}return [...new Set(warnings)];}
- const api={VERSION,one,batch,spectralGroup,provenance,focusScan,requestRecord,restore,comparisonWarnings};root.LBPhysical=api;if(typeof module!=='undefined')module.exports=api;
+ const api={VERSION,one,batch,spectralGroup,provenance,reportRecord,focusScan,requestRecord,restore,comparisonWarnings};root.LBPhysical=api;if(typeof module!=='undefined')module.exports=api;
 })(globalThis);

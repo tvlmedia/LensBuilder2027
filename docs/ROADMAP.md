@@ -13,7 +13,7 @@ Remaining gates:
 5. Supplied production mount envelope, tolerancing/manufacturability analysis and real transmission data.
 6. Deliberate numerical Omit character targets and matched prime sets, only after the technical/measurement foundation is adequate.
 
-Diffraction PSF/MTF, T-stop, manufacturing cost and production certification remain unavailable.
+Diffraction PSF/MTF is available under the documented scalar-model gates; T-stop, manufacturing cost and production certification remain unavailable.
 
 Delivered in 0.5.2: bounded combined-displacement local refinement, deterministic synthesis checkpoint replay, and explicit dense-gated refinement of existing candidates. The [paired benchmark](GEOMETRY_REFINEMENT.md) measures modest algorithmic gains at equal extra budget; it does not close the optical-quality or external-validation gates.
 
@@ -35,3 +35,6 @@ See [optical validation](OPTICAL_VALIDATION.md), [methods and limitations](OPTIM
 Implemented independent OPL checks, reference-sphere eikonal mapping, sampled OPD, ANSI/OSA Zernike fits, scalar monochromatic FFT PSF, direct sampled Strehl/energy, complex OTF/PTF and directional MTF. A dedicated finalist worker/UI supports common-focus field/aperture/wavelength sweeps and candidate comparison. Restricted on-axis scalar/paraxial status requires per-prescription convergence. See [physical image quality](PHYSICAL_IMAGE_QUALITY.md) and [validation](DIFFRACTION_VALIDATION.md).
 
 Off-axis diffraction and discrete global-focus diagnostics remain experimental. Combined polychromatic PSF/MTF, quantitative pupil apodization, finite conjugates, high-NA vector diffraction, T-stop and MTF merit operands remain unavailable. OMIT50 f/2 is unresolved at the supported grid limit; no reliable f/2 MTF is claimed. Future work must validate these extensions before production badges or optimization integration.
+
+
+Delivered in 0.8.0: [bounded error-driven sampling](ADAPTIVE_PUPIL_SAMPLING.md), robust inverse mapping, 512² pupils / 2048² FFT, [registered spectral intensity](POLYCHROMATIC_PSF_MTF.md), stronger convergence and separate numerical/physical confidence. [Milestone 6 report](MILESTONE6_REPORT.md) records the remaining OMIT50 f/2 limitations. Next scientific gates are reliable distorted-pupil boundaries, independently validated oblique-plane propagation and integrated spectral references. MTF-based optimization stays unavailable until those relevant gates pass.

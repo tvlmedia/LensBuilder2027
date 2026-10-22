@@ -1,5 +1,11 @@
 # Validation and convergence — 0.7.0
 
+## 0.8.0 update
+
+0.8.0 adds independent spectral-shift/overlap and sensor-transform tests, high-resolution checks, stronger convergence and cancellation tests. See [Milestone 6 results](MILESTONE6_REPORT.md). Historical results below describe 0.7; current eligibility requires the stronger checks.
+
+## Historical 0.7 implementation
+
 ## Evidence and reproducibility
 
 Run `npm test`, `npm run check`, `npm run benchmark:physical`, and `npm run audit:physical`. Benchmarks are in `benchmarks/physical-quality-v1.json`; the before/after geometric audit is in `benchmarks/physical-baseline-audit.json`. This milestone started from commit `8e1ea99cbd4275b381e95b89ef1ada2b3996a67e`, not published 0.5.3. PR #3 was open/unmerged at audit. All 111 pre-existing tests passed before changes; all 189 archived optimization prescriptions reproduced their stored merit with maximum absolute difference **0**, both before and after optional OPL accumulation.

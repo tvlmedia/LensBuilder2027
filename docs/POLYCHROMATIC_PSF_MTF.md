@@ -1,0 +1,17 @@
+# Registered polychromatic PSF / MTF — 0.8.0
+
+`physical/spectrum.js` combines incoherent **intensities** on a common physical sensor grid. Each wavelength uses the same prescription image plane (or the same explicit global shift). Its Sellmeier tracing, chief intercept, pupil, OPD and diffraction scale are calculated separately. Fitted pupil tilt removal is incompatible with spectral registration and is rejected. There is no independent chromatic refocusing or centroid recentering.
+
+A source PSF pixel is a finite-volume energy cell. Exact rectangular overlap fractions distribute its energy onto the common square grid, including fractional translation and the experimental off-axis affine scale. The origin is explicitly recorded (default first positive-weight chief intercept); other wavelength displacements remain relative to it. Pixel pitch is in mm; the UI accepts µm. An automatic power-of-two window encloses the full translated cells. Explicit windows that lose more than 1e-8 energy are rejected rather than silently renormalized.
+
+Weights are nonnegative finite integrated **image spectral energy** weights, normalized to sum one; visible wavelengths are 400–700 nm. Equal-energy and user-defined presets are provided. These are not incident-spectrum throughput weights, photopic data or camera-specific sensitivity. The application does not invent detector response, coatings, absolute transmission or T-stop. Relative nominal pupil area is only a uniform-amplitude area proxy.
+
+The output is `Σ normalizedWeight × registeredIntensity`. Its complex OTF is computed from that distribution and normalized at zero frequency; MTF is its magnitude. Averaging monochromatic MTF magnitudes is not used. In the independent two-channel ±a displacement test, the expected OTF modulation is cos(2πfa); an unequal weight also retains the expected complex phase and centroid.
+
+Tests cover identical channels, known shifts, unequal weights, different diffraction scales, controlled defocus, independent direct rectangle-overlap integration, energy, affine geometry, invalid weights and truncated grids. Energy conservation does not prove shape accuracy. Pupil refinement for every contributing channel plus additional doubled-padding spectral resampling must pass before numerical convergence is reported.
+
+The real-lens benchmark (550/587.5618/620 nm, weights 1/2/1, singlet f/32) conserves unit energy. Its spectral padding comparison passes (L1 0.01808, MTF maximum delta 0.003502), but a contributing channel fails the pupil convergence requirement at the configured maximum: the group correctly reports NOT CONVERGED. All integrated real-lens results remain physically EXPERIMENTAL pending independent integrated-lens references, even if numerical checks pass.
+
+JSON request export retains prescription, exact weights, focus, sampling and build fingerprint. Report export additionally retains numerical confidence, spectral registrations and OTF samples while omitting bulk raster arrays. Import recalculates; saved badges are never trusted.
+
+The incoherent weighted-intensity principle is also described in the [STScI JWST ETC PSF documentation](https://jwst-docs.stsci.edu/jwst-exposure-time-calculator-overview/jwst-etc-scenes-and-sources-page-overview/jwst-etc-point-spread-functions). That supports the combination principle; it is not a validation reference for this lens implementation.

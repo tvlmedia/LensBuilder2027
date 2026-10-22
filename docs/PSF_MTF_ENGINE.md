@@ -1,5 +1,11 @@
 # Scalar diffraction PSF, OTF and MTF — 0.7.0
 
+## 0.8.0 update
+
+0.8.0 supports bounded 2048² FFTs and registered polychromatic intensities. See [spectral integration](POLYCHROMATIC_PSF_MTF.md) and [stronger convergence](PHYSICAL_CONVERGENCE.md). Integrated real-lens spectra remain EXPERIMENTAL; MTF merit remains unavailable.
+
+## Historical 0.7 implementation
+
 ## Numerical model
 
 `physical/fourier.js` implements dependency-free complex radix-2 1D/2D FFTs. The clear reference-sphere pupil has uniform projected amplitude, `P = mask * exp(i 2π OPD_waves)`. Blocked cells are exactly zero. There is no RMS-to-Gaussian conversion, synthetic coating transmission or substitution of an Airy curve for an aberrated result.

@@ -1,5 +1,11 @@
 # Physical image quality — milestone 5 / 0.7.0
 
+## 0.8.0 update
+
+0.8.0 adds automatic bounded sampling, separate numerical/physical confidence, common-image-grid spectral analysis and numerical JSON export. See [Milestone 6 report](MILESTONE6_REPORT.md). Off-axis and integrated real-lens spectra remain experimental; physical merit/refinement remains unavailable.
+
+## Historical 0.7 implementation
+
 LensBuilder now has a separate Tier 5 wavefront and scalar diffraction analysis area. Geometric optimization stays unchanged. It calculates optical paths, reference-sphere OPD, sampled wavefront maps, ANSI/OSA Zernike fits, pupil-derived monochromatic PSF, energy, direct sampled Strehl, complex OTF/PTF and sagittal/tangential MTF with physical axes. Every result retains its settings, physical image plane, limitations and individual status.
 
 ## Workflow

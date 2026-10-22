@@ -32,7 +32,7 @@ const info = {
   synthesisEngineVersion: "synthesis-1",
   engineVersion: "lb2027-spherical-0.4.0",
   searchEngineVersion: "numerical-lab-2",
-  physicalEngineVersion: "physical-1",
+  physicalEngineVersion: "physical-2",
   dlsEngineVersion: "bounded-dls-1",
   baseCommit,
   sourceSha256: hash.digest("hex"),

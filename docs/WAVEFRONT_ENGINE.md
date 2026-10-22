@@ -1,5 +1,11 @@
 # Wavefront engine — 0.7.0
 
+## 0.8.0 update
+
+0.8.0 adds bounded inverse Newton backtracking, conditioning checks, unwrapped phase-gradient/curvature diagnostics and 512² sampling. Missing mappings stay invalid. See [adaptive sampling](ADAPTIVE_PUPIL_SAMPLING.md) and [off-axis limits](OFF_AXIS_DIFFRACTION.md).
+
+## Historical 0.7 implementation
+
 ## Supported model and coordinates
 
 Centered spherical/planar sequential lenses, object at infinity, object and image media air; wavelengths 400–700 nm. Lengths and OPL are mm, wavelength input is nm. The existing ray tracer's x axis is axial; field lies in x/y; z is sagittal. Field angle is `atan(field * imageCircleMm / (2 * targetEflMm))`. The target EFL defines the field convention; it is not substituted for measured focal length in diffraction scaling.
