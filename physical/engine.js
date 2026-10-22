@@ -5,36 +5,37 @@
  const W=root.LBWavefront||require('./wavefront.js'),F=root.LBFourier||require('./fourier.js'),Z=root.LBZernike||require('./zernike.js'),L=root.LBPhysicalLimits||require('./limits.js'),S=root.LBSpectrum||require('./spectrum.js'),C=root.LBPhysicalConvergence||require('./convergence.js');
  const VERSION='physical-2',UNAVAILABLE='UNAVAILABLE',EXPERIMENTAL='EXPERIMENTAL';
  function provenance(system){
-  const text=JSON.stringify(system);let hash=2166136261;for(let i=0;i<text.length;i++)hash=Math.imul(hash^text.charCodeAt(i),16777619);return {softwareVersion:'0.8.0',engineVersion:VERSION,prescriptionIdentifier:'fnv1a32-'+(hash>>>0).toString(16),build:root.LB_BUILD||{baseCommit:'3345ba26e7121754b30639ef5df917773020fd8d',note:'Node source: use repository commit and source fingerprint for exact provenance'}};
+  const text=JSON.stringify(system);let hash=2166136261;for(let i=0;i<text.length;i++)hash=Math.imul(hash^text.charCodeAt(i),16777619);return {softwareVersion:'0.8.1',engineVersion:VERSION,prescriptionIdentifier:'fnv1a32-'+(hash>>>0).toString(16),build:root.LB_BUILD||{baseCommit:'3345ba26e7121754b30639ef5df917773020fd8d',note:'Node source: use repository commit and source fingerprint for exact provenance'}};
  }
  function level(system,settings){L.check(settings.pupilGrid||32,settings.padding||4,settings);const w=W.sample(system,settings);return {w,d:w.diffractionEligible?F.calculate(w,settings):null};}
  function one(system,settings={}){
   settings={automaticSampling:true,maxPupilGrid:256,...settings};
-  const start=performance.now(),t=C.tolerances(settings.convergenceTolerances),history=[];let current=level(system,settings),convergence=null;
+  const start=performance.now(),t=C.tolerances(settings.convergenceTolerances),history=[],comparisons=[];let current=level(system,settings),convergence=null,termination=null;
   const maxGrid=settings.maxPupilGrid||512;if(!L.GRIDS.includes(maxGrid))throw Error('Invalid maximum pupil grid');
   for(;;){
    const {w,d}=current;history.push({grid:w.grid,phaseStepWaves:w.maxAdjacentPhaseWaves,mappingFailures:(w.reasons.unmapped||0)+(w.reasons['folded mapping']||0),traceCount:w.diagnostics.traceCount,ms:w.elapsedMs});
-   if(settings.verifyConvergence===false)break;
-   const next=w.grid*2;if(next>maxGrid)break;
-   if(!d&&!settings.automaticSampling)break;
-   let fine;try{fine=level(system,{...settings,pupilGrid:next});}catch(e){history.push({grid:next,error:e.message});break;}
+   if(settings.verifyConvergence===false){termination={code:'VERIFICATION_DISABLED',reason:'Convergence verification was explicitly disabled'};break;}
+   const next=w.grid*2;if(next>maxGrid){termination={code:'PUPIL_LIMIT',reason:'A finer pupil reference exceeds the configured maximum',evaluatedGrid:w.grid,requiredReferenceGrid:next,maxPupilGrid:maxGrid};break;}
+   if(!d&&!settings.automaticSampling){termination={code:'UNRESOLVED_PUPIL',reason:'Mapping or phase sampling prevents diffraction; automatic refinement is disabled'};break;}
+   let fine;try{fine=level(system,{...settings,pupilGrid:next});}catch(e){history.push({grid:next,error:e.message});termination={code:'REFERENCE_UNAVAILABLE',reason:e.message,requiredReferenceGrid:next};break;}
    if(d&&fine.d){
     const pupil=C.compare(d,fine.d,t),rmsDelta=Math.abs(w.rmsWaves-fine.w.rmsWaves),airyDelta=Math.abs(d.encircledEnergy[0].energy-fine.d.encircledEnergy[0].energy);let padding=null;
     try{const padded=F.calculate(w,{...settings,padding:(settings.padding||4)*2});padding=C.compare(d,padded,t);}catch(e){padding={passed:false,error:e.message};}
     const passed=pupil.passed&&padding.passed&&rmsDelta<=t.rmsAbsoluteWaves+t.rmsRelative*fine.w.rmsWaves&&airyDelta<=t.energy;
     convergence={coarseGrid:w.grid,fineGrid:fine.w.grid,rmsDeltaWaves:rmsDelta,maxMtfDelta:pupil.maxMtfDelta,strehlDelta:pupil.strehlDelta,airyEnergyDelta:airyDelta,pupil,padding,passed,meaning:'Separate pupil and Fourier-padding comparisons, not proof of physical-model accuracy'};
-    if(passed||!settings.automaticSampling){history.push({grid:fine.w.grid,phaseStepWaves:fine.w.maxAdjacentPhaseWaves,mappingFailures:(fine.w.reasons.unmapped||0)+(fine.w.reasons['folded mapping']||0),traceCount:fine.w.diagnostics.traceCount,ms:fine.w.elapsedMs,role:'Convergence reference'});break;}
-   }else if(!settings.automaticSampling){convergence={passed:false,reason:'Finer sample unresolved'};break;}
+    comparisons.push(convergence);
+    if(passed||!settings.automaticSampling){termination={code:passed?'CONVERGED':'AUTOMATIC_REFINEMENT_DISABLED',reason:passed?'Independent pupil and padding comparisons passed':'Comparison failed; automatic refinement is disabled'};history.push({grid:fine.w.grid,phaseStepWaves:fine.w.maxAdjacentPhaseWaves,mappingFailures:(fine.w.reasons.unmapped||0)+(fine.w.reasons['folded mapping']||0),traceCount:fine.w.diagnostics.traceCount,ms:fine.w.elapsedMs,role:'Convergence reference'});break;}
+   }else if(!settings.automaticSampling){convergence={coarseGrid:w.grid,fineGrid:fine.w.grid,passed:false,reason:'Finer sample unresolved'};comparisons.push(convergence);history.push({grid:fine.w.grid,phaseStepWaves:fine.w.maxAdjacentPhaseWaves,mappingFailures:(fine.w.reasons.unmapped||0)+(fine.w.reasons['folded mapping']||0),traceCount:fine.w.diagnostics.traceCount,ms:fine.w.elapsedMs,role:'Unresolved convergence reference'});termination={code:'UNRESOLVED_REFERENCE',reason:'The finer pupil cannot produce a resolved diffraction result'};break;}
    current=fine;convergence=null;
   }
   const {w:wavefront,d:diffraction}=current,mappingFailed=!!(wavefront.reasons.unmapped||wavefront.reasons['folded mapping']||wavefront.diagnostics.borderClearSamples),physical=wavefront.settings.field===0&&wavefront.numericalAperture<=.05&&wavefront.pupilCoverage===1?'VALIDATED WITHIN MODEL':'EXPERIMENTAL';
   const energyPassed=!!diffraction&&diffraction.parsevalRelativeError<1e-10;
   const numerical=diffraction&&!energyPassed?'INVALID':mappingFailed?'MAPPING FAILURE':!wavefront.diffractionEligible?'INSUFFICIENT SAMPLING':convergence?.passed?'CONVERGED':'NOT CONVERGED';
   const badge=diffraction?(numerical==='CONVERGED'&&physical==='VALIDATED WITHIN MODEL'?'VALIDATED SCALAR/PARAXIAL REGIME':EXPERIMENTAL):UNAVAILABLE;
-  const result={schemaVersion:2,engineVersion:VERSION,...provenance(system),name:system.name||'Lens',settings:wavefront.settings,wavefront,convergence,samplingHistory:history,confidence:{numerical,physical,phaseSampling:wavefront.maxAdjacentPhaseWaves<=.25?'PASS':'INSUFFICIENT SAMPLING',pupilMapping:mappingFailed?'MAPPING FAILURE':'PASS',energyConservation:diffraction?(diffraction.parsevalRelativeError<1e-10?'PASS':'FAIL'):'NOT TESTED',convergence:convergence?.passed?'PASS':'NOT CONVERGED',sensorProjection:wavefront.settings.field===0?'IDENTITY':'EXPERIMENTAL',actualImageHeightMm:wavefront.reference.image.y,chiefIncidenceRad:Math.acos(wavefront.reference.axis.x)},status:{opl:'VALIDATED',wavefront:mappingFailed?EXPERIMENTAL:'VALIDATED EIKONAL / SAMPLED PUPIL',psf:badge,mtf:badge,zernike:UNAVAILABLE,polychromatic:UNAVAILABLE,tStop:UNAVAILABLE,mtfMerit:UNAVAILABLE},limitations:wavefront.limitations.slice()};
+  const result={schemaVersion:2,engineVersion:VERSION,...provenance(system),name:system.name||'Lens',settings:wavefront.settings,wavefront,convergence,convergenceComparisons:comparisons,samplingTermination:termination,samplingHistory:history,confidence:{numerical,physical,phaseSampling:wavefront.maxAdjacentPhaseWaves<=.25?'PASS':'INSUFFICIENT SAMPLING',pupilMapping:mappingFailed?'MAPPING FAILURE':'PASS',energyConservation:diffraction?(diffraction.parsevalRelativeError<1e-10?'PASS':'FAIL'):'NOT TESTED',convergence:convergence?.passed?'PASS':'NOT CONVERGED',sensorProjection:wavefront.settings.field===0?'IDENTITY':'EXPERIMENTAL',actualImageHeightMm:wavefront.reference.image.y,chiefIncidenceRad:Math.acos(wavefront.reference.axis.x)},status:{opl:'VALIDATED',wavefront:mappingFailed?EXPERIMENTAL:'VALIDATED EIKONAL / SAMPLED PUPIL',psf:badge,mtf:badge,zernike:UNAVAILABLE,polychromatic:UNAVAILABLE,tStop:UNAVAILABLE,mtfMerit:UNAVAILABLE},limitations:wavefront.limitations.slice()};
   try{result.zernike=Z.fit(wavefront);result.status.zernike=result.zernike.status;}catch(e){result.limitations.push(e.message);}
   if(diffraction){result.diffraction=diffraction;result.diffraction.moments=S.moments(diffraction.psf,diffraction.grid,diffraction.pitchMm);}
-  if(numerical!=='CONVERGED')result.limitations.push('Numerical convergence not demonstrated');
+  if(numerical!=='CONVERGED')result.limitations.push('Numerical convergence not demonstrated'+(termination?' · '+termination.reason:''));
   if(physical==='EXPERIMENTAL')result.limitations.push('Off-axis, high-NA or clipped-pupil physical model is experimental; thresholds have not been relaxed');
   result.elapsedMs=performance.now()-start;return result;
  }

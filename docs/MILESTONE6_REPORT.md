@@ -81,3 +81,9 @@ Machine-readable evidence: `advanced-baseline-audit.json`, `advanced-mapping-pro
 Tested on the local `/LensBuilder2027/` Pages-style path: singlet monochromatic analysis, three-channel polychromatic analysis, progress messages, unavailable OMIT50 spectral result, and cancellation during a 512² mapping job. New Lens completed a 256-unit-budget run with eight dense candidates (best dense merit 79.7410); Search Lab completed 64/64 valid evaluations. No browser console errors were observed in these runs. These are smoke tests, not multi-day memory or browser-compatibility certification.
 
 An additional browser f/16 spectral run at 550/587.5618/620 nm (1/2/1, pupil64/max128/padding4) passed numerical convergence while retaining physical EXPERIMENTAL status. Its energy error was 6.88e-15. Numerical JSON export was downloaded and inspected: version 0.8.0, build fingerprint, full prescription and confidence were retained, bulk PSF arrays omitted.
+
+## Follow-up 0.8.1
+
+Convergence history is now retained when refinement stops at a resource limit, and the UI explicitly distinguishes numerical status, physical model status and termination reason. Failed/blocked inverse-mapping attempts now contribute to retry and condition diagnostics. These changes improve diagnosis, not the supported optical regime.
+
+The 16-case physical regression benchmark preserves RMS, PV and eligibility exactly. All 161 tests pass; the complete 189-prescription geometric audit was rerun. Browser verification exercised a failed 32→64 comparison with a 64 maximum and confirmed the visible grid-limit reason and retained comparison history. See [convergence details](PHYSICAL_CONVERGENCE.md) and `benchmarks/physical-diagnostics-v1.json`.

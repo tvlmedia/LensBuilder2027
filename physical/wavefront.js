@@ -58,23 +58,24 @@
     let y=g.chief.p.y+(a[3]*u-a[1]*v)/det,z=(-a[2]*u+a[0]*v)/det;
     const entrance=g.entranceRadiusMm||O.paraxial(g.c).entrancePupilRadiusMm,h=Math.max(1e-6,entrance*1e-5);
     let r=atLaunch(g,y,z),maxCondition=0,backtracks=0;
+    const fail=(kind,detail)=>({ok:false,kind,detail,maxCondition,backtracks});
     // A paraxial guess can lie outside the traceable surface hemisphere.
     // Restart from the valid chief, then use residual-decreasing steps only.
     if(!r.ok){y=g.chief.p.y;z=0;r=atLaunch(g,y,z);}
     for(let iteration=0;iteration<24;iteration++){
       const ry=atLaunch(g,y+h,z),rz=atLaunch(g,y,z+h);
-      if(!r.ok||!ry.ok||!rz.ok)return {ok:false,kind:'unmapped',detail:r.reason||ry.reason||rz.reason};
+      if(!r.ok||!ry.ok||!rz.ok)return fail('unmapped',r.reason||ry.reason||rz.reason);
       const j=[(ry.u-r.u)/h,(rz.u-r.u)/h,(ry.v-r.v)/h,(rz.v-r.v)/h],d=j[0]*j[3]-j[1]*j[2];
       const condition=j.reduce((s,x)=>s+x*x,0)/Math.abs(d);maxCondition=Math.max(maxCondition,condition);
-      if(!Number.isFinite(d)||Math.abs(d)<1e-8||d*det<=0||condition>1e8)return {ok:false,kind:'folded mapping'};
+      if(!Number.isFinite(d)||Math.abs(d)<1e-8||d*det<=0||condition>1e8)return fail('folded mapping','Singular, reversed or ill-conditioned Jacobian');
       const du=r.u-u,dv=r.v-v,residual=Math.hypot(du,dv);
-      if(residual<1e-8){const clipped=atLaunch(g,y,z,true);return clipped.ok?{...clipped,launchY:y,launchZ:z,residualMm:residual,jacobianDeterminant:d,maxCondition,backtracks}:{ok:false,kind:'blocked',reason:clipped.reason};}
+      if(residual<1e-8){const clipped=atLaunch(g,y,z,true);return clipped.ok?{...clipped,launchY:y,launchZ:z,residualMm:residual,jacobianDeterminant:d,maxCondition,backtracks}:fail('blocked',clipped.reason);}
       const dy=(j[3]*du-j[1]*dv)/d,dz=(-j[2]*du+j[0]*dv)/d;
       let accepted=false;
       for(let scale=Math.min(1,2*entrance/Math.hypot(dy,dz));scale>=1/1024;scale/=2){const q=atLaunch(g,y-scale*dy,z-scale*dz);if(q.ok&&Math.hypot(q.u-u,q.v-v)<residual){y-=scale*dy;z-=scale*dz;r=q;accepted=true;break;}backtracks++;}
-      if(!accepted)return {ok:false,kind:'unmapped',detail:'No residual-decreasing Newton step'};
+      if(!accepted)return fail('unmapped','No residual-decreasing Newton step');
     }
-    return {ok:false,kind:'unmapped',detail:'Iteration limit'};
+    return fail('unmapped','Iteration limit');
   }
   function detrend(values,mask,coordinates,removeTilt){
     const ids=mask.flatMap((v,i)=>v?[i]:[]);if(!ids.length)throw Error('No clear pupil samples');
@@ -100,7 +101,8 @@
       const u=((col+.5)/n-.5)*width,v=((row+.5)/n-.5)*width,q=inverse(g,u,v,jac),inside=u*u+v*v<=radius*radius;
       mask.push(q.ok?1:0);rawOpdMm.push(q.ok?q.opdMm:null);coordinates.push([u/radius,v/radius]);
       if(inside){nominal++;if(q.ok)nominalClear++;}
-      if(q.ok){maxCondition=Math.max(maxCondition,q.maxCondition);backtracks+=q.backtracks;maxResidual=Math.max(maxResidual,q.residualMm);if(row===0||col===0||row===n-1||col===n-1)border++;mapping.push([q.launchY,q.launchZ]);}
+      maxCondition=Math.max(maxCondition,q.maxCondition||0);backtracks+=q.backtracks||0;
+      if(q.ok){maxResidual=Math.max(maxResidual,q.residualMm);if(row===0||col===0||row===n-1||col===n-1)border++;mapping.push([q.launchY,q.launchZ]);}
       else {if(inside&&q.kind!=='blocked')failedInside++;const why=q.detail||q.reason||q.kind;failureDetails[why]=(failureDetails[why]||0)+1;reasons[q.kind]=(reasons[q.kind]||0)+1;mapping.push(null);}
     }
     const fit=detrend(rawOpdMm,mask,coordinates,g.s.removeTilt),waveMm=g.s.nm*1e-6,opdWaves=fit.values.map(v=>v===null?null:v/waveMm);

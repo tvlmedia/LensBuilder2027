@@ -15,3 +15,13 @@ Workers report channel progress and run all expensive computations off the UI th
 `npm run benchmark:advanced` records mapping time/ray counts, combined OPD sampling, PSF and MTF timings, spectral integration, memory snapshots and the OMIT challenge. OPD time is included in wavefront sampling, not separately instrumented. The process memory snapshot is **not** a measured peak; no peak-memory or universal performance guarantee is claimed. No global optical cache is used.
 
 For reproduction use `npm test`, `npm run check`, `npm run benchmark:advanced` and `npm run audit:physical`. Historical 0.7 reference data remains in `physical-quality-v1.json`; new measurements are in `advanced-physical-v1.json`. Build metadata identifies source by SHA-256 plus recorded Git parent, since embedding a commit's own hash would change that commit.
+
+## 0.8.1: retained evidence and explicit termination
+
+`convergenceComparisons` retains every executed pupil/padding comparison even when later refinement reaches its grid or memory limit. `samplingTermination` distinguishes CONVERGED, PUPIL_LIMIT, REFERENCE_UNAVAILABLE, VERIFICATION_DISABLED, UNRESOLVED_PUPIL, UNRESOLVED_REFERENCE and AUTOMATIC_REFINEMENT_DISABLED. Grid-limit records include the evaluated grid, required next reference and configured maximum.
+
+`convergence` still describes the accepted/current comparison only; it is deliberately null when the returned finer result has no independent finer reference. Historical comparisons are never reused to assign a success badge to another grid. The UI shows numerical status, model status and stop reason together; exported reports retain the full comparison history.
+
+Inverse-mapping backtrack counts and maximum Jacobian-condition diagnostics now include failed and blocked attempts, rather than successful rays only. The old zero counts in some 0.8.0 reports therefore understated solver work. This is a diagnostic correction: missing samples stay invalid, optical values and eligibility criteria are unchanged.
+
+`npm run benchmark:diagnostics` rechecks all 16 archived OMIT50 field/aperture configurations and asserts exact RMS/PV and status agreement against 0.8.0. Evidence is saved in `benchmarks/physical-diagnostics-v1.json`. Four additional tests cover exhausted grids, memory-blocked references, successful/disabled verification and failed-mapping diagnostics. The complete suite now has 161 passing tests.

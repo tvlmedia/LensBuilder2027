@@ -1,0 +1,530 @@
+{
+  "version": "0.8.1",
+  "build": {
+    "applicationVersion": "0.8.1",
+    "synthesisEngineVersion": "synthesis-1",
+    "engineVersion": "lb2027-spherical-0.4.0",
+    "searchEngineVersion": "numerical-lab-2",
+    "physicalEngineVersion": "physical-2",
+    "dlsEngineVersion": "bounded-dls-1",
+    "baseCommit": "571779e6c3276674ca5d75f40ed7048c5f4304e3",
+    "sourceSha256": "457d4def5d5c5e6924e1d559ec94887148be6bf3d394cea2e5ebe18fbcca9e88",
+    "note": "Source fingerprint identifies this exact working source; baseCommit is its recorded Git parent at stamping time."
+  },
+  "reference": "advanced-physical-v1.json (0.8.0)",
+  "cases": [
+    {
+      "field": 0,
+      "fNumber": 2,
+      "rmsDelta": 0,
+      "pvDelta": 0,
+      "status": "UNAVAILABLE",
+      "previousReportedBacktracks": 0,
+      "allAttemptBacktracks": 65399,
+      "samplingTermination": {
+        "code": "UNRESOLVED_PUPIL",
+        "reason": "Mapping or phase sampling prevents diffraction; automatic refinement is disabled"
+      }
+    },
+    {
+      "field": 0.5,
+      "fNumber": 2,
+      "rmsDelta": 0,
+      "pvDelta": 0,
+      "status": "UNAVAILABLE",
+      "previousReportedBacktracks": 0,
+      "allAttemptBacktracks": 63728,
+      "samplingTermination": {
+        "code": "UNRESOLVED_PUPIL",
+        "reason": "Mapping or phase sampling prevents diffraction; automatic refinement is disabled"
+      }
+    },
+    {
+      "field": 0.7,
+      "fNumber": 2,
+      "rmsDelta": 0,
+      "pvDelta": 0,
+      "status": "UNAVAILABLE",
+      "previousReportedBacktracks": 0,
+      "allAttemptBacktracks": 63865,
+      "samplingTermination": {
+        "code": "UNRESOLVED_PUPIL",
+        "reason": "Mapping or phase sampling prevents diffraction; automatic refinement is disabled"
+      }
+    },
+    {
+      "field": 1,
+      "fNumber": 2,
+      "rmsDelta": 0,
+      "pvDelta": 0,
+      "status": "UNAVAILABLE",
+      "previousReportedBacktracks": 0,
+      "allAttemptBacktracks": 64056,
+      "samplingTermination": {
+        "code": "UNRESOLVED_PUPIL",
+        "reason": "Mapping or phase sampling prevents diffraction; automatic refinement is disabled"
+      }
+    },
+    {
+      "field": 0,
+      "fNumber": 2.8,
+      "rmsDelta": 0,
+      "pvDelta": 0,
+      "status": "UNAVAILABLE",
+      "previousReportedBacktracks": 0,
+      "allAttemptBacktracks": 5924,
+      "samplingTermination": {
+        "code": "UNRESOLVED_PUPIL",
+        "reason": "Mapping or phase sampling prevents diffraction; automatic refinement is disabled"
+      }
+    },
+    {
+      "field": 0.5,
+      "fNumber": 2.8,
+      "rmsDelta": 0,
+      "pvDelta": 0,
+      "status": "UNAVAILABLE",
+      "previousReportedBacktracks": 0,
+      "allAttemptBacktracks": 5602,
+      "samplingTermination": {
+        "code": "UNRESOLVED_PUPIL",
+        "reason": "Mapping or phase sampling prevents diffraction; automatic refinement is disabled"
+      }
+    },
+    {
+      "field": 0.7,
+      "fNumber": 2.8,
+      "rmsDelta": 0,
+      "pvDelta": 0,
+      "status": "UNAVAILABLE",
+      "previousReportedBacktracks": 0,
+      "allAttemptBacktracks": 5740,
+      "samplingTermination": {
+        "code": "UNRESOLVED_PUPIL",
+        "reason": "Mapping or phase sampling prevents diffraction; automatic refinement is disabled"
+      }
+    },
+    {
+      "field": 1,
+      "fNumber": 2.8,
+      "rmsDelta": 0,
+      "pvDelta": 0,
+      "status": "UNAVAILABLE",
+      "previousReportedBacktracks": 0,
+      "allAttemptBacktracks": 6600,
+      "samplingTermination": {
+        "code": "UNRESOLVED_PUPIL",
+        "reason": "Mapping or phase sampling prevents diffraction; automatic refinement is disabled"
+      }
+    },
+    {
+      "field": 0,
+      "fNumber": 4,
+      "rmsDelta": 0,
+      "pvDelta": 0,
+      "status": "UNAVAILABLE",
+      "previousReportedBacktracks": 0,
+      "allAttemptBacktracks": 0,
+      "samplingTermination": {
+        "code": "UNRESOLVED_PUPIL",
+        "reason": "Mapping or phase sampling prevents diffraction; automatic refinement is disabled"
+      }
+    },
+    {
+      "field": 0.5,
+      "fNumber": 4,
+      "rmsDelta": 0,
+      "pvDelta": 0,
+      "status": "UNAVAILABLE",
+      "previousReportedBacktracks": 0,
+      "allAttemptBacktracks": 0,
+      "samplingTermination": {
+        "code": "UNRESOLVED_PUPIL",
+        "reason": "Mapping or phase sampling prevents diffraction; automatic refinement is disabled"
+      }
+    },
+    {
+      "field": 0.7,
+      "fNumber": 4,
+      "rmsDelta": 0,
+      "pvDelta": 0,
+      "status": "UNAVAILABLE",
+      "previousReportedBacktracks": 0,
+      "allAttemptBacktracks": 0,
+      "samplingTermination": {
+        "code": "UNRESOLVED_PUPIL",
+        "reason": "Mapping or phase sampling prevents diffraction; automatic refinement is disabled"
+      }
+    },
+    {
+      "field": 1,
+      "fNumber": 4,
+      "rmsDelta": 0,
+      "pvDelta": 0,
+      "status": "UNAVAILABLE",
+      "previousReportedBacktracks": 0,
+      "allAttemptBacktracks": 0,
+      "samplingTermination": {
+        "code": "UNRESOLVED_PUPIL",
+        "reason": "Mapping or phase sampling prevents diffraction; automatic refinement is disabled"
+      }
+    },
+    {
+      "field": 0,
+      "fNumber": 5.6,
+      "rmsDelta": 0,
+      "pvDelta": 0,
+      "status": "UNAVAILABLE",
+      "previousReportedBacktracks": 0,
+      "allAttemptBacktracks": 0,
+      "samplingTermination": {
+        "code": "UNRESOLVED_PUPIL",
+        "reason": "Mapping or phase sampling prevents diffraction; automatic refinement is disabled"
+      }
+    },
+    {
+      "field": 0.5,
+      "fNumber": 5.6,
+      "rmsDelta": 0,
+      "pvDelta": 0,
+      "status": "UNAVAILABLE",
+      "previousReportedBacktracks": 0,
+      "allAttemptBacktracks": 0,
+      "samplingTermination": {
+        "code": "UNRESOLVED_PUPIL",
+        "reason": "Mapping or phase sampling prevents diffraction; automatic refinement is disabled"
+      }
+    },
+    {
+      "field": 0.7,
+      "fNumber": 5.6,
+      "rmsDelta": 0,
+      "pvDelta": 0,
+      "status": "UNAVAILABLE",
+      "previousReportedBacktracks": 0,
+      "allAttemptBacktracks": 0,
+      "samplingTermination": {
+        "code": "UNRESOLVED_PUPIL",
+        "reason": "Mapping or phase sampling prevents diffraction; automatic refinement is disabled"
+      }
+    },
+    {
+      "field": 1,
+      "fNumber": 5.6,
+      "rmsDelta": 0,
+      "pvDelta": 0,
+      "status": "UNAVAILABLE",
+      "previousReportedBacktracks": 0,
+      "allAttemptBacktracks": 0,
+      "samplingTermination": {
+        "code": "UNRESOLVED_PUPIL",
+        "reason": "Mapping or phase sampling prevents diffraction; automatic refinement is disabled"
+      }
+    }
+  ],
+  "diagnostics": [
+    {
+      "config": {
+        "maxPupilGrid": 64
+      },
+      "status": {
+        "numerical": "NOT CONVERGED",
+        "physical": "VALIDATED WITHIN MODEL",
+        "phaseSampling": "PASS",
+        "pupilMapping": "PASS",
+        "energyConservation": "PASS",
+        "convergence": "NOT CONVERGED",
+        "sensorProjection": "IDENTITY",
+        "actualImageHeightMm": 0,
+        "chiefIncidenceRad": 0
+      },
+      "samplingTermination": {
+        "code": "PUPIL_LIMIT",
+        "reason": "A finer pupil reference exceeds the configured maximum",
+        "evaluatedGrid": 64,
+        "requiredReferenceGrid": 128,
+        "maxPupilGrid": 64
+      },
+      "convergenceComparisons": [
+        {
+          "coarseGrid": 32,
+          "fineGrid": 64,
+          "rmsDeltaWaves": 0.0003765140443244188,
+          "maxMtfDelta": 0.006230018805791937,
+          "strehlDelta": 0.00029524188166263343,
+          "airyEnergyDelta": 0.0000763933763742175,
+          "pupil": {
+            "passed": false,
+            "distributionL1": 0.055519241556752884,
+            "centroidDeltaMm": 2.617572027781197e-14,
+            "widthRelative": 0.00104974724131696,
+            "peakRelative": 0.018793180827072507,
+            "maxMtfDelta": 0.006230018805791937,
+            "strehlDelta": 0.00029524188166263343,
+            "maxEnergyDelta": 0.006273865663284917,
+            "fineEnergyOutsideComparisonWindow": 0.013094915698897092,
+            "tolerances": {
+              "mtf": 0.02,
+              "strehl": 0.02,
+              "energy": 0.02,
+              "rmsAbsoluteWaves": 0.001,
+              "rmsRelative": 0.02,
+              "distributionL1": 0.05,
+              "centroidPixels": 0.25,
+              "widthRelative": 0.05,
+              "peakRelative": 0.05
+            },
+            "momentRadiusMm": 0.0573305149249411,
+            "comparisonWindow": "L1 on coarse image window; centroid and RMS width within common radius max(50 µm, five nominal Airy radii). Airy full-plane second moments diverge."
+          },
+          "padding": {
+            "passed": true,
+            "distributionL1": 0.029652644619162744,
+            "centroidDeltaMm": 6.48097871952717e-17,
+            "widthRelative": 0.0032626346298887925,
+            "peakRelative": 0.02471708429926125,
+            "maxMtfDelta": 1.1102230246251565e-16,
+            "strehlDelta": 0,
+            "maxEnergyDelta": 0.015216859521193782,
+            "fineEnergyOutsideComparisonWindow": 0.000012556483339642988,
+            "tolerances": {
+              "mtf": 0.02,
+              "strehl": 0.02,
+              "energy": 0.02,
+              "rmsAbsoluteWaves": 0.001,
+              "rmsRelative": 0.02,
+              "distributionL1": 0.05,
+              "centroidPixels": 0.25,
+              "widthRelative": 0.05,
+              "peakRelative": 0.05
+            },
+            "momentRadiusMm": 0.0573305149249411,
+            "comparisonWindow": "L1 on coarse image window; centroid and RMS width within common radius max(50 µm, five nominal Airy radii). Airy full-plane second moments diverge."
+          },
+          "passed": false,
+          "meaning": "Separate pupil and Fourier-padding comparisons, not proof of physical-model accuracy"
+        }
+      ]
+    },
+    {
+      "config": {
+        "maxPupilGrid": 256,
+        "memoryLimitMiB": 32
+      },
+      "status": {
+        "numerical": "NOT CONVERGED",
+        "physical": "VALIDATED WITHIN MODEL",
+        "phaseSampling": "PASS",
+        "pupilMapping": "PASS",
+        "energyConservation": "PASS",
+        "convergence": "NOT CONVERGED",
+        "sensorProjection": "IDENTITY",
+        "actualImageHeightMm": 0,
+        "chiefIncidenceRad": 0
+      },
+      "samplingTermination": {
+        "code": "REFERENCE_UNAVAILABLE",
+        "reason": "Physical analysis memory estimate exceeds configured limit",
+        "requiredReferenceGrid": 128
+      },
+      "convergenceComparisons": [
+        {
+          "coarseGrid": 32,
+          "fineGrid": 64,
+          "rmsDeltaWaves": 0.0003765140443244188,
+          "maxMtfDelta": 0.006230018805791937,
+          "strehlDelta": 0.00029524188166263343,
+          "airyEnergyDelta": 0.0000763933763742175,
+          "pupil": {
+            "passed": false,
+            "distributionL1": 0.055519241556752884,
+            "centroidDeltaMm": 2.617572027781197e-14,
+            "widthRelative": 0.00104974724131696,
+            "peakRelative": 0.018793180827072507,
+            "maxMtfDelta": 0.006230018805791937,
+            "strehlDelta": 0.00029524188166263343,
+            "maxEnergyDelta": 0.006273865663284917,
+            "fineEnergyOutsideComparisonWindow": 0.013094915698897092,
+            "tolerances": {
+              "mtf": 0.02,
+              "strehl": 0.02,
+              "energy": 0.02,
+              "rmsAbsoluteWaves": 0.001,
+              "rmsRelative": 0.02,
+              "distributionL1": 0.05,
+              "centroidPixels": 0.25,
+              "widthRelative": 0.05,
+              "peakRelative": 0.05
+            },
+            "momentRadiusMm": 0.0573305149249411,
+            "comparisonWindow": "L1 on coarse image window; centroid and RMS width within common radius max(50 µm, five nominal Airy radii). Airy full-plane second moments diverge."
+          },
+          "padding": {
+            "passed": true,
+            "distributionL1": 0.029652644619162744,
+            "centroidDeltaMm": 6.48097871952717e-17,
+            "widthRelative": 0.0032626346298887925,
+            "peakRelative": 0.02471708429926125,
+            "maxMtfDelta": 1.1102230246251565e-16,
+            "strehlDelta": 0,
+            "maxEnergyDelta": 0.015216859521193782,
+            "fineEnergyOutsideComparisonWindow": 0.000012556483339642988,
+            "tolerances": {
+              "mtf": 0.02,
+              "strehl": 0.02,
+              "energy": 0.02,
+              "rmsAbsoluteWaves": 0.001,
+              "rmsRelative": 0.02,
+              "distributionL1": 0.05,
+              "centroidPixels": 0.25,
+              "widthRelative": 0.05,
+              "peakRelative": 0.05
+            },
+            "momentRadiusMm": 0.0573305149249411,
+            "comparisonWindow": "L1 on coarse image window; centroid and RMS width within common radius max(50 µm, five nominal Airy radii). Airy full-plane second moments diverge."
+          },
+          "passed": false,
+          "meaning": "Separate pupil and Fourier-padding comparisons, not proof of physical-model accuracy"
+        }
+      ]
+    },
+    {
+      "config": {
+        "maxPupilGrid": 128
+      },
+      "status": {
+        "numerical": "CONVERGED",
+        "physical": "VALIDATED WITHIN MODEL",
+        "phaseSampling": "PASS",
+        "pupilMapping": "PASS",
+        "energyConservation": "PASS",
+        "convergence": "PASS",
+        "sensorProjection": "IDENTITY",
+        "actualImageHeightMm": 0,
+        "chiefIncidenceRad": 0
+      },
+      "samplingTermination": {
+        "code": "CONVERGED",
+        "reason": "Independent pupil and padding comparisons passed"
+      },
+      "convergenceComparisons": [
+        {
+          "coarseGrid": 32,
+          "fineGrid": 64,
+          "rmsDeltaWaves": 0.0003765140443244188,
+          "maxMtfDelta": 0.006230018805791937,
+          "strehlDelta": 0.00029524188166263343,
+          "airyEnergyDelta": 0.0000763933763742175,
+          "pupil": {
+            "passed": false,
+            "distributionL1": 0.055519241556752884,
+            "centroidDeltaMm": 2.617572027781197e-14,
+            "widthRelative": 0.00104974724131696,
+            "peakRelative": 0.018793180827072507,
+            "maxMtfDelta": 0.006230018805791937,
+            "strehlDelta": 0.00029524188166263343,
+            "maxEnergyDelta": 0.006273865663284917,
+            "fineEnergyOutsideComparisonWindow": 0.013094915698897092,
+            "tolerances": {
+              "mtf": 0.02,
+              "strehl": 0.02,
+              "energy": 0.02,
+              "rmsAbsoluteWaves": 0.001,
+              "rmsRelative": 0.02,
+              "distributionL1": 0.05,
+              "centroidPixels": 0.25,
+              "widthRelative": 0.05,
+              "peakRelative": 0.05
+            },
+            "momentRadiusMm": 0.0573305149249411,
+            "comparisonWindow": "L1 on coarse image window; centroid and RMS width within common radius max(50 µm, five nominal Airy radii). Airy full-plane second moments diverge."
+          },
+          "padding": {
+            "passed": true,
+            "distributionL1": 0.029652644619162744,
+            "centroidDeltaMm": 6.48097871952717e-17,
+            "widthRelative": 0.0032626346298887925,
+            "peakRelative": 0.02471708429926125,
+            "maxMtfDelta": 1.1102230246251565e-16,
+            "strehlDelta": 0,
+            "maxEnergyDelta": 0.015216859521193782,
+            "fineEnergyOutsideComparisonWindow": 0.000012556483339642988,
+            "tolerances": {
+              "mtf": 0.02,
+              "strehl": 0.02,
+              "energy": 0.02,
+              "rmsAbsoluteWaves": 0.001,
+              "rmsRelative": 0.02,
+              "distributionL1": 0.05,
+              "centroidPixels": 0.25,
+              "widthRelative": 0.05,
+              "peakRelative": 0.05
+            },
+            "momentRadiusMm": 0.0573305149249411,
+            "comparisonWindow": "L1 on coarse image window; centroid and RMS width within common radius max(50 µm, five nominal Airy radii). Airy full-plane second moments diverge."
+          },
+          "passed": false,
+          "meaning": "Separate pupil and Fourier-padding comparisons, not proof of physical-model accuracy"
+        },
+        {
+          "coarseGrid": 64,
+          "fineGrid": 128,
+          "rmsDeltaWaves": 0.000008105555047432933,
+          "maxMtfDelta": 0.0004834733812823233,
+          "strehlDelta": 0.000006223519321002513,
+          "airyEnergyDelta": 0.00006398839086674268,
+          "pupil": {
+            "passed": true,
+            "distributionL1": 0.023153152763668118,
+            "centroidDeltaMm": 4.586824760425339e-15,
+            "widthRelative": 0.0001408014012843024,
+            "peakRelative": 0.000006247010565663556,
+            "maxMtfDelta": 0.0004834733812823233,
+            "strehlDelta": 0.000006223519321002513,
+            "maxEnergyDelta": 0.0001575782985993035,
+            "fineEnergyOutsideComparisonWindow": 0.006389056458238396,
+            "tolerances": {
+              "mtf": 0.02,
+              "strehl": 0.02,
+              "energy": 0.02,
+              "rmsAbsoluteWaves": 0.001,
+              "rmsRelative": 0.02,
+              "distributionL1": 0.05,
+              "centroidPixels": 0.25,
+              "widthRelative": 0.05,
+              "peakRelative": 0.05
+            },
+            "momentRadiusMm": 0.0573305149249411,
+            "comparisonWindow": "L1 on coarse image window; centroid and RMS width within common radius max(50 µm, five nominal Airy radii). Airy full-plane second moments diverge."
+          },
+          "padding": {
+            "passed": true,
+            "distributionL1": 0.029236731644591365,
+            "centroidDeltaMm": 1.647938776175958e-16,
+            "widthRelative": 0.002830592368118696,
+            "peakRelative": 0.02425438790377884,
+            "maxMtfDelta": 4.996003610813204e-16,
+            "strehlDelta": 0,
+            "maxEnergyDelta": 0.015234528946809822,
+            "fineEnergyOutsideComparisonWindow": 0.0000031120254786465296,
+            "tolerances": {
+              "mtf": 0.02,
+              "strehl": 0.02,
+              "energy": 0.02,
+              "rmsAbsoluteWaves": 0.001,
+              "rmsRelative": 0.02,
+              "distributionL1": 0.05,
+              "centroidPixels": 0.25,
+              "widthRelative": 0.05,
+              "peakRelative": 0.05
+            },
+            "momentRadiusMm": 0.0573305149249411,
+            "comparisonWindow": "L1 on coarse image window; centroid and RMS width within common radius max(50 µm, five nominal Airy radii). Airy full-plane second moments diverge."
+          },
+          "passed": true,
+          "meaning": "Separate pupil and Fourier-padding comparisons, not proof of physical-model accuracy"
+        }
+      ]
+    }
+  ]
+}
