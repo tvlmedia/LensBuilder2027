@@ -87,3 +87,9 @@ An additional browser f/16 spectral run at 550/587.5618/620 nm (1/2/1, pupil64/m
 Convergence history is now retained when refinement stops at a resource limit, and the UI explicitly distinguishes numerical status, physical model status and termination reason. Failed/blocked inverse-mapping attempts now contribute to retry and condition diagnostics. These changes improve diagnosis, not the supported optical regime.
 
 The 16-case physical regression benchmark preserves RMS, PV and eligibility exactly. All 161 tests pass; the complete 189-prescription geometric audit was rerun. Browser verification exercised a failed 32→64 comparison with a 64 maximum and confirmed the visible grid-limit reason and retained comparison history. See [convergence details](PHYSICAL_CONVERGENCE.md) and `benchmarks/physical-diagnostics-v1.json`.
+
+## Follow-up 0.8.2
+
+Readable convergence tables now expose each measured difference, its maximum and its individual status. Required unavailable measurements remain failures in JSON; undefined spectral Strehl is explicitly not applicable. Spectral results include confidence per wavelength. Existing acceptance thresholds and optical models are unchanged.
+
+The complete suite passes 165 tests. All 16 physical regression cases retain exactly the same RMS/PV and eligibility, and all 189 geometric merits remain unchanged. Browser checks confirmed the visible 0.055519-versus-0.05 PSF-distribution failure and the unconverged 550 nm channel in the f/32 spectral example. See [criterion semantics](PHYSICAL_CONVERGENCE.md).

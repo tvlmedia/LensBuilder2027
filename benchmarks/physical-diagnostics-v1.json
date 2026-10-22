@@ -1,14 +1,14 @@
 {
-  "version": "0.8.1",
+  "version": "0.8.2",
   "build": {
-    "applicationVersion": "0.8.1",
+    "applicationVersion": "0.8.2",
     "synthesisEngineVersion": "synthesis-1",
     "engineVersion": "lb2027-spherical-0.4.0",
     "searchEngineVersion": "numerical-lab-2",
     "physicalEngineVersion": "physical-2",
     "dlsEngineVersion": "bounded-dls-1",
-    "baseCommit": "571779e6c3276674ca5d75f40ed7048c5f4304e3",
-    "sourceSha256": "457d4def5d5c5e6924e1d559ec94887148be6bf3d394cea2e5ebe18fbcca9e88",
+    "baseCommit": "1bb025652e59ace1380579af27a425d165f8ee63",
+    "sourceSha256": "df40368249a88e10a4de921abf0745f9aec5fdeff5a4c4e4c81f95d4385dced6",
     "note": "Source fingerprint identifies this exact working source; baseCommit is its recorded Git parent at stamping time."
   },
   "reference": "advanced-physical-v1.json (0.8.0)",
@@ -255,6 +255,139 @@
           "airyEnergyDelta": 0.0000763933763742175,
           "pupil": {
             "passed": false,
+            "checks": [
+              {
+                "metric": "PSF distribution L1",
+                "value": 0.055519241556752884,
+                "limit": 0.05,
+                "unit": "",
+                "status": "FAIL",
+                "reason": ""
+              },
+              {
+                "metric": "Centroid displacement",
+                "value": 2.617572027781197e-14,
+                "limit": 0.00047004944,
+                "unit": "mm",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Relative RMS width change",
+                "value": 0.00104974724131696,
+                "limit": 0.05,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Relative peak change",
+                "value": 0.018793180827072507,
+                "limit": 0.05,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Direct Strehl change",
+                "value": 0.00029524188166263343,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "MTF tangential at 20 lp/mm",
+                "value": 0.0009395125509680247,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "MTF sagittal at 20 lp/mm",
+                "value": 0.000939512550964805,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "MTF tangential at 40 lp/mm",
+                "value": 0.003025543631217986,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "MTF sagittal at 40 lp/mm",
+                "value": 0.003025543631237637,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "MTF tangential at 80 lp/mm",
+                "value": 0.006230018805791937,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "MTF sagittal at 80 lp/mm",
+                "value": 0.006230018805784582,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Encircled energy at 5 µm",
+                "value": 0.006273865663284917,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Encircled energy at 10 µm",
+                "value": 0.0006632964971314825,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Encircled energy at 25 µm",
+                "value": 0.001480564997925593,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Encircled energy at 50 µm",
+                "value": 0.0005678140137144183,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Fine energy outside comparison window",
+                "value": 0.013094915698897092,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              }
+            ],
+            "failureReasons": [
+              "PSF distribution L1"
+            ],
             "distributionL1": 0.055519241556752884,
             "centroidDeltaMm": 2.617572027781197e-14,
             "widthRelative": 0.00104974724131696,
@@ -279,6 +412,137 @@
           },
           "padding": {
             "passed": true,
+            "checks": [
+              {
+                "metric": "PSF distribution L1",
+                "value": 0.029652644619162744,
+                "limit": 0.05,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Centroid displacement",
+                "value": 6.48097871952717e-17,
+                "limit": 0.00047004944,
+                "unit": "mm",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Relative RMS width change",
+                "value": 0.0032626346298887925,
+                "limit": 0.05,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Relative peak change",
+                "value": 0.02471708429926125,
+                "limit": 0.05,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Direct Strehl change",
+                "value": 0,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "MTF tangential at 20 lp/mm",
+                "value": 0,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "MTF sagittal at 20 lp/mm",
+                "value": 0,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "MTF tangential at 40 lp/mm",
+                "value": 0,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "MTF sagittal at 40 lp/mm",
+                "value": 1.1102230246251565e-16,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "MTF tangential at 80 lp/mm",
+                "value": 0,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "MTF sagittal at 80 lp/mm",
+                "value": 5.551115123125783e-17,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Encircled energy at 5 µm",
+                "value": 0.015216859521193782,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Encircled energy at 10 µm",
+                "value": 0.00023185489016930294,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Encircled energy at 25 µm",
+                "value": 0.00040780219575453636,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Encircled energy at 50 µm",
+                "value": 0.000008093406062226194,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Fine energy outside comparison window",
+                "value": 0.000012556483339642988,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              }
+            ],
+            "failureReasons": [],
             "distributionL1": 0.029652644619162744,
             "centroidDeltaMm": 6.48097871952717e-17,
             "widthRelative": 0.0032626346298887925,
@@ -301,6 +565,24 @@
             "momentRadiusMm": 0.0573305149249411,
             "comparisonWindow": "L1 on coarse image window; centroid and RMS width within common radius max(50 µm, five nominal Airy radii). Airy full-plane second moments diverge."
           },
+          "checks": [
+            {
+              "metric": "Wavefront RMS change",
+              "value": 0.0003765140443244188,
+              "limit": 0.0011955140140357894,
+              "unit": "waves",
+              "status": "PASS",
+              "reason": ""
+            },
+            {
+              "metric": "First Airy-radius energy change",
+              "value": 0.0000763933763742175,
+              "limit": 0.02,
+              "unit": "",
+              "status": "PASS",
+              "reason": ""
+            }
+          ],
           "passed": false,
           "meaning": "Separate pupil and Fourier-padding comparisons, not proof of physical-model accuracy"
         }
@@ -337,6 +619,139 @@
           "airyEnergyDelta": 0.0000763933763742175,
           "pupil": {
             "passed": false,
+            "checks": [
+              {
+                "metric": "PSF distribution L1",
+                "value": 0.055519241556752884,
+                "limit": 0.05,
+                "unit": "",
+                "status": "FAIL",
+                "reason": ""
+              },
+              {
+                "metric": "Centroid displacement",
+                "value": 2.617572027781197e-14,
+                "limit": 0.00047004944,
+                "unit": "mm",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Relative RMS width change",
+                "value": 0.00104974724131696,
+                "limit": 0.05,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Relative peak change",
+                "value": 0.018793180827072507,
+                "limit": 0.05,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Direct Strehl change",
+                "value": 0.00029524188166263343,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "MTF tangential at 20 lp/mm",
+                "value": 0.0009395125509680247,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "MTF sagittal at 20 lp/mm",
+                "value": 0.000939512550964805,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "MTF tangential at 40 lp/mm",
+                "value": 0.003025543631217986,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "MTF sagittal at 40 lp/mm",
+                "value": 0.003025543631237637,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "MTF tangential at 80 lp/mm",
+                "value": 0.006230018805791937,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "MTF sagittal at 80 lp/mm",
+                "value": 0.006230018805784582,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Encircled energy at 5 µm",
+                "value": 0.006273865663284917,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Encircled energy at 10 µm",
+                "value": 0.0006632964971314825,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Encircled energy at 25 µm",
+                "value": 0.001480564997925593,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Encircled energy at 50 µm",
+                "value": 0.0005678140137144183,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Fine energy outside comparison window",
+                "value": 0.013094915698897092,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              }
+            ],
+            "failureReasons": [
+              "PSF distribution L1"
+            ],
             "distributionL1": 0.055519241556752884,
             "centroidDeltaMm": 2.617572027781197e-14,
             "widthRelative": 0.00104974724131696,
@@ -361,6 +776,137 @@
           },
           "padding": {
             "passed": true,
+            "checks": [
+              {
+                "metric": "PSF distribution L1",
+                "value": 0.029652644619162744,
+                "limit": 0.05,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Centroid displacement",
+                "value": 6.48097871952717e-17,
+                "limit": 0.00047004944,
+                "unit": "mm",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Relative RMS width change",
+                "value": 0.0032626346298887925,
+                "limit": 0.05,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Relative peak change",
+                "value": 0.02471708429926125,
+                "limit": 0.05,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Direct Strehl change",
+                "value": 0,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "MTF tangential at 20 lp/mm",
+                "value": 0,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "MTF sagittal at 20 lp/mm",
+                "value": 0,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "MTF tangential at 40 lp/mm",
+                "value": 0,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "MTF sagittal at 40 lp/mm",
+                "value": 1.1102230246251565e-16,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "MTF tangential at 80 lp/mm",
+                "value": 0,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "MTF sagittal at 80 lp/mm",
+                "value": 5.551115123125783e-17,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Encircled energy at 5 µm",
+                "value": 0.015216859521193782,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Encircled energy at 10 µm",
+                "value": 0.00023185489016930294,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Encircled energy at 25 µm",
+                "value": 0.00040780219575453636,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Encircled energy at 50 µm",
+                "value": 0.000008093406062226194,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Fine energy outside comparison window",
+                "value": 0.000012556483339642988,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              }
+            ],
+            "failureReasons": [],
             "distributionL1": 0.029652644619162744,
             "centroidDeltaMm": 6.48097871952717e-17,
             "widthRelative": 0.0032626346298887925,
@@ -383,6 +929,24 @@
             "momentRadiusMm": 0.0573305149249411,
             "comparisonWindow": "L1 on coarse image window; centroid and RMS width within common radius max(50 µm, five nominal Airy radii). Airy full-plane second moments diverge."
           },
+          "checks": [
+            {
+              "metric": "Wavefront RMS change",
+              "value": 0.0003765140443244188,
+              "limit": 0.0011955140140357894,
+              "unit": "waves",
+              "status": "PASS",
+              "reason": ""
+            },
+            {
+              "metric": "First Airy-radius energy change",
+              "value": 0.0000763933763742175,
+              "limit": 0.02,
+              "unit": "",
+              "status": "PASS",
+              "reason": ""
+            }
+          ],
           "passed": false,
           "meaning": "Separate pupil and Fourier-padding comparisons, not proof of physical-model accuracy"
         }
@@ -417,6 +981,139 @@
           "airyEnergyDelta": 0.0000763933763742175,
           "pupil": {
             "passed": false,
+            "checks": [
+              {
+                "metric": "PSF distribution L1",
+                "value": 0.055519241556752884,
+                "limit": 0.05,
+                "unit": "",
+                "status": "FAIL",
+                "reason": ""
+              },
+              {
+                "metric": "Centroid displacement",
+                "value": 2.617572027781197e-14,
+                "limit": 0.00047004944,
+                "unit": "mm",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Relative RMS width change",
+                "value": 0.00104974724131696,
+                "limit": 0.05,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Relative peak change",
+                "value": 0.018793180827072507,
+                "limit": 0.05,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Direct Strehl change",
+                "value": 0.00029524188166263343,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "MTF tangential at 20 lp/mm",
+                "value": 0.0009395125509680247,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "MTF sagittal at 20 lp/mm",
+                "value": 0.000939512550964805,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "MTF tangential at 40 lp/mm",
+                "value": 0.003025543631217986,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "MTF sagittal at 40 lp/mm",
+                "value": 0.003025543631237637,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "MTF tangential at 80 lp/mm",
+                "value": 0.006230018805791937,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "MTF sagittal at 80 lp/mm",
+                "value": 0.006230018805784582,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Encircled energy at 5 µm",
+                "value": 0.006273865663284917,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Encircled energy at 10 µm",
+                "value": 0.0006632964971314825,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Encircled energy at 25 µm",
+                "value": 0.001480564997925593,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Encircled energy at 50 µm",
+                "value": 0.0005678140137144183,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Fine energy outside comparison window",
+                "value": 0.013094915698897092,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              }
+            ],
+            "failureReasons": [
+              "PSF distribution L1"
+            ],
             "distributionL1": 0.055519241556752884,
             "centroidDeltaMm": 2.617572027781197e-14,
             "widthRelative": 0.00104974724131696,
@@ -441,6 +1138,137 @@
           },
           "padding": {
             "passed": true,
+            "checks": [
+              {
+                "metric": "PSF distribution L1",
+                "value": 0.029652644619162744,
+                "limit": 0.05,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Centroid displacement",
+                "value": 6.48097871952717e-17,
+                "limit": 0.00047004944,
+                "unit": "mm",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Relative RMS width change",
+                "value": 0.0032626346298887925,
+                "limit": 0.05,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Relative peak change",
+                "value": 0.02471708429926125,
+                "limit": 0.05,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Direct Strehl change",
+                "value": 0,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "MTF tangential at 20 lp/mm",
+                "value": 0,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "MTF sagittal at 20 lp/mm",
+                "value": 0,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "MTF tangential at 40 lp/mm",
+                "value": 0,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "MTF sagittal at 40 lp/mm",
+                "value": 1.1102230246251565e-16,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "MTF tangential at 80 lp/mm",
+                "value": 0,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "MTF sagittal at 80 lp/mm",
+                "value": 5.551115123125783e-17,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Encircled energy at 5 µm",
+                "value": 0.015216859521193782,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Encircled energy at 10 µm",
+                "value": 0.00023185489016930294,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Encircled energy at 25 µm",
+                "value": 0.00040780219575453636,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Encircled energy at 50 µm",
+                "value": 0.000008093406062226194,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Fine energy outside comparison window",
+                "value": 0.000012556483339642988,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              }
+            ],
+            "failureReasons": [],
             "distributionL1": 0.029652644619162744,
             "centroidDeltaMm": 6.48097871952717e-17,
             "widthRelative": 0.0032626346298887925,
@@ -463,6 +1291,24 @@
             "momentRadiusMm": 0.0573305149249411,
             "comparisonWindow": "L1 on coarse image window; centroid and RMS width within common radius max(50 µm, five nominal Airy radii). Airy full-plane second moments diverge."
           },
+          "checks": [
+            {
+              "metric": "Wavefront RMS change",
+              "value": 0.0003765140443244188,
+              "limit": 0.0011955140140357894,
+              "unit": "waves",
+              "status": "PASS",
+              "reason": ""
+            },
+            {
+              "metric": "First Airy-radius energy change",
+              "value": 0.0000763933763742175,
+              "limit": 0.02,
+              "unit": "",
+              "status": "PASS",
+              "reason": ""
+            }
+          ],
           "passed": false,
           "meaning": "Separate pupil and Fourier-padding comparisons, not proof of physical-model accuracy"
         },
@@ -475,6 +1321,137 @@
           "airyEnergyDelta": 0.00006398839086674268,
           "pupil": {
             "passed": true,
+            "checks": [
+              {
+                "metric": "PSF distribution L1",
+                "value": 0.023153152763668118,
+                "limit": 0.05,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Centroid displacement",
+                "value": 4.586824760425339e-15,
+                "limit": 0.00047004944,
+                "unit": "mm",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Relative RMS width change",
+                "value": 0.0001408014012843024,
+                "limit": 0.05,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Relative peak change",
+                "value": 0.000006247010565663556,
+                "limit": 0.05,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Direct Strehl change",
+                "value": 0.000006223519321002513,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "MTF tangential at 20 lp/mm",
+                "value": 3.4365475076736374e-7,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "MTF sagittal at 20 lp/mm",
+                "value": 3.4365475143349755e-7,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "MTF tangential at 40 lp/mm",
+                "value": 0.000359606192680606,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "MTF sagittal at 40 lp/mm",
+                "value": 0.00035960619266994787,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "MTF tangential at 80 lp/mm",
+                "value": 0.0004834733812823233,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "MTF sagittal at 80 lp/mm",
+                "value": 0.00048347338127743833,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Encircled energy at 5 µm",
+                "value": 0.000017607135966435372,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Encircled energy at 10 µm",
+                "value": 0.00006830098511512173,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Encircled energy at 25 µm",
+                "value": 0.00009393146751091042,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Encircled energy at 50 µm",
+                "value": 0.0001575782985993035,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Fine energy outside comparison window",
+                "value": 0.006389056458238396,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              }
+            ],
+            "failureReasons": [],
             "distributionL1": 0.023153152763668118,
             "centroidDeltaMm": 4.586824760425339e-15,
             "widthRelative": 0.0001408014012843024,
@@ -499,6 +1476,137 @@
           },
           "padding": {
             "passed": true,
+            "checks": [
+              {
+                "metric": "PSF distribution L1",
+                "value": 0.029236731644591365,
+                "limit": 0.05,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Centroid displacement",
+                "value": 1.647938776175958e-16,
+                "limit": 0.00047004944,
+                "unit": "mm",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Relative RMS width change",
+                "value": 0.002830592368118696,
+                "limit": 0.05,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Relative peak change",
+                "value": 0.02425438790377884,
+                "limit": 0.05,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Direct Strehl change",
+                "value": 0,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "MTF tangential at 20 lp/mm",
+                "value": 2.220446049250313e-16,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "MTF sagittal at 20 lp/mm",
+                "value": 3.3306690738754696e-16,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "MTF tangential at 40 lp/mm",
+                "value": 2.220446049250313e-16,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "MTF sagittal at 40 lp/mm",
+                "value": 2.220446049250313e-16,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "MTF tangential at 80 lp/mm",
+                "value": 4.996003610813204e-16,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "MTF sagittal at 80 lp/mm",
+                "value": 4.440892098500626e-16,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Encircled energy at 5 µm",
+                "value": 0.015234528946809822,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Encircled energy at 10 µm",
+                "value": 0.00029584404911309203,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Encircled energy at 25 µm",
+                "value": 0.00035594990461784715,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Encircled energy at 50 µm",
+                "value": 0.0000017493313043681624,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              },
+              {
+                "metric": "Fine energy outside comparison window",
+                "value": 0.0000031120254786465296,
+                "limit": 0.02,
+                "unit": "",
+                "status": "PASS",
+                "reason": ""
+              }
+            ],
+            "failureReasons": [],
             "distributionL1": 0.029236731644591365,
             "centroidDeltaMm": 1.647938776175958e-16,
             "widthRelative": 0.002830592368118696,
@@ -521,6 +1629,24 @@
             "momentRadiusMm": 0.0573305149249411,
             "comparisonWindow": "L1 on coarse image window; centroid and RMS width within common radius max(50 µm, five nominal Airy radii). Airy full-plane second moments diverge."
           },
+          "checks": [
+            {
+              "metric": "Wavefront RMS change",
+              "value": 0.000008105555047432933,
+              "limit": 0.0011953519029348407,
+              "unit": "waves",
+              "status": "PASS",
+              "reason": ""
+            },
+            {
+              "metric": "First Airy-radius energy change",
+              "value": 0.00006398839086674268,
+              "limit": 0.02,
+              "unit": "",
+              "status": "PASS",
+              "reason": ""
+            }
+          ],
           "passed": true,
           "meaning": "Separate pupil and Fourier-padding comparisons, not proof of physical-model accuracy"
         }

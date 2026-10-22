@@ -40,3 +40,5 @@ Off-axis diffraction and discrete global-focus diagnostics remain experimental. 
 Delivered in 0.8.0: [bounded error-driven sampling](ADAPTIVE_PUPIL_SAMPLING.md), robust inverse mapping, 512² pupils / 2048² FFT, [registered spectral intensity](POLYCHROMATIC_PSF_MTF.md), stronger convergence and separate numerical/physical confidence. [Milestone 6 report](MILESTONE6_REPORT.md) records the remaining OMIT50 f/2 limitations. Next scientific gates are reliable distorted-pupil boundaries, independently validated oblique-plane propagation and integrated spectral references. MTF-based optimization stays unavailable until those relevant gates pass.
 
 Delivered in 0.8.1: complete convergence comparison history, explicit resource-limit stop reasons and failed-mapping retry diagnostics. No expansion of the validated physical regime.
+
+Delivered in 0.8.2: readable per-metric convergence criteria and wavelength-specific confidence for spectral groups, with unchanged scientific thresholds.

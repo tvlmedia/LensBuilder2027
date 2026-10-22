@@ -25,3 +25,15 @@ For reproduction use `npm test`, `npm run check`, `npm run benchmark:advanced` a
 Inverse-mapping backtrack counts and maximum Jacobian-condition diagnostics now include failed and blocked attempts, rather than successful rays only. The old zero counts in some 0.8.0 reports therefore understated solver work. This is a diagnostic correction: missing samples stay invalid, optical values and eligibility criteria are unchanged.
 
 `npm run benchmark:diagnostics` rechecks all 16 archived OMIT50 field/aperture configurations and asserts exact RMS/PV and status agreement against 0.8.0. Evidence is saved in `benchmarks/physical-diagnostics-v1.json`. Four additional tests cover exhausted grids, memory-blocked references, successful/disabled verification and failed-mapping diagnostics. The complete suite now has 161 passing tests.
+
+## 0.8.2: inspectable acceptance criteria
+
+Every PSF comparison now records individual `checks`: metric, measured difference, maximum allowed difference, unit and PASS/FAIL/NOT APPLICABLE. Tangential and sagittal MTF are reported separately at 20/40/80 lp/mm; each encircled-energy radius has its own check. Wavefront RMS and first-Airy-radius checks are also exposed. `failureReasons` identifies the failing PSF metrics.
+
+A missing required measurement is stored as null plus FAIL and an explicit reason, preserving its meaning through JSON export. It is never converted into zero error. A direct spectral Strehl that is not defined is NOT APPLICABLE, not a manufactured successful measurement. All existing acceptance thresholds remain unchanged, with regression tests comparing the decomposed decision to the previous combined rule.
+
+The UI's “Convergence checks and stopping limits” section presents readable tables for each retained pupil and padding comparison. A group heading summarizes that table's own checks, not unrelated checks. Integrated spectral reports include each wavelength's numerical and physical status and termination reason, so a passing spectral-padding comparison cannot conceal an unconverged contributing channel.
+
+Browser example: the f/16 singlet's 32²→64² comparison has L1 difference 0.055519 against a 0.05 limit, while its RMS, peak, MTF and other displayed checks pass. With maximum pupil64, a required128 reference is unavailable and the result stays NOT CONVERGED. The f/32 spectral example identifies 550 nm as unconverged even though the combined padding comparison passes.
+
+Validation: 165 passing tests, unchanged RMS/PV/eligibility in all 16 archived OMIT50 configurations, and zero merit deviation across all 189 geometric prescriptions. Browser tests covered failed monochromatic and mixed-convergence spectral tables without console errors.
