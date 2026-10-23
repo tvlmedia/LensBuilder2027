@@ -42,3 +42,5 @@ Delivered in 0.8.0: [bounded error-driven sampling](ADAPTIVE_PUPIL_SAMPLING.md),
 Delivered in 0.8.1: complete convergence comparison history, explicit resource-limit stop reasons and failed-mapping retry diagnostics. No expansion of the validated physical regime.
 
 Delivered in 0.8.2: readable per-metric convergence criteria and wavelength-specific confidence for spectral groups, with unchanged scientific thresholds.
+
+Delivered in 0.9.0: [experimental forward pupil geometry](PHYSICAL_PUPIL_BOUNDARIES.md), adaptive transition brackets, explicit blocked/failed/ambiguous states, forward-seeded inverse retries and launch-plane footprint diagnostics. Analytical non-circular, annular and disconnected references pass. OMIT50 geometry is quantified; its 512² mapping/phase limitations and unavailable f/2 MTF remain. Equal-ray-budget measurements do not demonstrate an overall runtime win. See [Milestone 7 results](MILESTONE7_REPORT.md). Next: domain completeness, branch-aware inversion and independently validated pupil propagation.

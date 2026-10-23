@@ -13,3 +13,7 @@ Inverse mapping uses a chief-ray fallback, bounded Newton steps, residual-decrea
 Limits: pupil ≤512², FFT ≤2048²; supported padding 2/4/8 subject to FFT size. The 512²/2048² mode requires raising the default memory budget to 768 MiB. Estimates include working and retained arrays but cannot guarantee browser RSS. A 1024² pupil is not enabled: the phase-only estimate already reaches 4096² at OMIT50's edge and neither a larger FFT nor pupil alone validates the high-NA model. Per-job geometry reuses entrance-pupil radius; no cross-prescription cache or approximate pupil fill is used.
 
 See `benchmarks/advanced-mapping-probe.json`, `benchmarks/advanced-physical-v1.json` and [convergence](PHYSICAL_CONVERGENCE.md).
+
+## 0.9.0 forward boundary atlas
+
+The optional [forward pupil atlas](PHYSICAL_PUPIL_BOUNDARIES.md) adaptively samples launch-plane survival and phase. It supplies diagnostic geometry and retraced inverse initial guesses; it does not replace the uniform FFT pupil or relax convergence. Its forward-ray budget is separate from uniform inverse work. [Measured comparisons](MILESTONE7_REPORT.md) include the additional cost and remaining uncertainty.
