@@ -16,12 +16,12 @@
   panel.innerHTML = `<header><div><p class="synthesisEyebrow">CLASSICAL OPTICS · NUMERICAL DESIGN</p><h2>New lens</h2></div><button class="btn" id="synthesisClose">Back to editor</button></header>
  <p>Start with requirements. LensBuilder generates physical prescriptions, traces real rays and optimizes the measured objective.</p>
  <div class="labActions"><button class="btn" id="synthesisManual">MANUAL DESIGN</button><button class="btn btnPrimary" id="synthesisAutomatic">GENERATE & OPTIMIZE</button></div>
- <div id="synthesisWorkflow" hidden><div class="synthesisIntro"><h3>From requirements to prescriptions</h3><p>Topology → generated seeds → geometry & paraxial filter → real rays → Differential Evolution → local refinement → dense multi-aperture validation.</p><p>Geometric f-number only. PSF, MTF and T-stop: unavailable. Sampled pupil survival is not certified image coverage. No manufacturing or production-readiness claim.</p></div>
+ <div id="synthesisWorkflow" hidden><div class="synthesisIntro"><h3>From requirements to prescriptions</h3><p>Topology → generated seeds → geometry & paraxial filter → real rays → Differential Evolution → local refinement → dense multi-aperture validation.</p><p>Geometric optimization only; T-stop is unavailable. Adopt a finalist and capture it in Wavefront / PSF / MTF for separate Tier 5 analysis. Sampled pupil survival is not certified image coverage. No manufacturing or production-readiness claim.</p></div>
  <div id="synthesisFields" class="labConfig"></div>
  <details><summary>Advanced specification, bounds policy & merit</summary><p>Read controls before editing JSON. Advanced JSON is applied when you press Apply advanced specification. Fields, wavelengths, mechanical envelope stations and budget fractions are editable here. Radius bounds preserve sign; iris position stays in air. Glass choices stay fixed during geometry search.</p><button class="btn" id="synthesisRead">Read controls into advanced specification</button><label>NewLensSpecification JSON<textarea id="synthesisSpec" rows="18"></textarea></label><button class="btn" id="synthesisApply">Apply advanced specification</button><label>TECHNICAL_BALANCED_v1 operands (blank = generate from aperture configuration)<textarea id="synthesisOperands" rows="12"></textarea></label><button class="btn" id="synthesisMerit">Build inspectable default operands</button></details>
  <div class="labActions"><button class="btn btnPrimary" id="synthesisStart">Start numerical synthesis</button><button class="btn" id="synthesisPause">Pause & checkpoint</button><button class="btn" id="synthesisResume">Resume synthesis</button><button class="btn" id="synthesisStop">Stop after batch</button><button class="btn" id="synthesisExport">Export synthesis experiment</button><label>Import synthesis checkpoint<input id="synthesisImport" type="file" accept=".json"></label><button class="btn" id="synthesisList">Refresh synthesis experiments</button><select id="synthesisSaved" aria-label="Saved synthesis experiments"></select><button class="btn" id="synthesisRestore">Restore synthesis autosave</button></div>
  <p role="status" id="synthesisMessage">Enter a specification, then start.</p><pre id="synthesisProgress"></pre><canvas id="synthesisLive" width="1000" height="240" aria-label="Current generated lens and real rays"></canvas>
- <h3>Candidate prescriptions</h3><p>All candidates use the same dense validation configuration. Merit is specific to the visible operands. Choose candidates to compare; adoption is one undoable editor change. The editor preview sensor remains independently configurable; the validated image circle is stored with the experiment. Refine geometry runs up to 3000 additional evaluations and accepts only a fresh dense-validated improvement. Optimize Glass tests individual elements and whole glass families, with up to 200 additional geometry evaluations per substitution and fresh dense ranking.</p><button class="btn" id="synthesisCompare">Compare selected in measurement laboratory</button><button class="btn" id="synthesisCSV">Export results CSV</button><div id="synthesisResults"></div></div>`;
+ <h3>Candidate prescriptions</h3><p>All candidates use the same dense validation configuration. Merit is specific to the visible operands. Choose candidates to compare; adoption is one undoable editor change. The editor preview sensor remains independently configurable; the validated image circle is stored with the experiment. Refine geometry runs up to 3000 additional evaluations and accepts only a fresh dense-validated improvement. Optimize Glass tests individual elements and whole glass families, with up to 200 additional geometry evaluations per substitution and fresh dense ranking.</p><label>Geometry refinement method <select id="synthesisRefinementMethod"><option value="pattern">Pattern search (existing)</option><option value="dls-curvature">Damped least squares — curvature</option><option value="dls-radius">Damped least squares — radius</option><option value="hybrid">Hybrid DE + DLS</option><option value="block-dls">Block DLS — coupled curvature / spacing</option></select></label><button class="btn" id="synthesisCompare">Compare selected in measurement laboratory</button><button class="btn" id="synthesisCSV">Export results CSV</button><div id="synthesisResults"></div></div>`;
   document.body.append(panel);
   const groups = [
     [
@@ -443,11 +443,19 @@
             message("Refining geometry with up to 3000 evaluations, followed by independent dense validation…");
             try {
               const refined = await LBGeometryRefinement.optimize(item, state.spec, state.operands,
-                { yield: () => new Promise(r => setTimeout(r, 0)) });
+                { method: panel.querySelector("#synthesisRefinementMethod").value, yield: () => new Promise(r => setTimeout(r, 0)) });
               state.results[index] = refined;
               await save();
               render();
               const a = refined.geometryRefinement;
+              if (a.stages) {
+                const details = document.createElement("details"), summary = document.createElement("summary"), pre = document.createElement("pre");
+                summary.textContent = "Refinement diagnostics: sensitivity, convergence and rejections";
+                pre.textContent = JSON.stringify({ algorithm: a.algorithm, evaluations: a.evaluations,
+                  parameters: a.parameters, stages: a.stages, rejections: a.rejections, history: a.history,
+                  validatedHistory: a.validatedHistory }, null, 2);
+                details.append(summary, pre); panel.querySelector("#synthesisResults").append(details);
+              }
               message(a.accepted
                 ? `Geometry improved: dense merit ${fmt(a.beforeDenseScore)} → ${fmt(a.afterDenseScore)}. All hard checks passed.`
                 : "No validated improvement; the original candidate was retained.");

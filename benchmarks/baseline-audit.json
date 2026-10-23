@@ -1,0 +1,13 @@
+{
+  "sourceCommit": "60507b1374869b03ec5617a15b7d98a2bd170780",
+  "baselineTests": {
+    "passed": 89,
+    "failed": 0
+  },
+  "reproduction": {
+    "glassExploration": "All statuses, initial and dense scores exactly reproduced; timing differs",
+    "geometryRefinement": "Complete numerical output reproduced exactly after excluding timings and provenance",
+    "glassFamilies": "Complete numerical output reproduced exactly after excluding timings and provenance"
+  },
+  "fixtureSHA256": "97f98a1643532cfb6064dee176fa46b94fb15be62cd12977509b450686c3d454"
+}

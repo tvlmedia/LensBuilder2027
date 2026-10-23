@@ -1,0 +1,140 @@
+{
+  "baselineCommit": "3345ba26e7121754b30639ef5df917773020fd8d",
+  "testsPassed": 138,
+  "syntax": "PASS",
+  "pr3": "OPEN",
+  "pr4": "OPEN",
+  "publishedCommit": "60507b1374869b03ec5617a15b7d98a2bd170780",
+  "geometric": {
+    "recheckedPrescriptions": 189,
+    "maxAbsoluteDenseMeritDifference": 0
+  },
+  "omitBaseline": [
+    {
+      "field": 0,
+      "fNumber": 2,
+      "rmsWaves": 9.72181866138709,
+      "maxAdjacentPhaseWaves": 2.3161240234118665,
+      "reasons": {
+        "unmapped": 1640,
+        "blocked": 456
+      },
+      "status": "UNAVAILABLE"
+    },
+    {
+      "field": 0.5,
+      "fNumber": 2,
+      "rmsWaves": 7.967805763730506,
+      "maxAdjacentPhaseWaves": 5.30797128267514,
+      "reasons": {
+        "unmapped": 1678,
+        "blocked": 414
+      },
+      "status": "UNAVAILABLE"
+    },
+    {
+      "field": 1,
+      "fNumber": 2,
+      "rmsWaves": 35.62801639457039,
+      "maxAdjacentPhaseWaves": 12.849716925094782,
+      "reasons": {
+        "unmapped": 1812,
+        "blocked": 368
+      },
+      "status": "UNAVAILABLE"
+    },
+    {
+      "field": 0,
+      "fNumber": 2.8,
+      "rmsWaves": 8.607688366845538,
+      "maxAdjacentPhaseWaves": 1.6548781492952773,
+      "reasons": {
+        "unmapped": 160,
+        "blocked": 1912
+      },
+      "status": "UNAVAILABLE"
+    },
+    {
+      "field": 0.5,
+      "fNumber": 2.8,
+      "rmsWaves": 4.656317536612324,
+      "maxAdjacentPhaseWaves": 1.3290653331646771,
+      "reasons": {
+        "unmapped": 176,
+        "blocked": 1900
+      },
+      "status": "UNAVAILABLE"
+    },
+    {
+      "field": 1,
+      "fNumber": 2.8,
+      "rmsWaves": 15.764021846179698,
+      "maxAdjacentPhaseWaves": 4.314230124085121,
+      "reasons": {
+        "unmapped": 254,
+        "blocked": 1854
+      },
+      "status": "UNAVAILABLE"
+    },
+    {
+      "field": 0,
+      "fNumber": 4,
+      "rmsWaves": 5.221674525040476,
+      "maxAdjacentPhaseWaves": 1.1557484531475097,
+      "reasons": {
+        "blocked": 2056
+      },
+      "status": "UNAVAILABLE"
+    },
+    {
+      "field": 0.5,
+      "fNumber": 4,
+      "rmsWaves": 2.973932669186827,
+      "maxAdjacentPhaseWaves": 0.923715960424321,
+      "reasons": {
+        "blocked": 2064
+      },
+      "status": "UNAVAILABLE"
+    },
+    {
+      "field": 1,
+      "fNumber": 4,
+      "rmsWaves": 6.59411920789634,
+      "maxAdjacentPhaseWaves": 1.8427477930463922,
+      "reasons": {
+        "blocked": 2110
+      },
+      "status": "UNAVAILABLE"
+    },
+    {
+      "field": 0,
+      "fNumber": 5.6,
+      "rmsWaves": 2.9164390731545655,
+      "maxAdjacentPhaseWaves": 0.7124149806138949,
+      "reasons": {
+        "blocked": 2040
+      },
+      "status": "UNAVAILABLE"
+    },
+    {
+      "field": 0.5,
+      "fNumber": 5.6,
+      "rmsWaves": 1.7132629385003213,
+      "maxAdjacentPhaseWaves": 0.5527206581068689,
+      "reasons": {
+        "blocked": 2056
+      },
+      "status": "UNAVAILABLE"
+    },
+    {
+      "field": 1,
+      "fNumber": 5.6,
+      "rmsWaves": 3.0505968301032564,
+      "maxAdjacentPhaseWaves": 0.8561015982226543,
+      "reasons": {
+        "blocked": 2116
+      },
+      "status": "UNAVAILABLE"
+    }
+  ]
+}

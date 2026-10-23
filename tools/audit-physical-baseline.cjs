@@ -1,0 +1,4 @@
+const fs=require('node:fs'),X=require('../optimization/experiment'),G=require('../synthesis/seeds');
+let count=0,max=0;
+for(const file of ['optimization-methods-v1','omit50-methods-v1'])for(const e of require('../benchmarks/'+file+'.json').experiments)for(const r of e.runs){const variables=e.specification.synthesis?G.variables(r.prescription,e.specification.synthesis):e.variables,q=X.dense(r.prescription,e.specification,variables,e.operands);if(q.score===null)throw Error('Invalid baseline '+e.id);const difference=Math.abs(q.score-r.final);max=Math.max(max,difference);if(difference>1e-7)throw Error('Regression '+e.id+': '+difference);count++;}
+const file='benchmarks/physical-baseline-audit.json',report=JSON.parse(fs.readFileSync(file));report.afterPhysicalEngine={recheckedPrescriptions:count,maxAbsoluteDenseMeritDifference:max};fs.writeFileSync(file,JSON.stringify(report,null,2)+'\n');console.log(report);

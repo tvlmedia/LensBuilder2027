@@ -1,0 +1,1568 @@
+{
+  "version": "0.9.0",
+  "build": {
+    "applicationVersion": "0.9.0",
+    "synthesisEngineVersion": "synthesis-1",
+    "engineVersion": "lb2027-spherical-0.4.0",
+    "searchEngineVersion": "numerical-lab-2",
+    "physicalEngineVersion": "physical-2",
+    "dlsEngineVersion": "bounded-dls-1",
+    "baseCommit": "b9f6b3156ab3f75c44a67c6410d7e793b470ba11",
+    "sourceSha256": "b19199df31190feec8135875f31ca841624b71d22ed0b9cb67dec51581ac6c16",
+    "note": "Source fingerprint identifies this exact working source; baseCommit is its recorded Git parent at stamping time."
+  },
+  "baselineCommit": "b9f6b3156ab3f75c44a67c6410d7e793b470ba11",
+  "runtime": {
+    "node": "v24.16.0",
+    "platform": "darwin",
+    "arch": "arm64"
+  },
+  "analytic": [
+    {
+      "id": "circle",
+      "analyticAreaMm2": 3.141592653589793,
+      "relativeAreaError": 0.00008728897352014209,
+      "maxAnalyticalBoundaryErrorMm": 0.002395740329188767,
+      "settings": {
+        "halfWidthMm": 1.25,
+        "centerX": 0,
+        "centerY": 0,
+        "minDepth": 4,
+        "maxDepth": 8,
+        "budget": 16000,
+        "phaseLimitWaves": 0.25,
+        "mappingToleranceMm": 0.002
+      },
+      "traceCalls": 11841,
+      "elapsedMs": 19.484709,
+      "counts": {
+        "TRANSMITTED": 5737,
+        "PHYSICALLY BLOCKED": 6104,
+        "NUMERICAL MAPPING FAILURE": 0,
+        "AMBIGUOUS / UNRESOLVED": 0
+      },
+      "blockingSurfaces": {
+        "undefined": 6104
+      },
+      "area": {
+        "domainMm2": 6.25,
+        "sampledTransmittedMm2": 3.141318427191843,
+        "homogeneousTransmittedCellsMm2": 3.10211181640625,
+        "unresolvedCellsMm2": 0.0782012939453125,
+        "unresolvedFraction": 0.01251220703125,
+        "cellClassificationMm2": {
+          "TRANSMITTED": 3.10211181640625,
+          "PHYSICALLY BLOCKED": 3.0696868896484375,
+          "NUMERICAL MAPPING FAILURE": 0,
+          "AMBIGUOUS / UNRESOLVED": 0.0782012939453125
+        },
+        "mappedInteriorEstimateMm2": 3.10211181640625,
+        "meaning": "Launch-plane sample-based area estimates, not certified bounds. Mapped area excludes unresolved cells; neither is calibrated throughput."
+      },
+      "budgetLimited": false,
+      "edgeTransmitted": false,
+      "foldedCells": 0,
+      "boundaryBracketCount": 820,
+      "maxBracketWidthMm": 0.0048828125,
+      "largestBoundaryCellMm": 0.009765625,
+      "denseAgreement": {
+        "referenceGrid": 512,
+        "classifiedSamples": 258864,
+        "misclassifiedSamples": 0,
+        "accuracyOnResolvedSamples": 1,
+        "unresolvedFraction": 0.01251220703125,
+        "areaDifferenceMm2": -0.0007523430718290314
+      }
+    },
+    {
+      "id": "decentered",
+      "analyticAreaMm2": 2.0106192982974678,
+      "relativeAreaError": 0.00018001596066332884,
+      "maxAnalyticalBoundaryErrorMm": 0.002404658040287666,
+      "settings": {
+        "halfWidthMm": 1.25,
+        "centerX": 0,
+        "centerY": 0,
+        "minDepth": 4,
+        "maxDepth": 8,
+        "budget": 16000,
+        "phaseLimitWaves": 0.25,
+        "mappingToleranceMm": 0.002
+      },
+      "traceCalls": 9657,
+      "elapsedMs": 14.665750000000003,
+      "counts": {
+        "TRANSMITTED": 4625,
+        "PHYSICALLY BLOCKED": 5032,
+        "NUMERICAL MAPPING FAILURE": 0,
+        "AMBIGUOUS / UNRESOLVED": 0
+      },
+      "blockingSurfaces": {
+        "undefined": 5032
+      },
+      "area": {
+        "domainMm2": 6.25,
+        "sampledTransmittedMm2": 2.010981241861979,
+        "homogeneousTransmittedCellsMm2": 1.9804954528808594,
+        "unresolvedCellsMm2": 0.06256103515625,
+        "unresolvedFraction": 0.010009765625,
+        "cellClassificationMm2": {
+          "TRANSMITTED": 1.9804954528808594,
+          "PHYSICALLY BLOCKED": 4.206943511962891,
+          "NUMERICAL MAPPING FAILURE": 0,
+          "AMBIGUOUS / UNRESOLVED": 0.06256103515625
+        },
+        "mappedInteriorEstimateMm2": 1.9804954528808594,
+        "meaning": "Launch-plane sample-based area estimates, not certified bounds. Mapped area excludes unresolved cells; neither is calibrated throughput."
+      },
+      "budgetLimited": false,
+      "edgeTransmitted": false,
+      "foldedCells": 0,
+      "boundaryBracketCount": 656,
+      "maxBracketWidthMm": 0.0048828125,
+      "largestBoundaryCellMm": 0.009765625,
+      "denseAgreement": {
+        "referenceGrid": 512,
+        "classifiedSamples": 259520,
+        "misclassifiedSamples": 0,
+        "accuracyOnResolvedSamples": 1,
+        "unresolvedFraction": 0.010009765625,
+        "areaDifferenceMm2": 0.00030199686686183114
+      }
+    },
+    {
+      "id": "ellipse",
+      "analyticAreaMm2": 1.5707963267948966,
+      "relativeAreaError": 0.00003413661172170188,
+      "maxAnalyticalBoundaryErrorMm": 0.0024208639604080366,
+      "settings": {
+        "halfWidthMm": 1.25,
+        "centerX": 0,
+        "centerY": 0,
+        "minDepth": 4,
+        "maxDepth": 8,
+        "budget": 16000,
+        "phaseLimitWaves": 0.25,
+        "mappingToleranceMm": 0.002
+      },
+      "traceCalls": 9153,
+      "elapsedMs": 12.320542000000003,
+      "counts": {
+        "TRANSMITTED": 4185,
+        "PHYSICALLY BLOCKED": 4968,
+        "NUMERICAL MAPPING FAILURE": 0,
+        "AMBIGUOUS / UNRESOLVED": 0
+      },
+      "blockingSurfaces": {
+        "undefined": 4968
+      },
+      "area": {
+        "domainMm2": 6.25,
+        "sampledTransmittedMm2": 1.5708499484591982,
+        "homogeneousTransmittedCellsMm2": 1.5422821044921875,
+        "unresolvedCellsMm2": 0.058746337890625,
+        "unresolvedFraction": 0.0093994140625,
+        "cellClassificationMm2": {
+          "TRANSMITTED": 1.5422821044921875,
+          "PHYSICALLY BLOCKED": 4.6489715576171875,
+          "NUMERICAL MAPPING FAILURE": 0,
+          "AMBIGUOUS / UNRESOLVED": 0.058746337890625
+        },
+        "mappedInteriorEstimateMm2": 1.5422821044921875,
+        "meaning": "Launch-plane sample-based area estimates, not certified bounds. Mapped area excludes unresolved cells; neither is calibrated throughput."
+      },
+      "budgetLimited": false,
+      "edgeTransmitted": false,
+      "foldedCells": 0,
+      "boundaryBracketCount": 616,
+      "maxBracketWidthMm": 0.0048828125,
+      "largestBoundaryCellMm": 0.009765625,
+      "denseAgreement": {
+        "referenceGrid": 512,
+        "classifiedSamples": 259680,
+        "misclassifiedSamples": 0,
+        "accuracyOnResolvedSamples": 1,
+        "unresolvedFraction": 0.0093994140625,
+        "areaDifferenceMm2": 0.00014834933810448092
+      }
+    },
+    {
+      "id": "cat-eye",
+      "analyticAreaMm2": 1.770725656466941,
+      "relativeAreaError": 0.000032085284344638474,
+      "maxAnalyticalBoundaryErrorMm": 0.0022837358498080463,
+      "settings": {
+        "halfWidthMm": 1.25,
+        "centerX": 0,
+        "centerY": 0,
+        "minDepth": 4,
+        "maxDepth": 8,
+        "budget": 16000,
+        "phaseLimitWaves": 0.25,
+        "mappingToleranceMm": 0.002
+      },
+      "traceCalls": 9545,
+      "elapsedMs": 9.256584000000004,
+      "counts": {
+        "TRANSMITTED": 4201,
+        "PHYSICALLY BLOCKED": 5344,
+        "NUMERICAL MAPPING FAILURE": 0,
+        "AMBIGUOUS / UNRESOLVED": 0
+      },
+      "blockingSurfaces": {
+        "undefined": 5344
+      },
+      "area": {
+        "domainMm2": 6.25,
+        "sampledTransmittedMm2": 1.770782470703125,
+        "homogeneousTransmittedCellsMm2": 1.739501953125,
+        "unresolvedCellsMm2": 0.061798095703125,
+        "unresolvedFraction": 0.0098876953125,
+        "cellClassificationMm2": {
+          "TRANSMITTED": 1.739501953125,
+          "PHYSICALLY BLOCKED": 4.448699951171875,
+          "NUMERICAL MAPPING FAILURE": 0,
+          "AMBIGUOUS / UNRESOLVED": 0.061798095703125
+        },
+        "mappedInteriorEstimateMm2": 1.739501953125,
+        "meaning": "Launch-plane sample-based area estimates, not certified bounds. Mapped area excludes unresolved cells; neither is calibrated throughput."
+      },
+      "budgetLimited": false,
+      "edgeTransmitted": false,
+      "foldedCells": 0,
+      "boundaryBracketCount": 648,
+      "maxBracketWidthMm": 0.0048828125,
+      "largestBoundaryCellMm": 0.009765625,
+      "denseAgreement": {
+        "referenceGrid": 512,
+        "classifiedSamples": 259552,
+        "misclassifiedSamples": 0,
+        "accuracyOnResolvedSamples": 1,
+        "unresolvedFraction": 0.0098876953125,
+        "areaDifferenceMm2": 0.00057220458984375
+      }
+    },
+    {
+      "id": "annulus",
+      "analyticAreaMm2": 2.356194490192345,
+      "relativeAreaError": 0.0002941621928258362,
+      "maxAnalyticalBoundaryErrorMm": 0.004685392718678516,
+      "settings": {
+        "halfWidthMm": 1.25,
+        "centerX": 0,
+        "centerY": 0,
+        "minDepth": 4,
+        "maxDepth": 8,
+        "budget": 16000,
+        "phaseLimitWaves": 0.25,
+        "mappingToleranceMm": 0.002
+      },
+      "traceCalls": 15997,
+      "elapsedMs": 18.011500000000012,
+      "counts": {
+        "TRANSMITTED": 7750,
+        "PHYSICALLY BLOCKED": 8247,
+        "NUMERICAL MAPPING FAILURE": 0,
+        "AMBIGUOUS / UNRESOLVED": 0
+      },
+      "blockingSurfaces": {
+        "undefined": 8247
+      },
+      "area": {
+        "domainMm2": 6.25,
+        "sampledTransmittedMm2": 2.3555013868543857,
+        "homogeneousTransmittedCellsMm2": 2.2869110107421875,
+        "unresolvedCellsMm2": 0.136566162109375,
+        "unresolvedFraction": 0.0218505859375,
+        "cellClassificationMm2": {
+          "TRANSMITTED": 2.2869110107421875,
+          "PHYSICALLY BLOCKED": 3.8265228271484375,
+          "NUMERICAL MAPPING FAILURE": 0,
+          "AMBIGUOUS / UNRESOLVED": 0.136566162109375
+        },
+        "mappedInteriorEstimateMm2": 2.2869110107421875,
+        "meaning": "Launch-plane sample-based area estimates, not certified bounds. Mapped area excludes unresolved cells; neither is calibrated throughput."
+      },
+      "budgetLimited": true,
+      "edgeTransmitted": false,
+      "foldedCells": 0,
+      "boundaryBracketCount": 1312,
+      "maxBracketWidthMm": 0.009765625,
+      "largestBoundaryCellMm": 0.01953125,
+      "denseAgreement": {
+        "referenceGrid": 512,
+        "classifiedSamples": 256416,
+        "misclassifiedSamples": 0,
+        "accuracyOnResolvedSamples": 1,
+        "unresolvedFraction": 0.0218505859375,
+        "areaDifferenceMm2": -0.0015046861436611714
+      }
+    },
+    {
+      "id": "disconnected",
+      "analyticAreaMm2": 0.5654866776461628,
+      "relativeAreaError": 0.0007866754239827775,
+      "maxAnalyticalBoundaryErrorMm": 0.0023144927149427175,
+      "settings": {
+        "halfWidthMm": 1.25,
+        "centerX": 0,
+        "centerY": 0,
+        "minDepth": 4,
+        "maxDepth": 8,
+        "budget": 16000,
+        "phaseLimitWaves": 0.25,
+        "mappingToleranceMm": 0.002
+      },
+      "traceCalls": 7521,
+      "elapsedMs": 6.1377080000000035,
+      "counts": {
+        "TRANSMITTED": 3178,
+        "PHYSICALLY BLOCKED": 4343,
+        "NUMERICAL MAPPING FAILURE": 0,
+        "AMBIGUOUS / UNRESOLVED": 0
+      },
+      "blockingSurfaces": {
+        "undefined": 4343
+      },
+      "area": {
+        "domainMm2": 6.25,
+        "sampledTransmittedMm2": 0.5659315321180567,
+        "homogeneousTransmittedCellsMm2": 0.542449951171875,
+        "unresolvedCellsMm2": 0.0469207763671875,
+        "unresolvedFraction": 0.00750732421875,
+        "cellClassificationMm2": {
+          "TRANSMITTED": 0.542449951171875,
+          "PHYSICALLY BLOCKED": 5.6606292724609375,
+          "NUMERICAL MAPPING FAILURE": 0,
+          "AMBIGUOUS / UNRESOLVED": 0.0469207763671875
+        },
+        "mappedInteriorEstimateMm2": 0.542449951171875,
+        "meaning": "Launch-plane sample-based area estimates, not certified bounds. Mapped area excludes unresolved cells; neither is calibrated throughput."
+      },
+      "budgetLimited": false,
+      "edgeTransmitted": false,
+      "foldedCells": 0,
+      "boundaryBracketCount": 492,
+      "maxBracketWidthMm": 0.0048828125,
+      "largestBoundaryCellMm": 0.009765625,
+      "denseAgreement": {
+        "referenceGrid": 512,
+        "classifiedSamples": 260176,
+        "misclassifiedSamples": 0,
+        "accuracyOnResolvedSamples": 1,
+        "unresolvedFraction": 0.00750732421875,
+        "areaDifferenceMm2": 0.0011656019422754405
+      }
+    }
+  ],
+  "omit50": {
+    "source": "benchmarks/physical-omit50.json",
+    "fields": [
+      {
+        "field": 0,
+        "comparisons": [
+          {
+            "rayBudget": 65536,
+            "uniform": {
+              "grid": 256,
+              "traceCalls": 65536,
+              "areaMm2": 476.8496067445769,
+              "unresolvedSampleFraction": 0,
+              "elapsedMs": 117.987708
+            },
+            "adaptive": {
+              "settings": {
+                "halfWidthMm": 18.742749145848542,
+                "centerX": 0,
+                "centerY": 0,
+                "minDepth": 4,
+                "maxDepth": 10,
+                "budget": 65536,
+                "phaseLimitWaves": 0.25,
+                "mappingToleranceMm": 0.01165075718508781
+              },
+              "traceCalls": 65529,
+              "elapsedMs": 259.11275,
+              "counts": {
+                "TRANSMITTED": 45861,
+                "PHYSICALLY BLOCKED": 19668,
+                "NUMERICAL MAPPING FAILURE": 0,
+                "AMBIGUOUS / UNRESOLVED": 0
+              },
+              "blockingSurfaces": {
+                "surface 2 · clipped": 120,
+                "surface 5 · clipped": 19548
+              },
+              "area": {
+                "domainMm2": 1405.162582176825,
+                "sampledTransmittedMm2": 477.0717601510081,
+                "homogeneousTransmittedCellsMm2": 475.25224632631574,
+                "unresolvedCellsMm2": 3.6074616157721127,
+                "unresolvedFraction": 0.0025672912597655205,
+                "cellClassificationMm2": {
+                  "TRANSMITTED": 475.25224632631574,
+                  "PHYSICALLY BLOCKED": 926.3028742347516,
+                  "NUMERICAL MAPPING FAILURE": 0,
+                  "AMBIGUOUS / UNRESOLVED": 3.6074616157721127
+                },
+                "mappedInteriorEstimateMm2": 434.78466455607,
+                "meaning": "Launch-plane sample-based area estimates, not certified bounds. Mapped area excludes unresolved cells; neither is calibrated throughput."
+              },
+              "budgetLimited": true,
+              "edgeTransmitted": false,
+              "foldedCells": 0,
+              "boundaryBracketCount": 2692,
+              "maxBracketWidthMm": 0.01830346596274346,
+              "largestBoundaryCellMm": 0.036606931925485434
+            },
+            "agreement": {
+              "referenceGrid": 256,
+              "classifiedSamples": 65363,
+              "misclassifiedSamples": 0,
+              "accuracyOnResolvedSamples": 1,
+              "unresolvedFraction": 0.0026397705078125,
+              "areaDifferenceMm2": 0.22215340643123227
+            }
+          },
+          {
+            "rayBudget": 262144,
+            "uniform": {
+              "grid": 512,
+              "traceCalls": 262144,
+              "areaMm2": 477.0425764595364,
+              "unresolvedSampleFraction": 0,
+              "elapsedMs": 455.340333
+            },
+            "adaptive": {
+              "settings": {
+                "halfWidthMm": 18.742749145848542,
+                "centerX": 0,
+                "centerY": 0,
+                "minDepth": 4,
+                "maxDepth": 10,
+                "budget": 262144,
+                "phaseLimitWaves": 0.25,
+                "mappingToleranceMm": 0.01165075718508781
+              },
+              "traceCalls": 262137,
+              "elapsedMs": 1190.6002090000002,
+              "counts": {
+                "TRANSMITTED": 242469,
+                "PHYSICALLY BLOCKED": 19668,
+                "NUMERICAL MAPPING FAILURE": 0,
+                "AMBIGUOUS / UNRESOLVED": 0
+              },
+              "blockingSurfaces": {
+                "surface 2 · clipped": 120,
+                "surface 5 · clipped": 19548
+              },
+              "area": {
+                "domainMm2": 1405.162582176825,
+                "sampledTransmittedMm2": 477.0717601505035,
+                "homogeneousTransmittedCellsMm2": 475.2522463258062,
+                "unresolvedCellsMm2": 3.6074616157721127,
+                "unresolvedFraction": 0.0025672912597655205,
+                "cellClassificationMm2": {
+                  "TRANSMITTED": 475.2522463258062,
+                  "PHYSICALLY BLOCKED": 926.3028742347516,
+                  "NUMERICAL MAPPING FAILURE": 0,
+                  "AMBIGUOUS / UNRESOLVED": 3.6074616157721127
+                },
+                "mappedInteriorEstimateMm2": 434.7844666416613,
+                "meaning": "Launch-plane sample-based area estimates, not certified bounds. Mapped area excludes unresolved cells; neither is calibrated throughput."
+              },
+              "budgetLimited": true,
+              "edgeTransmitted": false,
+              "foldedCells": 0,
+              "boundaryBracketCount": 2692,
+              "maxBracketWidthMm": 0.01830346596274346,
+              "largestBoundaryCellMm": 0.036606931925485434
+            },
+            "agreement": {
+              "referenceGrid": 512,
+              "classifiedSamples": 261475,
+              "misclassifiedSamples": 0,
+              "accuracyOnResolvedSamples": 1,
+              "unresolvedFraction": 0.002552032470703125,
+              "areaDifferenceMm2": 0.02918369096710194
+            }
+          }
+        ],
+        "inverse": [
+          {
+            "pupilGrid": 256,
+            "before": {
+              "failures": {
+                "unmapped": 26164,
+                "blocked": 7220
+              },
+              "phaseWaves": 0.5850349669066084,
+              "rmsWaves": 9.704934760969564,
+              "traceCalls": 2052984,
+              "elapsedMs": 4242.786792
+            },
+            "after": {
+              "failures": {
+                "unmapped": 26164,
+                "blocked": 7220
+              },
+              "phaseWaves": 0.5850349669066084,
+              "rmsWaves": 9.704934760969564,
+              "traceCalls": 2094045,
+              "elapsedMs": 4180.984083,
+              "recovery": {
+                "attemptedCoordinates": 396,
+                "initialFailures": 26164,
+                "recoveredTransmitted": 0,
+                "recoveredBlocked": 0,
+                "ambiguous": 0,
+                "rayCalls": 32870,
+                "rayBudget": 32768
+              },
+              "diffractionEligible": false,
+              "forwardClearOutsideGrid": 0,
+              "atlas": {
+                "settings": {
+                  "halfWidthMm": 18.742749145848542,
+                  "centerX": 0,
+                  "centerY": 0,
+                  "minDepth": 4,
+                  "maxDepth": 8,
+                  "budget": 8192,
+                  "phaseLimitWaves": 0.25,
+                  "mappingToleranceMm": 0.04660302874035124
+                },
+                "traceCalls": 8191,
+                "elapsedMs": 31.563625000000684,
+                "counts": {
+                  "TRANSMITTED": 4659,
+                  "PHYSICALLY BLOCKED": 3532,
+                  "NUMERICAL MAPPING FAILURE": 0,
+                  "AMBIGUOUS / UNRESOLVED": 0
+                },
+                "blockingSurfaces": {
+                  "surface 2 · clipped": 120,
+                  "surface 5 · clipped": 3412
+                },
+                "area": {
+                  "domainMm2": 1405.162582176825,
+                  "sampledTransmittedMm2": 477.1878993312898,
+                  "homogeneousTransmittedCellsMm2": 464.75683794043744,
+                  "unresolvedCellsMm2": 25.857941804584453,
+                  "unresolvedFraction": 0.018402099609374955,
+                  "cellClassificationMm2": {
+                    "TRANSMITTED": 464.75683794043744,
+                    "PHYSICALLY BLOCKED": 914.5478024318014,
+                    "NUMERICAL MAPPING FAILURE": 0,
+                    "AMBIGUOUS / UNRESOLVED": 25.857941804584453
+                  },
+                  "mappedInteriorEstimateMm2": 425.1490905236823,
+                  "meaning": "Launch-plane sample-based area estimates, not certified bounds. Mapped area excludes unresolved cells; neither is calibrated throughput."
+                },
+                "budgetLimited": true,
+                "edgeTransmitted": false,
+                "foldedCells": 0,
+                "boundaryBracketCount": 460,
+                "maxBracketWidthMm": 0.14642772770194235,
+                "largestBoundaryCellMm": 0.29285545540388347
+              }
+            },
+            "phaseDelta": 0
+          },
+          {
+            "pupilGrid": 512,
+            "before": {
+              "failures": {
+                "unmapped": 104670,
+                "blocked": 28902
+              },
+              "phaseWaves": 0.2997661675469043,
+              "rmsWaves": 9.705890133166735,
+              "traceCalls": 8234702,
+              "elapsedMs": 16441.977832999997
+            },
+            "after": {
+              "failures": {
+                "unmapped": 104670,
+                "blocked": 28902
+              },
+              "phaseWaves": 0.2997661675469043,
+              "rmsWaves": 9.705890133166735,
+              "traceCalls": 8275729,
+              "elapsedMs": 17037.220833,
+              "recovery": {
+                "attemptedCoordinates": 319,
+                "initialFailures": 104670,
+                "recoveredTransmitted": 0,
+                "recoveredBlocked": 0,
+                "ambiguous": 0,
+                "rayCalls": 32836,
+                "rayBudget": 32768
+              },
+              "diffractionEligible": false,
+              "forwardClearOutsideGrid": 0,
+              "atlas": {
+                "settings": {
+                  "halfWidthMm": 18.742749145848542,
+                  "centerX": 0,
+                  "centerY": 0,
+                  "minDepth": 4,
+                  "maxDepth": 8,
+                  "budget": 8192,
+                  "phaseLimitWaves": 0.25,
+                  "mappingToleranceMm": 0.04660302874035124
+                },
+                "traceCalls": 8191,
+                "elapsedMs": 31.528999999998632,
+                "counts": {
+                  "TRANSMITTED": 4659,
+                  "PHYSICALLY BLOCKED": 3532,
+                  "NUMERICAL MAPPING FAILURE": 0,
+                  "AMBIGUOUS / UNRESOLVED": 0
+                },
+                "blockingSurfaces": {
+                  "surface 2 · clipped": 120,
+                  "surface 5 · clipped": 3412
+                },
+                "area": {
+                  "domainMm2": 1405.162582176825,
+                  "sampledTransmittedMm2": 477.1878993312898,
+                  "homogeneousTransmittedCellsMm2": 464.75683794043744,
+                  "unresolvedCellsMm2": 25.857941804584453,
+                  "unresolvedFraction": 0.018402099609374955,
+                  "cellClassificationMm2": {
+                    "TRANSMITTED": 464.75683794043744,
+                    "PHYSICALLY BLOCKED": 914.5478024318014,
+                    "NUMERICAL MAPPING FAILURE": 0,
+                    "AMBIGUOUS / UNRESOLVED": 25.857941804584453
+                  },
+                  "mappedInteriorEstimateMm2": 425.1490905236823,
+                  "meaning": "Launch-plane sample-based area estimates, not certified bounds. Mapped area excludes unresolved cells; neither is calibrated throughput."
+                },
+                "budgetLimited": true,
+                "edgeTransmitted": false,
+                "foldedCells": 0,
+                "boundaryBracketCount": 460,
+                "maxBracketWidthMm": 0.14642772770194235,
+                "largestBoundaryCellMm": 0.29285545540388347
+              }
+            },
+            "phaseDelta": 0
+          }
+        ]
+      },
+      {
+        "field": 0.5,
+        "comparisons": [
+          {
+            "rayBudget": 65536,
+            "uniform": {
+              "grid": 256,
+              "traceCalls": 65536,
+              "areaMm2": 497.7761002779719,
+              "unresolvedSampleFraction": 0,
+              "elapsedMs": 113.5847500000018
+            },
+            "adaptive": {
+              "settings": {
+                "halfWidthMm": 18.742749145848542,
+                "centerX": -8.23177831483735,
+                "centerY": 0,
+                "minDepth": 4,
+                "maxDepth": 10,
+                "budget": 65536,
+                "phaseLimitWaves": 0.25,
+                "mappingToleranceMm": 0.01165075718508781
+              },
+              "traceCalls": 65535,
+              "elapsedMs": 255.68404200000077,
+              "counts": {
+                "TRANSMITTED": 45614,
+                "PHYSICALLY BLOCKED": 19921,
+                "NUMERICAL MAPPING FAILURE": 0,
+                "AMBIGUOUS / UNRESOLVED": 0
+              },
+              "blockingSurfaces": {
+                "surface 0 · clipped": 48,
+                "surface 2 · clipped": 116,
+                "surface 5 · clipped": 19757
+              },
+              "area": {
+                "domainMm2": 1405.162582176825,
+                "sampledTransmittedMm2": 497.37259107468327,
+                "homogeneousTransmittedCellsMm2": 495.5274670717514,
+                "unresolvedCellsMm2": 3.687865663671935,
+                "unresolvedFraction": 0.002624511718749892,
+                "cellClassificationMm2": {
+                  "TRANSMITTED": 495.5274670717514,
+                  "PHYSICALLY BLOCKED": 905.9472494414443,
+                  "NUMERICAL MAPPING FAILURE": 0,
+                  "AMBIGUOUS / UNRESOLVED": 3.687865663671935
+                },
+                "mappedInteriorEstimateMm2": 435.18448588598653,
+                "meaning": "Launch-plane sample-based area estimates, not certified bounds. Mapped area excludes unresolved cells; neither is calibrated throughput."
+              },
+              "budgetLimited": true,
+              "edgeTransmitted": false,
+              "foldedCells": 0,
+              "boundaryBracketCount": 2752,
+              "maxBracketWidthMm": 0.018303465962745236,
+              "largestBoundaryCellMm": 0.036606931925485434
+            },
+            "agreement": {
+              "referenceGrid": 256,
+              "classifiedSamples": 65363,
+              "misclassifiedSamples": 0,
+              "accuracyOnResolvedSamples": 1,
+              "unresolvedFraction": 0.0026397705078125,
+              "areaDifferenceMm2": -0.4035092032886496
+            }
+          },
+          {
+            "rayBudget": 262144,
+            "uniform": {
+              "grid": 512,
+              "traceCalls": 262144,
+              "areaMm2": 497.3794403083328,
+              "unresolvedSampleFraction": 0,
+              "elapsedMs": 445.1924999999974
+            },
+            "adaptive": {
+              "settings": {
+                "halfWidthMm": 18.742749145848542,
+                "centerX": -8.23177831483735,
+                "centerY": 0,
+                "minDepth": 4,
+                "maxDepth": 10,
+                "budget": 262144,
+                "phaseLimitWaves": 0.25,
+                "mappingToleranceMm": 0.01165075718508781
+              },
+              "traceCalls": 262143,
+              "elapsedMs": 1212.6857500000042,
+              "counts": {
+                "TRANSMITTED": 242222,
+                "PHYSICALLY BLOCKED": 19921,
+                "NUMERICAL MAPPING FAILURE": 0,
+                "AMBIGUOUS / UNRESOLVED": 0
+              },
+              "blockingSurfaces": {
+                "surface 0 · clipped": 48,
+                "surface 2 · clipped": 116,
+                "surface 5 · clipped": 19757
+              },
+              "area": {
+                "domainMm2": 1405.162582176825,
+                "sampledTransmittedMm2": 497.37259107428235,
+                "homogeneousTransmittedCellsMm2": 495.52746707136737,
+                "unresolvedCellsMm2": 3.687865663671935,
+                "unresolvedFraction": 0.002624511718749892,
+                "cellClassificationMm2": {
+                  "TRANSMITTED": 495.52746707136737,
+                  "PHYSICALLY BLOCKED": 905.9472494414443,
+                  "NUMERICAL MAPPING FAILURE": 0,
+                  "AMBIGUOUS / UNRESOLVED": 3.687865663671935
+                },
+                "mappedInteriorEstimateMm2": 435.18378130698505,
+                "meaning": "Launch-plane sample-based area estimates, not certified bounds. Mapped area excludes unresolved cells; neither is calibrated throughput."
+              },
+              "budgetLimited": true,
+              "edgeTransmitted": false,
+              "foldedCells": 0,
+              "boundaryBracketCount": 2752,
+              "maxBracketWidthMm": 0.018303465962745236,
+              "largestBoundaryCellMm": 0.036606931925485434
+            },
+            "agreement": {
+              "referenceGrid": 512,
+              "classifiedSamples": 261424,
+              "misclassifiedSamples": 0,
+              "accuracyOnResolvedSamples": 1,
+              "unresolvedFraction": 0.00274658203125,
+              "areaDifferenceMm2": -0.006849234050434916
+            }
+          }
+        ],
+        "inverse": [
+          {
+            "pupilGrid": 256,
+            "before": {
+              "failures": {
+                "unmapped": 26071,
+                "blocked": 7273
+              },
+              "phaseWaves": 1.4639194948353023,
+              "rmsWaves": 8.038530905569274,
+              "traceCalls": 2092803,
+              "elapsedMs": 4401.844208999995
+            },
+            "after": {
+              "failures": {
+                "unmapped": 26071,
+                "blocked": 7273
+              },
+              "phaseWaves": 1.4639194948353023,
+              "rmsWaves": 8.038530905569274,
+              "traceCalls": 2133865,
+              "elapsedMs": 4485.773458000003,
+              "recovery": {
+                "attemptedCoordinates": 341,
+                "initialFailures": 26071,
+                "recoveredTransmitted": 0,
+                "recoveredBlocked": 0,
+                "ambiguous": 0,
+                "rayCalls": 32875,
+                "rayBudget": 32768
+              },
+              "diffractionEligible": false,
+              "forwardClearOutsideGrid": 0,
+              "atlas": {
+                "settings": {
+                  "halfWidthMm": 18.742749145848542,
+                  "centerX": -8.23177831483735,
+                  "centerY": 0,
+                  "minDepth": 4,
+                  "maxDepth": 8,
+                  "budget": 8192,
+                  "phaseLimitWaves": 0.25,
+                  "mappingToleranceMm": 0.04660302874035124
+                },
+                "traceCalls": 8187,
+                "elapsedMs": 25.868624999995518,
+                "counts": {
+                  "TRANSMITTED": 4571,
+                  "PHYSICALLY BLOCKED": 3616,
+                  "NUMERICAL MAPPING FAILURE": 0,
+                  "AMBIGUOUS / UNRESOLVED": 0
+                },
+                "blockingSurfaces": {
+                  "surface 0 · clipped": 48,
+                  "surface 2 · clipped": 116,
+                  "surface 5 · clipped": 3452
+                },
+                "area": {
+                  "domainMm2": 1405.162582176825,
+                  "sampledTransmittedMm2": 497.42113129613324,
+                  "homogeneousTransmittedCellsMm2": 485.14730448783945,
+                  "unresolvedCellsMm2": 25.557766692425,
+                  "unresolvedFraction": 0.018188476562499886,
+                  "cellClassificationMm2": {
+                    "TRANSMITTED": 485.14730448783945,
+                    "PHYSICALLY BLOCKED": 894.4575109965662,
+                    "NUMERICAL MAPPING FAILURE": 0,
+                    "AMBIGUOUS / UNRESOLVED": 25.557766692425
+                  },
+                  "mappedInteriorEstimateMm2": 425.9473855115243,
+                  "meaning": "Launch-plane sample-based area estimates, not certified bounds. Mapped area excludes unresolved cells; neither is calibrated throughput."
+                },
+                "budgetLimited": true,
+                "edgeTransmitted": false,
+                "foldedCells": 0,
+                "boundaryBracketCount": 506,
+                "maxBracketWidthMm": 0.14642772770194412,
+                "largestBoundaryCellMm": 0.29285545540388347
+              }
+            },
+            "phaseDelta": 0
+          },
+          {
+            "pupilGrid": 512,
+            "before": {
+              "failures": {
+                "unmapped": 104268,
+                "blocked": 29136
+              },
+              "phaseWaves": 0.7406994948882577,
+              "rmsWaves": 8.035316621051615,
+              "traceCalls": 8373357,
+              "elapsedMs": 17614.323334
+            },
+            "after": {
+              "failures": {
+                "unmapped": 104268,
+                "blocked": 29136
+              },
+              "phaseWaves": 0.7406994948882577,
+              "rmsWaves": 8.035316621051615,
+              "traceCalls": 8414445,
+              "elapsedMs": 17836.178209000005,
+              "recovery": {
+                "attemptedCoordinates": 286,
+                "initialFailures": 104268,
+                "recoveredTransmitted": 0,
+                "recoveredBlocked": 0,
+                "ambiguous": 0,
+                "rayCalls": 32901,
+                "rayBudget": 32768
+              },
+              "diffractionEligible": false,
+              "forwardClearOutsideGrid": 0,
+              "atlas": {
+                "settings": {
+                  "halfWidthMm": 18.742749145848542,
+                  "centerX": -8.23177831483735,
+                  "centerY": 0,
+                  "minDepth": 4,
+                  "maxDepth": 8,
+                  "budget": 8192,
+                  "phaseLimitWaves": 0.25,
+                  "mappingToleranceMm": 0.04660302874035124
+                },
+                "traceCalls": 8187,
+                "elapsedMs": 27.77087500000198,
+                "counts": {
+                  "TRANSMITTED": 4571,
+                  "PHYSICALLY BLOCKED": 3616,
+                  "NUMERICAL MAPPING FAILURE": 0,
+                  "AMBIGUOUS / UNRESOLVED": 0
+                },
+                "blockingSurfaces": {
+                  "surface 0 · clipped": 48,
+                  "surface 2 · clipped": 116,
+                  "surface 5 · clipped": 3452
+                },
+                "area": {
+                  "domainMm2": 1405.162582176825,
+                  "sampledTransmittedMm2": 497.42113129613324,
+                  "homogeneousTransmittedCellsMm2": 485.14730448783945,
+                  "unresolvedCellsMm2": 25.557766692425,
+                  "unresolvedFraction": 0.018188476562499886,
+                  "cellClassificationMm2": {
+                    "TRANSMITTED": 485.14730448783945,
+                    "PHYSICALLY BLOCKED": 894.4575109965662,
+                    "NUMERICAL MAPPING FAILURE": 0,
+                    "AMBIGUOUS / UNRESOLVED": 25.557766692425
+                  },
+                  "mappedInteriorEstimateMm2": 425.9473855115243,
+                  "meaning": "Launch-plane sample-based area estimates, not certified bounds. Mapped area excludes unresolved cells; neither is calibrated throughput."
+                },
+                "budgetLimited": true,
+                "edgeTransmitted": false,
+                "foldedCells": 0,
+                "boundaryBracketCount": 506,
+                "maxBracketWidthMm": 0.14642772770194412,
+                "largestBoundaryCellMm": 0.29285545540388347
+              }
+            },
+            "phaseDelta": 0
+          }
+        ]
+      },
+      {
+        "field": 0.7,
+        "comparisons": [
+          {
+            "rayBudget": 65536,
+            "uniform": {
+              "grid": 256,
+              "traceCalls": 65536,
+              "areaMm2": 518.9170046057666,
+              "unresolvedSampleFraction": 0,
+              "elapsedMs": 112.12266700000328
+            },
+            "adaptive": {
+              "settings": {
+                "halfWidthMm": 18.742749145848542,
+                "centerX": -11.92506358134546,
+                "centerY": 0,
+                "minDepth": 4,
+                "maxDepth": 10,
+                "budget": 65536,
+                "phaseLimitWaves": 0.25,
+                "mappingToleranceMm": 0.01165075718508781
+              },
+              "traceCalls": 65533,
+              "elapsedMs": 242.88658299999952,
+              "counts": {
+                "TRANSMITTED": 45864,
+                "PHYSICALLY BLOCKED": 19669,
+                "NUMERICAL MAPPING FAILURE": 0,
+                "AMBIGUOUS / UNRESOLVED": 0
+              },
+              "blockingSurfaces": {
+                "surface 0 · clipped": 124,
+                "surface 2 · clipped": 75,
+                "surface 5 · clipped": 19470
+              },
+              "area": {
+                "domainMm2": 1405.162582176825,
+                "sampledTransmittedMm2": 518.9530375309602,
+                "homogeneousTransmittedCellsMm2": 517.0730717739362,
+                "unresolvedCellsMm2": 3.7655895766417635,
+                "unresolvedFraction": 0.002679824829101451,
+                "cellClassificationMm2": {
+                  "TRANSMITTED": 517.0730717739362,
+                  "PHYSICALLY BLOCKED": 884.3239208262543,
+                  "NUMERICAL MAPPING FAILURE": 0,
+                  "AMBIGUOUS / UNRESOLVED": 3.7655895766417635
+                },
+                "mappedInteriorEstimateMm2": 434.99363475680116,
+                "meaning": "Launch-plane sample-based area estimates, not certified bounds. Mapped area excludes unresolved cells; neither is calibrated throughput."
+              },
+              "budgetLimited": true,
+              "edgeTransmitted": false,
+              "foldedCells": 0,
+              "boundaryBracketCount": 2810,
+              "maxBracketWidthMm": 0.018303465962745236,
+              "largestBoundaryCellMm": 0.036606931925485434
+            },
+            "agreement": {
+              "referenceGrid": 256,
+              "classifiedSamples": 65363,
+              "misclassifiedSamples": 0,
+              "accuracyOnResolvedSamples": 1,
+              "unresolvedFraction": 0.0026397705078125,
+              "areaDifferenceMm2": 0.03603292519358092
+            }
+          },
+          {
+            "rayBudget": 262144,
+            "uniform": {
+              "grid": 512,
+              "traceCalls": 262144,
+              "areaMm2": 518.9491662249264,
+              "unresolvedSampleFraction": 0,
+              "elapsedMs": 441.69970899999316
+            },
+            "adaptive": {
+              "settings": {
+                "halfWidthMm": 18.742749145848542,
+                "centerX": -11.92506358134546,
+                "centerY": 0,
+                "minDepth": 4,
+                "maxDepth": 10,
+                "budget": 262144,
+                "phaseLimitWaves": 0.25,
+                "mappingToleranceMm": 0.01165075718508781
+              },
+              "traceCalls": 262141,
+              "elapsedMs": 1188.72666700001,
+              "counts": {
+                "TRANSMITTED": 242472,
+                "PHYSICALLY BLOCKED": 19669,
+                "NUMERICAL MAPPING FAILURE": 0,
+                "AMBIGUOUS / UNRESOLVED": 0
+              },
+              "blockingSurfaces": {
+                "surface 0 · clipped": 124,
+                "surface 2 · clipped": 75,
+                "surface 5 · clipped": 19470
+              },
+              "area": {
+                "domainMm2": 1405.162582176825,
+                "sampledTransmittedMm2": 518.9530375305992,
+                "homogeneousTransmittedCellsMm2": 517.0730717735831,
+                "unresolvedCellsMm2": 3.7655895766417635,
+                "unresolvedFraction": 0.002679824829101451,
+                "cellClassificationMm2": {
+                  "TRANSMITTED": 517.0730717735831,
+                  "PHYSICALLY BLOCKED": 884.3239208262543,
+                  "NUMERICAL MAPPING FAILURE": 0,
+                  "AMBIGUOUS / UNRESOLVED": 3.7655895766417635
+                },
+                "mappedInteriorEstimateMm2": 434.9919233126997,
+                "meaning": "Launch-plane sample-based area estimates, not certified bounds. Mapped area excludes unresolved cells; neither is calibrated throughput."
+              },
+              "budgetLimited": true,
+              "edgeTransmitted": false,
+              "foldedCells": 0,
+              "boundaryBracketCount": 2810,
+              "maxBracketWidthMm": 0.018303465962745236,
+              "largestBoundaryCellMm": 0.036606931925485434
+            },
+            "agreement": {
+              "referenceGrid": 512,
+              "classifiedSamples": 261440,
+              "misclassifiedSamples": 0,
+              "accuracyOnResolvedSamples": 1,
+              "unresolvedFraction": 0.002685546875,
+              "areaDifferenceMm2": 0.0038713056727601725
+            }
+          }
+        ],
+        "inverse": [
+          {
+            "pupilGrid": 256,
+            "before": {
+              "failures": {
+                "unmapped": 26025,
+                "blocked": 7373
+              },
+              "phaseWaves": 2.189600895134916,
+              "rmsWaves": 16.878083565332687,
+              "traceCalls": 2102233,
+              "elapsedMs": 4424.2542089999915
+            },
+            "after": {
+              "failures": {
+                "unmapped": 26025,
+                "blocked": 7373
+              },
+              "phaseWaves": 2.189600895134916,
+              "rmsWaves": 16.878083565332687,
+              "traceCalls": 2143227,
+              "elapsedMs": 4534.1391250000015,
+              "recovery": {
+                "attemptedCoordinates": 351,
+                "initialFailures": 26025,
+                "recoveredTransmitted": 0,
+                "recoveredBlocked": 0,
+                "ambiguous": 0,
+                "rayCalls": 32803,
+                "rayBudget": 32768
+              },
+              "diffractionEligible": false,
+              "forwardClearOutsideGrid": 0,
+              "atlas": {
+                "settings": {
+                  "halfWidthMm": 18.742749145848542,
+                  "centerX": -11.92506358134546,
+                  "centerY": 0,
+                  "minDepth": 4,
+                  "maxDepth": 8,
+                  "budget": 8192,
+                  "phaseLimitWaves": 0.25,
+                  "mappingToleranceMm": 0.04660302874035124
+                },
+                "traceCalls": 8191,
+                "elapsedMs": 29.836708000002545,
+                "counts": {
+                  "TRANSMITTED": 5012,
+                  "PHYSICALLY BLOCKED": 3179,
+                  "NUMERICAL MAPPING FAILURE": 0,
+                  "AMBIGUOUS / UNRESOLVED": 0
+                },
+                "blockingSurfaces": {
+                  "surface 0 · clipped": 124,
+                  "surface 2 · clipped": 75,
+                  "surface 5 · clipped": 2980
+                },
+                "area": {
+                  "domainMm2": 1405.162582176825,
+                  "sampledTransmittedMm2": 518.8050345242331,
+                  "homogeneousTransmittedCellsMm2": 505.0231851286676,
+                  "unresolvedCellsMm2": 28.366548099059255,
+                  "unresolvedFraction": 0.020187377929687583,
+                  "cellClassificationMm2": {
+                    "TRANSMITTED": 505.0231851286676,
+                    "PHYSICALLY BLOCKED": 871.7728489490975,
+                    "NUMERICAL MAPPING FAILURE": 0,
+                    "AMBIGUOUS / UNRESOLVED": 28.366548099059255
+                  },
+                  "mappedInteriorEstimateMm2": 424.63262341220894,
+                  "meaning": "Launch-plane sample-based area estimates, not certified bounds. Mapped area excludes unresolved cells; neither is calibrated throughput."
+                },
+                "budgetLimited": true,
+                "edgeTransmitted": false,
+                "foldedCells": 0,
+                "boundaryBracketCount": 411,
+                "maxBracketWidthMm": 0.14642772770194412,
+                "largestBoundaryCellMm": 0.29285545540388347
+              }
+            },
+            "phaseDelta": 0
+          },
+          {
+            "pupilGrid": 512,
+            "before": {
+              "failures": {
+                "unmapped": 104048,
+                "blocked": 29418
+              },
+              "phaseWaves": 1.10158139914639,
+              "rmsWaves": 16.90438741540274,
+              "traceCalls": 8402936,
+              "elapsedMs": 17719.889458000005
+            },
+            "after": {
+              "failures": {
+                "unmapped": 104048,
+                "blocked": 29418
+              },
+              "phaseWaves": 1.10158139914639,
+              "rmsWaves": 16.90438741540274,
+              "traceCalls": 8443904,
+              "elapsedMs": 17717.711207999993,
+              "recovery": {
+                "attemptedCoordinates": 284,
+                "initialFailures": 104048,
+                "recoveredTransmitted": 0,
+                "recoveredBlocked": 0,
+                "ambiguous": 0,
+                "rayCalls": 32777,
+                "rayBudget": 32768
+              },
+              "diffractionEligible": false,
+              "forwardClearOutsideGrid": 0,
+              "atlas": {
+                "settings": {
+                  "halfWidthMm": 18.742749145848542,
+                  "centerX": -11.92506358134546,
+                  "centerY": 0,
+                  "minDepth": 4,
+                  "maxDepth": 8,
+                  "budget": 8192,
+                  "phaseLimitWaves": 0.25,
+                  "mappingToleranceMm": 0.04660302874035124
+                },
+                "traceCalls": 8191,
+                "elapsedMs": 27.06316700000025,
+                "counts": {
+                  "TRANSMITTED": 5012,
+                  "PHYSICALLY BLOCKED": 3179,
+                  "NUMERICAL MAPPING FAILURE": 0,
+                  "AMBIGUOUS / UNRESOLVED": 0
+                },
+                "blockingSurfaces": {
+                  "surface 0 · clipped": 124,
+                  "surface 2 · clipped": 75,
+                  "surface 5 · clipped": 2980
+                },
+                "area": {
+                  "domainMm2": 1405.162582176825,
+                  "sampledTransmittedMm2": 518.8050345242331,
+                  "homogeneousTransmittedCellsMm2": 505.0231851286676,
+                  "unresolvedCellsMm2": 28.366548099059255,
+                  "unresolvedFraction": 0.020187377929687583,
+                  "cellClassificationMm2": {
+                    "TRANSMITTED": 505.0231851286676,
+                    "PHYSICALLY BLOCKED": 871.7728489490975,
+                    "NUMERICAL MAPPING FAILURE": 0,
+                    "AMBIGUOUS / UNRESOLVED": 28.366548099059255
+                  },
+                  "mappedInteriorEstimateMm2": 424.63262341220894,
+                  "meaning": "Launch-plane sample-based area estimates, not certified bounds. Mapped area excludes unresolved cells; neither is calibrated throughput."
+                },
+                "budgetLimited": true,
+                "edgeTransmitted": false,
+                "foldedCells": 0,
+                "boundaryBracketCount": 411,
+                "maxBracketWidthMm": 0.14642772770194412,
+                "largestBoundaryCellMm": 0.29285545540388347
+              }
+            },
+            "phaseDelta": 0
+          }
+        ]
+      },
+      {
+        "field": 1,
+        "comparisons": [
+          {
+            "rayBudget": 65536,
+            "uniform": {
+              "grid": 256,
+              "traceCalls": 65536,
+              "areaMm2": 553.8230819340117,
+              "unresolvedSampleFraction": 0,
+              "elapsedMs": 107.42024999999558
+            },
+            "adaptive": {
+              "settings": {
+                "halfWidthMm": 18.742749145848542,
+                "centerX": -18.603140923102686,
+                "centerY": 0,
+                "minDepth": 4,
+                "maxDepth": 10,
+                "budget": 65536,
+                "phaseLimitWaves": 0.25,
+                "mappingToleranceMm": 0.01165075718508781
+              },
+              "traceCalls": 65535,
+              "elapsedMs": 242.2879580000008,
+              "counts": {
+                "TRANSMITTED": 47823,
+                "PHYSICALLY BLOCKED": 17712,
+                "NUMERICAL MAPPING FAILURE": 0,
+                "AMBIGUOUS / UNRESOLVED": 0
+              },
+              "blockingSurfaces": {
+                "surface 0 · clipped": 3141,
+                "surface 2 · clipped": 12,
+                "surface 5 · clipped": 12537,
+                "surface 8 · clipped": 382,
+                "surface 10 · clipped": 1640
+              },
+              "area": {
+                "domainMm2": 1405.162582176825,
+                "sampledTransmittedMm2": 553.7638211727424,
+                "homogeneousTransmittedCellsMm2": 551.4337416438839,
+                "unresolvedCellsMm2": 4.698276532279755,
+                "unresolvedFraction": 0.003343582153320196,
+                "cellClassificationMm2": {
+                  "TRANSMITTED": 551.4337416438839,
+                  "PHYSICALLY BLOCKED": 849.0305640006308,
+                  "NUMERICAL MAPPING FAILURE": 0,
+                  "AMBIGUOUS / UNRESOLVED": 4.698276532279755
+                },
+                "mappedInteriorEstimateMm2": 413.4332773448558,
+                "meaning": "Launch-plane sample-based area estimates, not certified bounds. Mapped area excludes unresolved cells; neither is calibrated throughput."
+              },
+              "budgetLimited": true,
+              "edgeTransmitted": false,
+              "foldedCells": 0,
+              "boundaryBracketCount": 2670,
+              "maxBracketWidthMm": 0.03660693192549047,
+              "largestBoundaryCellMm": 0.07321386385097087
+            },
+            "agreement": {
+              "referenceGrid": 256,
+              "classifiedSamples": 65311,
+              "misclassifiedSamples": 0,
+              "accuracyOnResolvedSamples": 1,
+              "unresolvedFraction": 0.0034332275390625,
+              "areaDifferenceMm2": -0.059260761269342765
+            }
+          },
+          {
+            "rayBudget": 262144,
+            "uniform": {
+              "grid": 512,
+              "traceCalls": 262144,
+              "areaMm2": 553.694435457372,
+              "unresolvedSampleFraction": 0,
+              "elapsedMs": 414.03045900000143
+            },
+            "adaptive": {
+              "settings": {
+                "halfWidthMm": 18.742749145848542,
+                "centerX": -18.603140923102686,
+                "centerY": 0,
+                "minDepth": 4,
+                "maxDepth": 10,
+                "budget": 262144,
+                "phaseLimitWaves": 0.25,
+                "mappingToleranceMm": 0.01165075718508781
+              },
+              "traceCalls": 262139,
+              "elapsedMs": 1186.543541000021,
+              "counts": {
+                "TRANSMITTED": 242125,
+                "PHYSICALLY BLOCKED": 20014,
+                "NUMERICAL MAPPING FAILURE": 0,
+                "AMBIGUOUS / UNRESOLVED": 0
+              },
+              "blockingSurfaces": {
+                "surface 0 · clipped": 3612,
+                "surface 2 · clipped": 12,
+                "surface 5 · clipped": 14021,
+                "surface 8 · clipped": 429,
+                "surface 10 · clipped": 1940
+              },
+              "area": {
+                "domainMm2": 1405.162582176825,
+                "sampledTransmittedMm2": 553.7667991004039,
+                "homogeneousTransmittedCellsMm2": 551.8639033000894,
+                "unresolvedCellsMm2": 3.7950710608716984,
+                "unresolvedFraction": 0.0027008056640623872,
+                "cellClassificationMm2": {
+                  "TRANSMITTED": 551.8639033000894,
+                  "PHYSICALLY BLOCKED": 849.5036078157688,
+                  "NUMERICAL MAPPING FAILURE": 0,
+                  "AMBIGUOUS / UNRESOLVED": 3.7950710608716984
+                },
+                "mappedInteriorEstimateMm2": 413.76779193371596,
+                "meaning": "Launch-plane sample-based area estimates, not certified bounds. Mapped area excludes unresolved cells; neither is calibrated throughput."
+              },
+              "budgetLimited": true,
+              "edgeTransmitted": false,
+              "foldedCells": 0,
+              "boundaryBracketCount": 2832,
+              "maxBracketWidthMm": 0.018303465962745236,
+              "largestBoundaryCellMm": 0.036606931925485434
+            },
+            "agreement": {
+              "referenceGrid": 512,
+              "classifiedSamples": 261471,
+              "misclassifiedSamples": 0,
+              "accuracyOnResolvedSamples": 1,
+              "unresolvedFraction": 0.002567291259765625,
+              "areaDifferenceMm2": 0.07236364303184928
+            }
+          }
+        ],
+        "inverse": [
+          {
+            "pupilGrid": 256,
+            "before": {
+              "failures": {
+                "unmapped": 26140,
+                "blocked": 8816
+              },
+              "phaseWaves": 3.3628964246691595,
+              "rmsWaves": 35.47921542451284,
+              "traceCalls": 2143169,
+              "elapsedMs": 4413.465541999991
+            },
+            "after": {
+              "failures": {
+                "unmapped": 26139,
+                "blocked": 8817
+              },
+              "phaseWaves": 3.3628964246691595,
+              "rmsWaves": 35.47921542451284,
+              "traceCalls": 2176750,
+              "elapsedMs": 4483.893291999993,
+              "recovery": {
+                "attemptedCoordinates": 352,
+                "initialFailures": 26140,
+                "recoveredTransmitted": 0,
+                "recoveredBlocked": 1,
+                "ambiguous": 0,
+                "rayCalls": 25394,
+                "rayBudget": 32768
+              },
+              "diffractionEligible": false,
+              "forwardClearOutsideGrid": 0,
+              "atlas": {
+                "settings": {
+                  "halfWidthMm": 18.742749145848542,
+                  "centerX": -18.603140923102686,
+                  "centerY": 0,
+                  "minDepth": 4,
+                  "maxDepth": 8,
+                  "budget": 8192,
+                  "phaseLimitWaves": 0.25,
+                  "mappingToleranceMm": 0.04660302874035124
+                },
+                "traceCalls": 8187,
+                "elapsedMs": 31.2975420000148,
+                "counts": {
+                  "TRANSMITTED": 5472,
+                  "PHYSICALLY BLOCKED": 2715,
+                  "NUMERICAL MAPPING FAILURE": 0,
+                  "AMBIGUOUS / UNRESOLVED": 0
+                },
+                "blockingSurfaces": {
+                  "surface 0 · clipped": 697,
+                  "surface 2 · clipped": 12,
+                  "surface 5 · clipped": 1817,
+                  "surface 8 · clipped": 106,
+                  "surface 10 · clipped": 83
+                },
+                "area": {
+                  "domainMm2": 1405.162582176825,
+                  "sampledTransmittedMm2": 553.59914177096,
+                  "homogeneousTransmittedCellsMm2": 537.742272354034,
+                  "unresolvedCellsMm2": 30.70362575801442,
+                  "unresolvedFraction": 0.021850585937500215,
+                  "cellClassificationMm2": {
+                    "TRANSMITTED": 537.742272354034,
+                    "PHYSICALLY BLOCKED": 836.7166840647727,
+                    "NUMERICAL MAPPING FAILURE": 0,
+                    "AMBIGUOUS / UNRESOLVED": 30.70362575801442
+                  },
+                  "mappedInteriorEstimateMm2": 402.7414106801757,
+                  "meaning": "Launch-plane sample-based area estimates, not certified bounds. Mapped area excludes unresolved cells; neither is calibrated throughput."
+                },
+                "budgetLimited": true,
+                "edgeTransmitted": false,
+                "foldedCells": 0,
+                "boundaryBracketCount": 356,
+                "maxBracketWidthMm": 0.2928554554038847,
+                "largestBoundaryCellMm": 0.5857109108077669
+              }
+            },
+            "phaseDelta": 0
+          },
+          {
+            "pupilGrid": 512,
+            "before": {
+              "failures": {
+                "unmapped": 104483,
+                "blocked": 35291
+              },
+              "phaseWaves": 1.692488539848597,
+              "rmsWaves": 35.50387453854817,
+              "traceCalls": 8559381,
+              "elapsedMs": 17414.524083000026
+            },
+            "after": {
+              "failures": {
+                "unmapped": 104483,
+                "blocked": 35291
+              },
+              "phaseWaves": 1.692488539848597,
+              "rmsWaves": 35.50387453854817,
+              "traceCalls": 8600365,
+              "elapsedMs": 17541.29570799999,
+              "recovery": {
+                "attemptedCoordinates": 368,
+                "initialFailures": 104483,
+                "recoveredTransmitted": 0,
+                "recoveredBlocked": 0,
+                "ambiguous": 0,
+                "rayCalls": 32797,
+                "rayBudget": 32768
+              },
+              "diffractionEligible": false,
+              "forwardClearOutsideGrid": 0,
+              "atlas": {
+                "settings": {
+                  "halfWidthMm": 18.742749145848542,
+                  "centerX": -18.603140923102686,
+                  "centerY": 0,
+                  "minDepth": 4,
+                  "maxDepth": 8,
+                  "budget": 8192,
+                  "phaseLimitWaves": 0.25,
+                  "mappingToleranceMm": 0.04660302874035124
+                },
+                "traceCalls": 8187,
+                "elapsedMs": 29.34870800000499,
+                "counts": {
+                  "TRANSMITTED": 5472,
+                  "PHYSICALLY BLOCKED": 2715,
+                  "NUMERICAL MAPPING FAILURE": 0,
+                  "AMBIGUOUS / UNRESOLVED": 0
+                },
+                "blockingSurfaces": {
+                  "surface 0 · clipped": 697,
+                  "surface 2 · clipped": 12,
+                  "surface 5 · clipped": 1817,
+                  "surface 8 · clipped": 106,
+                  "surface 10 · clipped": 83
+                },
+                "area": {
+                  "domainMm2": 1405.162582176825,
+                  "sampledTransmittedMm2": 553.59914177096,
+                  "homogeneousTransmittedCellsMm2": 537.742272354034,
+                  "unresolvedCellsMm2": 30.70362575801442,
+                  "unresolvedFraction": 0.021850585937500215,
+                  "cellClassificationMm2": {
+                    "TRANSMITTED": 537.742272354034,
+                    "PHYSICALLY BLOCKED": 836.7166840647727,
+                    "NUMERICAL MAPPING FAILURE": 0,
+                    "AMBIGUOUS / UNRESOLVED": 30.70362575801442
+                  },
+                  "mappedInteriorEstimateMm2": 402.7414106801757,
+                  "meaning": "Launch-plane sample-based area estimates, not certified bounds. Mapped area excludes unresolved cells; neither is calibrated throughput."
+                },
+                "budgetLimited": true,
+                "edgeTransmitted": false,
+                "foldedCells": 0,
+                "boundaryBracketCount": 356,
+                "maxBracketWidthMm": 0.2928554554038847,
+                "largestBoundaryCellMm": 0.5857109108077669
+              }
+            },
+            "phaseDelta": 0
+          }
+        ]
+      }
+    ]
+  },
+  "memorySnapshot": {
+    "rss": 936296448,
+    "heapTotal": 509706240,
+    "heapUsed": 380303816,
+    "external": 3088269,
+    "arrayBuffers": 1464571
+  },
+  "limitations": [
+    "Matched maximum forward-ray budgets; actual adaptive calls can be lower",
+    "Forward-reference agreement is numerical cross-sampling, not an external optical model validation",
+    "Area and classification are sample-based; unresolved bands and unseen sub-cell features are not certified",
+    "Memory is a process snapshot, not measured peak; inverse before/after includes atlas and seeded retries"
+  ]
+}

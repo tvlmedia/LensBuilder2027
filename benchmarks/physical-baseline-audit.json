@@ -1,0 +1,12 @@
+{
+  "baseCommit": "8e1ea99cbd4275b381e95b89ef1ada2b3996a67e",
+  "publishedCommit": "60507b1374869b03ec5617a15b7d98a2bd170780",
+  "pr3": "OPEN, unmerged at audit",
+  "baselineTestsPassed": 111,
+  "recheckedPrescriptions": 189,
+  "maxAbsoluteDenseMeritDifference": 0,
+  "afterPhysicalEngine": {
+    "recheckedPrescriptions": 189,
+    "maxAbsoluteDenseMeritDifference": 0
+  }
+}

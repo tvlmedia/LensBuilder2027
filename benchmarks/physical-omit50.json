@@ -1,0 +1,211 @@
+{
+  "name": "OMIT50 · M4 exact serialized block-DLS winner",
+  "source": "benchmarks/omit50-methods-v1.json",
+  "method": "block-dls",
+  "seed": 1001,
+  "merit": 211.6991817575039,
+  "system": {
+    "name": "OMIT50_TECHNICAL_FOUNDATION · Modified Double Gauss · 8520",
+    "surfaces": [
+      {
+        "type": "OBJ",
+        "R": 0,
+        "t": 0,
+        "ap": 1,
+        "glass": "AIR",
+        "stop": false
+      },
+      {
+        "type": "SPH",
+        "R": 52.760740779683005,
+        "t": 7.298755793933621,
+        "glass": "N-LAK22",
+        "ap": 26.800727472401586,
+        "stop": false,
+        "group": 0,
+        "element": 0,
+        "ap_optical": 26.800727472401586
+      },
+      {
+        "type": "SPH",
+        "R": 289.3624901585444,
+        "t": 5.138677017783336,
+        "glass": "AIR",
+        "ap": 26.800727472401586,
+        "stop": false,
+        "group": 0,
+        "element": 0,
+        "ap_optical": 26.800727472401586
+      },
+      {
+        "type": "SPH",
+        "R": 37.618766042792615,
+        "t": 4.337540694861379,
+        "glass": "N-LAK22",
+        "ap": 18.518065356723056,
+        "stop": false,
+        "group": 1,
+        "element": 1,
+        "ap_optical": 18.518065356723056
+      },
+      {
+        "type": "SPH",
+        "R": 160.0390812117473,
+        "t": 2.550007835977561,
+        "glass": "N-SF10",
+        "ap": 18.518065356723056,
+        "stop": false,
+        "group": 1,
+        "element": 2,
+        "ap_optical": 18.518065356723056
+      },
+      {
+        "type": "SPH",
+        "R": 43.41349570729476,
+        "t": 8.914051497196896,
+        "glass": "AIR",
+        "ap": 18.518065356723056,
+        "stop": false,
+        "group": 1,
+        "element": 2,
+        "ap_optical": 18.518065356723056
+      },
+      {
+        "type": "STOP",
+        "R": 0,
+        "t": 1.0541428553605612,
+        "glass": "AIR",
+        "ap": 8.401642750646396,
+        "stop": true,
+        "group": null,
+        "element": null,
+        "ap_optical": 8.401642750646396
+      },
+      {
+        "type": "SPH",
+        "R": -41.74779638936237,
+        "t": 4.08724652116356,
+        "glass": "N-SF10",
+        "ap": 12.352216742580381,
+        "stop": false,
+        "group": 2,
+        "element": 3,
+        "ap_optical": 12.352216742580381
+      },
+      {
+        "type": "SPH",
+        "R": -131.55975148337956,
+        "t": 7.115841332447658,
+        "glass": "N-LAK22",
+        "ap": 12.352216742580381,
+        "stop": false,
+        "group": 2,
+        "element": 4,
+        "ap_optical": 12.352216742580381
+      },
+      {
+        "type": "SPH",
+        "R": -39.26910594393732,
+        "t": 1.6426916935272575,
+        "glass": "AIR",
+        "ap": 12.352216742580381,
+        "stop": false,
+        "group": 2,
+        "element": 4,
+        "ap_optical": 12.352216742580381
+      },
+      {
+        "type": "SPH",
+        "R": -564.5001759800765,
+        "t": 7.60308504244804,
+        "glass": "N-LAK22",
+        "ap": 15.346628716903975,
+        "stop": false,
+        "group": 3,
+        "element": 5,
+        "ap_optical": 15.346628716903975
+      },
+      {
+        "type": "SPH",
+        "R": -45.34952942523991,
+        "t": 27.090728005068087,
+        "glass": "AIR",
+        "ap": 15.346628716903975,
+        "stop": false,
+        "group": 3,
+        "element": 5,
+        "ap_optical": 15.346628716903975
+      },
+      {
+        "type": "IMS",
+        "R": 0,
+        "t": 0,
+        "ap": 23.15,
+        "glass": "AIR",
+        "stop": false
+      }
+    ],
+    "synthesis": {
+      "topology": "modified-gauss",
+      "ordinal": 8520,
+      "seed": 1001,
+      "powers": [
+        {
+          "group": 0,
+          "element": 0,
+          "role": 1,
+          "thinPower": 0.014123077907138949,
+          "glass": "N-SK16",
+          "frontCurvature": 0.026571204042185236,
+          "rearCurvature": 0.0038070985280233664
+        },
+        {
+          "group": 1,
+          "element": 1,
+          "role": 1,
+          "thinPower": 0.008614600173254819,
+          "glass": "N-SK16",
+          "frontCurvature": 0.019985687879161794,
+          "rearCurvature": 0.006100352926278532
+        },
+        {
+          "group": 1,
+          "element": 2,
+          "role": -1,
+          "thinPower": -0.013099366004099649,
+          "glass": "N-SF10",
+          "frontCurvature": 0.006100352926278532,
+          "rearCurvature": 0.0240871420346166
+        },
+        {
+          "group": 2,
+          "element": 3,
+          "role": -1,
+          "thinPower": -0.009696445878804288,
+          "glass": "N-SF10",
+          "frontCurvature": -0.019849403016937293,
+          "rearCurvature": -0.006535176430102263
+        },
+        {
+          "group": 2,
+          "element": 4,
+          "role": 1,
+          "thinPower": 0.00952171082940707,
+          "glass": "N-SK16",
+          "frontCurvature": -0.006535176430102263,
+          "rearCurvature": -0.021882626286368764
+        },
+        {
+          "group": 3,
+          "element": 5,
+          "role": 1,
+          "thinPower": 0.01547901086930271,
+          "glass": "N-SK16",
+          "frontCurvature": -0.0036289932030488135,
+          "rearCurvature": -0.028578642210192722
+        }
+      ],
+      "origin": "generated from specification; no input prescription"
+    }
+  }
+}

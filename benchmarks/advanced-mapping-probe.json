@@ -1,0 +1,351 @@
+[
+  {
+    "grid": 64,
+    "field": 0,
+    "rms": 9.72181866138709,
+    "phase": 2.3161240234118665,
+    "reasons": {
+      "unmapped": 1624,
+      "blocked": 472
+    },
+    "diagnostics": {
+      "traceCount": 130234,
+      "failedInsideNominalPupil": 0,
+      "failureDetails": {
+        "No residual-decreasing Newton step": 1473,
+        "miss": 151,
+        "clipped": 472
+      },
+      "maxJacobianCondition": 2.0000157994256247,
+      "backtracks": 0,
+      "unresolvedPhaseEdges": 3120,
+      "maxPhaseGradientWavesPerMm": 4.969900210383644,
+      "maxPhaseCurvatureWavesPerCell2": 0.7741279494120352,
+      "clippedSquareFraction": 0.115234375,
+      "missingSquareFraction": 0.396484375,
+      "borderClearSamples": 0,
+      "phaseRepresentation": "Unwrapped optical path, not wrapped phase"
+    },
+    "ms": 276.650708
+  },
+  {
+    "grid": 64,
+    "field": 0.5,
+    "rms": 7.967805763730506,
+    "phase": 5.30797128267514,
+    "reasons": {
+      "unmapped": 1626,
+      "blocked": 466
+    },
+    "diagnostics": {
+      "traceCount": 130444,
+      "failedInsideNominalPupil": 0,
+      "failureDetails": {
+        "No residual-decreasing Newton step": 1508,
+        "miss": 118,
+        "clipped": 466
+      },
+      "maxJacobianCondition": 2.003787839864352,
+      "backtracks": 0,
+      "unresolvedPhaseEdges": 3052,
+      "maxPhaseGradientWavesPerMm": 11.3897560440728,
+      "maxPhaseCurvatureWavesPerCell2": 0.9199196370272347,
+      "clippedSquareFraction": 0.11376953125,
+      "missingSquareFraction": 0.39697265625,
+      "borderClearSamples": 0,
+      "phaseRepresentation": "Unwrapped optical path, not wrapped phase"
+    },
+    "ms": 255.83008300000006
+  },
+  {
+    "grid": 64,
+    "field": 0.7,
+    "rms": 16.911544046230222,
+    "phase": 8.221357321130483,
+    "reasons": {
+      "unmapped": 1626,
+      "blocked": 462
+    },
+    "diagnostics": {
+      "traceCount": 131186,
+      "failedInsideNominalPupil": 0,
+      "failureDetails": {
+        "No residual-decreasing Newton step": 1501,
+        "miss": 125,
+        "clipped": 462
+      },
+      "maxJacobianCondition": 2.012743501230992,
+      "backtracks": 0,
+      "unresolvedPhaseEdges": 3164,
+      "maxPhaseGradientWavesPerMm": 17.641251101802357,
+      "maxPhaseCurvatureWavesPerCell2": 1.094343511820341,
+      "clippedSquareFraction": 0.11279296875,
+      "missingSquareFraction": 0.39697265625,
+      "borderClearSamples": 0,
+      "phaseRepresentation": "Unwrapped optical path, not wrapped phase"
+    },
+    "ms": 252.11975000000007
+  },
+  {
+    "grid": 64,
+    "field": 1,
+    "rms": 35.62801639457039,
+    "phase": 12.849716925094782,
+    "reasons": {
+      "unmapped": 1634,
+      "blocked": 546
+    },
+    "diagnostics": {
+      "traceCount": 133776,
+      "failedInsideNominalPupil": 0,
+      "failureDetails": {
+        "No residual-decreasing Newton step": 1502,
+        "miss": 132,
+        "clipped": 546
+      },
+      "maxJacobianCondition": 2.0572004031876987,
+      "backtracks": 0,
+      "unresolvedPhaseEdges": 3490,
+      "maxPhaseGradientWavesPerMm": 27.572707766885657,
+      "maxPhaseCurvatureWavesPerCell2": 1.355367086016578,
+      "clippedSquareFraction": 0.13330078125,
+      "missingSquareFraction": 0.39892578125,
+      "borderClearSamples": 0,
+      "phaseRepresentation": "Unwrapped optical path, not wrapped phase"
+    },
+    "ms": 250.524042
+  },
+  {
+    "grid": 256,
+    "field": 0,
+    "rms": 9.704934760969564,
+    "phase": 0.5850349669066084,
+    "reasons": {
+      "unmapped": 26164,
+      "blocked": 7220
+    },
+    "diagnostics": {
+      "traceCount": 2052984,
+      "failedInsideNominalPupil": 0,
+      "failureDetails": {
+        "No residual-decreasing Newton step": 24217,
+        "miss": 1947,
+        "clipped": 7220
+      },
+      "maxJacobianCondition": 2.0000158639660883,
+      "backtracks": 0,
+      "unresolvedPhaseEdges": 28400,
+      "maxPhaseGradientWavesPerMm": 5.021433007422162,
+      "maxPhaseCurvatureWavesPerCell2": 0.05680163157581486,
+      "clippedSquareFraction": 0.11016845703125,
+      "missingSquareFraction": 0.39923095703125,
+      "borderClearSamples": 0,
+      "phaseRepresentation": "Unwrapped optical path, not wrapped phase"
+    },
+    "ms": 3867.228542
+  },
+  {
+    "grid": 256,
+    "field": 0.5,
+    "rms": 8.038530905569274,
+    "phase": 1.4639194948353023,
+    "reasons": {
+      "unmapped": 26071,
+      "blocked": 7273
+    },
+    "diagnostics": {
+      "traceCount": 2092803,
+      "failedInsideNominalPupil": 0,
+      "failureDetails": {
+        "No residual-decreasing Newton step": 24046,
+        "miss": 2025,
+        "clipped": 7273
+      },
+      "maxJacobianCondition": 2.0038133572596935,
+      "backtracks": 0,
+      "unresolvedPhaseEdges": 22490,
+      "maxPhaseGradientWavesPerMm": 12.565015917669465,
+      "maxPhaseCurvatureWavesPerCell2": 0.06645145757270576,
+      "clippedSquareFraction": 0.1109771728515625,
+      "missingSquareFraction": 0.3978118896484375,
+      "borderClearSamples": 0,
+      "phaseRepresentation": "Unwrapped optical path, not wrapped phase"
+    },
+    "ms": 3970.065625
+  },
+  {
+    "grid": 256,
+    "field": 0.7,
+    "rms": 16.878083565332687,
+    "phase": 2.189600895134916,
+    "reasons": {
+      "unmapped": 26025,
+      "blocked": 7373
+    },
+    "diagnostics": {
+      "traceCount": 2102233,
+      "failedInsideNominalPupil": 0,
+      "failureDetails": {
+        "No residual-decreasing Newton step": 23972,
+        "miss": 2053,
+        "clipped": 7373
+      },
+      "maxJacobianCondition": 2.0128034513458184,
+      "backtracks": 0,
+      "unresolvedPhaseEdges": 32278,
+      "maxPhaseGradientWavesPerMm": 18.7936359873456,
+      "maxPhaseCurvatureWavesPerCell2": 0.07379242941583897,
+      "clippedSquareFraction": 0.1125030517578125,
+      "missingSquareFraction": 0.3971099853515625,
+      "borderClearSamples": 0,
+      "phaseRepresentation": "Unwrapped optical path, not wrapped phase"
+    },
+    "ms": 3990.4032079999997
+  },
+  {
+    "grid": 256,
+    "field": 1,
+    "rms": 35.47921542451284,
+    "phase": 3.3628964246691595,
+    "reasons": {
+      "unmapped": 26140,
+      "blocked": 8816
+    },
+    "diagnostics": {
+      "traceCount": 2143169,
+      "failedInsideNominalPupil": 0,
+      "failureDetails": {
+        "No residual-decreasing Newton step": 24237,
+        "miss": 1903,
+        "clipped": 8816
+      },
+      "maxJacobianCondition": 2.0572010041144693,
+      "backtracks": 0,
+      "unresolvedPhaseEdges": 47670,
+      "maxPhaseGradientWavesPerMm": 28.86418771969123,
+      "maxPhaseCurvatureWavesPerCell2": 0.08967399352015093,
+      "clippedSquareFraction": 0.134521484375,
+      "missingSquareFraction": 0.39886474609375,
+      "borderClearSamples": 0,
+      "phaseRepresentation": "Unwrapped optical path, not wrapped phase"
+    },
+    "ms": 4019.722582999999
+  },
+  {
+    "grid": 512,
+    "field": 0,
+    "rms": 9.705890133166735,
+    "phase": 0.2997661675469043,
+    "reasons": {
+      "unmapped": 104670,
+      "blocked": 28902
+    },
+    "diagnostics": {
+      "traceCount": 8234702,
+      "failedInsideNominalPupil": 0,
+      "failureDetails": {
+        "No residual-decreasing Newton step": 96392,
+        "miss": 8278,
+        "clipped": 28902
+      },
+      "maxJacobianCondition": 2.00001587201291,
+      "backtracks": 0,
+      "unresolvedPhaseEdges": 24056,
+      "maxPhaseGradientWavesPerMm": 5.145865848626301,
+      "maxPhaseCurvatureWavesPerCell2": 0.014498115031162051,
+      "clippedSquareFraction": 0.11025238037109375,
+      "missingSquareFraction": 0.39928436279296875,
+      "borderClearSamples": 0,
+      "phaseRepresentation": "Unwrapped optical path, not wrapped phase"
+    },
+    "ms": 15651.302333
+  },
+  {
+    "grid": 512,
+    "field": 0.5,
+    "rms": 8.035316621051615,
+    "phase": 0.7406994948882577,
+    "reasons": {
+      "unmapped": 104268,
+      "blocked": 29136
+    },
+    "diagnostics": {
+      "traceCount": 8373357,
+      "failedInsideNominalPupil": 0,
+      "failureDetails": {
+        "No residual-decreasing Newton step": 96226,
+        "miss": 8041,
+        "clipped": 29136,
+        "Iteration limit": 1
+      },
+      "maxJacobianCondition": 2.0038120109946433,
+      "backtracks": 0,
+      "unresolvedPhaseEdges": 42394,
+      "maxPhaseGradientWavesPerMm": 12.715044749817693,
+      "maxPhaseCurvatureWavesPerCell2": 0.016835240478282998,
+      "clippedSquareFraction": 0.11114501953125,
+      "missingSquareFraction": 0.3977508544921875,
+      "borderClearSamples": 0,
+      "phaseRepresentation": "Unwrapped optical path, not wrapped phase"
+    },
+    "ms": 16318.198458000003
+  },
+  {
+    "grid": 512,
+    "field": 0.7,
+    "rms": 16.90438741540274,
+    "phase": 1.10158139914639,
+    "reasons": {
+      "unmapped": 104048,
+      "blocked": 29418
+    },
+    "diagnostics": {
+      "traceCount": 8402936,
+      "failedInsideNominalPupil": 0,
+      "failureDetails": {
+        "No residual-decreasing Newton step": 96223,
+        "miss": 7825,
+        "clipped": 29418
+      },
+      "maxJacobianCondition": 2.0128029048955804,
+      "backtracks": 0,
+      "unresolvedPhaseEdges": 74536,
+      "maxPhaseGradientWavesPerMm": 18.91003960766328,
+      "maxPhaseCurvatureWavesPerCell2": 0.01885434334874958,
+      "clippedSquareFraction": 0.11222076416015625,
+      "missingSquareFraction": 0.39691162109375,
+      "borderClearSamples": 0,
+      "phaseRepresentation": "Unwrapped optical path, not wrapped phase"
+    },
+    "ms": 16749.889333999992
+  },
+  {
+    "grid": 512,
+    "field": 1,
+    "rms": 35.50387453854817,
+    "phase": 1.692488539848597,
+    "reasons": {
+      "unmapped": 104483,
+      "blocked": 35291
+    },
+    "diagnostics": {
+      "traceCount": 8559381,
+      "failedInsideNominalPupil": 0,
+      "failureDetails": {
+        "No residual-decreasing Newton step": 96704,
+        "miss": 7779,
+        "clipped": 35291
+      },
+      "maxJacobianCondition": 2.057261820976022,
+      "backtracks": 0,
+      "unresolvedPhaseEdges": 146120,
+      "maxPhaseGradientWavesPerMm": 29.053708921423045,
+      "maxPhaseCurvatureWavesPerCell2": 0.022768474336643862,
+      "clippedSquareFraction": 0.13462448120117188,
+      "missingSquareFraction": 0.3985710144042969,
+      "borderClearSamples": 0,
+      "phaseRepresentation": "Unwrapped optical path, not wrapped phase"
+    },
+    "ms": 16697.027707999994
+  }
+]

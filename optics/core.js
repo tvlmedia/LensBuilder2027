@@ -192,19 +192,29 @@
         1,
     };
   }
-  function trace(c, ray, { clip = true, toStop = false, record = false } = {}) {
+  function trace(c, ray, { clip = true, toStop = false, record = false, opticalPath = false } = {}) {
     let p = ray.p,
       d = unit(ray.d);
     const points = [];
+    let opl = 0, geometricLength = 0;
+    const segments = opticalPath && record ? [] : null;
+    const path = () => ({ opticalPathMm: opl, geometricLengthMm: geometricLength,
+      ...(segments ? { opticalSegments: segments } : {}) });
     for (let i = 0; i < c.surfaces.length; i++) {
       const s = c.surfaces[i],
         h = intersect({ p, d }, s);
       if (!h) return { ok: false, reason: "miss", surface: i };
       if (clip && h.vignetted)
         return { ok: false, reason: "clipped", surface: i };
+      if (opticalPath) {
+        const distance = Math.hypot(h.hit.x - p.x, h.hit.y - p.y, h.hit.z - p.z);
+        opl += s.n1 * distance;
+        geometricLength += distance;
+        if (segments) segments.push({ distanceMm: distance, index: s.n1, opticalPathMm: s.n1 * distance });
+      }
       if (record) points.push(h.hit);
       if (toStop && i === c.stopIndex)
-        return { ok: true, hit: h.hit, d, points };
+        return { ok: true, hit: h.hit, d, points, ...(opticalPath ? path() : {}) };
       const next = refract(d, h.normal, s.n1, s.n2);
       if (!next) return { ok: false, reason: "tir", surface: i };
       p = h.hit;
@@ -214,7 +224,15 @@
       return { ok: false, reason: "parallel_image" };
     const t = (c.imageX - p.x) / d.x;
     if (t < 0) return { ok: false, reason: "image_behind_ray" };
-    return { ok: true, hit: add(p, mul(d, t)), p, d, points };
+    const opticalPathToLastSurfaceMm = opl;
+    if (opticalPath) {
+      const n = c.surfaces.at(-1)?.n2 ?? 1;
+      opl += n * t;
+      geometricLength += t;
+      if (segments) segments.push({ distanceMm: t, index: n, opticalPathMm: n * t });
+    }
+    return { ok: true, hit: add(p, mul(d, t)), p, d, points,
+      ...(opticalPath ? { ...path(), opticalPathToLastSurfaceMm } : {}) };
   }
   function multiply(a, b) {
     return [

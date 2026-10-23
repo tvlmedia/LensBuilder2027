@@ -1,0 +1,74 @@
+{
+  "version": "0.9.0",
+  "build": {
+    "applicationVersion": "0.9.0",
+    "synthesisEngineVersion": "synthesis-1",
+    "engineVersion": "lb2027-spherical-0.4.0",
+    "searchEngineVersion": "numerical-lab-2",
+    "physicalEngineVersion": "physical-2",
+    "dlsEngineVersion": "bounded-dls-1",
+    "baseCommit": "b9f6b3156ab3f75c44a67c6410d7e793b470ba11",
+    "sourceSha256": "b19199df31190feec8135875f31ca841624b71d22ed0b9cb67dec51581ac6c16",
+    "note": "Source fingerprint identifies this exact working source; baseCommit is its recorded Git parent at stamping time."
+  },
+  "baselineCommit": "b9f6b3156ab3f75c44a67c6410d7e793b470ba11",
+  "audit": {
+    "baselineTests": 165,
+    "currentTests": 178,
+    "geometricPrescriptions": 189,
+    "maxAbsoluteDenseMeritDifference": 0,
+    "physicalConfigurations": 16,
+    "rmsPvStatusAgreement": "exact"
+  },
+  "commandsPassed": [
+    "npm test",
+    "npm run check",
+    "npm run audit:physical",
+    "npm run benchmark:diagnostics",
+    "LB_PHYSICAL_REPORT=/tmp/m7-physical.json npm run benchmark:physical",
+    "npm run benchmark:advanced",
+    "npm run benchmark:pupil"
+  ],
+  "browser": {
+    "basePath": "/LensBuilder2027/",
+    "physical": {
+      "field": 1,
+      "fNumber": 2,
+      "pupilGrid": 64,
+      "boundaryBudget": 8192,
+      "probes": 8187,
+      "unresolvedAreaFraction": 0.021850585937500215,
+      "psf": "UNAVAILABLE",
+      "consoleErrors": 0
+    },
+    "newLens": {
+      "name": "M7_BROWSER_SMOKE",
+      "budget": 256,
+      "workers": 2,
+      "consumed": 245,
+      "denseCandidates": 8,
+      "bestDenseMerit": 79.741,
+      "status": "FINISHED"
+    },
+    "searchLab": {
+      "name": "M7_SEARCH_SMOKE",
+      "budget": 64,
+      "workers": 2,
+      "valid": 64,
+      "status": "FINISHED"
+    }
+  },
+  "baselineBenchmarkRepair": "The legacy physical benchmark inherited automatic refinement after M6 and exceeded its retained-result estimate. Pin automaticSampling:false for its original 64-square sweep, use the exact serialized OMIT50 fixture and write a current report without overwriting the historical reference.",
+  "finalBuild": {
+    "applicationVersion": "0.9.0",
+    "synthesisEngineVersion": "synthesis-1",
+    "engineVersion": "lb2027-spherical-0.4.0",
+    "searchEngineVersion": "numerical-lab-2",
+    "physicalEngineVersion": "physical-2",
+    "dlsEngineVersion": "bounded-dls-1",
+    "baseCommit": "b9f6b3156ab3f75c44a67c6410d7e793b470ba11",
+    "sourceSha256": "372b095ba0bb80accfdbf488a2b749391d284d9b9af6fea4706adcc0de747341",
+    "note": "Source fingerprint identifies this exact working source; baseCommit is its recorded Git parent at stamping time."
+  },
+  "finalReview": "After the measured benchmark run, align the direct wavefront status with EXPERIMENTAL atlas confidence and reject ambiguous/folded/out-of-domain mappings in focus scans. Ray tracing, area, OPD, phase thresholds and benchmark classifications are unchanged. Full tests and syntax checks rerun on final source."
+}

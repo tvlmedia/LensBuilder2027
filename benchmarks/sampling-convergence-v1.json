@@ -1,0 +1,223 @@
+{
+  "schemaVersion": 1,
+  "description": "Post-search checks at unchanged merit and full physical specification; comparison of regular benchmark final grid with denser sunflower grids.",
+  "cases": [
+    {
+      "id": "omit50",
+      "method": "block-dls",
+      "seed": 1003,
+      "checks": [
+        {
+          "grid": 19,
+          "before": 250.58807027848798,
+          "after": 211.6991817575039,
+          "improved": true
+        },
+        {
+          "grid": 25,
+          "before": 250.31713787544717,
+          "after": 211.33947632349816,
+          "improved": true
+        },
+        {
+          "grid": 31,
+          "before": 250.54762471194294,
+          "after": 211.46936166497883,
+          "improved": true
+        },
+        {
+          "grid": 41,
+          "before": 250.25049849416604,
+          "after": 211.4239704982047,
+          "improved": true
+        }
+      ]
+    },
+    {
+      "id": "cooke",
+      "method": "block-dls",
+      "seed": 1003,
+      "checks": [
+        {
+          "grid": 19,
+          "before": 19.007443193993737,
+          "after": 14.395991892412894,
+          "improved": true
+        },
+        {
+          "grid": 25,
+          "before": 19.007938357372694,
+          "after": 14.510622277531215,
+          "improved": true
+        },
+        {
+          "grid": 31,
+          "before": 19.026336169035904,
+          "after": 14.423602521682072,
+          "improved": true
+        },
+        {
+          "grid": 41,
+          "before": 18.85764523316596,
+          "after": 14.321047270762602,
+          "improved": true
+        }
+      ]
+    },
+    {
+      "id": "double-gauss",
+      "method": "block-dls",
+      "seed": 1003,
+      "checks": [
+        {
+          "grid": 19,
+          "before": 48.681350839119055,
+          "after": 43.16971655099997,
+          "improved": true
+        },
+        {
+          "grid": 25,
+          "before": 48.44780865700085,
+          "after": 42.96673944232458,
+          "improved": true
+        },
+        {
+          "grid": 31,
+          "before": 48.519884773690826,
+          "after": 43.00419193379987,
+          "improved": true
+        },
+        {
+          "grid": 41,
+          "before": 48.506551226087744,
+          "after": 43.019841242352015,
+          "improved": true
+        }
+      ]
+    },
+    {
+      "id": "modified-gauss",
+      "method": "block-dls",
+      "seed": 1003,
+      "checks": [
+        {
+          "grid": 19,
+          "before": 311.493646100171,
+          "after": 271.72864801171437,
+          "improved": true
+        },
+        {
+          "grid": 25,
+          "before": 311.3257687272021,
+          "after": 271.19993350605483,
+          "improved": true
+        },
+        {
+          "grid": 31,
+          "before": 311.44091070556334,
+          "after": 270.8731236885165,
+          "improved": true
+        },
+        {
+          "grid": 41,
+          "before": 311.6769859329615,
+          "after": 271.19693741866524,
+          "improved": true
+        }
+      ]
+    },
+    {
+      "id": "sonnar",
+      "method": "coordinate",
+      "seed": 1003,
+      "checks": [
+        {
+          "grid": 19,
+          "before": 406.7597374336727,
+          "after": 349.1503371206928,
+          "improved": true
+        },
+        {
+          "grid": 25,
+          "before": 407.7877739240092,
+          "after": 351.5362430311466,
+          "improved": true
+        },
+        {
+          "grid": 31,
+          "before": 412.8630317132166,
+          "after": 356.15211044690665,
+          "improved": true
+        },
+        {
+          "grid": 41,
+          "before": 408.0227680526666,
+          "after": 351.2880755849349,
+          "improved": true
+        }
+      ]
+    },
+    {
+      "id": "poor-focus",
+      "method": "block-dls",
+      "seed": 1003,
+      "checks": [
+        {
+          "grid": 19,
+          "before": 220.71002829705984,
+          "after": 16.9778067825404,
+          "improved": true
+        },
+        {
+          "grid": 25,
+          "before": 221.0273212401019,
+          "after": 17.115831406229006,
+          "improved": true
+        },
+        {
+          "grid": 31,
+          "before": 220.96407021196433,
+          "after": 17.010612678062156,
+          "improved": true
+        },
+        {
+          "grid": 41,
+          "before": 220.4524019135352,
+          "after": 16.990041851791993,
+          "improved": true
+        }
+      ]
+    },
+    {
+      "id": "analytic-singlet",
+      "method": "hybrid",
+      "seed": 1003,
+      "checks": [
+        {
+          "grid": 19,
+          "before": 4.367004348813941,
+          "after": 0.958362704944939,
+          "improved": true
+        },
+        {
+          "grid": 25,
+          "before": 4.356723196131352,
+          "after": 0.9587469007479053,
+          "improved": true
+        },
+        {
+          "grid": 31,
+          "before": 4.361269933091184,
+          "after": 0.9595377055994954,
+          "improved": true
+        },
+        {
+          "grid": 41,
+          "before": 4.354932850340686,
+          "after": 0.9585018319075473,
+          "improved": true
+        }
+      ]
+    }
+  ]
+}
