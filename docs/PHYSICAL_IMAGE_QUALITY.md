@@ -62,3 +62,7 @@ At f/5.6 and 256², center/edge phase steps fall to about 0.179/0.228 waves and 
 - Publication branch remains `feat/validated-lens-optimization`, version 0.5.3 at audit. M4 PR #3 was unmerged. No automatic merge, deployment or Pages-setting change is part of this milestone.
 
 The remaining work is explicit: establish quantitative off-axis pupil transport and sensor projection, add registered energy-conserving spectral intensity integration, extend convergence beyond 256² where useful, and only then consider expensive MTF merit operands. Nothing in this release claims parity with commercial physical-optics solvers.
+
+## 0.9.0 pupil geometry diagnostics
+
+Enable **Forward pupil geometry · experimental** for a launch-plane footprint, clipping by surface, boundary brackets and explicit unresolved area. Read [Physical pupil boundaries](PHYSICAL_PUPIL_BOUNDARIES.md) before interpreting its area as pupil coverage: it is sampled launch-domain area, not calibrated throughput. Failed mappings remain distinct from physical blocking; unresolved pupil mappings cannot produce a trusted PSF/MTF. Optional atlas results retain EXPERIMENTAL physical confidence.
