@@ -65,7 +65,10 @@
         score: base.merit.total, dense: before, ...S.compliance(before, spec) },
       score = base.merit.total, denseScore = before.score,
       evaluations = 2, denseEvaluations = 1;
-    const trials = [], choices = proposals(parent, spec, options.includeFamilies !== false);
+    const allChoices = proposals(parent, spec, options.includeFamilies !== false);
+    const maxTrials = options.maxTrials ?? allChoices.length;
+    if (!Number.isSafeInteger(maxTrials) || maxTrials < 0) throw Error("Invalid maximum glass trials");
+    const trials = [], choices = allChoices.slice(0, maxTrials);
     for (const choice of choices) {
       // Every proposal starts from the frozen parent, not from an earlier trial.
       const candidate = substitute(parent, choice), trial = { ...choice,
