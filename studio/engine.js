@@ -3,7 +3,7 @@
  'use strict';
  const J=root.LBStudioProject||require('./project.js'),S=root.LBSynthesis||require('../synthesis/engine.js'),P=root.LBSynthesisPhysics||require('../synthesis/physics.js'),R=root.LBGeometryRefinement||require('../synthesis/refine.js'),G=root.LBGlassSearch||require('../synthesis/glass.js'),E=root.LBExplorer||require('../optimization/explorer.js'),M=root.LBMerit||require('../design/merit.js'),A=root.LBAnalysis||require('../analysis/evaluate.js'),O=root.LBOptics||require('../optics/core.js');
  const clone=x=>structuredClone(x);
- const compact=x=>JSON.parse(JSON.stringify(x,(k,v)=>k==='hits'?undefined:v));
+ const compact=x=>JSON.parse(JSON.stringify(x,(k,v)=>['hits','rows'].includes(k)?undefined:v));
  // Worker-local instrumentation. Categories do not overlap; analyses can contain
  // several wavelengths and objective calls may reject before any ray tracing.
  async function measured(run,category,fn){

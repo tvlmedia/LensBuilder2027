@@ -14,6 +14,7 @@ for (const dir of [
   "optimization",
   "import",
   "ui",
+  "studio",
 ]) {
   for (const file of fs
     .readdirSync(path.join(root, dir))
