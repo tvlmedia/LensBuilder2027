@@ -44,3 +44,9 @@ Delivered in 0.8.1: complete convergence comparison history, explicit resource-l
 Delivered in 0.8.2: readable per-metric convergence criteria and wavelength-specific confidence for spectral groups, with unchanged scientific thresholds.
 
 Delivered in 0.9.0: [experimental forward pupil geometry](PHYSICAL_PUPIL_BOUNDARIES.md), adaptive transition brackets, explicit blocked/failed/ambiguous states, forward-seeded inverse retries and launch-plane footprint diagnostics. Analytical non-circular, annular and disconnected references pass. OMIT50 geometry is quantified; its 512² mapping/phase limitations and unavailable f/2 MTF remain. Equal-ray-budget measurements do not demonstrate an overall runtime win. See [Milestone 7 results](MILESTONE7_REPORT.md). Next: domain completeness, branch-aware inversion and independently validated pupil propagation.
+
+## Milestone 8 — 1.0.0: OMIT Prime Design Studio
+
+Delivered: [seven-stage design workflow](OMIT_PRIME_DESIGN_STUDIO.md), complete editable briefs, deterministic multi-topology tournaments with equal maximum allocations and transparent actual costs, integrated existing geometry/glass optimizers, editable multi-aperture character objectives, candidate comparisons/layouts, finalist physical analysis, checkpoint save/reload/resume, duplicate/adopt/undo and engineering JSON/CSV/report exports. Numerical optics definitions remain unchanged.
+
+[The OMIT50 challenge](OMIT_STUDIO_BENCHMARK.md) does not establish a better lens: the new winner is worse under the historical objective and has substantially worse edge RMS. Next optical work should investigate stronger glass sets, budgets and architecture constraints through controlled experiments. Mechanical fit, manufacturing tolerances, validated high-NA/off-axis diffraction and trustworthy MTF optimization remain open scientific/engineering gates.
