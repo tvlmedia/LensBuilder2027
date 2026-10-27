@@ -9,6 +9,8 @@
       throw Error("Unknown local search policy");
     if (raw.seedGlassPolicy != null && !["first-pair-v1", "sample-pairs-v1"].includes(raw.seedGlassPolicy))
       throw Error("Unknown seed glass policy");
+    if (raw.seedPowerPolicy != null && !["legacy-v1", "achromatic-v1"].includes(raw.seedPowerPolicy))
+      throw Error("Unknown seed power policy");
     const s = {
       name: "NEW_LENS",
       topology: "auto",

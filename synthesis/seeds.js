@@ -71,6 +71,16 @@
         [outer * asym],
       ];
     }
+    if (s.seedPowerPolicy === "achromatic-v1") {
+      // Thin-element starting hypothesis: sum(phi)=1/f and sum(phi/V)=0.
+      // Actual thick, separated, cemented optics are still traced and validated.
+      const vc = G.catalog[crown].Vd, vf = G.catalog[flint].Vd,
+        positive = groupPowers.flat().filter(p => p > 0).reduce((a,b) => a+b,0),
+        negative = -groupPowers.flat().filter(p => p < 0).reduce((a,b) => a+b,0);
+      groupPowers = groupPowers.map(group => group.map(p => p > 0
+        ? p * vc / ((vc-vf)*positive)
+        : p * vf / ((vc-vf)*negative)));
+    }
     let element = 0;
     for (let gi = 0; gi < f.groups.length; gi++) {
       const roles = f.groups[gi],

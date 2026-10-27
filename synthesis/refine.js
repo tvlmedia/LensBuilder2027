@@ -15,7 +15,9 @@
     const parent = item.dense?.prescription || item.system;
     if (options.method && options.method !== "pattern") {
       const X = root.LBOpticalExperiment || require("../optimization/experiment.js");
-      const run = await X.optimize(parent, S.analysisSpec(spec), G.variables(parent, spec), operands,
+      const engine = options.method === "aperture-continuation"
+        ? (root.LBApertureContinuation || require("../optimization/aperture-continuation.js")) : X;
+      const run = await engine.optimize(parent, S.analysisSpec(spec), G.variables(parent, spec), operands,
         { method: options.method, budget: options.maxEvaluations ?? 3000, seed: spec.seed, yield: options.yield, onStage: options.onStage });
       const compliance = S.compliance(run.result, spec);
       const accepted = run.accepted && compliance.status === "DENSE VALIDATED";
