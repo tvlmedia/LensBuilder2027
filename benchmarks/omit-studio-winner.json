@@ -1,0 +1,6481 @@
+{
+  "schema": "omit-engineering-1",
+  "name": "OMIT 50 — Full Frame",
+  "candidate": "cooke-1001-0",
+  "topology": "cooke",
+  "seed": 1001,
+  "software": {
+    "applicationVersion": "1.0.0",
+    "synthesisEngineVersion": "synthesis-1",
+    "engineVersion": "lb2027-spherical-0.4.0",
+    "searchEngineVersion": "numerical-lab-2",
+    "physicalEngineVersion": "physical-2",
+    "dlsEngineVersion": "bounded-dls-1",
+    "baseCommit": "efe49373386156bb7ad091b738dbd5ea4e84cfbd",
+    "sourceSha256": "1786bc9296156d7dcb102ead1b21d138e03350db59c46201b2215ddea743dcd7",
+    "note": "Source fingerprint identifies this exact working source; baseCommit is its recorded Git parent at stamping time."
+  },
+  "contract": "311098b3",
+  "brief": {
+    "name": "OMIT 50 — Full Frame",
+    "topology": "auto",
+    "targetEflMm": 50,
+    "eflToleranceMm": 1,
+    "targetFNumber": 2,
+    "fNumberTolerance": 0.02,
+    "imageCircleMm": 46.3,
+    "mount": "PL",
+    "flangeFocalDistanceMm": 52,
+    "minBflMm": 15,
+    "minElements": 3,
+    "maxElements": 8,
+    "minGroups": 3,
+    "maxGroups": 6,
+    "sphericalOnly": true,
+    "cementedAllowed": true,
+    "maxOpticalLengthMm": 140,
+    "maxDiameterMm": 70,
+    "maxRearDiameterMm": 60,
+    "minCenterMm": 1,
+    "minEdgeMm": 0.5,
+    "minAirGapMm": 0.2,
+    "minMechanicalClearanceMm": 0.2,
+    "rearClearanceEnvelope": [],
+    "allowedGlasses": [
+      "N-BK7",
+      "N-F2"
+    ],
+    "maxUniqueGlasses": 2,
+    "objectDistance": "infinity",
+    "fields": [
+      0,
+      0.3,
+      0.5,
+      0.7,
+      0.85,
+      1
+    ],
+    "wavelengths": [
+      {
+        "nm": 486.1327,
+        "weight": 1
+      },
+      {
+        "nm": 587.5618,
+        "weight": 2
+      },
+      {
+        "nm": 656.2725,
+        "weight": 1
+      }
+    ],
+    "pupilGrid": 7,
+    "validationGrid": 19,
+    "minRayFraction": 0.7,
+    "focusPolicy": "global-image-plane-variable",
+    "budget": 10000,
+    "workers": 2,
+    "seed": 1001,
+    "algorithm": "de",
+    "seedFraction": 0.18,
+    "localFraction": 0.18,
+    "denseFraction": 0.02,
+    "parentsPerTopology": 2,
+    "archiveSize": 8,
+    "apertureMarginMm": 0.25,
+    "apertures": [
+      {
+        "optimization": true,
+        "validation": true,
+        "weight": 1,
+        "fNumber": 2
+      },
+      {
+        "optimization": true,
+        "validation": true,
+        "weight": 1,
+        "fNumber": 2.8
+      },
+      {
+        "optimization": true,
+        "validation": true,
+        "weight": 1,
+        "fNumber": 4
+      },
+      {
+        "optimization": true,
+        "validation": true,
+        "weight": 1,
+        "fNumber": 5.6
+      }
+    ],
+    "sensorDiagonalMm": null,
+    "maxFieldHeightMm": 23.15,
+    "maxFrontDiameterMm": 70,
+    "opticalMinBflMm": 15,
+    "rearClearanceMm": 15,
+    "characterPreset": "OMIT SIGNATURE",
+    "mountNotes": "PL intended; mechanical compatibility unverified. Editable construction limits are design assumptions."
+  },
+  "meritOperands": [
+    {
+      "metric": "efl",
+      "aperture": 2,
+      "target": 50,
+      "scale": 1,
+      "weight": 10
+    },
+    {
+      "metric": "fNumber",
+      "aperture": 2,
+      "target": 2,
+      "scale": 0.05,
+      "weight": 3
+    },
+    {
+      "metric": "rms",
+      "field": 0,
+      "aperture": 2,
+      "target": 0,
+      "scale": 0.03,
+      "weight": 2
+    },
+    {
+      "metric": "rms",
+      "field": 0.3,
+      "aperture": 2,
+      "target": 0,
+      "scale": 0.040799999999999996,
+      "weight": 2
+    },
+    {
+      "metric": "rms",
+      "field": 0.5,
+      "aperture": 2,
+      "target": 0,
+      "scale": 0.06,
+      "weight": 2
+    },
+    {
+      "metric": "rms",
+      "field": 0.7,
+      "aperture": 2,
+      "target": 0,
+      "scale": 0.08879999999999999,
+      "weight": 2
+    },
+    {
+      "metric": "rms",
+      "field": 0.85,
+      "aperture": 2,
+      "target": 0,
+      "scale": 0.11669999999999998,
+      "weight": 1
+    },
+    {
+      "metric": "rms",
+      "field": 1,
+      "aperture": 2,
+      "target": 0,
+      "scale": 0.15,
+      "weight": 1
+    },
+    {
+      "metric": "lateralColor",
+      "field": 0.3,
+      "aperture": 2,
+      "target": [
+        -0.015,
+        0.015
+      ],
+      "scale": 0.01,
+      "weight": 1
+    },
+    {
+      "metric": "distortion",
+      "field": 0.3,
+      "aperture": 2,
+      "target": [
+        -2,
+        2
+      ],
+      "scale": 1,
+      "weight": 0.5
+    },
+    {
+      "metric": "lateralColor",
+      "field": 0.5,
+      "aperture": 2,
+      "target": [
+        -0.015,
+        0.015
+      ],
+      "scale": 0.01,
+      "weight": 1
+    },
+    {
+      "metric": "distortion",
+      "field": 0.5,
+      "aperture": 2,
+      "target": [
+        -2,
+        2
+      ],
+      "scale": 1,
+      "weight": 0.5
+    },
+    {
+      "metric": "lateralColor",
+      "field": 0.7,
+      "aperture": 2,
+      "target": [
+        -0.015,
+        0.015
+      ],
+      "scale": 0.01,
+      "weight": 1
+    },
+    {
+      "metric": "distortion",
+      "field": 0.7,
+      "aperture": 2,
+      "target": [
+        -2,
+        2
+      ],
+      "scale": 1,
+      "weight": 0.5
+    },
+    {
+      "metric": "lateralColor",
+      "field": 0.85,
+      "aperture": 2,
+      "target": [
+        -0.015,
+        0.015
+      ],
+      "scale": 0.01,
+      "weight": 1
+    },
+    {
+      "metric": "distortion",
+      "field": 0.85,
+      "aperture": 2,
+      "target": [
+        -2,
+        2
+      ],
+      "scale": 1,
+      "weight": 0.5
+    },
+    {
+      "metric": "lateralColor",
+      "field": 1,
+      "aperture": 2,
+      "target": [
+        -0.015,
+        0.015
+      ],
+      "scale": 0.01,
+      "weight": 1
+    },
+    {
+      "metric": "distortion",
+      "field": 1,
+      "aperture": 2,
+      "target": [
+        -2,
+        2
+      ],
+      "scale": 1,
+      "weight": 0.5
+    },
+    {
+      "metric": "longitudinalColor",
+      "aperture": 2,
+      "target": [
+        -0.1,
+        0.1
+      ],
+      "scale": 0.1,
+      "weight": 0.5
+    },
+    {
+      "metric": "pupilSurvival",
+      "aperture": 2,
+      "type": "MINIMUM",
+      "target": 0.7,
+      "scale": 0.1,
+      "weight": 2
+    },
+    {
+      "metric": "efl",
+      "aperture": 2.8,
+      "target": 50,
+      "scale": 1,
+      "weight": 10
+    },
+    {
+      "metric": "fNumber",
+      "aperture": 2.8,
+      "target": 2.8,
+      "scale": 0.05,
+      "weight": 3
+    },
+    {
+      "metric": "rms",
+      "field": 0,
+      "aperture": 2.8,
+      "target": 0,
+      "scale": 0.03,
+      "weight": 2
+    },
+    {
+      "metric": "rms",
+      "field": 0.3,
+      "aperture": 2.8,
+      "target": 0,
+      "scale": 0.040799999999999996,
+      "weight": 2
+    },
+    {
+      "metric": "rms",
+      "field": 0.5,
+      "aperture": 2.8,
+      "target": 0,
+      "scale": 0.06,
+      "weight": 2
+    },
+    {
+      "metric": "rms",
+      "field": 0.7,
+      "aperture": 2.8,
+      "target": 0,
+      "scale": 0.08879999999999999,
+      "weight": 2
+    },
+    {
+      "metric": "rms",
+      "field": 0.85,
+      "aperture": 2.8,
+      "target": 0,
+      "scale": 0.11669999999999998,
+      "weight": 1
+    },
+    {
+      "metric": "rms",
+      "field": 1,
+      "aperture": 2.8,
+      "target": 0,
+      "scale": 0.15,
+      "weight": 1
+    },
+    {
+      "metric": "lateralColor",
+      "field": 0.3,
+      "aperture": 2.8,
+      "target": [
+        -0.015,
+        0.015
+      ],
+      "scale": 0.01,
+      "weight": 1
+    },
+    {
+      "metric": "distortion",
+      "field": 0.3,
+      "aperture": 2.8,
+      "target": [
+        -2,
+        2
+      ],
+      "scale": 1,
+      "weight": 0.5
+    },
+    {
+      "metric": "lateralColor",
+      "field": 0.5,
+      "aperture": 2.8,
+      "target": [
+        -0.015,
+        0.015
+      ],
+      "scale": 0.01,
+      "weight": 1
+    },
+    {
+      "metric": "distortion",
+      "field": 0.5,
+      "aperture": 2.8,
+      "target": [
+        -2,
+        2
+      ],
+      "scale": 1,
+      "weight": 0.5
+    },
+    {
+      "metric": "lateralColor",
+      "field": 0.7,
+      "aperture": 2.8,
+      "target": [
+        -0.015,
+        0.015
+      ],
+      "scale": 0.01,
+      "weight": 1
+    },
+    {
+      "metric": "distortion",
+      "field": 0.7,
+      "aperture": 2.8,
+      "target": [
+        -2,
+        2
+      ],
+      "scale": 1,
+      "weight": 0.5
+    },
+    {
+      "metric": "lateralColor",
+      "field": 0.85,
+      "aperture": 2.8,
+      "target": [
+        -0.015,
+        0.015
+      ],
+      "scale": 0.01,
+      "weight": 1
+    },
+    {
+      "metric": "distortion",
+      "field": 0.85,
+      "aperture": 2.8,
+      "target": [
+        -2,
+        2
+      ],
+      "scale": 1,
+      "weight": 0.5
+    },
+    {
+      "metric": "lateralColor",
+      "field": 1,
+      "aperture": 2.8,
+      "target": [
+        -0.015,
+        0.015
+      ],
+      "scale": 0.01,
+      "weight": 1
+    },
+    {
+      "metric": "distortion",
+      "field": 1,
+      "aperture": 2.8,
+      "target": [
+        -2,
+        2
+      ],
+      "scale": 1,
+      "weight": 0.5
+    },
+    {
+      "metric": "longitudinalColor",
+      "aperture": 2.8,
+      "target": [
+        -0.1,
+        0.1
+      ],
+      "scale": 0.1,
+      "weight": 0.5
+    },
+    {
+      "metric": "pupilSurvival",
+      "aperture": 2.8,
+      "type": "MINIMUM",
+      "target": 0.7,
+      "scale": 0.1,
+      "weight": 2
+    },
+    {
+      "metric": "efl",
+      "aperture": 4,
+      "target": 50,
+      "scale": 1,
+      "weight": 10
+    },
+    {
+      "metric": "fNumber",
+      "aperture": 4,
+      "target": 4,
+      "scale": 0.05,
+      "weight": 3
+    },
+    {
+      "metric": "rms",
+      "field": 0,
+      "aperture": 4,
+      "target": 0,
+      "scale": 0.018,
+      "weight": 2
+    },
+    {
+      "metric": "rms",
+      "field": 0.3,
+      "aperture": 4,
+      "target": 0,
+      "scale": 0.02448,
+      "weight": 2
+    },
+    {
+      "metric": "rms",
+      "field": 0.5,
+      "aperture": 4,
+      "target": 0,
+      "scale": 0.036,
+      "weight": 2
+    },
+    {
+      "metric": "rms",
+      "field": 0.7,
+      "aperture": 4,
+      "target": 0,
+      "scale": 0.053279999999999994,
+      "weight": 2
+    },
+    {
+      "metric": "rms",
+      "field": 0.85,
+      "aperture": 4,
+      "target": 0,
+      "scale": 0.07001999999999999,
+      "weight": 1
+    },
+    {
+      "metric": "rms",
+      "field": 1,
+      "aperture": 4,
+      "target": 0,
+      "scale": 0.09,
+      "weight": 1
+    },
+    {
+      "metric": "lateralColor",
+      "field": 0.3,
+      "aperture": 4,
+      "target": [
+        -0.015,
+        0.015
+      ],
+      "scale": 0.01,
+      "weight": 1
+    },
+    {
+      "metric": "distortion",
+      "field": 0.3,
+      "aperture": 4,
+      "target": [
+        -2,
+        2
+      ],
+      "scale": 1,
+      "weight": 0.5
+    },
+    {
+      "metric": "lateralColor",
+      "field": 0.5,
+      "aperture": 4,
+      "target": [
+        -0.015,
+        0.015
+      ],
+      "scale": 0.01,
+      "weight": 1
+    },
+    {
+      "metric": "distortion",
+      "field": 0.5,
+      "aperture": 4,
+      "target": [
+        -2,
+        2
+      ],
+      "scale": 1,
+      "weight": 0.5
+    },
+    {
+      "metric": "lateralColor",
+      "field": 0.7,
+      "aperture": 4,
+      "target": [
+        -0.015,
+        0.015
+      ],
+      "scale": 0.01,
+      "weight": 1
+    },
+    {
+      "metric": "distortion",
+      "field": 0.7,
+      "aperture": 4,
+      "target": [
+        -2,
+        2
+      ],
+      "scale": 1,
+      "weight": 0.5
+    },
+    {
+      "metric": "lateralColor",
+      "field": 0.85,
+      "aperture": 4,
+      "target": [
+        -0.015,
+        0.015
+      ],
+      "scale": 0.01,
+      "weight": 1
+    },
+    {
+      "metric": "distortion",
+      "field": 0.85,
+      "aperture": 4,
+      "target": [
+        -2,
+        2
+      ],
+      "scale": 1,
+      "weight": 0.5
+    },
+    {
+      "metric": "lateralColor",
+      "field": 1,
+      "aperture": 4,
+      "target": [
+        -0.015,
+        0.015
+      ],
+      "scale": 0.01,
+      "weight": 1
+    },
+    {
+      "metric": "distortion",
+      "field": 1,
+      "aperture": 4,
+      "target": [
+        -2,
+        2
+      ],
+      "scale": 1,
+      "weight": 0.5
+    },
+    {
+      "metric": "longitudinalColor",
+      "aperture": 4,
+      "target": [
+        -0.1,
+        0.1
+      ],
+      "scale": 0.1,
+      "weight": 0.5
+    },
+    {
+      "metric": "pupilSurvival",
+      "aperture": 4,
+      "type": "MINIMUM",
+      "target": 0.7,
+      "scale": 0.1,
+      "weight": 2
+    },
+    {
+      "metric": "efl",
+      "aperture": 5.6,
+      "target": 50,
+      "scale": 1,
+      "weight": 10
+    },
+    {
+      "metric": "fNumber",
+      "aperture": 5.6,
+      "target": 5.6,
+      "scale": 0.05,
+      "weight": 3
+    },
+    {
+      "metric": "rms",
+      "field": 0,
+      "aperture": 5.6,
+      "target": 0,
+      "scale": 0.018,
+      "weight": 2
+    },
+    {
+      "metric": "rms",
+      "field": 0.3,
+      "aperture": 5.6,
+      "target": 0,
+      "scale": 0.02448,
+      "weight": 2
+    },
+    {
+      "metric": "rms",
+      "field": 0.5,
+      "aperture": 5.6,
+      "target": 0,
+      "scale": 0.036,
+      "weight": 2
+    },
+    {
+      "metric": "rms",
+      "field": 0.7,
+      "aperture": 5.6,
+      "target": 0,
+      "scale": 0.053279999999999994,
+      "weight": 2
+    },
+    {
+      "metric": "rms",
+      "field": 0.85,
+      "aperture": 5.6,
+      "target": 0,
+      "scale": 0.07001999999999999,
+      "weight": 1
+    },
+    {
+      "metric": "rms",
+      "field": 1,
+      "aperture": 5.6,
+      "target": 0,
+      "scale": 0.09,
+      "weight": 1
+    },
+    {
+      "metric": "lateralColor",
+      "field": 0.3,
+      "aperture": 5.6,
+      "target": [
+        -0.015,
+        0.015
+      ],
+      "scale": 0.01,
+      "weight": 1
+    },
+    {
+      "metric": "distortion",
+      "field": 0.3,
+      "aperture": 5.6,
+      "target": [
+        -2,
+        2
+      ],
+      "scale": 1,
+      "weight": 0.5
+    },
+    {
+      "metric": "lateralColor",
+      "field": 0.5,
+      "aperture": 5.6,
+      "target": [
+        -0.015,
+        0.015
+      ],
+      "scale": 0.01,
+      "weight": 1
+    },
+    {
+      "metric": "distortion",
+      "field": 0.5,
+      "aperture": 5.6,
+      "target": [
+        -2,
+        2
+      ],
+      "scale": 1,
+      "weight": 0.5
+    },
+    {
+      "metric": "lateralColor",
+      "field": 0.7,
+      "aperture": 5.6,
+      "target": [
+        -0.015,
+        0.015
+      ],
+      "scale": 0.01,
+      "weight": 1
+    },
+    {
+      "metric": "distortion",
+      "field": 0.7,
+      "aperture": 5.6,
+      "target": [
+        -2,
+        2
+      ],
+      "scale": 1,
+      "weight": 0.5
+    },
+    {
+      "metric": "lateralColor",
+      "field": 0.85,
+      "aperture": 5.6,
+      "target": [
+        -0.015,
+        0.015
+      ],
+      "scale": 0.01,
+      "weight": 1
+    },
+    {
+      "metric": "distortion",
+      "field": 0.85,
+      "aperture": 5.6,
+      "target": [
+        -2,
+        2
+      ],
+      "scale": 1,
+      "weight": 0.5
+    },
+    {
+      "metric": "lateralColor",
+      "field": 1,
+      "aperture": 5.6,
+      "target": [
+        -0.015,
+        0.015
+      ],
+      "scale": 0.01,
+      "weight": 1
+    },
+    {
+      "metric": "distortion",
+      "field": 1,
+      "aperture": 5.6,
+      "target": [
+        -2,
+        2
+      ],
+      "scale": 1,
+      "weight": 0.5
+    },
+    {
+      "metric": "longitudinalColor",
+      "aperture": 5.6,
+      "target": [
+        -0.1,
+        0.1
+      ],
+      "scale": 0.1,
+      "weight": 0.5
+    },
+    {
+      "metric": "pupilSurvival",
+      "aperture": 5.6,
+      "type": "MINIMUM",
+      "target": 0.7,
+      "scale": 0.1,
+      "weight": 2
+    }
+  ],
+  "optimization": {
+    "topologies": [
+      "cooke",
+      "double-gauss",
+      "modified-gauss",
+      "sonnar"
+    ],
+    "seeds": [
+      1001,
+      2002
+    ],
+    "totalBudget": 16384,
+    "workers": 2,
+    "method": "block-dls",
+    "refinementBudget": 256,
+    "glassTrials": 2,
+    "glassTrialBudget": 32,
+    "allocation": {
+      "runs": 8,
+      "perRun": 2048,
+      "synthesis": 1707,
+      "refinement": 256,
+      "refinementValidation": 4,
+      "glass": 74,
+      "validation": 7,
+      "unallocated": 0
+    }
+  },
+  "evaluationCosts": {
+    "synthesis": {
+      "objectiveCalls": 1364,
+      "analysisCalls": 1088,
+      "traceApiCalls": 686471,
+      "paraxialCalls": 10532,
+      "elapsedMs": 1319.3361240000004
+    },
+    "validation": {
+      "objectiveCalls": 13,
+      "analysisCalls": 52,
+      "traceApiCalls": 307862,
+      "paraxialCalls": 2044,
+      "elapsedMs": 870.6034150000014
+    },
+    "refinement": {
+      "objectiveCalls": 256,
+      "analysisCalls": 1024,
+      "traceApiCalls": 706560,
+      "paraxialCalls": 7680,
+      "elapsedMs": 1460.133082
+    },
+    "glass": {
+      "objectiveCalls": 35,
+      "analysisCalls": 101,
+      "traceApiCalls": 75396,
+      "paraxialCalls": 792,
+      "elapsedMs": 140.8847920000003
+    }
+  },
+  "refinementHistory": [
+    {
+      "stage": "REFINE",
+      "before": 355.68585599114346,
+      "after": 242.153961010135,
+      "accepted": true,
+      "audit": {
+        "algorithm": "block-dls",
+        "evaluations": 256,
+        "denseEvaluations": 2,
+        "validationEvaluations": 4,
+        "accepted": true,
+        "initialSearchScore": null,
+        "finalSearchScore": 213.94681292300055,
+        "beforeDenseScore": 355.68585599114346,
+        "afterDenseScore": 242.153961010135,
+        "intermediate": {
+          "before": 334.840645937811,
+          "after": 242.21315538203206
+        },
+        "history": [
+          {
+            "evaluations": 1,
+            "score": 300.2640019662286,
+            "phase": "block"
+          },
+          {
+            "evaluations": 30,
+            "score": 266.67093733715836,
+            "accepted": true,
+            "damping": 0.0033333333333333335,
+            "unreliableColumns": 0,
+            "phase": "block"
+          },
+          {
+            "evaluations": 59,
+            "score": 249.66560590050278,
+            "accepted": true,
+            "damping": 0.0011111111111111111,
+            "unreliableColumns": 0,
+            "phase": "block"
+          },
+          {
+            "evaluations": 65,
+            "score": 249.66560590050278,
+            "phase": "block"
+          },
+          {
+            "evaluations": 90,
+            "score": 245.77740476158482,
+            "accepted": true,
+            "damping": 0.0033333333333333335,
+            "unreliableColumns": 0,
+            "phase": "block"
+          },
+          {
+            "evaluations": 115,
+            "score": 242.6390565128717,
+            "accepted": true,
+            "damping": 0.0011111111111111111,
+            "unreliableColumns": 0,
+            "phase": "block"
+          },
+          {
+            "evaluations": 129,
+            "score": 242.63905651287143,
+            "phase": "block"
+          },
+          {
+            "evaluations": 158,
+            "score": 226.31104012578248,
+            "accepted": true,
+            "damping": 0.0033333333333333335,
+            "unreliableColumns": 0,
+            "phase": "block"
+          },
+          {
+            "evaluations": 187,
+            "score": 218.9819347824069,
+            "accepted": true,
+            "damping": 0.0011111111111111111,
+            "unreliableColumns": 0,
+            "phase": "block"
+          },
+          {
+            "evaluations": 193,
+            "score": 218.9819347824069,
+            "phase": "block"
+          },
+          {
+            "evaluations": 218,
+            "score": 216.0523986468289,
+            "accepted": true,
+            "damping": 0.0033333333333333335,
+            "unreliableColumns": 0,
+            "phase": "block"
+          },
+          {
+            "evaluations": 243,
+            "score": 213.94681292300055,
+            "accepted": true,
+            "damping": 0.0011111111111111111,
+            "unreliableColumns": 0,
+            "phase": "block"
+          }
+        ],
+        "validatedHistory": [
+          {
+            "evaluations": 0,
+            "score": 355.68585599114346
+          },
+          {
+            "evaluations": 256,
+            "score": 242.153961010135
+          }
+        ],
+        "stages": [
+          {
+            "method": "block",
+            "variables": [
+              0,
+              2,
+              4,
+              6,
+              7,
+              9,
+              10
+            ],
+            "evaluations": 64,
+            "jacobian": {
+              "diagnostics": [
+                {
+                  "parameter": 0,
+                  "status": "reliable",
+                  "step": 0.0001,
+                  "relativeChange": 0.0000025972952159031127,
+                  "norm": 337.75148267386743
+                },
+                {
+                  "parameter": 1,
+                  "status": "reliable",
+                  "step": 0.0001,
+                  "relativeChange": 1.682530915925002e-7,
+                  "norm": 85.47269591825734
+                },
+                {
+                  "parameter": 2,
+                  "status": "reliable",
+                  "step": 0.0001,
+                  "relativeChange": 0.0000010253909371482261,
+                  "norm": 209.79335830748678
+                },
+                {
+                  "parameter": 3,
+                  "status": "reliable",
+                  "step": 0.0001,
+                  "relativeChange": 1.6361495271205717e-7,
+                  "norm": 88.88930814612804
+                },
+                {
+                  "parameter": 4,
+                  "status": "reliable",
+                  "step": 0.0001,
+                  "relativeChange": 2.6184831417563514e-7,
+                  "norm": 124.49316694071429
+                },
+                {
+                  "parameter": 5,
+                  "status": "reliable",
+                  "step": 0.0001,
+                  "relativeChange": 2.180944620883823e-7,
+                  "norm": 119.2076526578605
+                },
+                {
+                  "parameter": 6,
+                  "status": "reliable",
+                  "step": 0.0001,
+                  "relativeChange": 9.98307620641196e-7,
+                  "norm": 190.52537519192046
+                }
+              ],
+              "coupled": [
+                {
+                  "a": 0,
+                  "b": 1,
+                  "cosine": -0.9884226464146235
+                },
+                {
+                  "a": 0,
+                  "b": 2,
+                  "cosine": 0.9906374550945525
+                },
+                {
+                  "a": 0,
+                  "b": 3,
+                  "cosine": -0.9930007331410069
+                },
+                {
+                  "a": 1,
+                  "b": 2,
+                  "cosine": -0.9977731097898472
+                },
+                {
+                  "a": 1,
+                  "b": 3,
+                  "cosine": 0.9887591020269731
+                },
+                {
+                  "a": 2,
+                  "b": 3,
+                  "cosine": -0.994276475005462
+                },
+                {
+                  "a": 2,
+                  "b": 4,
+                  "cosine": 0.9837931206910605
+                },
+                {
+                  "a": 3,
+                  "b": 4,
+                  "cosine": -0.9919508237945519
+                },
+                {
+                  "a": 3,
+                  "b": 5,
+                  "cosine": 0.9852402287795599
+                },
+                {
+                  "a": 4,
+                  "b": 5,
+                  "cosine": -0.9970750361529538
+                }
+              ],
+              "columnNormRatio": 3.951571657420042,
+              "evaluations": 28,
+              "elapsedMs": 160.90479200000027,
+              "dampedPivotRatio": 1367.5735287184575
+            }
+          },
+          {
+            "method": "block",
+            "variables": [
+              1,
+              3,
+              5,
+              8,
+              10,
+              11
+            ],
+            "evaluations": 64,
+            "jacobian": {
+              "diagnostics": [
+                {
+                  "parameter": 0,
+                  "status": "reliable",
+                  "step": 0.0001,
+                  "relativeChange": 5.764690915746631e-8,
+                  "norm": 40.05505802705428
+                },
+                {
+                  "parameter": 1,
+                  "status": "reliable",
+                  "step": 0.0001,
+                  "relativeChange": 3.7397808633880474e-8,
+                  "norm": 31.291177154095394
+                },
+                {
+                  "parameter": 2,
+                  "status": "reliable",
+                  "step": 0.0001,
+                  "relativeChange": 1.0293778670572148e-9,
+                  "norm": 2.8849467564551836
+                },
+                {
+                  "parameter": 3,
+                  "status": "reliable",
+                  "step": 0.0001,
+                  "relativeChange": 1.4016242964319842e-9,
+                  "norm": 9.704007212797487
+                },
+                {
+                  "parameter": 4,
+                  "status": "reliable",
+                  "step": 0.0001,
+                  "relativeChange": 0.0000013560081623839024,
+                  "norm": 191.25811208671757
+                },
+                {
+                  "parameter": 5,
+                  "status": "reliable",
+                  "step": 0.0001,
+                  "relativeChange": 3.73953403270014e-9,
+                  "norm": 2.7907876105111273
+                }
+              ],
+              "coupled": [],
+              "columnNormRatio": 68.5319482451368,
+              "evaluations": 24,
+              "elapsedMs": 131.52349999999979,
+              "dampedPivotRatio": 24787.308001082838
+            }
+          },
+          {
+            "method": "block",
+            "variables": [
+              0,
+              2,
+              4,
+              6,
+              7,
+              9,
+              10
+            ],
+            "evaluations": 64,
+            "jacobian": {
+              "diagnostics": [
+                {
+                  "parameter": 0,
+                  "status": "reliable",
+                  "step": 0.0001,
+                  "relativeChange": 0.000004499771527402061,
+                  "norm": 333.0399592354399
+                },
+                {
+                  "parameter": 1,
+                  "status": "reliable",
+                  "step": 0.0001,
+                  "relativeChange": 2.6536171769556813e-7,
+                  "norm": 81.76008094889683
+                },
+                {
+                  "parameter": 2,
+                  "status": "reliable",
+                  "step": 0.0001,
+                  "relativeChange": 0.000002038843272750235,
+                  "norm": 205.28752212741765
+                },
+                {
+                  "parameter": 3,
+                  "status": "reliable",
+                  "step": 0.0001,
+                  "relativeChange": 2.566653191900819e-7,
+                  "norm": 87.09359079861925
+                },
+                {
+                  "parameter": 4,
+                  "status": "reliable",
+                  "step": 0.0001,
+                  "relativeChange": 4.281431990985519e-7,
+                  "norm": 121.20684847036125
+                },
+                {
+                  "parameter": 5,
+                  "status": "reliable",
+                  "step": 0.0001,
+                  "relativeChange": 5.241275241720674e-7,
+                  "norm": 118.37578112009976
+                },
+                {
+                  "parameter": 6,
+                  "status": "reliable",
+                  "step": 0.0001,
+                  "relativeChange": 0.0000016797740362619522,
+                  "norm": 190.28024144609088
+                }
+              ],
+              "coupled": [
+                {
+                  "a": 0,
+                  "b": 1,
+                  "cosine": -0.9948820349844814
+                },
+                {
+                  "a": 0,
+                  "b": 2,
+                  "cosine": 0.9923223023587896
+                },
+                {
+                  "a": 0,
+                  "b": 3,
+                  "cosine": -0.9925882171069258
+                },
+                {
+                  "a": 1,
+                  "b": 2,
+                  "cosine": -0.9983630180116049
+                },
+                {
+                  "a": 1,
+                  "b": 3,
+                  "cosine": 0.9959481201717745
+                },
+                {
+                  "a": 1,
+                  "b": 4,
+                  "cosine": -0.9809384881784731
+                },
+                {
+                  "a": 2,
+                  "b": 3,
+                  "cosine": -0.9954799399698937
+                },
+                {
+                  "a": 2,
+                  "b": 4,
+                  "cosine": 0.9836280306986936
+                },
+                {
+                  "a": 3,
+                  "b": 4,
+                  "cosine": -0.9917778182417052
+                },
+                {
+                  "a": 3,
+                  "b": 5,
+                  "cosine": 0.9848766600386373
+                },
+                {
+                  "a": 4,
+                  "b": 5,
+                  "cosine": -0.9968290134886277
+                }
+              ],
+              "columnNormRatio": 4.073380987032077,
+              "evaluations": 28,
+              "elapsedMs": 151.93041700000003,
+              "dampedPivotRatio": 1296.778473819515
+            }
+          },
+          {
+            "method": "block",
+            "variables": [
+              1,
+              3,
+              5,
+              8,
+              10,
+              11
+            ],
+            "evaluations": 64,
+            "jacobian": {
+              "diagnostics": [
+                {
+                  "parameter": 0,
+                  "status": "reliable",
+                  "step": 0.0001,
+                  "relativeChange": 7.88325208620341e-8,
+                  "norm": 41.24047702424662
+                },
+                {
+                  "parameter": 1,
+                  "status": "reliable",
+                  "step": 0.0001,
+                  "relativeChange": 4.809822231558534e-8,
+                  "norm": 32.000970342583216
+                },
+                {
+                  "parameter": 2,
+                  "status": "reliable",
+                  "step": 0.0001,
+                  "relativeChange": 8.67960148713158e-10,
+                  "norm": 2.9006671765338545
+                },
+                {
+                  "parameter": 3,
+                  "status": "reliable",
+                  "step": 0.0001,
+                  "relativeChange": 2.190139216104276e-9,
+                  "norm": 9.728813537304353
+                },
+                {
+                  "parameter": 4,
+                  "status": "reliable",
+                  "step": 0.0001,
+                  "relativeChange": 0.0000017650765094630251,
+                  "norm": 192.87183089287979
+                },
+                {
+                  "parameter": 5,
+                  "status": "reliable",
+                  "step": 0.0001,
+                  "relativeChange": 2.1523234933502053e-8,
+                  "norm": 2.1170292655255416
+                }
+              ],
+              "coupled": [],
+              "columnNormRatio": 91.10494315486014,
+              "evaluations": 24,
+              "elapsedMs": 130.56045799999993,
+              "dampedPivotRatio": 26931.965034130735
+            }
+          }
+        ],
+        "rejections": {},
+        "parameters": [
+          {
+            "surface": 1,
+            "key": "R",
+            "min": 21.89425973671459,
+            "max": 37.95005021030529
+          },
+          {
+            "surface": 1,
+            "key": "t",
+            "min": 6.777190318349858,
+            "max": 12.586210591221162
+          },
+          {
+            "surface": 2,
+            "key": "R",
+            "min": -127.42306710312475,
+            "max": -73.51330794411044
+          },
+          {
+            "surface": 2,
+            "key": "t",
+            "min": 2.080136869079827,
+            "max": 3.863111328291108
+          },
+          {
+            "surface": 3,
+            "key": "R",
+            "min": -54.41810644434028,
+            "max": -31.395061410196313
+          },
+          {
+            "surface": 3,
+            "key": "t",
+            "min": 1.374670255954511,
+            "max": 2.5529590467726635
+          },
+          {
+            "surface": 4,
+            "key": "R",
+            "min": 67.99864747030472,
+            "max": 117.8643222818615
+          },
+          {
+            "surface": 6,
+            "key": "R",
+            "min": 38.87070315432638,
+            "max": 67.37588546749906
+          },
+          {
+            "surface": 6,
+            "key": "t",
+            "min": 3.579490058238096,
+            "max": 6.647624393870749
+          },
+          {
+            "surface": 7,
+            "key": "R",
+            "min": -65.0863688782935,
+            "max": -37.54982819901548
+          },
+          {
+            "surface": 7,
+            "key": "t",
+            "min": 27.899867394927703,
+            "max": 42.8998673949277
+          },
+          {
+            "surface": 5,
+            "key": "stopPosition",
+            "min": -1.2723632169136994,
+            "max": 1.2723632169136994
+          }
+        ],
+        "reason": "Improved on intermediate and dense sampling; hard constraints passed"
+      }
+    },
+    {
+      "stage": "GLASS",
+      "before": 242.153961010135,
+      "after": 242.153961010135,
+      "accepted": false,
+      "audit": {
+        "evaluations": 38,
+        "denseEvaluations": 1,
+        "trials": [
+          {
+            "surfaces": [
+              1
+            ],
+            "surface": 1,
+            "fromGlass": "N-BK7",
+            "glass": "N-F2",
+            "scope": "single-element",
+            "distance": 0.3806500000000001,
+            "initialization": "unchanged-radii",
+            "firstOrderScale": 1.1510404443235966,
+            "status": "RAYTRACE_FAILURE"
+          },
+          {
+            "surfaces": [
+              1,
+              6
+            ],
+            "surface": 1,
+            "fromGlass": "N-BK7",
+            "glass": "N-F2",
+            "scope": "material-family",
+            "distance": 0.3806500000000001,
+            "initialization": "preserve-surface-power",
+            "firstOrderScale": 0.9987445965323669,
+            "before": 1478.2328921969945,
+            "after": 949.5911081761842,
+            "localEvaluations": 32,
+            "status": "DENSE_AIR_CLEARANCE"
+          }
+        ],
+        "initialScore": 213.94681292300055,
+        "finalScore": 213.94681292300055,
+        "initialDenseScore": 242.153961010135,
+        "finalDenseScore": 242.153961010135,
+        "strategy": "single-element and optional material-family substitutions from frozen parent; first-order EFL scale; local reoptimization; fresh dense incumbent ranking"
+      }
+    }
+  ],
+  "prescription": {
+    "name": "OMIT 50 — Full Frame · cooke-1001 · Cooke Triplet · 129",
+    "surfaces": [
+      {
+        "type": "OBJ",
+        "R": 0,
+        "t": 0,
+        "ap": 1,
+        "glass": "AIR",
+        "stop": false
+      },
+      {
+        "type": "SPH",
+        "R": 28.641886033844717,
+        "t": 9.716289170850006,
+        "glass": "N-BK7",
+        "ap": 18.45706415806206,
+        "stop": false,
+        "group": 0,
+        "element": 0,
+        "ap_optical": 18.45706415806206
+      },
+      {
+        "type": "SPH",
+        "R": -104.21903314517722,
+        "t": 2.9973764897159807,
+        "glass": "AIR",
+        "ap": 18.45706415806206,
+        "stop": false,
+        "group": 0,
+        "element": 0,
+        "ap_optical": 18.45706415806206
+      },
+      {
+        "type": "SPH",
+        "R": -42.234780930909814,
+        "t": 1.7977894976567916,
+        "glass": "N-F2",
+        "ap": 13.283298566386295,
+        "stop": false,
+        "group": 1,
+        "element": 1,
+        "ap_optical": 13.283298566386295
+      },
+      {
+        "type": "SPH",
+        "R": 96.63007485720946,
+        "t": 7.006201962008672,
+        "glass": "AIR",
+        "ap": 13.283298566386295,
+        "stop": false,
+        "group": 1,
+        "element": 1,
+        "ap_optical": 13.283298566386295
+      },
+      {
+        "type": "STOP",
+        "R": 0,
+        "t": 3.5204327690513315,
+        "glass": "AIR",
+        "ap": 9.662662578191306,
+        "stop": true,
+        "group": null,
+        "element": null,
+        "ap_optical": 9.662662578191306
+      },
+      {
+        "type": "SPH",
+        "R": 57.35839704544693,
+        "t": 5.150377241943525,
+        "glass": "N-BK7",
+        "ap": 13.246673907589775,
+        "stop": false,
+        "group": 2,
+        "element": 2,
+        "ap_optical": 13.246673907589775
+      },
+      {
+        "type": "SPH",
+        "R": -46.59832905344963,
+        "t": 34.76835635856996,
+        "glass": "AIR",
+        "ap": 13.246673907589775,
+        "stop": false,
+        "group": 2,
+        "element": 2,
+        "ap_optical": 13.246673907589775
+      },
+      {
+        "type": "IMS",
+        "R": 0,
+        "t": 0,
+        "ap": 23.15,
+        "glass": "AIR",
+        "stop": false
+      }
+    ],
+    "synthesis": {
+      "topology": "cooke",
+      "ordinal": 129,
+      "seed": 1001,
+      "powers": [
+        {
+          "group": 0,
+          "element": 0,
+          "role": 1,
+          "thinPower": 0.023410769158079263,
+          "glass": "N-BK7",
+          "frontCurvature": 0.03425555415067637,
+          "rearCurvature": -0.011043918750292666
+        },
+        {
+          "group": 1,
+          "element": 1,
+          "role": -1,
+          "thinPower": -0.02165147350720299,
+          "glass": "N-F2",
+          "frontCurvature": -0.023889107595643024,
+          "rearCurvature": 0.01102963114564195
+        },
+        {
+          "group": 2,
+          "element": 2,
+          "role": 1,
+          "thinPower": 0.020293805755694703,
+          "glass": "N-BK7",
+          "frontCurvature": 0.01929473714489581,
+          "rearCurvature": -0.019973460225303087
+        }
+      ],
+      "origin": "generated from specification; no input prescription"
+    }
+  },
+  "surfaces": [
+    {
+      "surface": 0,
+      "label": "OBJ",
+      "radiusMm": 0,
+      "thicknessMm": 0,
+      "glass": "AIR",
+      "indexModel": {
+        "nd": 1,
+        "Vd": 999,
+        "name": "AIR",
+        "model": "constant",
+        "source": "Reference ambient medium n=1",
+        "transmission": null
+      },
+      "clearSemiApertureMm": 1,
+      "stop": false
+    },
+    {
+      "surface": 1,
+      "label": "SPH",
+      "radiusMm": 28.641886033844717,
+      "thicknessMm": 9.716289170850006,
+      "glass": "N-BK7",
+      "indexModel": {
+        "name": "N-BK7",
+        "manufacturer": "SCHOTT",
+        "nd": 1.5168,
+        "Vd": 64.17,
+        "model": "sellmeier",
+        "B": [
+          1.03961212,
+          0.231792344,
+          1.01046945
+        ],
+        "C": [
+          0.00600069867,
+          0.0200179144,
+          103.560653
+        ],
+        "rangeNm": [
+          400,
+          700
+        ],
+        "source": "https://www.schott.com/en-gb/products/optical-glass/-/media/Project/OnEx/Products/O/optical-glass/Downloads/schott-optical-glass-collection-datasheets-english-may2019.pdf?rev=5358bb64e13a44f2b37f5065490509af",
+        "transmission": null
+      },
+      "clearSemiApertureMm": 18.45706415806206,
+      "stop": false
+    },
+    {
+      "surface": 2,
+      "label": "SPH",
+      "radiusMm": -104.21903314517722,
+      "thicknessMm": 2.9973764897159807,
+      "glass": "AIR",
+      "indexModel": {
+        "nd": 1,
+        "Vd": 999,
+        "name": "AIR",
+        "model": "constant",
+        "source": "Reference ambient medium n=1",
+        "transmission": null
+      },
+      "clearSemiApertureMm": 18.45706415806206,
+      "stop": false
+    },
+    {
+      "surface": 3,
+      "label": "SPH",
+      "radiusMm": -42.234780930909814,
+      "thicknessMm": 1.7977894976567916,
+      "glass": "N-F2",
+      "indexModel": {
+        "name": "N-F2",
+        "manufacturer": "SCHOTT",
+        "nd": 1.62005,
+        "Vd": 36.43,
+        "model": "sellmeier",
+        "B": [
+          1.39757037,
+          0.159201403,
+          1.2686543
+        ],
+        "C": [
+          0.00995906143,
+          0.0546931752,
+          119.248346
+        ],
+        "rangeNm": [
+          400,
+          700
+        ],
+        "source": "https://www.schott.com/en-gb/products/optical-glass/-/media/Project/OnEx/Products/O/optical-glass/Downloads/schott-optical-glass-collection-datasheets-english-may2019.pdf?rev=5358bb64e13a44f2b37f5065490509af",
+        "transmission": null
+      },
+      "clearSemiApertureMm": 13.283298566386295,
+      "stop": false
+    },
+    {
+      "surface": 4,
+      "label": "SPH",
+      "radiusMm": 96.63007485720946,
+      "thicknessMm": 7.006201962008672,
+      "glass": "AIR",
+      "indexModel": {
+        "nd": 1,
+        "Vd": 999,
+        "name": "AIR",
+        "model": "constant",
+        "source": "Reference ambient medium n=1",
+        "transmission": null
+      },
+      "clearSemiApertureMm": 13.283298566386295,
+      "stop": false
+    },
+    {
+      "surface": 5,
+      "label": "STOP",
+      "radiusMm": 0,
+      "thicknessMm": 3.5204327690513315,
+      "glass": "AIR",
+      "indexModel": {
+        "nd": 1,
+        "Vd": 999,
+        "name": "AIR",
+        "model": "constant",
+        "source": "Reference ambient medium n=1",
+        "transmission": null
+      },
+      "clearSemiApertureMm": 9.662662578191306,
+      "stop": true
+    },
+    {
+      "surface": 6,
+      "label": "SPH",
+      "radiusMm": 57.35839704544693,
+      "thicknessMm": 5.150377241943525,
+      "glass": "N-BK7",
+      "indexModel": {
+        "name": "N-BK7",
+        "manufacturer": "SCHOTT",
+        "nd": 1.5168,
+        "Vd": 64.17,
+        "model": "sellmeier",
+        "B": [
+          1.03961212,
+          0.231792344,
+          1.01046945
+        ],
+        "C": [
+          0.00600069867,
+          0.0200179144,
+          103.560653
+        ],
+        "rangeNm": [
+          400,
+          700
+        ],
+        "source": "https://www.schott.com/en-gb/products/optical-glass/-/media/Project/OnEx/Products/O/optical-glass/Downloads/schott-optical-glass-collection-datasheets-english-may2019.pdf?rev=5358bb64e13a44f2b37f5065490509af",
+        "transmission": null
+      },
+      "clearSemiApertureMm": 13.246673907589775,
+      "stop": false
+    },
+    {
+      "surface": 7,
+      "label": "SPH",
+      "radiusMm": -46.59832905344963,
+      "thicknessMm": 34.76835635856996,
+      "glass": "AIR",
+      "indexModel": {
+        "nd": 1,
+        "Vd": 999,
+        "name": "AIR",
+        "model": "constant",
+        "source": "Reference ambient medium n=1",
+        "transmission": null
+      },
+      "clearSemiApertureMm": 13.246673907589775,
+      "stop": false
+    },
+    {
+      "surface": 8,
+      "label": "IMS",
+      "radiusMm": 0,
+      "thicknessMm": 0,
+      "glass": "AIR",
+      "indexModel": {
+        "nd": 1,
+        "Vd": 999,
+        "name": "AIR",
+        "model": "constant",
+        "source": "Reference ambient medium n=1",
+        "transmission": null
+      },
+      "clearSemiApertureMm": 23.15,
+      "stop": false
+    }
+  ],
+  "specifications": {
+    "matrix": [
+      0.7093948790456969,
+      26.157668133617328,
+      -0.019889503620523816,
+      0.6762622329573575
+    ],
+    "eflMm": 50.27777560864356,
+    "bflMm": 35.666796546580386,
+    "fflMm": -34.000960801230256,
+    "frontPrincipalMm": 16.276814807413302,
+    "rearPrincipalMm": 15.577488069163145,
+    "entrancePupilXMm": 24.388779805734092,
+    "entrancePupilRadiusMm": 12.569443902160891,
+    "fNumber": 1.9999999999999998,
+    "preStop": [
+      0.7687422493313437,
+      18.74868544630688,
+      -0.005262482505501057,
+      1.1724805962227967
+    ],
+    "imageDistanceMm": 34.76835635856997,
+    "tStop": null,
+    "requiredImageCircleMm": 46.3,
+    "imageCircleStatus": "Sampled field survival only",
+    "opticalLengthMm": 64.95682348979628,
+    "frontDiameterMm": 36.91412831612412,
+    "wavelengths": [
+      {
+        "nm": 486.1327,
+        "weight": 1
+      },
+      {
+        "nm": 587.5618,
+        "weight": 2
+      },
+      {
+        "nm": 656.2725,
+        "weight": 1
+      }
+    ]
+  },
+  "performance": {
+    "valid": true,
+    "errors": [],
+    "warnings": [],
+    "firstOrder": {
+      "matrix": [
+        0.7093948790456969,
+        26.157668133617328,
+        -0.019889503620523816,
+        0.6762622329573575
+      ],
+      "eflMm": 50.27777560864356,
+      "bflMm": 35.666796546580386,
+      "fflMm": -34.000960801230256,
+      "frontPrincipalMm": 16.276814807413302,
+      "rearPrincipalMm": 15.577488069163145,
+      "entrancePupilXMm": 24.388779805734092,
+      "entrancePupilRadiusMm": 12.569443902160891,
+      "fNumber": 1.9999999999999998,
+      "preStop": [
+        0.7687422493313437,
+        18.74868544630688,
+        -0.005262482505501057,
+        1.1724805962227967
+      ],
+      "imageDistanceMm": 34.76835635856997,
+      "tStop": null
+    },
+    "fields": [
+      {
+        "field": 0,
+        "angleDeg": 0,
+        "idealHeightMm": 0,
+        "chiefHeightMm": 0,
+        "referenceChiefHeightMm": 0,
+        "distortionReferenceXMm": 65.8552636778067,
+        "fixedPlaneMappingPercent": 0,
+        "chiefColorDisplacements": [
+          {
+            "nm": 486.1327,
+            "displacementMm": 0
+          },
+          {
+            "nm": 587.5618,
+            "displacementMm": 0
+          },
+          {
+            "nm": 656.2725,
+            "displacementMm": 0
+          }
+        ],
+        "realRayFocusColorMm": -0.25054877017287036,
+        "diagnosticFocus": {
+          "tangentialShiftMm": -0.13308967767673546,
+          "sagittalShiftMm": -0.13308967767673596,
+          "bestRmsShiftMm": -0.1330896776767357,
+          "astigmaticDifferenceMm": 4.996003610813204e-16,
+          "fieldCurvatureRelativeToAxisMm": 0
+        },
+        "distortionPercent": 0,
+        "lateralChiefColorMm": 0,
+        "rayFraction": 0.9154929577464789,
+        "covarianceYZmm2": -9.007022579199323e-18,
+        "majorAxisAngleRad": null,
+        "centroidYmm": -7.157506591955414e-18,
+        "centroidZmm": 1.1679984903935516e-17,
+        "rmsMm": 0.06759866544700614,
+        "tangentialRmsMm": 0.04779947473673885,
+        "sagittalRmsMm": 0.047799474736738755,
+        "maxRadiusMm": 0.18849957937527295
+      },
+      {
+        "field": 0.3,
+        "angleDeg": 7.907787273719861,
+        "idealHeightMm": 6.98358303204059,
+        "chiefHeightMm": 6.841923692610493,
+        "referenceChiefHeightMm": 6.986882640186459,
+        "distortionReferenceXMm": 65.8552636778067,
+        "fixedPlaneMappingPercent": -2.0284621630496247,
+        "chiefColorDisplacements": [
+          {
+            "nm": 486.1327,
+            "displacementMm": 0.0003043149932624445
+          },
+          {
+            "nm": 587.5618,
+            "displacementMm": 0
+          },
+          {
+            "nm": 656.2725,
+            "displacementMm": -0.0008370103330168632
+          }
+        ],
+        "realRayFocusColorMm": -0.2408550689860428,
+        "diagnosticFocus": {
+          "tangentialShiftMm": -0.2994047481791775,
+          "sagittalShiftMm": -0.4241093714952922,
+          "bestRmsShiftMm": -0.3619426935722915,
+          "astigmaticDifferenceMm": 0.1247046233161147,
+          "fieldCurvatureRelativeToAxisMm": -0.22885301589555576
+        },
+        "distortionPercent": 0.0472480692322319,
+        "lateralChiefColorMm": 0.0011413253262793077,
+        "rayFraction": 0.9049295774647887,
+        "covarianceYZmm2": -0.00018389178349437094,
+        "majorAxisAngleRad": -0.04930584565027419,
+        "centroidYmm": 6.730509051621984,
+        "centroidZmm": 0.0009841378061777655,
+        "rmsMm": 0.13557180145486988,
+        "tangentialRmsMm": 0.1051123933717343,
+        "sagittalRmsMm": 0.0856218319669957,
+        "maxRadiusMm": 0.463667933827588
+      },
+      {
+        "field": 0.5,
+        "angleDeg": 13.034363392234962,
+        "idealHeightMm": 11.639305053400983,
+        "chiefHeightMm": 11.4084319375016,
+        "referenceChiefHeightMm": 11.650004364573888,
+        "distortionReferenceXMm": 65.8552636778067,
+        "fixedPlaneMappingPercent": -1.9835644382558957,
+        "chiefColorDisplacements": [
+          {
+            "nm": 486.1327,
+            "displacementMm": -0.0001775278761577681
+          },
+          {
+            "nm": 587.5618,
+            "displacementMm": 0
+          },
+          {
+            "nm": 656.2725,
+            "displacementMm": -0.0011703715545046123
+          }
+        ],
+        "realRayFocusColorMm": -0.21744816605071826,
+        "diagnosticFocus": {
+          "tangentialShiftMm": -0.47969929768936864,
+          "sagittalShiftMm": -0.9105257138139102,
+          "bestRmsShiftMm": -0.6968962624643305,
+          "astigmaticDifferenceMm": 0.4308264161245416,
+          "fieldCurvatureRelativeToAxisMm": -0.5638065847875947
+        },
+        "distortionPercent": 0.09192396903265881,
+        "lateralChiefColorMm": 0.0011703715545046123,
+        "rayFraction": 0.8908450704225352,
+        "covarianceYZmm2": -0.00022580994333374274,
+        "majorAxisAngleRad": -0.02329203436841969,
+        "centroidYmm": 11.192103977971898,
+        "centroidZmm": 0.0007595737595981288,
+        "rmsMm": 0.24008553152392212,
+        "tangentialRmsMm": 0.18347857764239445,
+        "sagittalRmsMm": 0.15484403118444068,
+        "maxRadiusMm": 0.6597585870068664
+      },
+      {
+        "field": 0.7,
+        "angleDeg": 17.957509408347466,
+        "idealHeightMm": 16.295027074761375,
+        "chiefHeightMm": 15.968874737413344,
+        "referenceChiefHeightMm": 16.30664598687271,
+        "distortionReferenceXMm": 65.8552636778067,
+        "fixedPlaneMappingPercent": -2.0015452312637967,
+        "chiefColorDisplacements": [
+          {
+            "nm": 486.1327,
+            "displacementMm": -0.0015113776361097564
+          },
+          {
+            "nm": 587.5618,
+            "displacementMm": 0
+          },
+          {
+            "nm": 656.2725,
+            "displacementMm": -0.0012330347245370632
+          }
+        ],
+        "realRayFocusColorMm": -0.21432787149621024,
+        "diagnosticFocus": {
+          "tangentialShiftMm": -0.543498907564208,
+          "sagittalShiftMm": -1.4829399685289828,
+          "bestRmsShiftMm": -1.0300708702399093,
+          "astigmaticDifferenceMm": 0.9394410609647748,
+          "fieldCurvatureRelativeToAxisMm": -0.8969811925631735
+        },
+        "distortionPercent": 0.07130342317338258,
+        "lateralChiefColorMm": 0.0015113776361097564,
+        "rayFraction": 0.8697183098591549,
+        "covarianceYZmm2": 0.00018861161825809743,
+        "majorAxisAngleRad": 0.009720559901281477,
+        "centroidYmm": 15.615862072448348,
+        "centroidZmm": 0.001008617208594911,
+        "rmsMm": 0.3721452572448645,
+        "tangentialRmsMm": 0.2809742138199087,
+        "sagittalRmsMm": 0.2440196378534535,
+        "maxRadiusMm": 0.8377376639298821
+      },
+      {
+        "field": 0.85,
+        "angleDeg": 21.4821183454181,
+        "idealHeightMm": 19.78681859078167,
+        "chiefHeightMm": 19.37284746247144,
+        "referenceChiefHeightMm": 19.78206667489971,
+        "distortionReferenceXMm": 65.8552636778067,
+        "fixedPlaneMappingPercent": -2.0921560806298185,
+        "chiefColorDisplacements": [
+          {
+            "nm": 486.1327,
+            "displacementMm": -0.0025177096848771896
+          },
+          {
+            "nm": 587.5618,
+            "displacementMm": 0
+          },
+          {
+            "nm": 656.2725,
+            "displacementMm": -0.0013459543741589641
+          }
+        ],
+        "realRayFocusColorMm": -0.23712464973840564,
+        "diagnosticFocus": {
+          "tangentialShiftMm": -0.8117196106670425,
+          "sagittalShiftMm": -1.936357246754892,
+          "bestRmsShiftMm": -1.4107438369157523,
+          "astigmaticDifferenceMm": 1.1246376360878494,
+          "fieldCurvatureRelativeToAxisMm": -1.2776541592390167
+        },
+        "distortionPercent": -0.02401556298785164,
+        "lateralChiefColorMm": 0.0025177096848771896,
+        "rayFraction": 0.8415492957746479,
+        "covarianceYZmm2": -0.0017579707716514617,
+        "majorAxisAngleRad": -0.09316577062513581,
+        "centroidYmm": 18.911568673060074,
+        "centroidZmm": 0.0046550636318138765,
+        "rmsMm": 0.4679736362493878,
+        "tangentialRmsMm": 0.3447098182287145,
+        "sagittalRmsMm": 0.3165034998877595,
+        "maxRadiusMm": 1.048748117502073
+      },
+      {
+        "field": 1,
+        "angleDeg": 24.84413659396438,
+        "idealHeightMm": 23.278610106801967,
+        "chiefHeightMm": 22.76696048595854,
+        "referenceChiefHeightMm": 23.246896607445265,
+        "distortionReferenceXMm": 65.8552636778067,
+        "fixedPlaneMappingPercent": -2.1979388739103687,
+        "chiefColorDisplacements": [
+          {
+            "nm": 486.1327,
+            "displacementMm": -0.00021386523599176144
+          },
+          {
+            "nm": 587.5618,
+            "displacementMm": 0
+          },
+          {
+            "nm": 656.2725,
+            "displacementMm": -0.002904416743145788
+          }
+        ],
+        "realRayFocusColorMm": -0.5456292941750278,
+        "diagnosticFocus": {
+          "tangentialShiftMm": -3.1005571934158036,
+          "sagittalShiftMm": -2.2505995465724657,
+          "bestRmsShiftMm": -2.6398913400680146,
+          "astigmaticDifferenceMm": -0.8499576468433379,
+          "fieldCurvatureRelativeToAxisMm": -2.506801662391279
+        },
+        "distortionPercent": -0.13623450545887625,
+        "lateralChiefColorMm": 0.002904416743145788,
+        "rayFraction": 0.8380281690140845,
+        "covarianceYZmm2": -0.0023312156651914134,
+        "majorAxisAngleRad": -0.013313014986087593,
+        "centroidYmm": 22.33255644658519,
+        "centroidZmm": 0.003685802665671466,
+        "rmsMm": 0.6798703951428863,
+        "tangentialRmsMm": 0.5644866647493775,
+        "sagittalRmsMm": 0.37891761573179505,
+        "maxRadiusMm": 5.470291229688868
+      }
+    ],
+    "longitudinalColorMm": -0.27638368936254665,
+    "metricStatus": {
+      "spherical": {
+        "method": "GEOMETRIC zonal axial intercept",
+        "validation": "VALIDATED symmetry and paraxial limit; external reference pending"
+      },
+      "lateralColor": {
+        "method": "GEOMETRIC signed chief offsets at fixed sensor, d reference",
+        "validation": "VALIDATED on-axis symmetry; external reference pending"
+      },
+      "fNumber": {
+        "method": "PARAXIAL entrance-pupil diameter",
+        "validation": "VALIDATED matrix/iris invariants; not transmission"
+      },
+      "distortion": {
+        "method": "GEOMETRIC chief ray at d-line paraxial focus",
+        "validation": "VALIDATED analytic/invariance tests"
+      },
+      "longitudinalColor": {
+        "method": "PARAXIAL F-C BFL",
+        "validation": "VALIDATED analytic tests"
+      },
+      "fans": {
+        "method": "GEOMETRIC chief-referenced transverse rays",
+        "validation": "VALIDATED symmetry tests"
+      },
+      "focus": {
+        "method": "GEOMETRIC least-variance outgoing ray planes",
+        "validation": "EXPERIMENTAL optical interpretation; analytic minimum tested"
+      },
+      "pupil": {
+        "method": "GEOMETRIC paraxial-pupil sampling",
+        "validation": "APPROXIMATE; not illumination"
+      },
+      "coma": {
+        "method": "GEOMETRIC even tangential fan at ±0.8 pupil; not a Seidel coefficient"
+      },
+      "psf": {
+        "method": "UNAVAILABLE"
+      },
+      "mtf": {
+        "method": "UNAVAILABLE"
+      },
+      "tStop": {
+        "method": "UNAVAILABLE"
+      }
+    },
+    "imagePlaneXMm": 64.95682348979628,
+    "settings": {
+      "name": "OMIT 50 — Full Frame · cooke-1001",
+      "topology": "cooke",
+      "targetEflMm": 50,
+      "eflToleranceMm": 1,
+      "targetFNumber": 2,
+      "fNumberTolerance": 0.02,
+      "imageCircleMm": 46.3,
+      "mount": "PL",
+      "flangeFocalDistanceMm": 52,
+      "minBflMm": 15,
+      "minElements": 3,
+      "maxElements": 8,
+      "minGroups": 3,
+      "maxGroups": 6,
+      "sphericalOnly": true,
+      "cementedAllowed": true,
+      "maxOpticalLengthMm": 140,
+      "maxDiameterMm": 70,
+      "maxRearDiameterMm": 60,
+      "minCenterMm": 1,
+      "minEdgeMm": 0.5,
+      "minAirGapMm": 0.2,
+      "minMechanicalClearanceMm": 0.2,
+      "rearClearanceEnvelope": [],
+      "allowedGlasses": [
+        "N-BK7",
+        "N-F2"
+      ],
+      "maxUniqueGlasses": 2,
+      "objectDistance": "infinity",
+      "fields": [
+        0,
+        0.3,
+        0.5,
+        0.7,
+        0.85,
+        1
+      ],
+      "wavelengths": [
+        {
+          "nm": 486.1327,
+          "weight": 1
+        },
+        {
+          "nm": 587.5618,
+          "weight": 2
+        },
+        {
+          "nm": 656.2725,
+          "weight": 1
+        }
+      ],
+      "pupilGrid": 19,
+      "validationGrid": 19,
+      "minRayFraction": 0.7,
+      "focusPolicy": "global-image-plane-variable",
+      "budget": 1707,
+      "workers": 1,
+      "seed": 1001,
+      "algorithm": "de",
+      "seedFraction": 0.18,
+      "localFraction": 0.18,
+      "denseFraction": 0.02,
+      "parentsPerTopology": 2,
+      "archiveSize": 4,
+      "apertureMarginMm": 0.25,
+      "apertures": [
+        {
+          "optimization": true,
+          "validation": true,
+          "weight": 1,
+          "fNumber": 2
+        },
+        {
+          "optimization": true,
+          "validation": true,
+          "weight": 1,
+          "fNumber": 2.8
+        },
+        {
+          "optimization": true,
+          "validation": true,
+          "weight": 1,
+          "fNumber": 4
+        },
+        {
+          "optimization": true,
+          "validation": true,
+          "weight": 1,
+          "fNumber": 5.6
+        }
+      ],
+      "sensorDiagonalMm": null,
+      "maxFieldHeightMm": 23.15,
+      "maxFrontDiameterMm": 70,
+      "opticalMinBflMm": 15,
+      "rearClearanceMm": 15,
+      "characterPreset": "OMIT SIGNATURE",
+      "mountNotes": "PL intended; mechanical compatibility unverified. Editable construction limits are design assumptions.",
+      "constraints": {
+        "minEdgeMm": 0.5,
+        "minCenterMm": 1,
+        "minAirGapMm": 0.2,
+        "maxDiameterMm": 70,
+        "maxLengthMm": 140,
+        "minBflMm": 15
+      },
+      "synthesis": {
+        "name": "OMIT 50 — Full Frame · cooke-1001",
+        "topology": "cooke",
+        "targetEflMm": 50,
+        "eflToleranceMm": 1,
+        "targetFNumber": 2,
+        "fNumberTolerance": 0.02,
+        "imageCircleMm": 46.3,
+        "mount": "PL",
+        "flangeFocalDistanceMm": 52,
+        "minBflMm": 15,
+        "minElements": 3,
+        "maxElements": 8,
+        "minGroups": 3,
+        "maxGroups": 6,
+        "sphericalOnly": true,
+        "cementedAllowed": true,
+        "maxOpticalLengthMm": 140,
+        "maxDiameterMm": 70,
+        "maxRearDiameterMm": 60,
+        "minCenterMm": 1,
+        "minEdgeMm": 0.5,
+        "minAirGapMm": 0.2,
+        "minMechanicalClearanceMm": 0.2,
+        "rearClearanceEnvelope": [],
+        "allowedGlasses": [
+          "N-BK7",
+          "N-F2"
+        ],
+        "maxUniqueGlasses": 2,
+        "objectDistance": "infinity",
+        "fields": [
+          0,
+          0.3,
+          0.5,
+          0.7,
+          0.85,
+          1
+        ],
+        "wavelengths": [
+          {
+            "nm": 486.1327,
+            "weight": 1
+          },
+          {
+            "nm": 587.5618,
+            "weight": 2
+          },
+          {
+            "nm": 656.2725,
+            "weight": 1
+          }
+        ],
+        "pupilGrid": 7,
+        "validationGrid": 19,
+        "minRayFraction": 0.7,
+        "focusPolicy": "global-image-plane-variable",
+        "budget": 1707,
+        "workers": 1,
+        "seed": 1001,
+        "algorithm": "de",
+        "seedFraction": 0.18,
+        "localFraction": 0.18,
+        "denseFraction": 0.02,
+        "parentsPerTopology": 2,
+        "archiveSize": 4,
+        "apertureMarginMm": 0.25,
+        "apertures": [
+          {
+            "optimization": true,
+            "validation": true,
+            "weight": 1,
+            "fNumber": 2
+          },
+          {
+            "optimization": true,
+            "validation": true,
+            "weight": 1,
+            "fNumber": 2.8
+          },
+          {
+            "optimization": true,
+            "validation": true,
+            "weight": 1,
+            "fNumber": 4
+          },
+          {
+            "optimization": true,
+            "validation": true,
+            "weight": 1,
+            "fNumber": 5.6
+          }
+        ],
+        "sensorDiagonalMm": null,
+        "maxFieldHeightMm": 23.15,
+        "maxFrontDiameterMm": 70,
+        "opticalMinBflMm": 15,
+        "rearClearanceMm": 15,
+        "characterPreset": "OMIT SIGNATURE",
+        "mountNotes": "PL intended; mechanical compatibility unverified. Editable construction limits are design assumptions."
+      },
+      "allowApproximateMaterials": false,
+      "pupilPattern": "sunflower",
+      "diagnostics": true,
+      "validationRun": true,
+      "maxStopRadiusMm": 9.662662578191304
+    },
+    "limitations": [
+      "Geometric ray analysis; PSF/MTF and transmission unavailable",
+      "Uniform sampling of paraxial entrance-pupil disk, centered on numerically aimed chief; ray fraction is sampled pupil survival, not calibrated illumination or guaranteed image circle",
+      "Infinity conjugate only; fixed prescription image plane; no automatic refocus",
+      "RMS is centroid-referenced; polychromatic RMS includes centroid color separation"
+    ],
+    "apertures": [
+      {
+        "config": {
+          "optimization": true,
+          "validation": true,
+          "weight": 1,
+          "fNumber": 2
+        },
+        "system": {
+          "name": "OMIT 50 — Full Frame · cooke-1001 · Cooke Triplet · 129",
+          "surfaces": [
+            {
+              "type": "OBJ",
+              "R": 0,
+              "t": 0,
+              "ap": 1,
+              "glass": "AIR",
+              "stop": false
+            },
+            {
+              "type": "SPH",
+              "R": 28.641886033844717,
+              "t": 9.716289170850006,
+              "glass": "N-BK7",
+              "ap": 18.45706415806206,
+              "stop": false,
+              "group": 0,
+              "element": 0,
+              "ap_optical": 18.45706415806206
+            },
+            {
+              "type": "SPH",
+              "R": -104.21903314517722,
+              "t": 2.9973764897159807,
+              "glass": "AIR",
+              "ap": 18.45706415806206,
+              "stop": false,
+              "group": 0,
+              "element": 0,
+              "ap_optical": 18.45706415806206
+            },
+            {
+              "type": "SPH",
+              "R": -42.234780930909814,
+              "t": 1.7977894976567916,
+              "glass": "N-F2",
+              "ap": 13.283298566386295,
+              "stop": false,
+              "group": 1,
+              "element": 1,
+              "ap_optical": 13.283298566386295
+            },
+            {
+              "type": "SPH",
+              "R": 96.63007485720946,
+              "t": 7.006201962008672,
+              "glass": "AIR",
+              "ap": 13.283298566386295,
+              "stop": false,
+              "group": 1,
+              "element": 1,
+              "ap_optical": 13.283298566386295
+            },
+            {
+              "type": "STOP",
+              "R": 0,
+              "t": 3.5204327690513315,
+              "glass": "AIR",
+              "ap": 9.662662578191306,
+              "stop": true,
+              "group": null,
+              "element": null,
+              "ap_optical": 9.662662578191306
+            },
+            {
+              "type": "SPH",
+              "R": 57.35839704544693,
+              "t": 5.150377241943525,
+              "glass": "N-BK7",
+              "ap": 13.246673907589775,
+              "stop": false,
+              "group": 2,
+              "element": 2,
+              "ap_optical": 13.246673907589775
+            },
+            {
+              "type": "SPH",
+              "R": -46.59832905344963,
+              "t": 34.76835635856996,
+              "glass": "AIR",
+              "ap": 13.246673907589775,
+              "stop": false,
+              "group": 2,
+              "element": 2,
+              "ap_optical": 13.246673907589775
+            },
+            {
+              "type": "IMS",
+              "R": 0,
+              "t": 0,
+              "ap": 23.15,
+              "glass": "AIR",
+              "stop": false
+            }
+          ],
+          "synthesis": {
+            "topology": "cooke",
+            "ordinal": 129,
+            "seed": 1001,
+            "powers": [
+              {
+                "group": 0,
+                "element": 0,
+                "role": 1,
+                "thinPower": 0.023410769158079263,
+                "glass": "N-BK7",
+                "frontCurvature": 0.03425555415067637,
+                "rearCurvature": -0.011043918750292666
+              },
+              {
+                "group": 1,
+                "element": 1,
+                "role": -1,
+                "thinPower": -0.02165147350720299,
+                "glass": "N-F2",
+                "frontCurvature": -0.023889107595643024,
+                "rearCurvature": 0.01102963114564195
+              },
+              {
+                "group": 2,
+                "element": 2,
+                "role": 1,
+                "thinPower": 0.020293805755694703,
+                "glass": "N-BK7",
+                "frontCurvature": 0.01929473714489581,
+                "rearCurvature": -0.019973460225303087
+              }
+            ],
+            "origin": "generated from specification; no input prescription"
+          }
+        },
+        "stopRadiusMm": 9.662662578191306,
+        "requestedFNumber": 2,
+        "capacityMm": 9.662662578191304,
+        "analysis": {
+          "valid": true,
+          "errors": [],
+          "warnings": [],
+          "firstOrder": {
+            "matrix": [
+              0.7093948790456969,
+              26.157668133617328,
+              -0.019889503620523816,
+              0.6762622329573575
+            ],
+            "eflMm": 50.27777560864356,
+            "bflMm": 35.666796546580386,
+            "fflMm": -34.000960801230256,
+            "frontPrincipalMm": 16.276814807413302,
+            "rearPrincipalMm": 15.577488069163145,
+            "entrancePupilXMm": 24.388779805734092,
+            "entrancePupilRadiusMm": 12.569443902160891,
+            "fNumber": 1.9999999999999998,
+            "preStop": [
+              0.7687422493313437,
+              18.74868544630688,
+              -0.005262482505501057,
+              1.1724805962227967
+            ],
+            "imageDistanceMm": 34.76835635856997,
+            "tStop": null
+          },
+          "fields": [
+            {
+              "field": 0,
+              "angleDeg": 0,
+              "idealHeightMm": 0,
+              "chiefHeightMm": 0,
+              "referenceChiefHeightMm": 0,
+              "distortionReferenceXMm": 65.8552636778067,
+              "fixedPlaneMappingPercent": 0,
+              "chiefColorDisplacements": [
+                {
+                  "nm": 486.1327,
+                  "displacementMm": 0
+                },
+                {
+                  "nm": 587.5618,
+                  "displacementMm": 0
+                },
+                {
+                  "nm": 656.2725,
+                  "displacementMm": 0
+                }
+              ],
+              "realRayFocusColorMm": -0.25054877017287036,
+              "diagnosticFocus": {
+                "tangentialShiftMm": -0.13308967767673546,
+                "sagittalShiftMm": -0.13308967767673596,
+                "bestRmsShiftMm": -0.1330896776767357,
+                "astigmaticDifferenceMm": 4.996003610813204e-16,
+                "fieldCurvatureRelativeToAxisMm": 0
+              },
+              "distortionPercent": 0,
+              "lateralChiefColorMm": 0,
+              "rayFraction": 0.9154929577464789,
+              "covarianceYZmm2": -9.007022579199323e-18,
+              "majorAxisAngleRad": null,
+              "centroidYmm": -7.157506591955414e-18,
+              "centroidZmm": 1.1679984903935516e-17,
+              "rmsMm": 0.06759866544700614,
+              "tangentialRmsMm": 0.04779947473673885,
+              "sagittalRmsMm": 0.047799474736738755,
+              "maxRadiusMm": 0.18849957937527295
+            },
+            {
+              "field": 0.3,
+              "angleDeg": 7.907787273719861,
+              "idealHeightMm": 6.98358303204059,
+              "chiefHeightMm": 6.841923692610493,
+              "referenceChiefHeightMm": 6.986882640186459,
+              "distortionReferenceXMm": 65.8552636778067,
+              "fixedPlaneMappingPercent": -2.0284621630496247,
+              "chiefColorDisplacements": [
+                {
+                  "nm": 486.1327,
+                  "displacementMm": 0.0003043149932624445
+                },
+                {
+                  "nm": 587.5618,
+                  "displacementMm": 0
+                },
+                {
+                  "nm": 656.2725,
+                  "displacementMm": -0.0008370103330168632
+                }
+              ],
+              "realRayFocusColorMm": -0.2408550689860428,
+              "diagnosticFocus": {
+                "tangentialShiftMm": -0.2994047481791775,
+                "sagittalShiftMm": -0.4241093714952922,
+                "bestRmsShiftMm": -0.3619426935722915,
+                "astigmaticDifferenceMm": 0.1247046233161147,
+                "fieldCurvatureRelativeToAxisMm": -0.22885301589555576
+              },
+              "distortionPercent": 0.0472480692322319,
+              "lateralChiefColorMm": 0.0011413253262793077,
+              "rayFraction": 0.9049295774647887,
+              "covarianceYZmm2": -0.00018389178349437094,
+              "majorAxisAngleRad": -0.04930584565027419,
+              "centroidYmm": 6.730509051621984,
+              "centroidZmm": 0.0009841378061777655,
+              "rmsMm": 0.13557180145486988,
+              "tangentialRmsMm": 0.1051123933717343,
+              "sagittalRmsMm": 0.0856218319669957,
+              "maxRadiusMm": 0.463667933827588
+            },
+            {
+              "field": 0.5,
+              "angleDeg": 13.034363392234962,
+              "idealHeightMm": 11.639305053400983,
+              "chiefHeightMm": 11.4084319375016,
+              "referenceChiefHeightMm": 11.650004364573888,
+              "distortionReferenceXMm": 65.8552636778067,
+              "fixedPlaneMappingPercent": -1.9835644382558957,
+              "chiefColorDisplacements": [
+                {
+                  "nm": 486.1327,
+                  "displacementMm": -0.0001775278761577681
+                },
+                {
+                  "nm": 587.5618,
+                  "displacementMm": 0
+                },
+                {
+                  "nm": 656.2725,
+                  "displacementMm": -0.0011703715545046123
+                }
+              ],
+              "realRayFocusColorMm": -0.21744816605071826,
+              "diagnosticFocus": {
+                "tangentialShiftMm": -0.47969929768936864,
+                "sagittalShiftMm": -0.9105257138139102,
+                "bestRmsShiftMm": -0.6968962624643305,
+                "astigmaticDifferenceMm": 0.4308264161245416,
+                "fieldCurvatureRelativeToAxisMm": -0.5638065847875947
+              },
+              "distortionPercent": 0.09192396903265881,
+              "lateralChiefColorMm": 0.0011703715545046123,
+              "rayFraction": 0.8908450704225352,
+              "covarianceYZmm2": -0.00022580994333374274,
+              "majorAxisAngleRad": -0.02329203436841969,
+              "centroidYmm": 11.192103977971898,
+              "centroidZmm": 0.0007595737595981288,
+              "rmsMm": 0.24008553152392212,
+              "tangentialRmsMm": 0.18347857764239445,
+              "sagittalRmsMm": 0.15484403118444068,
+              "maxRadiusMm": 0.6597585870068664
+            },
+            {
+              "field": 0.7,
+              "angleDeg": 17.957509408347466,
+              "idealHeightMm": 16.295027074761375,
+              "chiefHeightMm": 15.968874737413344,
+              "referenceChiefHeightMm": 16.30664598687271,
+              "distortionReferenceXMm": 65.8552636778067,
+              "fixedPlaneMappingPercent": -2.0015452312637967,
+              "chiefColorDisplacements": [
+                {
+                  "nm": 486.1327,
+                  "displacementMm": -0.0015113776361097564
+                },
+                {
+                  "nm": 587.5618,
+                  "displacementMm": 0
+                },
+                {
+                  "nm": 656.2725,
+                  "displacementMm": -0.0012330347245370632
+                }
+              ],
+              "realRayFocusColorMm": -0.21432787149621024,
+              "diagnosticFocus": {
+                "tangentialShiftMm": -0.543498907564208,
+                "sagittalShiftMm": -1.4829399685289828,
+                "bestRmsShiftMm": -1.0300708702399093,
+                "astigmaticDifferenceMm": 0.9394410609647748,
+                "fieldCurvatureRelativeToAxisMm": -0.8969811925631735
+              },
+              "distortionPercent": 0.07130342317338258,
+              "lateralChiefColorMm": 0.0015113776361097564,
+              "rayFraction": 0.8697183098591549,
+              "covarianceYZmm2": 0.00018861161825809743,
+              "majorAxisAngleRad": 0.009720559901281477,
+              "centroidYmm": 15.615862072448348,
+              "centroidZmm": 0.001008617208594911,
+              "rmsMm": 0.3721452572448645,
+              "tangentialRmsMm": 0.2809742138199087,
+              "sagittalRmsMm": 0.2440196378534535,
+              "maxRadiusMm": 0.8377376639298821
+            },
+            {
+              "field": 0.85,
+              "angleDeg": 21.4821183454181,
+              "idealHeightMm": 19.78681859078167,
+              "chiefHeightMm": 19.37284746247144,
+              "referenceChiefHeightMm": 19.78206667489971,
+              "distortionReferenceXMm": 65.8552636778067,
+              "fixedPlaneMappingPercent": -2.0921560806298185,
+              "chiefColorDisplacements": [
+                {
+                  "nm": 486.1327,
+                  "displacementMm": -0.0025177096848771896
+                },
+                {
+                  "nm": 587.5618,
+                  "displacementMm": 0
+                },
+                {
+                  "nm": 656.2725,
+                  "displacementMm": -0.0013459543741589641
+                }
+              ],
+              "realRayFocusColorMm": -0.23712464973840564,
+              "diagnosticFocus": {
+                "tangentialShiftMm": -0.8117196106670425,
+                "sagittalShiftMm": -1.936357246754892,
+                "bestRmsShiftMm": -1.4107438369157523,
+                "astigmaticDifferenceMm": 1.1246376360878494,
+                "fieldCurvatureRelativeToAxisMm": -1.2776541592390167
+              },
+              "distortionPercent": -0.02401556298785164,
+              "lateralChiefColorMm": 0.0025177096848771896,
+              "rayFraction": 0.8415492957746479,
+              "covarianceYZmm2": -0.0017579707716514617,
+              "majorAxisAngleRad": -0.09316577062513581,
+              "centroidYmm": 18.911568673060074,
+              "centroidZmm": 0.0046550636318138765,
+              "rmsMm": 0.4679736362493878,
+              "tangentialRmsMm": 0.3447098182287145,
+              "sagittalRmsMm": 0.3165034998877595,
+              "maxRadiusMm": 1.048748117502073
+            },
+            {
+              "field": 1,
+              "angleDeg": 24.84413659396438,
+              "idealHeightMm": 23.278610106801967,
+              "chiefHeightMm": 22.76696048595854,
+              "referenceChiefHeightMm": 23.246896607445265,
+              "distortionReferenceXMm": 65.8552636778067,
+              "fixedPlaneMappingPercent": -2.1979388739103687,
+              "chiefColorDisplacements": [
+                {
+                  "nm": 486.1327,
+                  "displacementMm": -0.00021386523599176144
+                },
+                {
+                  "nm": 587.5618,
+                  "displacementMm": 0
+                },
+                {
+                  "nm": 656.2725,
+                  "displacementMm": -0.002904416743145788
+                }
+              ],
+              "realRayFocusColorMm": -0.5456292941750278,
+              "diagnosticFocus": {
+                "tangentialShiftMm": -3.1005571934158036,
+                "sagittalShiftMm": -2.2505995465724657,
+                "bestRmsShiftMm": -2.6398913400680146,
+                "astigmaticDifferenceMm": -0.8499576468433379,
+                "fieldCurvatureRelativeToAxisMm": -2.506801662391279
+              },
+              "distortionPercent": -0.13623450545887625,
+              "lateralChiefColorMm": 0.002904416743145788,
+              "rayFraction": 0.8380281690140845,
+              "covarianceYZmm2": -0.0023312156651914134,
+              "majorAxisAngleRad": -0.013313014986087593,
+              "centroidYmm": 22.33255644658519,
+              "centroidZmm": 0.003685802665671466,
+              "rmsMm": 0.6798703951428863,
+              "tangentialRmsMm": 0.5644866647493775,
+              "sagittalRmsMm": 0.37891761573179505,
+              "maxRadiusMm": 5.470291229688868
+            }
+          ],
+          "longitudinalColorMm": -0.27638368936254665,
+          "metricStatus": {
+            "spherical": {
+              "method": "GEOMETRIC zonal axial intercept",
+              "validation": "VALIDATED symmetry and paraxial limit; external reference pending"
+            },
+            "lateralColor": {
+              "method": "GEOMETRIC signed chief offsets at fixed sensor, d reference",
+              "validation": "VALIDATED on-axis symmetry; external reference pending"
+            },
+            "fNumber": {
+              "method": "PARAXIAL entrance-pupil diameter",
+              "validation": "VALIDATED matrix/iris invariants; not transmission"
+            },
+            "distortion": {
+              "method": "GEOMETRIC chief ray at d-line paraxial focus",
+              "validation": "VALIDATED analytic/invariance tests"
+            },
+            "longitudinalColor": {
+              "method": "PARAXIAL F-C BFL",
+              "validation": "VALIDATED analytic tests"
+            },
+            "fans": {
+              "method": "GEOMETRIC chief-referenced transverse rays",
+              "validation": "VALIDATED symmetry tests"
+            },
+            "focus": {
+              "method": "GEOMETRIC least-variance outgoing ray planes",
+              "validation": "EXPERIMENTAL optical interpretation; analytic minimum tested"
+            },
+            "pupil": {
+              "method": "GEOMETRIC paraxial-pupil sampling",
+              "validation": "APPROXIMATE; not illumination"
+            },
+            "coma": {
+              "method": "GEOMETRIC even tangential fan at ±0.8 pupil; not a Seidel coefficient"
+            },
+            "psf": {
+              "method": "UNAVAILABLE"
+            },
+            "mtf": {
+              "method": "UNAVAILABLE"
+            },
+            "tStop": {
+              "method": "UNAVAILABLE"
+            }
+          },
+          "imagePlaneXMm": 64.95682348979628,
+          "settings": {
+            "targetEflMm": 50,
+            "imageCircleMm": 46.3,
+            "fields": [
+              0,
+              0.3,
+              0.5,
+              0.7,
+              0.85,
+              1
+            ],
+            "wavelengths": [
+              {
+                "nm": 486.1327,
+                "weight": 1
+              },
+              {
+                "nm": 587.5618,
+                "weight": 2
+              },
+              {
+                "nm": 656.2725,
+                "weight": 1
+              }
+            ],
+            "pupilGrid": 19,
+            "minRayFraction": 0.7,
+            "allowApproximateMaterials": false,
+            "focusPolicy": "global-image-plane-variable",
+            "diagnostics": true,
+            "name": "OMIT 50 — Full Frame · cooke-1001",
+            "topology": "cooke",
+            "eflToleranceMm": 1,
+            "targetFNumber": 2,
+            "fNumberTolerance": 0.02,
+            "mount": "PL",
+            "flangeFocalDistanceMm": 52,
+            "minBflMm": 15,
+            "minElements": 3,
+            "maxElements": 8,
+            "minGroups": 3,
+            "maxGroups": 6,
+            "sphericalOnly": true,
+            "cementedAllowed": true,
+            "maxOpticalLengthMm": 140,
+            "maxDiameterMm": 70,
+            "maxRearDiameterMm": 60,
+            "minCenterMm": 1,
+            "minEdgeMm": 0.5,
+            "minAirGapMm": 0.2,
+            "minMechanicalClearanceMm": 0.2,
+            "rearClearanceEnvelope": [],
+            "allowedGlasses": [
+              "N-BK7",
+              "N-F2"
+            ],
+            "maxUniqueGlasses": 2,
+            "objectDistance": "infinity",
+            "validationGrid": 19,
+            "budget": 1707,
+            "workers": 1,
+            "seed": 1001,
+            "algorithm": "de",
+            "seedFraction": 0.18,
+            "localFraction": 0.18,
+            "denseFraction": 0.02,
+            "parentsPerTopology": 2,
+            "archiveSize": 4,
+            "apertureMarginMm": 0.25,
+            "sensorDiagonalMm": null,
+            "maxFieldHeightMm": 23.15,
+            "maxFrontDiameterMm": 70,
+            "opticalMinBflMm": 15,
+            "rearClearanceMm": 15,
+            "characterPreset": "OMIT SIGNATURE",
+            "mountNotes": "PL intended; mechanical compatibility unverified. Editable construction limits are design assumptions.",
+            "constraints": {
+              "minEdgeMm": 0.5,
+              "minCenterMm": 1,
+              "minAirGapMm": 0.2,
+              "maxDiameterMm": 70,
+              "maxLengthMm": 140,
+              "minBflMm": 15
+            },
+            "synthesis": {
+              "name": "OMIT 50 — Full Frame · cooke-1001",
+              "topology": "cooke",
+              "targetEflMm": 50,
+              "eflToleranceMm": 1,
+              "targetFNumber": 2,
+              "fNumberTolerance": 0.02,
+              "imageCircleMm": 46.3,
+              "mount": "PL",
+              "flangeFocalDistanceMm": 52,
+              "minBflMm": 15,
+              "minElements": 3,
+              "maxElements": 8,
+              "minGroups": 3,
+              "maxGroups": 6,
+              "sphericalOnly": true,
+              "cementedAllowed": true,
+              "maxOpticalLengthMm": 140,
+              "maxDiameterMm": 70,
+              "maxRearDiameterMm": 60,
+              "minCenterMm": 1,
+              "minEdgeMm": 0.5,
+              "minAirGapMm": 0.2,
+              "minMechanicalClearanceMm": 0.2,
+              "rearClearanceEnvelope": [],
+              "allowedGlasses": [
+                "N-BK7",
+                "N-F2"
+              ],
+              "maxUniqueGlasses": 2,
+              "objectDistance": "infinity",
+              "fields": [
+                0,
+                0.3,
+                0.5,
+                0.7,
+                0.85,
+                1
+              ],
+              "wavelengths": [
+                {
+                  "nm": 486.1327,
+                  "weight": 1
+                },
+                {
+                  "nm": 587.5618,
+                  "weight": 2
+                },
+                {
+                  "nm": 656.2725,
+                  "weight": 1
+                }
+              ],
+              "pupilGrid": 7,
+              "validationGrid": 19,
+              "minRayFraction": 0.7,
+              "focusPolicy": "global-image-plane-variable",
+              "budget": 1707,
+              "workers": 1,
+              "seed": 1001,
+              "algorithm": "de",
+              "seedFraction": 0.18,
+              "localFraction": 0.18,
+              "denseFraction": 0.02,
+              "parentsPerTopology": 2,
+              "archiveSize": 4,
+              "apertureMarginMm": 0.25,
+              "apertures": [
+                {
+                  "optimization": true,
+                  "validation": true,
+                  "weight": 1,
+                  "fNumber": 2
+                },
+                {
+                  "optimization": true,
+                  "validation": true,
+                  "weight": 1,
+                  "fNumber": 2.8
+                },
+                {
+                  "optimization": true,
+                  "validation": true,
+                  "weight": 1,
+                  "fNumber": 4
+                },
+                {
+                  "optimization": true,
+                  "validation": true,
+                  "weight": 1,
+                  "fNumber": 5.6
+                }
+              ],
+              "sensorDiagonalMm": null,
+              "maxFieldHeightMm": 23.15,
+              "maxFrontDiameterMm": 70,
+              "opticalMinBflMm": 15,
+              "rearClearanceMm": 15,
+              "characterPreset": "OMIT SIGNATURE",
+              "mountNotes": "PL intended; mechanical compatibility unverified. Editable construction limits are design assumptions."
+            },
+            "pupilPattern": "sunflower",
+            "validationRun": true,
+            "maxStopRadiusMm": 9.662662578191304
+          },
+          "limitations": [
+            "Geometric ray analysis; PSF/MTF and transmission unavailable",
+            "Uniform sampling of paraxial entrance-pupil disk, centered on numerically aimed chief; ray fraction is sampled pupil survival, not calibrated illumination or guaranteed image circle",
+            "Infinity conjugate only; fixed prescription image plane; no automatic refocus",
+            "RMS is centroid-referenced; polychromatic RMS includes centroid color separation"
+          ]
+        }
+      },
+      {
+        "config": {
+          "optimization": true,
+          "validation": true,
+          "weight": 1,
+          "fNumber": 2.8
+        },
+        "system": {
+          "name": "OMIT 50 — Full Frame · cooke-1001 · Cooke Triplet · 129",
+          "surfaces": [
+            {
+              "type": "OBJ",
+              "R": 0,
+              "t": 0,
+              "ap": 1,
+              "glass": "AIR",
+              "stop": false
+            },
+            {
+              "type": "SPH",
+              "R": 28.641886033844717,
+              "t": 9.716289170850006,
+              "glass": "N-BK7",
+              "ap": 18.45706415806206,
+              "stop": false,
+              "group": 0,
+              "element": 0,
+              "ap_optical": 18.45706415806206
+            },
+            {
+              "type": "SPH",
+              "R": -104.21903314517722,
+              "t": 2.9973764897159807,
+              "glass": "AIR",
+              "ap": 18.45706415806206,
+              "stop": false,
+              "group": 0,
+              "element": 0,
+              "ap_optical": 18.45706415806206
+            },
+            {
+              "type": "SPH",
+              "R": -42.234780930909814,
+              "t": 1.7977894976567916,
+              "glass": "N-F2",
+              "ap": 13.283298566386295,
+              "stop": false,
+              "group": 1,
+              "element": 1,
+              "ap_optical": 13.283298566386295
+            },
+            {
+              "type": "SPH",
+              "R": 96.63007485720946,
+              "t": 7.006201962008672,
+              "glass": "AIR",
+              "ap": 13.283298566386295,
+              "stop": false,
+              "group": 1,
+              "element": 1,
+              "ap_optical": 13.283298566386295
+            },
+            {
+              "type": "STOP",
+              "R": 0,
+              "t": 3.5204327690513315,
+              "glass": "AIR",
+              "ap": 6.901901841565219,
+              "stop": true,
+              "group": null,
+              "element": null,
+              "ap_optical": 6.901901841565219
+            },
+            {
+              "type": "SPH",
+              "R": 57.35839704544693,
+              "t": 5.150377241943525,
+              "glass": "N-BK7",
+              "ap": 13.246673907589775,
+              "stop": false,
+              "group": 2,
+              "element": 2,
+              "ap_optical": 13.246673907589775
+            },
+            {
+              "type": "SPH",
+              "R": -46.59832905344963,
+              "t": 34.76835635856996,
+              "glass": "AIR",
+              "ap": 13.246673907589775,
+              "stop": false,
+              "group": 2,
+              "element": 2,
+              "ap_optical": 13.246673907589775
+            },
+            {
+              "type": "IMS",
+              "R": 0,
+              "t": 0,
+              "ap": 23.15,
+              "glass": "AIR",
+              "stop": false
+            }
+          ],
+          "synthesis": {
+            "topology": "cooke",
+            "ordinal": 129,
+            "seed": 1001,
+            "powers": [
+              {
+                "group": 0,
+                "element": 0,
+                "role": 1,
+                "thinPower": 0.023410769158079263,
+                "glass": "N-BK7",
+                "frontCurvature": 0.03425555415067637,
+                "rearCurvature": -0.011043918750292666
+              },
+              {
+                "group": 1,
+                "element": 1,
+                "role": -1,
+                "thinPower": -0.02165147350720299,
+                "glass": "N-F2",
+                "frontCurvature": -0.023889107595643024,
+                "rearCurvature": 0.01102963114564195
+              },
+              {
+                "group": 2,
+                "element": 2,
+                "role": 1,
+                "thinPower": 0.020293805755694703,
+                "glass": "N-BK7",
+                "frontCurvature": 0.01929473714489581,
+                "rearCurvature": -0.019973460225303087
+              }
+            ],
+            "origin": "generated from specification; no input prescription"
+          }
+        },
+        "stopRadiusMm": 6.901901841565219,
+        "requestedFNumber": 2.8,
+        "capacityMm": 9.662662578191304,
+        "analysis": {
+          "valid": true,
+          "errors": [],
+          "warnings": [],
+          "firstOrder": {
+            "matrix": [
+              0.7093948790456969,
+              26.157668133617328,
+              -0.019889503620523816,
+              0.6762622329573575
+            ],
+            "eflMm": 50.27777560864356,
+            "bflMm": 35.666796546580386,
+            "fflMm": -34.000960801230256,
+            "frontPrincipalMm": 16.276814807413302,
+            "rearPrincipalMm": 15.577488069163145,
+            "entrancePupilXMm": 24.388779805734092,
+            "entrancePupilRadiusMm": 8.978174215829208,
+            "fNumber": 2.8,
+            "preStop": [
+              0.7687422493313437,
+              18.74868544630688,
+              -0.005262482505501057,
+              1.1724805962227967
+            ],
+            "imageDistanceMm": 34.76835635856997,
+            "tStop": null
+          },
+          "fields": [
+            {
+              "field": 0,
+              "angleDeg": 0,
+              "idealHeightMm": 0,
+              "chiefHeightMm": 0,
+              "referenceChiefHeightMm": 0,
+              "distortionReferenceXMm": 65.8552636778067,
+              "fixedPlaneMappingPercent": 0,
+              "chiefColorDisplacements": [
+                {
+                  "nm": 486.1327,
+                  "displacementMm": 0
+                },
+                {
+                  "nm": 587.5618,
+                  "displacementMm": 0
+                },
+                {
+                  "nm": 656.2725,
+                  "displacementMm": 0
+                }
+              ],
+              "realRayFocusColorMm": -0.2633360066818946,
+              "diagnosticFocus": {
+                "tangentialShiftMm": 0.33491482380109633,
+                "sagittalShiftMm": 0.3349148238010973,
+                "bestRmsShiftMm": 0.3349148238010968,
+                "astigmaticDifferenceMm": -9.992007221626409e-16,
+                "fieldCurvatureRelativeToAxisMm": 0
+              },
+              "distortionPercent": 0,
+              "lateralChiefColorMm": 0,
+              "rayFraction": 0.9577464788732394,
+              "covarianceYZmm2": -2.821131982444367e-18,
+              "majorAxisAngleRad": null,
+              "centroidYmm": 3.783118199962075e-17,
+              "centroidZmm": -3.271226294655817e-17,
+              "rmsMm": 0.05030777736198872,
+              "tangentialRmsMm": 0.03557297051908527,
+              "sagittalRmsMm": 0.035572970519085347,
+              "maxRadiusMm": 0.07494023602826039
+            },
+            {
+              "field": 0.3,
+              "angleDeg": 7.907787273719861,
+              "idealHeightMm": 6.98358303204059,
+              "chiefHeightMm": 6.841923692610493,
+              "referenceChiefHeightMm": 6.986882640186459,
+              "distortionReferenceXMm": 65.8552636778067,
+              "fixedPlaneMappingPercent": -2.0284621630496247,
+              "chiefColorDisplacements": [
+                {
+                  "nm": 486.1327,
+                  "displacementMm": 0.0003043149932624445
+                },
+                {
+                  "nm": 587.5618,
+                  "displacementMm": 0
+                },
+                {
+                  "nm": 656.2725,
+                  "displacementMm": -0.0008370103330168632
+                }
+              ],
+              "realRayFocusColorMm": -0.25293356752523627,
+              "diagnosticFocus": {
+                "tangentialShiftMm": 0.08694407373749333,
+                "sagittalShiftMm": 0.013587581874410379,
+                "bestRmsShiftMm": 0.05030661823406953,
+                "astigmaticDifferenceMm": 0.07335649186308295,
+                "fieldCurvatureRelativeToAxisMm": -0.28460820556702726
+              },
+              "distortionPercent": 0.0472480692322319,
+              "lateralChiefColorMm": 0.0011413253262793077,
+              "rayFraction": 0.954225352112676,
+              "covarianceYZmm2": -0.0000023845009639687605,
+              "majorAxisAngleRad": -0.0022615425548483353,
+              "centroidYmm": 6.792117938938196,
+              "centroidZmm": 0.0001623053499647264,
+              "rmsMm": 0.05144433761700399,
+              "tangentialRmsMm": 0.04301675225311897,
+              "sagittalRmsMm": 0.028214870165323737,
+              "maxRadiusMm": 0.15772337800142885
+            },
+            {
+              "field": 0.5,
+              "angleDeg": 13.034363392234962,
+              "idealHeightMm": 11.639305053400983,
+              "chiefHeightMm": 11.4084319375016,
+              "referenceChiefHeightMm": 11.650004364573888,
+              "distortionReferenceXMm": 65.8552636778067,
+              "fixedPlaneMappingPercent": -1.9835644382558957,
+              "chiefColorDisplacements": [
+                {
+                  "nm": 486.1327,
+                  "displacementMm": -0.0001775278761577681
+                },
+                {
+                  "nm": 587.5618,
+                  "displacementMm": 0
+                },
+                {
+                  "nm": 656.2725,
+                  "displacementMm": -0.0011703715545046123
+                }
+              ],
+              "realRayFocusColorMm": -0.23654574048629212,
+              "diagnosticFocus": {
+                "tangentialShiftMm": -0.20980831338606248,
+                "sagittalShiftMm": -0.4977647445860076,
+                "bestRmsShiftMm": -0.3547351064385759,
+                "astigmaticDifferenceMm": 0.28795643119994513,
+                "fieldCurvatureRelativeToAxisMm": -0.6896499302396727
+              },
+              "distortionPercent": 0.09192396903265881,
+              "lateralChiefColorMm": 0.0011703715545046123,
+              "rayFraction": 0.9401408450704225,
+              "covarianceYZmm2": -0.00003452277195931595,
+              "majorAxisAngleRad": -0.01675748977348252,
+              "centroidYmm": 11.309982400114237,
+              "centroidZmm": -0.0002489280005031772,
+              "rmsMm": 0.10004708028691864,
+              "tangentialRmsMm": 0.07768135774580624,
+              "sagittalRmsMm": 0.06304779879349645,
+              "maxRadiusMm": 0.2830206170045048
+            },
+            {
+              "field": 0.7,
+              "angleDeg": 17.957509408347466,
+              "idealHeightMm": 16.295027074761375,
+              "chiefHeightMm": 15.968874737413344,
+              "referenceChiefHeightMm": 16.30664598687271,
+              "distortionReferenceXMm": 65.8552636778067,
+              "fixedPlaneMappingPercent": -2.0015452312637967,
+              "chiefColorDisplacements": [
+                {
+                  "nm": 486.1327,
+                  "displacementMm": -0.0015113776361097564
+                },
+                {
+                  "nm": 587.5618,
+                  "displacementMm": 0
+                },
+                {
+                  "nm": 656.2725,
+                  "displacementMm": -0.0012330347245370632
+                }
+              ],
+              "realRayFocusColorMm": -0.22122432382715496,
+              "diagnosticFocus": {
+                "tangentialShiftMm": -0.45114064415816907,
+                "sagittalShiftMm": -1.1388862259363468,
+                "bestRmsShiftMm": -0.7972323869284718,
+                "astigmaticDifferenceMm": 0.6877455817781777,
+                "fieldCurvatureRelativeToAxisMm": -1.1321472107295685
+              },
+              "distortionPercent": 0.07130342317338258,
+              "lateralChiefColorMm": 0.0015113776361097564,
+              "rayFraction": 0.9154929577464789,
+              "covarianceYZmm2": -0.00007458328633317606,
+              "majorAxisAngleRad": -0.04635797007020378,
+              "centroidYmm": 15.800197251099,
+              "centroidZmm": -0.0010742806801170598,
+              "rmsMm": 0.1814154773983702,
+              "tangentialRmsMm": 0.13136936191111442,
+              "sagittalRmsMm": 0.12511461221913775,
+              "maxRadiusMm": 0.4192985241173981
+            },
+            {
+              "field": 0.85,
+              "angleDeg": 21.4821183454181,
+              "idealHeightMm": 19.78681859078167,
+              "chiefHeightMm": 19.37284746247144,
+              "referenceChiefHeightMm": 19.78206667489971,
+              "distortionReferenceXMm": 65.8552636778067,
+              "fixedPlaneMappingPercent": -2.0921560806298185,
+              "chiefColorDisplacements": [
+                {
+                  "nm": 486.1327,
+                  "displacementMm": -0.0025177096848771896
+                },
+                {
+                  "nm": 587.5618,
+                  "displacementMm": 0
+                },
+                {
+                  "nm": 656.2725,
+                  "displacementMm": -0.0013459543741589641
+                }
+              ],
+              "realRayFocusColorMm": -0.21090416955995062,
+              "diagnosticFocus": {
+                "tangentialShiftMm": -0.5501871480327566,
+                "sagittalShiftMm": -1.6018109369676636,
+                "bestRmsShiftMm": -1.0793616960093728,
+                "astigmaticDifferenceMm": 1.051623788934907,
+                "fieldCurvatureRelativeToAxisMm": -1.4142765198104696
+              },
+              "distortionPercent": -0.02401556298785164,
+              "lateralChiefColorMm": 0.0025177096848771896,
+              "rayFraction": 0.9049295774647887,
+              "covarianceYZmm2": -0.0000714757241431378,
+              "majorAxisAngleRad": -0.11577764989741939,
+              "centroidYmm": 19.136464931973478,
+              "centroidZmm": -0.001674061285801915,
+              "rmsMm": 0.2511269114292048,
+              "tangentialRmsMm": 0.17842506223199364,
+              "sagittalRmsMm": 0.17671791876173978,
+              "maxRadiusMm": 0.5332557688954623
+            },
+            {
+              "field": 1,
+              "angleDeg": 24.84413659396438,
+              "idealHeightMm": 23.278610106801967,
+              "chiefHeightMm": 22.76696048595854,
+              "referenceChiefHeightMm": 23.246896607445265,
+              "distortionReferenceXMm": 65.8552636778067,
+              "fixedPlaneMappingPercent": -2.1979388739103687,
+              "chiefColorDisplacements": [
+                {
+                  "nm": 486.1327,
+                  "displacementMm": -0.00021386523599176144
+                },
+                {
+                  "nm": 587.5618,
+                  "displacementMm": 0
+                },
+                {
+                  "nm": 656.2725,
+                  "displacementMm": -0.002904416743145788
+                }
+              ],
+              "realRayFocusColorMm": -0.7012746898162856,
+              "diagnosticFocus": {
+                "tangentialShiftMm": -2.0184567555998254,
+                "sagittalShiftMm": -1.9343035118770802,
+                "bestRmsShiftMm": -1.9795158912759108,
+                "astigmaticDifferenceMm": -0.08415324372274524,
+                "fieldCurvatureRelativeToAxisMm": -2.3144307150770076
+              },
+              "distortionPercent": -0.13623450545887625,
+              "lateralChiefColorMm": 0.002904416743145788,
+              "rayFraction": 0.9507042253521126,
+              "covarianceYZmm2": -0.0007754728624985577,
+              "majorAxisAngleRad": -0.016474219491582887,
+              "centroidYmm": 22.543997538976086,
+              "centroidZmm": -0.000005135331303575121,
+              "rmsMm": 0.3759484826415996,
+              "tangentialRmsMm": 0.30691377425635363,
+              "sagittalRmsMm": 0.21712023575024295,
+              "maxRadiusMm": 3.355704072413888
+            }
+          ],
+          "longitudinalColorMm": -0.27638368936254665,
+          "metricStatus": {
+            "spherical": {
+              "method": "GEOMETRIC zonal axial intercept",
+              "validation": "VALIDATED symmetry and paraxial limit; external reference pending"
+            },
+            "lateralColor": {
+              "method": "GEOMETRIC signed chief offsets at fixed sensor, d reference",
+              "validation": "VALIDATED on-axis symmetry; external reference pending"
+            },
+            "fNumber": {
+              "method": "PARAXIAL entrance-pupil diameter",
+              "validation": "VALIDATED matrix/iris invariants; not transmission"
+            },
+            "distortion": {
+              "method": "GEOMETRIC chief ray at d-line paraxial focus",
+              "validation": "VALIDATED analytic/invariance tests"
+            },
+            "longitudinalColor": {
+              "method": "PARAXIAL F-C BFL",
+              "validation": "VALIDATED analytic tests"
+            },
+            "fans": {
+              "method": "GEOMETRIC chief-referenced transverse rays",
+              "validation": "VALIDATED symmetry tests"
+            },
+            "focus": {
+              "method": "GEOMETRIC least-variance outgoing ray planes",
+              "validation": "EXPERIMENTAL optical interpretation; analytic minimum tested"
+            },
+            "pupil": {
+              "method": "GEOMETRIC paraxial-pupil sampling",
+              "validation": "APPROXIMATE; not illumination"
+            },
+            "coma": {
+              "method": "GEOMETRIC even tangential fan at ±0.8 pupil; not a Seidel coefficient"
+            },
+            "psf": {
+              "method": "UNAVAILABLE"
+            },
+            "mtf": {
+              "method": "UNAVAILABLE"
+            },
+            "tStop": {
+              "method": "UNAVAILABLE"
+            }
+          },
+          "imagePlaneXMm": 64.95682348979628,
+          "settings": {
+            "targetEflMm": 50,
+            "imageCircleMm": 46.3,
+            "fields": [
+              0,
+              0.3,
+              0.5,
+              0.7,
+              0.85,
+              1
+            ],
+            "wavelengths": [
+              {
+                "nm": 486.1327,
+                "weight": 1
+              },
+              {
+                "nm": 587.5618,
+                "weight": 2
+              },
+              {
+                "nm": 656.2725,
+                "weight": 1
+              }
+            ],
+            "pupilGrid": 19,
+            "minRayFraction": 0.7,
+            "allowApproximateMaterials": false,
+            "focusPolicy": "global-image-plane-variable",
+            "diagnostics": true,
+            "name": "OMIT 50 — Full Frame · cooke-1001",
+            "topology": "cooke",
+            "eflToleranceMm": 1,
+            "targetFNumber": 2,
+            "fNumberTolerance": 0.02,
+            "mount": "PL",
+            "flangeFocalDistanceMm": 52,
+            "minBflMm": 15,
+            "minElements": 3,
+            "maxElements": 8,
+            "minGroups": 3,
+            "maxGroups": 6,
+            "sphericalOnly": true,
+            "cementedAllowed": true,
+            "maxOpticalLengthMm": 140,
+            "maxDiameterMm": 70,
+            "maxRearDiameterMm": 60,
+            "minCenterMm": 1,
+            "minEdgeMm": 0.5,
+            "minAirGapMm": 0.2,
+            "minMechanicalClearanceMm": 0.2,
+            "rearClearanceEnvelope": [],
+            "allowedGlasses": [
+              "N-BK7",
+              "N-F2"
+            ],
+            "maxUniqueGlasses": 2,
+            "objectDistance": "infinity",
+            "validationGrid": 19,
+            "budget": 1707,
+            "workers": 1,
+            "seed": 1001,
+            "algorithm": "de",
+            "seedFraction": 0.18,
+            "localFraction": 0.18,
+            "denseFraction": 0.02,
+            "parentsPerTopology": 2,
+            "archiveSize": 4,
+            "apertureMarginMm": 0.25,
+            "sensorDiagonalMm": null,
+            "maxFieldHeightMm": 23.15,
+            "maxFrontDiameterMm": 70,
+            "opticalMinBflMm": 15,
+            "rearClearanceMm": 15,
+            "characterPreset": "OMIT SIGNATURE",
+            "mountNotes": "PL intended; mechanical compatibility unverified. Editable construction limits are design assumptions.",
+            "constraints": {
+              "minEdgeMm": 0.5,
+              "minCenterMm": 1,
+              "minAirGapMm": 0.2,
+              "maxDiameterMm": 70,
+              "maxLengthMm": 140,
+              "minBflMm": 15
+            },
+            "synthesis": {
+              "name": "OMIT 50 — Full Frame · cooke-1001",
+              "topology": "cooke",
+              "targetEflMm": 50,
+              "eflToleranceMm": 1,
+              "targetFNumber": 2,
+              "fNumberTolerance": 0.02,
+              "imageCircleMm": 46.3,
+              "mount": "PL",
+              "flangeFocalDistanceMm": 52,
+              "minBflMm": 15,
+              "minElements": 3,
+              "maxElements": 8,
+              "minGroups": 3,
+              "maxGroups": 6,
+              "sphericalOnly": true,
+              "cementedAllowed": true,
+              "maxOpticalLengthMm": 140,
+              "maxDiameterMm": 70,
+              "maxRearDiameterMm": 60,
+              "minCenterMm": 1,
+              "minEdgeMm": 0.5,
+              "minAirGapMm": 0.2,
+              "minMechanicalClearanceMm": 0.2,
+              "rearClearanceEnvelope": [],
+              "allowedGlasses": [
+                "N-BK7",
+                "N-F2"
+              ],
+              "maxUniqueGlasses": 2,
+              "objectDistance": "infinity",
+              "fields": [
+                0,
+                0.3,
+                0.5,
+                0.7,
+                0.85,
+                1
+              ],
+              "wavelengths": [
+                {
+                  "nm": 486.1327,
+                  "weight": 1
+                },
+                {
+                  "nm": 587.5618,
+                  "weight": 2
+                },
+                {
+                  "nm": 656.2725,
+                  "weight": 1
+                }
+              ],
+              "pupilGrid": 7,
+              "validationGrid": 19,
+              "minRayFraction": 0.7,
+              "focusPolicy": "global-image-plane-variable",
+              "budget": 1707,
+              "workers": 1,
+              "seed": 1001,
+              "algorithm": "de",
+              "seedFraction": 0.18,
+              "localFraction": 0.18,
+              "denseFraction": 0.02,
+              "parentsPerTopology": 2,
+              "archiveSize": 4,
+              "apertureMarginMm": 0.25,
+              "apertures": [
+                {
+                  "optimization": true,
+                  "validation": true,
+                  "weight": 1,
+                  "fNumber": 2
+                },
+                {
+                  "optimization": true,
+                  "validation": true,
+                  "weight": 1,
+                  "fNumber": 2.8
+                },
+                {
+                  "optimization": true,
+                  "validation": true,
+                  "weight": 1,
+                  "fNumber": 4
+                },
+                {
+                  "optimization": true,
+                  "validation": true,
+                  "weight": 1,
+                  "fNumber": 5.6
+                }
+              ],
+              "sensorDiagonalMm": null,
+              "maxFieldHeightMm": 23.15,
+              "maxFrontDiameterMm": 70,
+              "opticalMinBflMm": 15,
+              "rearClearanceMm": 15,
+              "characterPreset": "OMIT SIGNATURE",
+              "mountNotes": "PL intended; mechanical compatibility unverified. Editable construction limits are design assumptions."
+            },
+            "pupilPattern": "sunflower",
+            "validationRun": true,
+            "maxStopRadiusMm": 9.662662578191304
+          },
+          "limitations": [
+            "Geometric ray analysis; PSF/MTF and transmission unavailable",
+            "Uniform sampling of paraxial entrance-pupil disk, centered on numerically aimed chief; ray fraction is sampled pupil survival, not calibrated illumination or guaranteed image circle",
+            "Infinity conjugate only; fixed prescription image plane; no automatic refocus",
+            "RMS is centroid-referenced; polychromatic RMS includes centroid color separation"
+          ]
+        }
+      },
+      {
+        "config": {
+          "optimization": true,
+          "validation": true,
+          "weight": 1,
+          "fNumber": 4
+        },
+        "system": {
+          "name": "OMIT 50 — Full Frame · cooke-1001 · Cooke Triplet · 129",
+          "surfaces": [
+            {
+              "type": "OBJ",
+              "R": 0,
+              "t": 0,
+              "ap": 1,
+              "glass": "AIR",
+              "stop": false
+            },
+            {
+              "type": "SPH",
+              "R": 28.641886033844717,
+              "t": 9.716289170850006,
+              "glass": "N-BK7",
+              "ap": 18.45706415806206,
+              "stop": false,
+              "group": 0,
+              "element": 0,
+              "ap_optical": 18.45706415806206
+            },
+            {
+              "type": "SPH",
+              "R": -104.21903314517722,
+              "t": 2.9973764897159807,
+              "glass": "AIR",
+              "ap": 18.45706415806206,
+              "stop": false,
+              "group": 0,
+              "element": 0,
+              "ap_optical": 18.45706415806206
+            },
+            {
+              "type": "SPH",
+              "R": -42.234780930909814,
+              "t": 1.7977894976567916,
+              "glass": "N-F2",
+              "ap": 13.283298566386295,
+              "stop": false,
+              "group": 1,
+              "element": 1,
+              "ap_optical": 13.283298566386295
+            },
+            {
+              "type": "SPH",
+              "R": 96.63007485720946,
+              "t": 7.006201962008672,
+              "glass": "AIR",
+              "ap": 13.283298566386295,
+              "stop": false,
+              "group": 1,
+              "element": 1,
+              "ap_optical": 13.283298566386295
+            },
+            {
+              "type": "STOP",
+              "R": 0,
+              "t": 3.5204327690513315,
+              "glass": "AIR",
+              "ap": 4.831331289095653,
+              "stop": true,
+              "group": null,
+              "element": null,
+              "ap_optical": 4.831331289095653
+            },
+            {
+              "type": "SPH",
+              "R": 57.35839704544693,
+              "t": 5.150377241943525,
+              "glass": "N-BK7",
+              "ap": 13.246673907589775,
+              "stop": false,
+              "group": 2,
+              "element": 2,
+              "ap_optical": 13.246673907589775
+            },
+            {
+              "type": "SPH",
+              "R": -46.59832905344963,
+              "t": 34.76835635856996,
+              "glass": "AIR",
+              "ap": 13.246673907589775,
+              "stop": false,
+              "group": 2,
+              "element": 2,
+              "ap_optical": 13.246673907589775
+            },
+            {
+              "type": "IMS",
+              "R": 0,
+              "t": 0,
+              "ap": 23.15,
+              "glass": "AIR",
+              "stop": false
+            }
+          ],
+          "synthesis": {
+            "topology": "cooke",
+            "ordinal": 129,
+            "seed": 1001,
+            "powers": [
+              {
+                "group": 0,
+                "element": 0,
+                "role": 1,
+                "thinPower": 0.023410769158079263,
+                "glass": "N-BK7",
+                "frontCurvature": 0.03425555415067637,
+                "rearCurvature": -0.011043918750292666
+              },
+              {
+                "group": 1,
+                "element": 1,
+                "role": -1,
+                "thinPower": -0.02165147350720299,
+                "glass": "N-F2",
+                "frontCurvature": -0.023889107595643024,
+                "rearCurvature": 0.01102963114564195
+              },
+              {
+                "group": 2,
+                "element": 2,
+                "role": 1,
+                "thinPower": 0.020293805755694703,
+                "glass": "N-BK7",
+                "frontCurvature": 0.01929473714489581,
+                "rearCurvature": -0.019973460225303087
+              }
+            ],
+            "origin": "generated from specification; no input prescription"
+          }
+        },
+        "stopRadiusMm": 4.831331289095653,
+        "requestedFNumber": 4,
+        "capacityMm": 9.662662578191304,
+        "analysis": {
+          "valid": true,
+          "errors": [],
+          "warnings": [],
+          "firstOrder": {
+            "matrix": [
+              0.7093948790456969,
+              26.157668133617328,
+              -0.019889503620523816,
+              0.6762622329573575
+            ],
+            "eflMm": 50.27777560864356,
+            "bflMm": 35.666796546580386,
+            "fflMm": -34.000960801230256,
+            "frontPrincipalMm": 16.276814807413302,
+            "rearPrincipalMm": 15.577488069163145,
+            "entrancePupilXMm": 24.388779805734092,
+            "entrancePupilRadiusMm": 6.284721951080446,
+            "fNumber": 3.9999999999999996,
+            "preStop": [
+              0.7687422493313437,
+              18.74868544630688,
+              -0.005262482505501057,
+              1.1724805962227967
+            ],
+            "imageDistanceMm": 34.76835635856997,
+            "tStop": null
+          },
+          "fields": [
+            {
+              "field": 0,
+              "angleDeg": 0,
+              "idealHeightMm": 0,
+              "chiefHeightMm": 0,
+              "referenceChiefHeightMm": 0,
+              "distortionReferenceXMm": 65.8552636778067,
+              "fixedPlaneMappingPercent": 0,
+              "chiefColorDisplacements": [
+                {
+                  "nm": 486.1327,
+                  "displacementMm": 0
+                },
+                {
+                  "nm": 587.5618,
+                  "displacementMm": 0
+                },
+                {
+                  "nm": 656.2725,
+                  "displacementMm": 0
+                }
+              ],
+              "realRayFocusColorMm": -0.2661323754373656,
+              "diagnosticFocus": {
+                "tangentialShiftMm": 0.6056026848775661,
+                "sagittalShiftMm": 0.6056026848775657,
+                "bestRmsShiftMm": 0.6056026848775659,
+                "astigmaticDifferenceMm": 3.3306690738754696e-16,
+                "fieldCurvatureRelativeToAxisMm": 0
+              },
+              "distortionPercent": 0,
+              "lateralChiefColorMm": 0,
+              "rayFraction": 0.971830985915493,
+              "covarianceYZmm2": 1.4101489512780156e-18,
+              "majorAxisAngleRad": null,
+              "centroidYmm": 3.642676422720489e-17,
+              "centroidZmm": -3.3502138581998517e-17,
+              "rmsMm": 0.055138841290826496,
+              "tangentialRmsMm": 0.0389890485835122,
+              "sagittalRmsMm": 0.03898904858351224,
+              "maxRadiusMm": 0.07494220860286525
+            },
+            {
+              "field": 0.3,
+              "angleDeg": 7.907787273719861,
+              "idealHeightMm": 6.98358303204059,
+              "chiefHeightMm": 6.841923692610493,
+              "referenceChiefHeightMm": 6.986882640186459,
+              "distortionReferenceXMm": 65.8552636778067,
+              "fixedPlaneMappingPercent": -2.0284621630496247,
+              "chiefColorDisplacements": [
+                {
+                  "nm": 486.1327,
+                  "displacementMm": 0.0003043149932624445
+                },
+                {
+                  "nm": 587.5618,
+                  "displacementMm": 0
+                },
+                {
+                  "nm": 656.2725,
+                  "displacementMm": -0.0008370103330168632
+                }
+              ],
+              "realRayFocusColorMm": -0.2595318857227066,
+              "diagnosticFocus": {
+                "tangentialShiftMm": 0.3102148679989184,
+                "sagittalShiftMm": 0.2648834597371857,
+                "bestRmsShiftMm": 0.2874428660442309,
+                "astigmaticDifferenceMm": 0.04533140826173271,
+                "fieldCurvatureRelativeToAxisMm": -0.31815981883333494
+              },
+              "distortionPercent": 0.0472480692322319,
+              "lateralChiefColorMm": 0.0011413253262793077,
+              "rayFraction": 0.971830985915493,
+              "covarianceYZmm2": -4.614183952560648e-7,
+              "majorAxisAngleRad": -0.0015854687226812966,
+              "centroidYmm": 6.8195779522004045,
+              "centroidZmm": 0.000015552252225026156,
+              "rmsMm": 0.034213399682584994,
+              "tangentialRmsMm": 0.027033177622420586,
+              "sagittalRmsMm": 0.020970551387003773,
+              "maxRadiusMm": 0.08675523096385088
+            },
+            {
+              "field": 0.5,
+              "angleDeg": 13.034363392234962,
+              "idealHeightMm": 11.639305053400983,
+              "chiefHeightMm": 11.4084319375016,
+              "referenceChiefHeightMm": 11.650004364573888,
+              "distortionReferenceXMm": 65.8552636778067,
+              "fixedPlaneMappingPercent": -1.9835644382558957,
+              "chiefColorDisplacements": [
+                {
+                  "nm": 486.1327,
+                  "displacementMm": -0.0001775278761577681
+                },
+                {
+                  "nm": 587.5618,
+                  "displacementMm": 0
+                },
+                {
+                  "nm": 656.2725,
+                  "displacementMm": -0.0011703715545046123
+                }
+              ],
+              "realRayFocusColorMm": -0.24266715617580714,
+              "diagnosticFocus": {
+                "tangentialShiftMm": -0.08709238895148776,
+                "sagittalShiftMm": -0.28084350882726755,
+                "bestRmsShiftMm": -0.18372290410329947,
+                "astigmaticDifferenceMm": 0.1937511198757798,
+                "fieldCurvatureRelativeToAxisMm": -0.7893255889808654
+              },
+              "distortionPercent": 0.09192396903265881,
+              "lateralChiefColorMm": 0.0011703715545046123,
+              "rayFraction": 0.9577464788732394,
+              "covarianceYZmm2": -0.0000012976887937449106,
+              "majorAxisAngleRad": -0.002715264977979034,
+              "centroidYmm": 11.363141401505409,
+              "centroidZmm": -0.00006112328054755925,
+              "rmsMm": 0.0431633581855396,
+              "tangentialRmsMm": 0.03421252867927745,
+              "sagittalRmsMm": 0.026316883767323333,
+              "maxRadiusMm": 0.12596872807917908
+            },
+            {
+              "field": 0.7,
+              "angleDeg": 17.957509408347466,
+              "idealHeightMm": 16.295027074761375,
+              "chiefHeightMm": 15.968874737413344,
+              "referenceChiefHeightMm": 16.30664598687271,
+              "distortionReferenceXMm": 65.8552636778067,
+              "fixedPlaneMappingPercent": -2.0015452312637967,
+              "chiefColorDisplacements": [
+                {
+                  "nm": 486.1327,
+                  "displacementMm": -0.0015113776361097564
+                },
+                {
+                  "nm": 587.5618,
+                  "displacementMm": 0
+                },
+                {
+                  "nm": 656.2725,
+                  "displacementMm": -0.0012330347245370632
+                }
+              ],
+              "realRayFocusColorMm": -0.22522724519546244,
+              "diagnosticFocus": {
+                "tangentialShiftMm": -0.4632288838875016,
+                "sagittalShiftMm": -0.9660255349922248,
+                "bestRmsShiftMm": -0.7147372286909796,
+                "astigmaticDifferenceMm": 0.5027966511047232,
+                "fieldCurvatureRelativeToAxisMm": -1.3203399135685454
+              },
+              "distortionPercent": 0.07130342317338258,
+              "lateralChiefColorMm": 0.0015113776361097564,
+              "rayFraction": 0.9436619718309859,
+              "covarianceYZmm2": -0.000015723790300162848,
+              "majorAxisAngleRad": -1.5504286913377496,
+              "centroidYmm": 15.88945123990726,
+              "centroidZmm": 0.0000960872507639002,
+              "rmsMm": 0.09494243553963551,
+              "tangentialRmsMm": 0.06419694040118323,
+              "sagittalRmsMm": 0.06994868768836747,
+              "maxRadiusMm": 0.22388009103848228
+            },
+            {
+              "field": 0.85,
+              "angleDeg": 21.4821183454181,
+              "idealHeightMm": 19.78681859078167,
+              "chiefHeightMm": 19.37284746247144,
+              "referenceChiefHeightMm": 19.78206667489971,
+              "distortionReferenceXMm": 65.8552636778067,
+              "fixedPlaneMappingPercent": -2.0921560806298185,
+              "chiefColorDisplacements": [
+                {
+                  "nm": 486.1327,
+                  "displacementMm": -0.0025177096848771896
+                },
+                {
+                  "nm": 587.5618,
+                  "displacementMm": 0
+                },
+                {
+                  "nm": 656.2725,
+                  "displacementMm": -0.0013459543741589641
+                }
+              ],
+              "realRayFocusColorMm": -0.22701637934214813,
+              "diagnosticFocus": {
+                "tangentialShiftMm": -0.7055866942687146,
+                "sagittalShiftMm": -1.4827480155992374,
+                "bestRmsShiftMm": -1.0930386899124622,
+                "astigmaticDifferenceMm": 0.7771613213305228,
+                "fieldCurvatureRelativeToAxisMm": -1.6986413747900282
+              },
+              "distortionPercent": -0.02401556298785164,
+              "lateralChiefColorMm": 0.0025177096848771896,
+              "rayFraction": 0.9330985915492958,
+              "covarianceYZmm2": -0.00003975814868787756,
+              "majorAxisAngleRad": -1.55829734017811,
+              "centroidYmm": 19.26044854166814,
+              "centroidZmm": -0.0003833345439723578,
+              "rmsMm": 0.14018758347339416,
+              "tangentialRmsMm": 0.09075326825059837,
+              "sagittalRmsMm": 0.1068475683483007,
+              "maxRadiusMm": 0.3030917680715063
+            },
+            {
+              "field": 1,
+              "angleDeg": 24.84413659396438,
+              "idealHeightMm": 23.278610106801967,
+              "chiefHeightMm": 22.76696048595854,
+              "referenceChiefHeightMm": 23.246896607445265,
+              "distortionReferenceXMm": 65.8552636778067,
+              "fixedPlaneMappingPercent": -2.1979388739103687,
+              "chiefColorDisplacements": [
+                {
+                  "nm": 486.1327,
+                  "displacementMm": -0.00021386523599176144
+                },
+                {
+                  "nm": 587.5618,
+                  "displacementMm": 0
+                },
+                {
+                  "nm": 656.2725,
+                  "displacementMm": -0.002904416743145788
+                }
+              ],
+              "realRayFocusColorMm": -0.2948260451425466,
+              "diagnosticFocus": {
+                "tangentialShiftMm": -1.3477634151073314,
+                "sagittalShiftMm": -1.9124272248974254,
+                "bestRmsShiftMm": -1.6196119806814597,
+                "astigmaticDifferenceMm": 0.564663809790094,
+                "fieldCurvatureRelativeToAxisMm": -2.2252146655590255
+              },
+              "distortionPercent": -0.13623450545887625,
+              "lateralChiefColorMm": 0.002904416743145788,
+              "rayFraction": 0.9471830985915493,
+              "covarianceYZmm2": -0.000036690692200514914,
+              "majorAxisAngleRad": -1.560639510175842,
+              "centroidYmm": 22.633337088668966,
+              "centroidZmm": -0.0005275553540717214,
+              "rmsMm": 0.18862133107948914,
+              "tangentialRmsMm": 0.12642405421641725,
+              "sagittalRmsMm": 0.1399820168938948,
+              "maxRadiusMm": 0.4116534635033762
+            }
+          ],
+          "longitudinalColorMm": -0.27638368936254665,
+          "metricStatus": {
+            "spherical": {
+              "method": "GEOMETRIC zonal axial intercept",
+              "validation": "VALIDATED symmetry and paraxial limit; external reference pending"
+            },
+            "lateralColor": {
+              "method": "GEOMETRIC signed chief offsets at fixed sensor, d reference",
+              "validation": "VALIDATED on-axis symmetry; external reference pending"
+            },
+            "fNumber": {
+              "method": "PARAXIAL entrance-pupil diameter",
+              "validation": "VALIDATED matrix/iris invariants; not transmission"
+            },
+            "distortion": {
+              "method": "GEOMETRIC chief ray at d-line paraxial focus",
+              "validation": "VALIDATED analytic/invariance tests"
+            },
+            "longitudinalColor": {
+              "method": "PARAXIAL F-C BFL",
+              "validation": "VALIDATED analytic tests"
+            },
+            "fans": {
+              "method": "GEOMETRIC chief-referenced transverse rays",
+              "validation": "VALIDATED symmetry tests"
+            },
+            "focus": {
+              "method": "GEOMETRIC least-variance outgoing ray planes",
+              "validation": "EXPERIMENTAL optical interpretation; analytic minimum tested"
+            },
+            "pupil": {
+              "method": "GEOMETRIC paraxial-pupil sampling",
+              "validation": "APPROXIMATE; not illumination"
+            },
+            "coma": {
+              "method": "GEOMETRIC even tangential fan at ±0.8 pupil; not a Seidel coefficient"
+            },
+            "psf": {
+              "method": "UNAVAILABLE"
+            },
+            "mtf": {
+              "method": "UNAVAILABLE"
+            },
+            "tStop": {
+              "method": "UNAVAILABLE"
+            }
+          },
+          "imagePlaneXMm": 64.95682348979628,
+          "settings": {
+            "targetEflMm": 50,
+            "imageCircleMm": 46.3,
+            "fields": [
+              0,
+              0.3,
+              0.5,
+              0.7,
+              0.85,
+              1
+            ],
+            "wavelengths": [
+              {
+                "nm": 486.1327,
+                "weight": 1
+              },
+              {
+                "nm": 587.5618,
+                "weight": 2
+              },
+              {
+                "nm": 656.2725,
+                "weight": 1
+              }
+            ],
+            "pupilGrid": 19,
+            "minRayFraction": 0.7,
+            "allowApproximateMaterials": false,
+            "focusPolicy": "global-image-plane-variable",
+            "diagnostics": true,
+            "name": "OMIT 50 — Full Frame · cooke-1001",
+            "topology": "cooke",
+            "eflToleranceMm": 1,
+            "targetFNumber": 2,
+            "fNumberTolerance": 0.02,
+            "mount": "PL",
+            "flangeFocalDistanceMm": 52,
+            "minBflMm": 15,
+            "minElements": 3,
+            "maxElements": 8,
+            "minGroups": 3,
+            "maxGroups": 6,
+            "sphericalOnly": true,
+            "cementedAllowed": true,
+            "maxOpticalLengthMm": 140,
+            "maxDiameterMm": 70,
+            "maxRearDiameterMm": 60,
+            "minCenterMm": 1,
+            "minEdgeMm": 0.5,
+            "minAirGapMm": 0.2,
+            "minMechanicalClearanceMm": 0.2,
+            "rearClearanceEnvelope": [],
+            "allowedGlasses": [
+              "N-BK7",
+              "N-F2"
+            ],
+            "maxUniqueGlasses": 2,
+            "objectDistance": "infinity",
+            "validationGrid": 19,
+            "budget": 1707,
+            "workers": 1,
+            "seed": 1001,
+            "algorithm": "de",
+            "seedFraction": 0.18,
+            "localFraction": 0.18,
+            "denseFraction": 0.02,
+            "parentsPerTopology": 2,
+            "archiveSize": 4,
+            "apertureMarginMm": 0.25,
+            "sensorDiagonalMm": null,
+            "maxFieldHeightMm": 23.15,
+            "maxFrontDiameterMm": 70,
+            "opticalMinBflMm": 15,
+            "rearClearanceMm": 15,
+            "characterPreset": "OMIT SIGNATURE",
+            "mountNotes": "PL intended; mechanical compatibility unverified. Editable construction limits are design assumptions.",
+            "constraints": {
+              "minEdgeMm": 0.5,
+              "minCenterMm": 1,
+              "minAirGapMm": 0.2,
+              "maxDiameterMm": 70,
+              "maxLengthMm": 140,
+              "minBflMm": 15
+            },
+            "synthesis": {
+              "name": "OMIT 50 — Full Frame · cooke-1001",
+              "topology": "cooke",
+              "targetEflMm": 50,
+              "eflToleranceMm": 1,
+              "targetFNumber": 2,
+              "fNumberTolerance": 0.02,
+              "imageCircleMm": 46.3,
+              "mount": "PL",
+              "flangeFocalDistanceMm": 52,
+              "minBflMm": 15,
+              "minElements": 3,
+              "maxElements": 8,
+              "minGroups": 3,
+              "maxGroups": 6,
+              "sphericalOnly": true,
+              "cementedAllowed": true,
+              "maxOpticalLengthMm": 140,
+              "maxDiameterMm": 70,
+              "maxRearDiameterMm": 60,
+              "minCenterMm": 1,
+              "minEdgeMm": 0.5,
+              "minAirGapMm": 0.2,
+              "minMechanicalClearanceMm": 0.2,
+              "rearClearanceEnvelope": [],
+              "allowedGlasses": [
+                "N-BK7",
+                "N-F2"
+              ],
+              "maxUniqueGlasses": 2,
+              "objectDistance": "infinity",
+              "fields": [
+                0,
+                0.3,
+                0.5,
+                0.7,
+                0.85,
+                1
+              ],
+              "wavelengths": [
+                {
+                  "nm": 486.1327,
+                  "weight": 1
+                },
+                {
+                  "nm": 587.5618,
+                  "weight": 2
+                },
+                {
+                  "nm": 656.2725,
+                  "weight": 1
+                }
+              ],
+              "pupilGrid": 7,
+              "validationGrid": 19,
+              "minRayFraction": 0.7,
+              "focusPolicy": "global-image-plane-variable",
+              "budget": 1707,
+              "workers": 1,
+              "seed": 1001,
+              "algorithm": "de",
+              "seedFraction": 0.18,
+              "localFraction": 0.18,
+              "denseFraction": 0.02,
+              "parentsPerTopology": 2,
+              "archiveSize": 4,
+              "apertureMarginMm": 0.25,
+              "apertures": [
+                {
+                  "optimization": true,
+                  "validation": true,
+                  "weight": 1,
+                  "fNumber": 2
+                },
+                {
+                  "optimization": true,
+                  "validation": true,
+                  "weight": 1,
+                  "fNumber": 2.8
+                },
+                {
+                  "optimization": true,
+                  "validation": true,
+                  "weight": 1,
+                  "fNumber": 4
+                },
+                {
+                  "optimization": true,
+                  "validation": true,
+                  "weight": 1,
+                  "fNumber": 5.6
+                }
+              ],
+              "sensorDiagonalMm": null,
+              "maxFieldHeightMm": 23.15,
+              "maxFrontDiameterMm": 70,
+              "opticalMinBflMm": 15,
+              "rearClearanceMm": 15,
+              "characterPreset": "OMIT SIGNATURE",
+              "mountNotes": "PL intended; mechanical compatibility unverified. Editable construction limits are design assumptions."
+            },
+            "pupilPattern": "sunflower",
+            "validationRun": true,
+            "maxStopRadiusMm": 9.662662578191304
+          },
+          "limitations": [
+            "Geometric ray analysis; PSF/MTF and transmission unavailable",
+            "Uniform sampling of paraxial entrance-pupil disk, centered on numerically aimed chief; ray fraction is sampled pupil survival, not calibrated illumination or guaranteed image circle",
+            "Infinity conjugate only; fixed prescription image plane; no automatic refocus",
+            "RMS is centroid-referenced; polychromatic RMS includes centroid color separation"
+          ]
+        }
+      },
+      {
+        "config": {
+          "optimization": true,
+          "validation": true,
+          "weight": 1,
+          "fNumber": 5.6
+        },
+        "system": {
+          "name": "OMIT 50 — Full Frame · cooke-1001 · Cooke Triplet · 129",
+          "surfaces": [
+            {
+              "type": "OBJ",
+              "R": 0,
+              "t": 0,
+              "ap": 1,
+              "glass": "AIR",
+              "stop": false
+            },
+            {
+              "type": "SPH",
+              "R": 28.641886033844717,
+              "t": 9.716289170850006,
+              "glass": "N-BK7",
+              "ap": 18.45706415806206,
+              "stop": false,
+              "group": 0,
+              "element": 0,
+              "ap_optical": 18.45706415806206
+            },
+            {
+              "type": "SPH",
+              "R": -104.21903314517722,
+              "t": 2.9973764897159807,
+              "glass": "AIR",
+              "ap": 18.45706415806206,
+              "stop": false,
+              "group": 0,
+              "element": 0,
+              "ap_optical": 18.45706415806206
+            },
+            {
+              "type": "SPH",
+              "R": -42.234780930909814,
+              "t": 1.7977894976567916,
+              "glass": "N-F2",
+              "ap": 13.283298566386295,
+              "stop": false,
+              "group": 1,
+              "element": 1,
+              "ap_optical": 13.283298566386295
+            },
+            {
+              "type": "SPH",
+              "R": 96.63007485720946,
+              "t": 7.006201962008672,
+              "glass": "AIR",
+              "ap": 13.283298566386295,
+              "stop": false,
+              "group": 1,
+              "element": 1,
+              "ap_optical": 13.283298566386295
+            },
+            {
+              "type": "STOP",
+              "R": 0,
+              "t": 3.5204327690513315,
+              "glass": "AIR",
+              "ap": 3.4509509207826095,
+              "stop": true,
+              "group": null,
+              "element": null,
+              "ap_optical": 3.4509509207826095
+            },
+            {
+              "type": "SPH",
+              "R": 57.35839704544693,
+              "t": 5.150377241943525,
+              "glass": "N-BK7",
+              "ap": 13.246673907589775,
+              "stop": false,
+              "group": 2,
+              "element": 2,
+              "ap_optical": 13.246673907589775
+            },
+            {
+              "type": "SPH",
+              "R": -46.59832905344963,
+              "t": 34.76835635856996,
+              "glass": "AIR",
+              "ap": 13.246673907589775,
+              "stop": false,
+              "group": 2,
+              "element": 2,
+              "ap_optical": 13.246673907589775
+            },
+            {
+              "type": "IMS",
+              "R": 0,
+              "t": 0,
+              "ap": 23.15,
+              "glass": "AIR",
+              "stop": false
+            }
+          ],
+          "synthesis": {
+            "topology": "cooke",
+            "ordinal": 129,
+            "seed": 1001,
+            "powers": [
+              {
+                "group": 0,
+                "element": 0,
+                "role": 1,
+                "thinPower": 0.023410769158079263,
+                "glass": "N-BK7",
+                "frontCurvature": 0.03425555415067637,
+                "rearCurvature": -0.011043918750292666
+              },
+              {
+                "group": 1,
+                "element": 1,
+                "role": -1,
+                "thinPower": -0.02165147350720299,
+                "glass": "N-F2",
+                "frontCurvature": -0.023889107595643024,
+                "rearCurvature": 0.01102963114564195
+              },
+              {
+                "group": 2,
+                "element": 2,
+                "role": 1,
+                "thinPower": 0.020293805755694703,
+                "glass": "N-BK7",
+                "frontCurvature": 0.01929473714489581,
+                "rearCurvature": -0.019973460225303087
+              }
+            ],
+            "origin": "generated from specification; no input prescription"
+          }
+        },
+        "stopRadiusMm": 3.4509509207826095,
+        "requestedFNumber": 5.6,
+        "capacityMm": 9.662662578191304,
+        "analysis": {
+          "valid": true,
+          "errors": [],
+          "warnings": [],
+          "firstOrder": {
+            "matrix": [
+              0.7093948790456969,
+              26.157668133617328,
+              -0.019889503620523816,
+              0.6762622329573575
+            ],
+            "eflMm": 50.27777560864356,
+            "bflMm": 35.666796546580386,
+            "fflMm": -34.000960801230256,
+            "frontPrincipalMm": 16.276814807413302,
+            "rearPrincipalMm": 15.577488069163145,
+            "entrancePupilXMm": 24.388779805734092,
+            "entrancePupilRadiusMm": 4.489087107914604,
+            "fNumber": 5.6,
+            "preStop": [
+              0.7687422493313437,
+              18.74868544630688,
+              -0.005262482505501057,
+              1.1724805962227967
+            ],
+            "imageDistanceMm": 34.76835635856997,
+            "tStop": null
+          },
+          "fields": [
+            {
+              "field": 0,
+              "angleDeg": 0,
+              "idealHeightMm": 0,
+              "chiefHeightMm": 0,
+              "referenceChiefHeightMm": 0,
+              "distortionReferenceXMm": 65.8552636778067,
+              "fixedPlaneMappingPercent": 0,
+              "chiefColorDisplacements": [
+                {
+                  "nm": 486.1327,
+                  "displacementMm": 0
+                },
+                {
+                  "nm": 587.5618,
+                  "displacementMm": 0
+                },
+                {
+                  "nm": 656.2725,
+                  "displacementMm": 0
+                }
+              ],
+              "realRayFocusColorMm": -0.2731684927150263,
+              "diagnosticFocus": {
+                "tangentialShiftMm": 0.7379338994071376,
+                "sagittalShiftMm": 0.7379338994071375,
+                "bestRmsShiftMm": 0.7379338994071376,
+                "astigmaticDifferenceMm": 1.1102230246251565e-16,
+                "fieldCurvatureRelativeToAxisMm": 0
+              },
+              "distortionPercent": 0,
+              "lateralChiefColorMm": 0,
+              "rayFraction": 0.9859154929577465,
+              "covarianceYZmm2": -4.682277127714955e-20,
+              "majorAxisAngleRad": null,
+              "centroidYmm": -3.677091028737616e-18,
+              "centroidZmm": 1.2577713238485678e-18,
+              "rmsMm": 0.047126627536116274,
+              "tangentialRmsMm": 0.033323557905240477,
+              "sagittalRmsMm": 0.03332355790524052,
+              "maxRadiusMm": 0.07003919773006372
+            },
+            {
+              "field": 0.3,
+              "angleDeg": 7.907787273719861,
+              "idealHeightMm": 6.98358303204059,
+              "chiefHeightMm": 6.841923692610493,
+              "referenceChiefHeightMm": 6.986882640186459,
+              "distortionReferenceXMm": 65.8552636778067,
+              "fixedPlaneMappingPercent": -2.0284621630496247,
+              "chiefColorDisplacements": [
+                {
+                  "nm": 486.1327,
+                  "displacementMm": 0.0003043149932624445
+                },
+                {
+                  "nm": 587.5618,
+                  "displacementMm": 0
+                },
+                {
+                  "nm": 656.2725,
+                  "displacementMm": -0.0008370103330168632
+                }
+              ],
+              "realRayFocusColorMm": -0.2625276682462482,
+              "diagnosticFocus": {
+                "tangentialShiftMm": 0.41943066275320423,
+                "sagittalShiftMm": 0.3878569291016791,
+                "bestRmsShiftMm": 0.4037266454985198,
+                "astigmaticDifferenceMm": 0.031573733651525104,
+                "fieldCurvatureRelativeToAxisMm": -0.33420725390861783
+              },
+              "distortionPercent": 0.0472480692322319,
+              "lateralChiefColorMm": 0.0011413253262793077,
+              "rayFraction": 0.9788732394366197,
+              "covarianceYZmm2": 0.0000012874320485736018,
+              "majorAxisAngleRad": 0.012764084314595145,
+              "centroidYmm": 6.830851606427105,
+              "centroidZmm": -0.00005110737596394342,
+              "rmsMm": 0.028236708801040337,
+              "tangentialRmsMm": 0.021191430530244377,
+              "sagittalRmsMm": 0.018661055597060296,
+              "maxRadiusMm": 0.06611050471197397
+            },
+            {
+              "field": 0.5,
+              "angleDeg": 13.034363392234962,
+              "idealHeightMm": 11.639305053400983,
+              "chiefHeightMm": 11.4084319375016,
+              "referenceChiefHeightMm": 11.650004364573888,
+              "distortionReferenceXMm": 65.8552636778067,
+              "fixedPlaneMappingPercent": -1.9835644382558957,
+              "chiefColorDisplacements": [
+                {
+                  "nm": 486.1327,
+                  "displacementMm": -0.0001775278761577681
+                },
+                {
+                  "nm": 587.5618,
+                  "displacementMm": 0
+                },
+                {
+                  "nm": 656.2725,
+                  "displacementMm": -0.0011703715545046123
+                }
+              ],
+              "realRayFocusColorMm": -0.24546722267683024,
+              "diagnosticFocus": {
+                "tangentialShiftMm": -0.026011960907549144,
+                "sagittalShiftMm": -0.1754349376242258,
+                "bestRmsShiftMm": -0.10041750291960104,
+                "astigmaticDifferenceMm": 0.14942297671667665,
+                "fieldCurvatureRelativeToAxisMm": -0.8383514023267387
+              },
+              "distortionPercent": 0.09192396903265881,
+              "lateralChiefColorMm": 0.0011703715545046123,
+              "rayFraction": 0.971830985915493,
+              "covarianceYZmm2": -2.4782737929348356e-7,
+              "majorAxisAngleRad": -0.0020422370150784755,
+              "centroidYmm": 11.385796698407482,
+              "centroidZmm": 0.000029903095690351427,
+              "rmsMm": 0.020976205800020024,
+              "tangentialRmsMm": 0.01675337986590281,
+              "sagittalRmsMm": 0.01262241945244873,
+              "maxRadiusMm": 0.0621331425793611
+            },
+            {
+              "field": 0.7,
+              "angleDeg": 17.957509408347466,
+              "idealHeightMm": 16.295027074761375,
+              "chiefHeightMm": 15.968874737413344,
+              "referenceChiefHeightMm": 16.30664598687271,
+              "distortionReferenceXMm": 65.8552636778067,
+              "fixedPlaneMappingPercent": -2.0015452312637967,
+              "chiefColorDisplacements": [
+                {
+                  "nm": 486.1327,
+                  "displacementMm": -0.0015113776361097564
+                },
+                {
+                  "nm": 587.5618,
+                  "displacementMm": 0
+                },
+                {
+                  "nm": 656.2725,
+                  "displacementMm": -0.0012330347245370632
+                }
+              ],
+              "realRayFocusColorMm": -0.2271054852812353,
+              "diagnosticFocus": {
+                "tangentialShiftMm": -0.462805453732641,
+                "sagittalShiftMm": -0.8867638899892082,
+                "bestRmsShiftMm": -0.6731012183973205,
+                "astigmaticDifferenceMm": 0.4239584362565672,
+                "fieldCurvatureRelativeToAxisMm": -1.4110351178044582
+              },
+              "distortionPercent": 0.07130342317338258,
+              "lateralChiefColorMm": 0.0015113776361097564,
+              "rayFraction": 0.9612676056338029,
+              "covarianceYZmm2": -0.000001783029142705433,
+              "majorAxisAngleRad": -1.5681503023910146,
+              "centroidYmm": 15.928637355113061,
+              "centroidZmm": 0.00019815963535549364,
+              "rmsMm": 0.05676791955588813,
+              "tangentialRmsMm": 0.03569839538142527,
+              "sagittalRmsMm": 0.044138659448325124,
+              "maxRadiusMm": 0.13039772055839677
+            },
+            {
+              "field": 0.85,
+              "angleDeg": 21.4821183454181,
+              "idealHeightMm": 19.78681859078167,
+              "chiefHeightMm": 19.37284746247144,
+              "referenceChiefHeightMm": 19.78206667489971,
+              "distortionReferenceXMm": 65.8552636778067,
+              "fixedPlaneMappingPercent": -2.0921560806298185,
+              "chiefColorDisplacements": [
+                {
+                  "nm": 486.1327,
+                  "displacementMm": -0.0025177096848771896
+                },
+                {
+                  "nm": 587.5618,
+                  "displacementMm": 0
+                },
+                {
+                  "nm": 656.2725,
+                  "displacementMm": -0.0013459543741589641
+                }
+              ],
+              "realRayFocusColorMm": -0.21567913210353384,
+              "diagnosticFocus": {
+                "tangentialShiftMm": -0.756351227900518,
+                "sagittalShiftMm": -1.4288857354257236,
+                "bestRmsShiftMm": -1.0874858087322818,
+                "astigmaticDifferenceMm": 0.6725345075252056,
+                "fieldCurvatureRelativeToAxisMm": -1.8254197081394195
+              },
+              "distortionPercent": -0.02401556298785164,
+              "lateralChiefColorMm": 0.0025177096848771896,
+              "rayFraction": 0.9507042253521126,
+              "covarianceYZmm2": -0.000007910674847699534,
+              "majorAxisAngleRad": -1.5671809516147959,
+              "centroidYmm": 19.315426010307668,
+              "centroidZmm": -0.00013138997182443078,
+              "rmsMm": 0.08888484984557908,
+              "tangentialRmsMm": 0.05344384882689576,
+              "sagittalRmsMm": 0.07102303538035425,
+              "maxRadiusMm": 0.1878365881898153
+            },
+            {
+              "field": 1,
+              "angleDeg": 24.84413659396438,
+              "idealHeightMm": 23.278610106801967,
+              "chiefHeightMm": 22.76696048595854,
+              "referenceChiefHeightMm": 23.246896607445265,
+              "distortionReferenceXMm": 65.8552636778067,
+              "fixedPlaneMappingPercent": -2.1979388739103687,
+              "chiefColorDisplacements": [
+                {
+                  "nm": 486.1327,
+                  "displacementMm": -0.00021386523599176144
+                },
+                {
+                  "nm": 587.5618,
+                  "displacementMm": 0
+                },
+                {
+                  "nm": 656.2725,
+                  "displacementMm": -0.002904416743145788
+                }
+              ],
+              "realRayFocusColorMm": -0.28644464612883414,
+              "diagnosticFocus": {
+                "tangentialShiftMm": -1.393741102086683,
+                "sagittalShiftMm": -1.899246238366128,
+                "bestRmsShiftMm": -1.6367125300612444,
+                "astigmaticDifferenceMm": 0.5055051362794449,
+                "fieldCurvatureRelativeToAxisMm": -2.374646429468382
+              },
+              "distortionPercent": -0.13623450545887625,
+              "lateralChiefColorMm": 0.002904416743145788,
+              "rayFraction": 0.9612676056338029,
+              "covarianceYZmm2": -0.000011903744344515452,
+              "majorAxisAngleRad": -1.5656745726563739,
+              "centroidYmm": 22.69778875947193,
+              "centroidZmm": -0.00018181024247760272,
+              "rmsMm": 0.12662532287940118,
+              "tangentialRmsMm": 0.08279462508357785,
+              "sagittalRmsMm": 0.09580721502883999,
+              "maxRadiusMm": 0.2625204513036308
+            }
+          ],
+          "longitudinalColorMm": -0.27638368936254665,
+          "metricStatus": {
+            "spherical": {
+              "method": "GEOMETRIC zonal axial intercept",
+              "validation": "VALIDATED symmetry and paraxial limit; external reference pending"
+            },
+            "lateralColor": {
+              "method": "GEOMETRIC signed chief offsets at fixed sensor, d reference",
+              "validation": "VALIDATED on-axis symmetry; external reference pending"
+            },
+            "fNumber": {
+              "method": "PARAXIAL entrance-pupil diameter",
+              "validation": "VALIDATED matrix/iris invariants; not transmission"
+            },
+            "distortion": {
+              "method": "GEOMETRIC chief ray at d-line paraxial focus",
+              "validation": "VALIDATED analytic/invariance tests"
+            },
+            "longitudinalColor": {
+              "method": "PARAXIAL F-C BFL",
+              "validation": "VALIDATED analytic tests"
+            },
+            "fans": {
+              "method": "GEOMETRIC chief-referenced transverse rays",
+              "validation": "VALIDATED symmetry tests"
+            },
+            "focus": {
+              "method": "GEOMETRIC least-variance outgoing ray planes",
+              "validation": "EXPERIMENTAL optical interpretation; analytic minimum tested"
+            },
+            "pupil": {
+              "method": "GEOMETRIC paraxial-pupil sampling",
+              "validation": "APPROXIMATE; not illumination"
+            },
+            "coma": {
+              "method": "GEOMETRIC even tangential fan at ±0.8 pupil; not a Seidel coefficient"
+            },
+            "psf": {
+              "method": "UNAVAILABLE"
+            },
+            "mtf": {
+              "method": "UNAVAILABLE"
+            },
+            "tStop": {
+              "method": "UNAVAILABLE"
+            }
+          },
+          "imagePlaneXMm": 64.95682348979628,
+          "settings": {
+            "targetEflMm": 50,
+            "imageCircleMm": 46.3,
+            "fields": [
+              0,
+              0.3,
+              0.5,
+              0.7,
+              0.85,
+              1
+            ],
+            "wavelengths": [
+              {
+                "nm": 486.1327,
+                "weight": 1
+              },
+              {
+                "nm": 587.5618,
+                "weight": 2
+              },
+              {
+                "nm": 656.2725,
+                "weight": 1
+              }
+            ],
+            "pupilGrid": 19,
+            "minRayFraction": 0.7,
+            "allowApproximateMaterials": false,
+            "focusPolicy": "global-image-plane-variable",
+            "diagnostics": true,
+            "name": "OMIT 50 — Full Frame · cooke-1001",
+            "topology": "cooke",
+            "eflToleranceMm": 1,
+            "targetFNumber": 2,
+            "fNumberTolerance": 0.02,
+            "mount": "PL",
+            "flangeFocalDistanceMm": 52,
+            "minBflMm": 15,
+            "minElements": 3,
+            "maxElements": 8,
+            "minGroups": 3,
+            "maxGroups": 6,
+            "sphericalOnly": true,
+            "cementedAllowed": true,
+            "maxOpticalLengthMm": 140,
+            "maxDiameterMm": 70,
+            "maxRearDiameterMm": 60,
+            "minCenterMm": 1,
+            "minEdgeMm": 0.5,
+            "minAirGapMm": 0.2,
+            "minMechanicalClearanceMm": 0.2,
+            "rearClearanceEnvelope": [],
+            "allowedGlasses": [
+              "N-BK7",
+              "N-F2"
+            ],
+            "maxUniqueGlasses": 2,
+            "objectDistance": "infinity",
+            "validationGrid": 19,
+            "budget": 1707,
+            "workers": 1,
+            "seed": 1001,
+            "algorithm": "de",
+            "seedFraction": 0.18,
+            "localFraction": 0.18,
+            "denseFraction": 0.02,
+            "parentsPerTopology": 2,
+            "archiveSize": 4,
+            "apertureMarginMm": 0.25,
+            "sensorDiagonalMm": null,
+            "maxFieldHeightMm": 23.15,
+            "maxFrontDiameterMm": 70,
+            "opticalMinBflMm": 15,
+            "rearClearanceMm": 15,
+            "characterPreset": "OMIT SIGNATURE",
+            "mountNotes": "PL intended; mechanical compatibility unverified. Editable construction limits are design assumptions.",
+            "constraints": {
+              "minEdgeMm": 0.5,
+              "minCenterMm": 1,
+              "minAirGapMm": 0.2,
+              "maxDiameterMm": 70,
+              "maxLengthMm": 140,
+              "minBflMm": 15
+            },
+            "synthesis": {
+              "name": "OMIT 50 — Full Frame · cooke-1001",
+              "topology": "cooke",
+              "targetEflMm": 50,
+              "eflToleranceMm": 1,
+              "targetFNumber": 2,
+              "fNumberTolerance": 0.02,
+              "imageCircleMm": 46.3,
+              "mount": "PL",
+              "flangeFocalDistanceMm": 52,
+              "minBflMm": 15,
+              "minElements": 3,
+              "maxElements": 8,
+              "minGroups": 3,
+              "maxGroups": 6,
+              "sphericalOnly": true,
+              "cementedAllowed": true,
+              "maxOpticalLengthMm": 140,
+              "maxDiameterMm": 70,
+              "maxRearDiameterMm": 60,
+              "minCenterMm": 1,
+              "minEdgeMm": 0.5,
+              "minAirGapMm": 0.2,
+              "minMechanicalClearanceMm": 0.2,
+              "rearClearanceEnvelope": [],
+              "allowedGlasses": [
+                "N-BK7",
+                "N-F2"
+              ],
+              "maxUniqueGlasses": 2,
+              "objectDistance": "infinity",
+              "fields": [
+                0,
+                0.3,
+                0.5,
+                0.7,
+                0.85,
+                1
+              ],
+              "wavelengths": [
+                {
+                  "nm": 486.1327,
+                  "weight": 1
+                },
+                {
+                  "nm": 587.5618,
+                  "weight": 2
+                },
+                {
+                  "nm": 656.2725,
+                  "weight": 1
+                }
+              ],
+              "pupilGrid": 7,
+              "validationGrid": 19,
+              "minRayFraction": 0.7,
+              "focusPolicy": "global-image-plane-variable",
+              "budget": 1707,
+              "workers": 1,
+              "seed": 1001,
+              "algorithm": "de",
+              "seedFraction": 0.18,
+              "localFraction": 0.18,
+              "denseFraction": 0.02,
+              "parentsPerTopology": 2,
+              "archiveSize": 4,
+              "apertureMarginMm": 0.25,
+              "apertures": [
+                {
+                  "optimization": true,
+                  "validation": true,
+                  "weight": 1,
+                  "fNumber": 2
+                },
+                {
+                  "optimization": true,
+                  "validation": true,
+                  "weight": 1,
+                  "fNumber": 2.8
+                },
+                {
+                  "optimization": true,
+                  "validation": true,
+                  "weight": 1,
+                  "fNumber": 4
+                },
+                {
+                  "optimization": true,
+                  "validation": true,
+                  "weight": 1,
+                  "fNumber": 5.6
+                }
+              ],
+              "sensorDiagonalMm": null,
+              "maxFieldHeightMm": 23.15,
+              "maxFrontDiameterMm": 70,
+              "opticalMinBflMm": 15,
+              "rearClearanceMm": 15,
+              "characterPreset": "OMIT SIGNATURE",
+              "mountNotes": "PL intended; mechanical compatibility unverified. Editable construction limits are design assumptions."
+            },
+            "pupilPattern": "sunflower",
+            "validationRun": true,
+            "maxStopRadiusMm": 9.662662578191304
+          },
+          "limitations": [
+            "Geometric ray analysis; PSF/MTF and transmission unavailable",
+            "Uniform sampling of paraxial entrance-pupil disk, centered on numerically aimed chief; ray fraction is sampled pupil survival, not calibrated illumination or guaranteed image circle",
+            "Infinity conjugate only; fixed prescription image plane; no automatic refocus",
+            "RMS is centroid-referenced; polychromatic RMS includes centroid color separation"
+          ]
+        }
+      }
+    ],
+    "cleanup": [
+      {
+        "from": 2,
+        "to": 2.8,
+        "field": 0,
+        "metric": "rms",
+        "fromMm": 0.06759866544700614,
+        "toMm": 0.05030777736198872,
+        "changeMm": -0.01729088808501742,
+        "relativeChange": -0.2557874178532797,
+        "ratio": 1.3437020872657748
+      },
+      {
+        "from": 2,
+        "to": 2.8,
+        "field": 0.3,
+        "metric": "rms",
+        "fromMm": 0.13557180145486988,
+        "toMm": 0.05144433761700399,
+        "changeMm": -0.0841274638378659,
+        "relativeChange": -0.6205380686474897,
+        "ratio": 2.635310468261508
+      },
+      {
+        "from": 2,
+        "to": 2.8,
+        "field": 0.5,
+        "metric": "rms",
+        "fromMm": 0.24008553152392212,
+        "toMm": 0.10004708028691864,
+        "changeMm": -0.14003845123700348,
+        "relativeChange": -0.5832856746848573,
+        "ratio": 2.3997255175802845
+      },
+      {
+        "from": 2,
+        "to": 2.8,
+        "field": 0.7,
+        "metric": "rms",
+        "fromMm": 0.3721452572448645,
+        "toMm": 0.1814154773983702,
+        "changeMm": -0.19072977984649434,
+        "relativeChange": -0.5125143371664623,
+        "ratio": 2.0513423803839563
+      },
+      {
+        "from": 2,
+        "to": 2.8,
+        "field": 0.85,
+        "metric": "rms",
+        "fromMm": 0.4679736362493878,
+        "toMm": 0.2511269114292048,
+        "changeMm": -0.21684672482018302,
+        "relativeChange": -0.4633738057513634,
+        "ratio": 1.8634945716732327
+      },
+      {
+        "from": 2,
+        "to": 2.8,
+        "field": 1,
+        "metric": "rms",
+        "fromMm": 0.6798703951428863,
+        "toMm": 0.3759484826415996,
+        "changeMm": -0.3039219125012867,
+        "relativeChange": -0.4470291906701017,
+        "ratio": 1.8084137229808226
+      },
+      {
+        "from": 2.8,
+        "to": 4,
+        "field": 0,
+        "metric": "rms",
+        "fromMm": 0.05030777736198872,
+        "toMm": 0.055138841290826496,
+        "changeMm": 0.004831063928837774,
+        "relativeChange": 0.09603016038804377,
+        "ratio": 0.9123836516012983
+      },
+      {
+        "from": 2.8,
+        "to": 4,
+        "field": 0.3,
+        "metric": "rms",
+        "fromMm": 0.05144433761700399,
+        "toMm": 0.034213399682584994,
+        "changeMm": -0.017230937934418995,
+        "relativeChange": -0.33494333356376277,
+        "ratio": 1.5036312700368604
+      },
+      {
+        "from": 2.8,
+        "to": 4,
+        "field": 0.5,
+        "metric": "rms",
+        "fromMm": 0.10004708028691864,
+        "toMm": 0.0431633581855396,
+        "changeMm": -0.056883722101379035,
+        "relativeChange": -0.568569536844512,
+        "ratio": 2.317870631308663
+      },
+      {
+        "from": 2.8,
+        "to": 4,
+        "field": 0.7,
+        "metric": "rms",
+        "fromMm": 0.1814154773983702,
+        "toMm": 0.09494243553963551,
+        "changeMm": -0.08647304185873468,
+        "relativeChange": -0.4766574665999889,
+        "ratio": 1.9107944341983398
+      },
+      {
+        "from": 2.8,
+        "to": 4,
+        "field": 0.85,
+        "metric": "rms",
+        "fromMm": 0.2511269114292048,
+        "toMm": 0.14018758347339416,
+        "changeMm": -0.11093932795581063,
+        "relativeChange": -0.44176598726292043,
+        "ratio": 1.7913634375248755
+      },
+      {
+        "from": 2.8,
+        "to": 4,
+        "field": 1,
+        "metric": "rms",
+        "fromMm": 0.3759484826415996,
+        "toMm": 0.18862133107948914,
+        "changeMm": -0.18732715156211044,
+        "relativeChange": -0.4982787807676664,
+        "ratio": 1.9931387425273057
+      },
+      {
+        "from": 4,
+        "to": 5.6,
+        "field": 0,
+        "metric": "rms",
+        "fromMm": 0.055138841290826496,
+        "toMm": 0.047126627536116274,
+        "changeMm": -0.008012213754710222,
+        "relativeChange": -0.14530979554775705,
+        "ratio": 1.1700145793069943
+      },
+      {
+        "from": 4,
+        "to": 5.6,
+        "field": 0.3,
+        "metric": "rms",
+        "fromMm": 0.034213399682584994,
+        "toMm": 0.028236708801040337,
+        "changeMm": -0.0059766908815446565,
+        "relativeChange": -0.17468859970051032,
+        "ratio": 1.2116638636484593
+      },
+      {
+        "from": 4,
+        "to": 5.6,
+        "field": 0.5,
+        "metric": "rms",
+        "fromMm": 0.0431633581855396,
+        "toMm": 0.020976205800020024,
+        "changeMm": -0.02218715238551958,
+        "relativeChange": -0.5140274834536072,
+        "ratio": 2.057729533979801
+      },
+      {
+        "from": 4,
+        "to": 5.6,
+        "field": 0.7,
+        "metric": "rms",
+        "fromMm": 0.09494243553963551,
+        "toMm": 0.05676791955588813,
+        "changeMm": -0.03817451598374738,
+        "relativeChange": -0.40208064778168356,
+        "ratio": 1.6724663556881716
+      },
+      {
+        "from": 4,
+        "to": 5.6,
+        "field": 0.85,
+        "metric": "rms",
+        "fromMm": 0.14018758347339416,
+        "toMm": 0.08888484984557908,
+        "changeMm": -0.05130273362781508,
+        "relativeChange": -0.3659577571472419,
+        "ratio": 1.5771819800218378
+      },
+      {
+        "from": 4,
+        "to": 5.6,
+        "field": 1,
+        "metric": "rms",
+        "fromMm": 0.18862133107948914,
+        "toMm": 0.12662532287940118,
+        "changeMm": -0.061996008200087965,
+        "relativeChange": -0.3286797301518432,
+        "ratio": 1.4896019752631422
+      }
+    ]
+  },
+  "merit": 242.153961010135,
+  "meritBreakdown": [
+    {
+      "metric": "efl",
+      "aperture": 2,
+      "target": 50,
+      "scale": 1,
+      "weight": 10,
+      "apertureWeight": 1,
+      "value": 50.27777560864356,
+      "error": 0.27777560864355877,
+      "contribution": 0.7715928875729952
+    },
+    {
+      "metric": "fNumber",
+      "aperture": 2,
+      "target": 2,
+      "scale": 0.05,
+      "weight": 3,
+      "apertureWeight": 1,
+      "value": 1.9999999999999998,
+      "error": -2.220446049250313e-16,
+      "contribution": 5.916456789157589e-29
+    },
+    {
+      "metric": "rms",
+      "field": 0,
+      "aperture": 2,
+      "target": 0,
+      "scale": 0.03,
+      "weight": 2,
+      "apertureWeight": 1,
+      "value": 0.06759866544700614,
+      "error": 0.06759866544700614,
+      "contribution": 10.154621267147249
+    },
+    {
+      "metric": "rms",
+      "field": 0.3,
+      "aperture": 2,
+      "target": 0,
+      "scale": 0.040799999999999996,
+      "weight": 2,
+      "apertureWeight": 1,
+      "value": 0.13557180145486988,
+      "error": 0.13557180145486988,
+      "contribution": 22.08250834981577
+    },
+    {
+      "metric": "rms",
+      "field": 0.5,
+      "aperture": 2,
+      "target": 0,
+      "scale": 0.06,
+      "weight": 2,
+      "apertureWeight": 1,
+      "value": 0.24008553152392212,
+      "error": 0.24008553152392212,
+      "contribution": 32.022812470624565
+    },
+    {
+      "metric": "rms",
+      "field": 0.7,
+      "aperture": 2,
+      "target": 0,
+      "scale": 0.08879999999999999,
+      "weight": 2,
+      "apertureWeight": 1,
+      "value": 0.3721452572448645,
+      "error": 0.3721452572448645,
+      "contribution": 35.126027841146836
+    },
+    {
+      "metric": "rms",
+      "field": 0.85,
+      "aperture": 2,
+      "target": 0,
+      "scale": 0.11669999999999998,
+      "weight": 1,
+      "apertureWeight": 1,
+      "value": 0.4679736362493878,
+      "error": 0.4679736362493878,
+      "contribution": 16.08055606767324
+    },
+    {
+      "metric": "rms",
+      "field": 1,
+      "aperture": 2,
+      "target": 0,
+      "scale": 0.15,
+      "weight": 1,
+      "apertureWeight": 1,
+      "value": 0.6798703951428863,
+      "error": 0.6798703951428863,
+      "contribution": 20.54327796407753
+    },
+    {
+      "metric": "lateralColor",
+      "field": 0.3,
+      "aperture": 2,
+      "target": [
+        -0.015,
+        0.015
+      ],
+      "scale": 0.01,
+      "weight": 1,
+      "apertureWeight": 1,
+      "value": 0.0011413253262793077,
+      "error": 0,
+      "contribution": 0
+    },
+    {
+      "metric": "distortion",
+      "field": 0.3,
+      "aperture": 2,
+      "target": [
+        -2,
+        2
+      ],
+      "scale": 1,
+      "weight": 0.5,
+      "apertureWeight": 1,
+      "value": 0.0472480692322319,
+      "error": 0,
+      "contribution": 0
+    },
+    {
+      "metric": "lateralColor",
+      "field": 0.5,
+      "aperture": 2,
+      "target": [
+        -0.015,
+        0.015
+      ],
+      "scale": 0.01,
+      "weight": 1,
+      "apertureWeight": 1,
+      "value": 0.0011703715545046123,
+      "error": 0,
+      "contribution": 0
+    },
+    {
+      "metric": "distortion",
+      "field": 0.5,
+      "aperture": 2,
+      "target": [
+        -2,
+        2
+      ],
+      "scale": 1,
+      "weight": 0.5,
+      "apertureWeight": 1,
+      "value": 0.09192396903265881,
+      "error": 0,
+      "contribution": 0
+    },
+    {
+      "metric": "lateralColor",
+      "field": 0.7,
+      "aperture": 2,
+      "target": [
+        -0.015,
+        0.015
+      ],
+      "scale": 0.01,
+      "weight": 1,
+      "apertureWeight": 1,
+      "value": 0.0015113776361097564,
+      "error": 0,
+      "contribution": 0
+    },
+    {
+      "metric": "distortion",
+      "field": 0.7,
+      "aperture": 2,
+      "target": [
+        -2,
+        2
+      ],
+      "scale": 1,
+      "weight": 0.5,
+      "apertureWeight": 1,
+      "value": 0.07130342317338258,
+      "error": 0,
+      "contribution": 0
+    },
+    {
+      "metric": "lateralColor",
+      "field": 0.85,
+      "aperture": 2,
+      "target": [
+        -0.015,
+        0.015
+      ],
+      "scale": 0.01,
+      "weight": 1,
+      "apertureWeight": 1,
+      "value": 0.0025177096848771896,
+      "error": 0,
+      "contribution": 0
+    },
+    {
+      "metric": "distortion",
+      "field": 0.85,
+      "aperture": 2,
+      "target": [
+        -2,
+        2
+      ],
+      "scale": 1,
+      "weight": 0.5,
+      "apertureWeight": 1,
+      "value": -0.02401556298785164,
+      "error": 0,
+      "contribution": 0
+    },
+    {
+      "metric": "lateralColor",
+      "field": 1,
+      "aperture": 2,
+      "target": [
+        -0.015,
+        0.015
+      ],
+      "scale": 0.01,
+      "weight": 1,
+      "apertureWeight": 1,
+      "value": 0.002904416743145788,
+      "error": 0,
+      "contribution": 0
+    },
+    {
+      "metric": "distortion",
+      "field": 1,
+      "aperture": 2,
+      "target": [
+        -2,
+        2
+      ],
+      "scale": 1,
+      "weight": 0.5,
+      "apertureWeight": 1,
+      "value": -0.13623450545887625,
+      "error": 0,
+      "contribution": 0
+    },
+    {
+      "metric": "longitudinalColor",
+      "aperture": 2,
+      "target": [
+        -0.1,
+        0.1
+      ],
+      "scale": 0.1,
+      "weight": 0.5,
+      "apertureWeight": 1,
+      "value": -0.27638368936254665,
+      "error": -0.17638368936254664,
+      "contribution": 1.555560293657167
+    },
+    {
+      "metric": "pupilSurvival",
+      "aperture": 2,
+      "type": "MINIMUM",
+      "target": 0.7,
+      "scale": 0.1,
+      "weight": 2,
+      "apertureWeight": 1,
+      "value": 0.8380281690140845,
+      "error": 0,
+      "contribution": 0
+    },
+    {
+      "metric": "efl",
+      "aperture": 2.8,
+      "target": 50,
+      "scale": 1,
+      "weight": 10,
+      "apertureWeight": 1,
+      "value": 50.27777560864356,
+      "error": 0.27777560864355877,
+      "contribution": 0.7715928875729952
+    },
+    {
+      "metric": "fNumber",
+      "aperture": 2.8,
+      "target": 2.8,
+      "scale": 0.05,
+      "weight": 3,
+      "apertureWeight": 1,
+      "value": 2.8,
+      "error": 0,
+      "contribution": 0
+    },
+    {
+      "metric": "rms",
+      "field": 0,
+      "aperture": 2.8,
+      "target": 0,
+      "scale": 0.03,
+      "weight": 2,
+      "apertureWeight": 1,
+      "value": 0.05030777736198872,
+      "error": 0.05030777736198872,
+      "contribution": 5.624161029118722
+    },
+    {
+      "metric": "rms",
+      "field": 0.3,
+      "aperture": 2.8,
+      "target": 0,
+      "scale": 0.040799999999999996,
+      "weight": 2,
+      "apertureWeight": 1,
+      "value": 0.05144433761700399,
+      "error": 0.05144433761700399,
+      "contribution": 3.179690350889432
+    },
+    {
+      "metric": "rms",
+      "field": 0.5,
+      "aperture": 2.8,
+      "target": 0,
+      "scale": 0.06,
+      "weight": 2,
+      "apertureWeight": 1,
+      "value": 0.10004708028691864,
+      "error": 0.10004708028691864,
+      "contribution": 5.56078792996508
+    },
+    {
+      "metric": "rms",
+      "field": 0.7,
+      "aperture": 2.8,
+      "target": 0,
+      "scale": 0.08879999999999999,
+      "weight": 2,
+      "apertureWeight": 1,
+      "value": 0.1814154773983702,
+      "error": 0.1814154773983702,
+      "contribution": 8.347429043827251
+    },
+    {
+      "metric": "rms",
+      "field": 0.85,
+      "aperture": 2.8,
+      "target": 0,
+      "scale": 0.11669999999999998,
+      "weight": 1,
+      "apertureWeight": 1,
+      "value": 0.2511269114292048,
+      "error": 0.2511269114292048,
+      "contribution": 4.630680300962243
+    },
+    {
+      "metric": "rms",
+      "field": 1,
+      "aperture": 2.8,
+      "target": 0,
+      "scale": 0.15,
+      "weight": 1,
+      "apertureWeight": 1,
+      "value": 0.3759484826415996,
+      "error": 0.3759484826415996,
+      "contribution": 6.281656071134271
+    },
+    {
+      "metric": "lateralColor",
+      "field": 0.3,
+      "aperture": 2.8,
+      "target": [
+        -0.015,
+        0.015
+      ],
+      "scale": 0.01,
+      "weight": 1,
+      "apertureWeight": 1,
+      "value": 0.0011413253262793077,
+      "error": 0,
+      "contribution": 0
+    },
+    {
+      "metric": "distortion",
+      "field": 0.3,
+      "aperture": 2.8,
+      "target": [
+        -2,
+        2
+      ],
+      "scale": 1,
+      "weight": 0.5,
+      "apertureWeight": 1,
+      "value": 0.0472480692322319,
+      "error": 0,
+      "contribution": 0
+    },
+    {
+      "metric": "lateralColor",
+      "field": 0.5,
+      "aperture": 2.8,
+      "target": [
+        -0.015,
+        0.015
+      ],
+      "scale": 0.01,
+      "weight": 1,
+      "apertureWeight": 1,
+      "value": 0.0011703715545046123,
+      "error": 0,
+      "contribution": 0
+    },
+    {
+      "metric": "distortion",
+      "field": 0.5,
+      "aperture": 2.8,
+      "target": [
+        -2,
+        2
+      ],
+      "scale": 1,
+      "weight": 0.5,
+      "apertureWeight": 1,
+      "value": 0.09192396903265881,
+      "error": 0,
+      "contribution": 0
+    },
+    {
+      "metric": "lateralColor",
+      "field": 0.7,
+      "aperture": 2.8,
+      "target": [
+        -0.015,
+        0.015
+      ],
+      "scale": 0.01,
+      "weight": 1,
+      "apertureWeight": 1,
+      "value": 0.0015113776361097564,
+      "error": 0,
+      "contribution": 0
+    },
+    {
+      "metric": "distortion",
+      "field": 0.7,
+      "aperture": 2.8,
+      "target": [
+        -2,
+        2
+      ],
+      "scale": 1,
+      "weight": 0.5,
+      "apertureWeight": 1,
+      "value": 0.07130342317338258,
+      "error": 0,
+      "contribution": 0
+    },
+    {
+      "metric": "lateralColor",
+      "field": 0.85,
+      "aperture": 2.8,
+      "target": [
+        -0.015,
+        0.015
+      ],
+      "scale": 0.01,
+      "weight": 1,
+      "apertureWeight": 1,
+      "value": 0.0025177096848771896,
+      "error": 0,
+      "contribution": 0
+    },
+    {
+      "metric": "distortion",
+      "field": 0.85,
+      "aperture": 2.8,
+      "target": [
+        -2,
+        2
+      ],
+      "scale": 1,
+      "weight": 0.5,
+      "apertureWeight": 1,
+      "value": -0.02401556298785164,
+      "error": 0,
+      "contribution": 0
+    },
+    {
+      "metric": "lateralColor",
+      "field": 1,
+      "aperture": 2.8,
+      "target": [
+        -0.015,
+        0.015
+      ],
+      "scale": 0.01,
+      "weight": 1,
+      "apertureWeight": 1,
+      "value": 0.002904416743145788,
+      "error": 0,
+      "contribution": 0
+    },
+    {
+      "metric": "distortion",
+      "field": 1,
+      "aperture": 2.8,
+      "target": [
+        -2,
+        2
+      ],
+      "scale": 1,
+      "weight": 0.5,
+      "apertureWeight": 1,
+      "value": -0.13623450545887625,
+      "error": 0,
+      "contribution": 0
+    },
+    {
+      "metric": "longitudinalColor",
+      "aperture": 2.8,
+      "target": [
+        -0.1,
+        0.1
+      ],
+      "scale": 0.1,
+      "weight": 0.5,
+      "apertureWeight": 1,
+      "value": -0.27638368936254665,
+      "error": -0.17638368936254664,
+      "contribution": 1.555560293657167
+    },
+    {
+      "metric": "pupilSurvival",
+      "aperture": 2.8,
+      "type": "MINIMUM",
+      "target": 0.7,
+      "scale": 0.1,
+      "weight": 2,
+      "apertureWeight": 1,
+      "value": 0.9049295774647887,
+      "error": 0,
+      "contribution": 0
+    },
+    {
+      "metric": "efl",
+      "aperture": 4,
+      "target": 50,
+      "scale": 1,
+      "weight": 10,
+      "apertureWeight": 1,
+      "value": 50.27777560864356,
+      "error": 0.27777560864355877,
+      "contribution": 0.7715928875729952
+    },
+    {
+      "metric": "fNumber",
+      "aperture": 4,
+      "target": 4,
+      "scale": 0.05,
+      "weight": 3,
+      "apertureWeight": 1,
+      "value": 3.9999999999999996,
+      "error": -4.440892098500626e-16,
+      "contribution": 2.3665827156630354e-28
+    },
+    {
+      "metric": "rms",
+      "field": 0,
+      "aperture": 4,
+      "target": 0,
+      "scale": 0.018,
+      "weight": 2,
+      "apertureWeight": 1,
+      "value": 0.055138841290826496,
+      "error": 0.055138841290826496,
+      "contribution": 18.767233449968845
+    },
+    {
+      "metric": "rms",
+      "field": 0.3,
+      "aperture": 4,
+      "target": 0,
+      "scale": 0.02448,
+      "weight": 2,
+      "apertureWeight": 1,
+      "value": 0.034213399682584994,
+      "error": 0.034213399682584994,
+      "contribution": 3.906606159223973
+    },
+    {
+      "metric": "rms",
+      "field": 0.5,
+      "aperture": 4,
+      "target": 0,
+      "scale": 0.036,
+      "weight": 2,
+      "apertureWeight": 1,
+      "value": 0.0431633581855396,
+      "error": 0.0431633581855396,
+      "contribution": 2.87511649668702
+    },
+    {
+      "metric": "rms",
+      "field": 0.7,
+      "aperture": 4,
+      "target": 0,
+      "scale": 0.053279999999999994,
+      "weight": 2,
+      "apertureWeight": 1,
+      "value": 0.09494243553963551,
+      "error": 0.09494243553963551,
+      "contribution": 6.350710272630348
+    },
+    {
+      "metric": "rms",
+      "field": 0.85,
+      "aperture": 4,
+      "target": 0,
+      "scale": 0.07001999999999999,
+      "weight": 1,
+      "apertureWeight": 1,
+      "value": 0.14018758347339416,
+      "error": 0.14018758347339416,
+      "contribution": 4.0084353750378785
+    },
+    {
+      "metric": "rms",
+      "field": 1,
+      "aperture": 4,
+      "target": 0,
+      "scale": 0.09,
+      "weight": 1,
+      "apertureWeight": 1,
+      "value": 0.18862133107948914,
+      "error": 0.18862133107948914,
+      "contribution": 4.392346486197316
+    },
+    {
+      "metric": "lateralColor",
+      "field": 0.3,
+      "aperture": 4,
+      "target": [
+        -0.015,
+        0.015
+      ],
+      "scale": 0.01,
+      "weight": 1,
+      "apertureWeight": 1,
+      "value": 0.0011413253262793077,
+      "error": 0,
+      "contribution": 0
+    },
+    {
+      "metric": "distortion",
+      "field": 0.3,
+      "aperture": 4,
+      "target": [
+        -2,
+        2
+      ],
+      "scale": 1,
+      "weight": 0.5,
+      "apertureWeight": 1,
+      "value": 0.0472480692322319,
+      "error": 0,
+      "contribution": 0
+    },
+    {
+      "metric": "lateralColor",
+      "field": 0.5,
+      "aperture": 4,
+      "target": [
+        -0.015,
+        0.015
+      ],
+      "scale": 0.01,
+      "weight": 1,
+      "apertureWeight": 1,
+      "value": 0.0011703715545046123,
+      "error": 0,
+      "contribution": 0
+    },
+    {
+      "metric": "distortion",
+      "field": 0.5,
+      "aperture": 4,
+      "target": [
+        -2,
+        2
+      ],
+      "scale": 1,
+      "weight": 0.5,
+      "apertureWeight": 1,
+      "value": 0.09192396903265881,
+      "error": 0,
+      "contribution": 0
+    },
+    {
+      "metric": "lateralColor",
+      "field": 0.7,
+      "aperture": 4,
+      "target": [
+        -0.015,
+        0.015
+      ],
+      "scale": 0.01,
+      "weight": 1,
+      "apertureWeight": 1,
+      "value": 0.0015113776361097564,
+      "error": 0,
+      "contribution": 0
+    },
+    {
+      "metric": "distortion",
+      "field": 0.7,
+      "aperture": 4,
+      "target": [
+        -2,
+        2
+      ],
+      "scale": 1,
+      "weight": 0.5,
+      "apertureWeight": 1,
+      "value": 0.07130342317338258,
+      "error": 0,
+      "contribution": 0
+    },
+    {
+      "metric": "lateralColor",
+      "field": 0.85,
+      "aperture": 4,
+      "target": [
+        -0.015,
+        0.015
+      ],
+      "scale": 0.01,
+      "weight": 1,
+      "apertureWeight": 1,
+      "value": 0.0025177096848771896,
+      "error": 0,
+      "contribution": 0
+    },
+    {
+      "metric": "distortion",
+      "field": 0.85,
+      "aperture": 4,
+      "target": [
+        -2,
+        2
+      ],
+      "scale": 1,
+      "weight": 0.5,
+      "apertureWeight": 1,
+      "value": -0.02401556298785164,
+      "error": 0,
+      "contribution": 0
+    },
+    {
+      "metric": "lateralColor",
+      "field": 1,
+      "aperture": 4,
+      "target": [
+        -0.015,
+        0.015
+      ],
+      "scale": 0.01,
+      "weight": 1,
+      "apertureWeight": 1,
+      "value": 0.002904416743145788,
+      "error": 0,
+      "contribution": 0
+    },
+    {
+      "metric": "distortion",
+      "field": 1,
+      "aperture": 4,
+      "target": [
+        -2,
+        2
+      ],
+      "scale": 1,
+      "weight": 0.5,
+      "apertureWeight": 1,
+      "value": -0.13623450545887625,
+      "error": 0,
+      "contribution": 0
+    },
+    {
+      "metric": "longitudinalColor",
+      "aperture": 4,
+      "target": [
+        -0.1,
+        0.1
+      ],
+      "scale": 0.1,
+      "weight": 0.5,
+      "apertureWeight": 1,
+      "value": -0.27638368936254665,
+      "error": -0.17638368936254664,
+      "contribution": 1.555560293657167
+    },
+    {
+      "metric": "pupilSurvival",
+      "aperture": 4,
+      "type": "MINIMUM",
+      "target": 0.7,
+      "scale": 0.1,
+      "weight": 2,
+      "apertureWeight": 1,
+      "value": 0.9330985915492958,
+      "error": 0,
+      "contribution": 0
+    },
+    {
+      "metric": "efl",
+      "aperture": 5.6,
+      "target": 50,
+      "scale": 1,
+      "weight": 10,
+      "apertureWeight": 1,
+      "value": 50.27777560864356,
+      "error": 0.27777560864355877,
+      "contribution": 0.7715928875729952
+    },
+    {
+      "metric": "fNumber",
+      "aperture": 5.6,
+      "target": 5.6,
+      "scale": 0.05,
+      "weight": 3,
+      "apertureWeight": 1,
+      "value": 5.6,
+      "error": 0,
+      "contribution": 0
+    },
+    {
+      "metric": "rms",
+      "field": 0,
+      "aperture": 5.6,
+      "target": 0,
+      "scale": 0.018,
+      "weight": 2,
+      "apertureWeight": 1,
+      "value": 0.047126627536116274,
+      "error": 0.047126627536116274,
+      "contribution": 13.709376684739707
+    },
+    {
+      "metric": "rms",
+      "field": 0.3,
+      "aperture": 5.6,
+      "target": 0,
+      "scale": 0.02448,
+      "weight": 2,
+      "apertureWeight": 1,
+      "value": 0.028236708801040337,
+      "error": 0.028236708801040337,
+      "contribution": 2.66094145118714
+    },
+    {
+      "metric": "rms",
+      "field": 0.5,
+      "aperture": 5.6,
+      "target": 0,
+      "scale": 0.036,
+      "weight": 2,
+      "apertureWeight": 1,
+      "value": 0.020976205800020024,
+      "error": 0.020976205800020024,
+      "contribution": 0.6790142125999904
+    },
+    {
+      "metric": "rms",
+      "field": 0.7,
+      "aperture": 5.6,
+      "target": 0,
+      "scale": 0.053279999999999994,
+      "weight": 2,
+      "apertureWeight": 1,
+      "value": 0.05676791955588813,
+      "error": 0.05676791955588813,
+      "contribution": 2.2704268814871926
+    },
+    {
+      "metric": "rms",
+      "field": 0.85,
+      "aperture": 5.6,
+      "target": 0,
+      "scale": 0.07001999999999999,
+      "weight": 1,
+      "apertureWeight": 1,
+      "value": 0.08888484984557908,
+      "error": 0.08888484984557908,
+      "contribution": 1.6114293643427016
+    },
+    {
+      "metric": "rms",
+      "field": 1,
+      "aperture": 5.6,
+      "target": 0,
+      "scale": 0.09,
+      "weight": 1,
+      "apertureWeight": 1,
+      "value": 0.12662532287940118,
+      "error": 0.12662532287940118,
+      "contribution": 1.9795027647299508
+    },
+    {
+      "metric": "lateralColor",
+      "field": 0.3,
+      "aperture": 5.6,
+      "target": [
+        -0.015,
+        0.015
+      ],
+      "scale": 0.01,
+      "weight": 1,
+      "apertureWeight": 1,
+      "value": 0.0011413253262793077,
+      "error": 0,
+      "contribution": 0
+    },
+    {
+      "metric": "distortion",
+      "field": 0.3,
+      "aperture": 5.6,
+      "target": [
+        -2,
+        2
+      ],
+      "scale": 1,
+      "weight": 0.5,
+      "apertureWeight": 1,
+      "value": 0.0472480692322319,
+      "error": 0,
+      "contribution": 0
+    },
+    {
+      "metric": "lateralColor",
+      "field": 0.5,
+      "aperture": 5.6,
+      "target": [
+        -0.015,
+        0.015
+      ],
+      "scale": 0.01,
+      "weight": 1,
+      "apertureWeight": 1,
+      "value": 0.0011703715545046123,
+      "error": 0,
+      "contribution": 0
+    },
+    {
+      "metric": "distortion",
+      "field": 0.5,
+      "aperture": 5.6,
+      "target": [
+        -2,
+        2
+      ],
+      "scale": 1,
+      "weight": 0.5,
+      "apertureWeight": 1,
+      "value": 0.09192396903265881,
+      "error": 0,
+      "contribution": 0
+    },
+    {
+      "metric": "lateralColor",
+      "field": 0.7,
+      "aperture": 5.6,
+      "target": [
+        -0.015,
+        0.015
+      ],
+      "scale": 0.01,
+      "weight": 1,
+      "apertureWeight": 1,
+      "value": 0.0015113776361097564,
+      "error": 0,
+      "contribution": 0
+    },
+    {
+      "metric": "distortion",
+      "field": 0.7,
+      "aperture": 5.6,
+      "target": [
+        -2,
+        2
+      ],
+      "scale": 1,
+      "weight": 0.5,
+      "apertureWeight": 1,
+      "value": 0.07130342317338258,
+      "error": 0,
+      "contribution": 0
+    },
+    {
+      "metric": "lateralColor",
+      "field": 0.85,
+      "aperture": 5.6,
+      "target": [
+        -0.015,
+        0.015
+      ],
+      "scale": 0.01,
+      "weight": 1,
+      "apertureWeight": 1,
+      "value": 0.0025177096848771896,
+      "error": 0,
+      "contribution": 0
+    },
+    {
+      "metric": "distortion",
+      "field": 0.85,
+      "aperture": 5.6,
+      "target": [
+        -2,
+        2
+      ],
+      "scale": 1,
+      "weight": 0.5,
+      "apertureWeight": 1,
+      "value": -0.02401556298785164,
+      "error": 0,
+      "contribution": 0
+    },
+    {
+      "metric": "lateralColor",
+      "field": 1,
+      "aperture": 5.6,
+      "target": [
+        -0.015,
+        0.015
+      ],
+      "scale": 0.01,
+      "weight": 1,
+      "apertureWeight": 1,
+      "value": 0.002904416743145788,
+      "error": 0,
+      "contribution": 0
+    },
+    {
+      "metric": "distortion",
+      "field": 1,
+      "aperture": 5.6,
+      "target": [
+        -2,
+        2
+      ],
+      "scale": 1,
+      "weight": 0.5,
+      "apertureWeight": 1,
+      "value": -0.13623450545887625,
+      "error": 0,
+      "contribution": 0
+    },
+    {
+      "metric": "longitudinalColor",
+      "aperture": 5.6,
+      "target": [
+        -0.1,
+        0.1
+      ],
+      "scale": 0.1,
+      "weight": 0.5,
+      "apertureWeight": 1,
+      "value": -0.27638368936254665,
+      "error": -0.17638368936254664,
+      "contribution": 1.555560293657167
+    },
+    {
+      "metric": "pupilSurvival",
+      "aperture": 5.6,
+      "type": "MINIMUM",
+      "target": 0.7,
+      "scale": 0.1,
+      "weight": 2,
+      "apertureWeight": 1,
+      "value": 0.9507042253521126,
+      "error": 0,
+      "contribution": 0
+    }
+  ],
+  "checks": {
+    "geometry": true,
+    "efl": true,
+    "fNumber": true,
+    "bfl": true,
+    "rearToImage": true,
+    "construction": true,
+    "materials": true,
+    "rearDiameter": true,
+    "rearClearance": true,
+    "coverage": true,
+    "frontDiameter": true,
+    "opticalBfl": true,
+    "rearImageClearance": true
+  },
+  "validation": {
+    "geometricFeasibility": "PASS",
+    "opticalCorrection": "Inspect measured targets; dense-valid is not well-corrected",
+    "mechanical": "UNVERIFIED",
+    "manufacturing": "UNVERIFIED",
+    "imageCircle": "Sampled survival at required field heights; not certified continuous coverage"
+  },
+  "physical": [],
+  "limitations": [
+    "Research engineering package, not manufacturing-ready",
+    "PL flange distance is metadata; mount geometry and rear clearance need mechanical verification",
+    "No production tolerances supplied",
+    "Geometric RMS does not predict bokeh, swirl, flare or cinematic appearance",
+    "Missing physical PSF/MTF remains unavailable; no estimated substitute"
+  ]
+}

@@ -545,7 +545,7 @@
   });
   $("labList").onclick = guard(async () => {
     const rows = (await LBExperiments.list()).filter(
-      (a) => a.version !== "synthesis-1",
+      (a) => a.version !== "synthesis-1" && a.version !== "omit-studio-1",
     );
     $("labSaved").replaceChildren();
     rows.forEach((r) => {

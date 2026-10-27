@@ -96,5 +96,6 @@
  $('physicalImport').onchange=guard(async()=>{const file=$('physicalImport').files[0];if(!file)return;const r=E.restore(JSON.parse(await file.text()));add(r.system);putConfig(r.config);message('Request restored. Run analysis to recalculate; saved validation badges are never trusted.');});
  panel.querySelectorAll('input,select').forEach(control=>control.addEventListener('change',cost));
  $('physicalReport').onclick=guard(()=>{const i=entries[+$('physicalResult').value]?.i||0;if(!records[i])throw Error('Analyze a candidate first');const blob=new Blob([JSON.stringify(E.reportRecord(records[i]),null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='physical-numerical-report.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);});
+ window.LBPhysicalPanel={inspect:(system,settings)=>{add(system);putConfig(settings);panel.hidden=false;panel.scrollIntoView();message('Studio finalist loaded. Analyze to calculate detailed wavefront / PSF / MTF.');}};
  list();update();cost();
 })();

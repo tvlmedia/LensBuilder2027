@@ -792,3 +792,20 @@ input:disabled {
 #physicalChecks th, #physicalChecks td { padding: 9px 12px; text-align: left; border-bottom: 1px solid #344150; }
 #physicalChecks tr[data-status="FAIL"] td:last-child { color: #ffb4a9; font-weight: 700; }
 #physicalChecks tr[data-status="PASS"] td:last-child { color: #9be3b0; }
+
+/* OMIT Studio: scoped additions, existing editor layout unchanged. */
+.studioNav {display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 20px}
+.studioNav [aria-current="step"] {border-color:#56d4ba;color:#a4efdf;background:#17362f}
+.studio section {max-width:1500px;margin-top:24px}
+.studio textarea {width:100%;max-width:1100px;font-family:ui-monospace,monospace}
+.studioTable {overflow:auto;margin:18px 0;border:1px solid #354152;border-radius:8px}
+.studioTable table {font-variant-numeric:tabular-nums;font-size:13px;white-space:nowrap}
+.studioTable th {background:#172231;position:sticky;top:0}
+.studio h3 {font-size:22px;color:#d7f1e9}
+.studio .labControls {gap:16px}
+#studioConvergence {width:100%;max-width:900px;border:1px solid #354152;border-radius:8px}
+#studioStatus {padding:12px 16px;border-left:3px solid #56d4ba;background:#14232a}
+
+#studioLayout {width:100%;max-width:900px;border:1px solid #354152;border-radius:8px}
+.studio input[type="checkbox"] {width:auto}
+.studio pre {white-space:pre-wrap;overflow-wrap:anywhere;max-height:480px;overflow:auto}

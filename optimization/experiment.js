@@ -83,9 +83,12 @@
  async function optimize(input,spec,variables,operands,options={}){
   // Original bounds are also used for candidate validation, with rebased stop displacement.
   const rebase=system=>variables.map(v=>{if(v.key!=='stopPosition')return v;const offset=system.surfaces[v.surface-1].t-input.surfaces[v.surface-1].t;return shiftedStop(v,offset);});
+  options.onStage?.('validation');
   const start=performance.now(),before=dense(input,spec,variables,operands);
   if(before.score===null)throw Error('Experiment requires a dense-valid baseline');
+  options.onStage?.('search');
   const t=performance.now(),run=await search(input,spec,variables,operands,options),searchMs=performance.now()-t;
+  options.onStage?.('validation');
   const validationStart=performance.now(),after=dense(run.candidate,spec,rebase(run.candidate),operands);
   // Intermediate disk and denser sunflower must both improve; fixed final grid remains unchanged.
   const intermediateSpec={...spec,pupilGrid:Math.min(15,spec.validationGrid||19),pupilPattern:'grid'};
