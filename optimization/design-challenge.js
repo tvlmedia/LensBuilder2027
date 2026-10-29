@@ -45,7 +45,7 @@
   }else if(p.stage==='REFINE'){
    const glassReserve=p.settings.glassTrials?(2+p.settings.glassTrials*(p.settings.glassTrialBudget+4)+1):0;
    if(remaining()<=glassReserve+24){p.stage='GLASS';return p;}
-   const first=p.epoch===0,limit=Math.min(first?Math.max(16,Math.floor(p.settings.budget*.15)):p.settings.epochBudget,remaining()-glassReserve-6),
+   const first=p.epoch===0,limit=Math.min(first?Math.min(2048,Math.max(16,Math.floor(p.settings.budget*.15))):p.settings.epochBudget,remaining()-glassReserve-6),
     method=first&&p.settings.strategy==='aperture-continuation'?'aperture-continuation':['pattern','block-dls','pattern','multistart'][p.epoch%4],
     // Late search uses the same sunflower density as final validation. No threshold changes.
     workSpec=used(p)>.65*p.settings.budget?{...p.spec,pupilGrid:p.spec.validationGrid,pupilPattern:'sunflower'}:p.spec;
