@@ -1,0 +1,568 @@
+{
+  "version": "1.1.0",
+  "build": {
+    "applicationVersion": "1.1.0",
+    "synthesisEngineVersion": "synthesis-1",
+    "engineVersion": "lb2027-spherical-0.4.0",
+    "searchEngineVersion": "numerical-lab-2",
+    "physicalEngineVersion": "physical-2",
+    "dlsEngineVersion": "bounded-dls-1",
+    "baseCommit": "012c9e65aea2a4f5e8d787d0410b47c016ac5f8e",
+    "sourceSha256": "c5a7be7df47e9c2d2fe48ac53195b8535135e8939d642d3c3e9f6841b4bb6915",
+    "note": "Source fingerprint identifies this exact working source; baseCommit is its recorded Git parent at stamping time."
+  },
+  "specification": {
+    "name": "OMIT50_TECHNICAL_FOUNDATION",
+    "topology": "auto",
+    "targetEflMm": 50,
+    "eflToleranceMm": 1,
+    "targetFNumber": 2,
+    "fNumberTolerance": 0.02,
+    "imageCircleMm": 46.3,
+    "mount": "PL-oriented development envelope; not certified",
+    "flangeFocalDistanceMm": 52,
+    "minBflMm": 25,
+    "minElements": 3,
+    "maxElements": 8,
+    "minGroups": 3,
+    "maxGroups": 6,
+    "sphericalOnly": true,
+    "cementedAllowed": true,
+    "maxOpticalLengthMm": 140,
+    "maxDiameterMm": 70,
+    "maxRearDiameterMm": 60,
+    "minCenterMm": 1,
+    "minEdgeMm": 0.5,
+    "minAirGapMm": 0.2,
+    "minMechanicalClearanceMm": 0.2,
+    "rearClearanceEnvelope": [],
+    "allowedGlasses": [
+      "N-BK7",
+      "N-F2",
+      "N-LAK22",
+      "N-SK16",
+      "N-SF6",
+      "N-SF10",
+      "N-BAK4",
+      "N-PK52A"
+    ],
+    "maxUniqueGlasses": 2,
+    "objectDistance": "infinity",
+    "fields": [
+      0,
+      0.3,
+      0.5,
+      0.7,
+      0.85,
+      1
+    ],
+    "wavelengths": [
+      {
+        "nm": 486.1327,
+        "weight": 1
+      },
+      {
+        "nm": 587.5618,
+        "weight": 2
+      },
+      {
+        "nm": 656.2725,
+        "weight": 1
+      }
+    ],
+    "pupilGrid": 7,
+    "validationGrid": 19,
+    "minRayFraction": 0.7,
+    "focusPolicy": "global-image-plane-variable",
+    "budget": 100000,
+    "workers": 4,
+    "seed": 1001,
+    "algorithm": "de",
+    "seedFraction": 0.18,
+    "localFraction": 0.18,
+    "denseFraction": 0.02,
+    "parentsPerTopology": 2,
+    "archiveSize": 8,
+    "apertureMarginMm": 0.25,
+    "apertures": [
+      {
+        "optimization": true,
+        "validation": true,
+        "weight": 1,
+        "fNumber": 2
+      },
+      {
+        "optimization": true,
+        "validation": true,
+        "weight": 1,
+        "fNumber": 2.8
+      },
+      {
+        "optimization": true,
+        "validation": true,
+        "weight": 1,
+        "fNumber": 4
+      },
+      {
+        "optimization": true,
+        "validation": true,
+        "weight": 1,
+        "fNumber": 5.6
+      }
+    ],
+    "seedGlassPolicy": "sample-pairs-v1",
+    "sensorDiagonalMm": null,
+    "maxFieldHeightMm": 23.15
+  },
+  "seedOrdinals": [
+    0,
+    127
+  ],
+  "coarseConfiguration": {
+    "fields": [
+      0,
+      0.5,
+      1
+    ],
+    "pupilGrid": 5,
+    "aperture": 2,
+    "metric": "sum of three geometric field RMS values, mm; not historical merit"
+  },
+  "results": [
+    {
+      "seed": 1001,
+      "topology": "cooke",
+      "policy": "legacy-v1",
+      "attempts": 128,
+      "paraxialPassed": 118,
+      "coarseValid": 21,
+      "bestRmsSumMm": 1.9019328609313302,
+      "medianRmsSumMm": 5.588846194951792,
+      "medianAbsoluteLcaMm": 0.1870613260281786,
+      "rejections": {
+        "COARSE_INVALID": 86,
+        "INVALID_EDGE_THICKNESS": 11,
+        "BFL_TOO_SHORT": 10
+      },
+      "costs": {
+        "seedQuality": {
+          "objectiveCalls": 107,
+          "analysisCalls": 107,
+          "traceApiCalls": 23702,
+          "paraxialCalls": 1740,
+          "elapsedMs": 139.064333
+        }
+      },
+      "elapsedMs": 139.189208
+    },
+    {
+      "seed": 1001,
+      "topology": "cooke",
+      "policy": "achromatic-v1",
+      "attempts": 128,
+      "paraxialPassed": 123,
+      "coarseValid": 41,
+      "bestRmsSumMm": 2.0645375307798024,
+      "medianRmsSumMm": 5.552301154276298,
+      "medianAbsoluteLcaMm": 0.08452164032121345,
+      "rejections": {
+        "INVALID_EDGE_THICKNESS": 18,
+        "COARSE_INVALID": 64,
+        "BFL_TOO_SHORT": 5
+      },
+      "costs": {
+        "seedQuality": {
+          "objectiveCalls": 105,
+          "analysisCalls": 105,
+          "traceApiCalls": 26180,
+          "paraxialCalls": 1741,
+          "elapsedMs": 86.888541
+        }
+      },
+      "elapsedMs": 86.93200000000002
+    },
+    {
+      "seed": 1001,
+      "topology": "double-gauss",
+      "policy": "legacy-v1",
+      "attempts": 128,
+      "paraxialPassed": 46,
+      "coarseValid": 16,
+      "bestRmsSumMm": 2.600744981733002,
+      "medianRmsSumMm": 4.329060008126941,
+      "medianAbsoluteLcaMm": 0.34980283636350684,
+      "rejections": {
+        "APERTURE_FAILURE": 19,
+        "BFL_TOO_SHORT": 63,
+        "INVALID_EDGE_THICKNESS": 14,
+        "COARSE_INVALID": 16
+      },
+      "costs": {
+        "seedQuality": {
+          "objectiveCalls": 32,
+          "analysisCalls": 32,
+          "traceApiCalls": 9282,
+          "paraxialCalls": 884,
+          "elapsedMs": 45.460542000000004
+        }
+      },
+      "elapsedMs": 45.489374999999995
+    },
+    {
+      "seed": 1001,
+      "topology": "double-gauss",
+      "policy": "achromatic-v1",
+      "attempts": 128,
+      "paraxialPassed": 114,
+      "coarseValid": 77,
+      "bestRmsSumMm": 2.4958731834956724,
+      "medianRmsSumMm": 3.188106100428193,
+      "medianAbsoluteLcaMm": 0.16300493600987664,
+      "rejections": {
+        "INVALID_EDGE_THICKNESS": 32,
+        "BFL_TOO_SHORT": 13,
+        "COARSE_INVALID": 5,
+        "APERTURE_FAILURE": 1
+      },
+      "costs": {
+        "seedQuality": {
+          "objectiveCalls": 82,
+          "analysisCalls": 82,
+          "traceApiCalls": 26016,
+          "paraxialCalls": 1547,
+          "elapsedMs": 104.03524999999996
+        }
+      },
+      "elapsedMs": 104.06983399999996
+    },
+    {
+      "seed": 1001,
+      "topology": "modified-gauss",
+      "policy": "legacy-v1",
+      "attempts": 128,
+      "paraxialPassed": 52,
+      "coarseValid": 20,
+      "bestRmsSumMm": 2.455554222625366,
+      "medianRmsSumMm": 3.546758933577997,
+      "medianAbsoluteLcaMm": 0.1560898778391291,
+      "rejections": {
+        "COARSE_INVALID": 13,
+        "BFL_TOO_SHORT": 58,
+        "INVALID_EDGE_THICKNESS": 19,
+        "APERTURE_FAILURE": 18
+      },
+      "costs": {
+        "seedQuality": {
+          "objectiveCalls": 33,
+          "analysisCalls": 33,
+          "traceApiCalls": 10101,
+          "paraxialCalls": 917,
+          "elapsedMs": 42.76258300000001
+        }
+      },
+      "elapsedMs": 42.79291599999999
+    },
+    {
+      "seed": 1001,
+      "topology": "modified-gauss",
+      "policy": "achromatic-v1",
+      "attempts": 128,
+      "paraxialPassed": 110,
+      "coarseValid": 69,
+      "bestRmsSumMm": 2.3986210130586363,
+      "medianRmsSumMm": 3.2025782726970355,
+      "medianAbsoluteLcaMm": 0.19514017601274958,
+      "rejections": {
+        "INVALID_EDGE_THICKNESS": 39,
+        "BFL_TOO_SHORT": 12,
+        "POWER_DISTRIBUTION": 3,
+        "APERTURE_FAILURE": 3,
+        "COARSE_INVALID": 2
+      },
+      "costs": {
+        "seedQuality": {
+          "objectiveCalls": 71,
+          "analysisCalls": 71,
+          "traceApiCalls": 23745,
+          "paraxialCalls": 1430,
+          "elapsedMs": 85.36129199999999
+        }
+      },
+      "elapsedMs": 85.39150000000006
+    },
+    {
+      "seed": 1001,
+      "topology": "sonnar",
+      "policy": "legacy-v1",
+      "attempts": 128,
+      "paraxialPassed": 29,
+      "coarseValid": 7,
+      "bestRmsSumMm": 3.9215751928307587,
+      "medianRmsSumMm": 5.0774521764148535,
+      "medianAbsoluteLcaMm": 0.24562303403670782,
+      "rejections": {
+        "INVALID_EDGE_THICKNESS": 12,
+        "BFL_TOO_SHORT": 96,
+        "COARSE_INVALID": 10,
+        "APERTURE_FAILURE": 3
+      },
+      "costs": {
+        "seedQuality": {
+          "objectiveCalls": 17,
+          "analysisCalls": 17,
+          "traceApiCalls": 5172,
+          "paraxialCalls": 708,
+          "elapsedMs": 23.967416999999955
+        }
+      },
+      "elapsedMs": 23.98641699999996
+    },
+    {
+      "seed": 1001,
+      "topology": "sonnar",
+      "policy": "achromatic-v1",
+      "attempts": 128,
+      "paraxialPassed": 97,
+      "coarseValid": 55,
+      "bestRmsSumMm": 3.8647223400805504,
+      "medianRmsSumMm": 5.214195464101456,
+      "medianAbsoluteLcaMm": 0.15380039364384857,
+      "rejections": {
+        "INVALID_EDGE_THICKNESS": 40,
+        "BFL_TOO_SHORT": 31,
+        "COARSE_INVALID": 2
+      },
+      "costs": {
+        "seedQuality": {
+          "objectiveCalls": 57,
+          "analysisCalls": 57,
+          "traceApiCalls": 19704,
+          "paraxialCalls": 1307,
+          "elapsedMs": 70.11933299999998
+        }
+      },
+      "elapsedMs": 70.15208399999995
+    },
+    {
+      "seed": 2002,
+      "topology": "cooke",
+      "policy": "legacy-v1",
+      "attempts": 128,
+      "paraxialPassed": 113,
+      "coarseValid": 17,
+      "bestRmsSumMm": 2.10278062474116,
+      "medianRmsSumMm": 5.020958028859525,
+      "medianAbsoluteLcaMm": 0.19502632038452106,
+      "rejections": {
+        "COARSE_INVALID": 85,
+        "BFL_TOO_SHORT": 14,
+        "INVALID_EDGE_THICKNESS": 11,
+        "APERTURE_FAILURE": 1
+      },
+      "costs": {
+        "seedQuality": {
+          "objectiveCalls": 102,
+          "analysisCalls": 102,
+          "traceApiCalls": 22544,
+          "paraxialCalls": 1684,
+          "elapsedMs": 57.92995799999994
+        }
+      },
+      "elapsedMs": 57.952
+    },
+    {
+      "seed": 2002,
+      "topology": "cooke",
+      "policy": "achromatic-v1",
+      "attempts": 128,
+      "paraxialPassed": 123,
+      "coarseValid": 46,
+      "bestRmsSumMm": 2.6225649346962077,
+      "medianRmsSumMm": 5.739960282613424,
+      "medianAbsoluteLcaMm": 0.09686698161615936,
+      "rejections": {
+        "COARSE_INVALID": 57,
+        "BFL_TOO_SHORT": 4,
+        "INVALID_EDGE_THICKNESS": 20,
+        "APERTURE_FAILURE": 1
+      },
+      "costs": {
+        "seedQuality": {
+          "objectiveCalls": 103,
+          "analysisCalls": 103,
+          "traceApiCalls": 26384,
+          "paraxialCalls": 1722,
+          "elapsedMs": 64.95079099999998
+        }
+      },
+      "elapsedMs": 64.97562500000004
+    },
+    {
+      "seed": 2002,
+      "topology": "double-gauss",
+      "policy": "legacy-v1",
+      "attempts": 128,
+      "paraxialPassed": 43,
+      "coarseValid": 12,
+      "bestRmsSumMm": 3.021653790325466,
+      "medianRmsSumMm": 4.6374357536873125,
+      "medianAbsoluteLcaMm": 0.2610159769245701,
+      "rejections": {
+        "BFL_TOO_SHORT": 60,
+        "APERTURE_FAILURE": 25,
+        "COARSE_INVALID": 20,
+        "INVALID_EDGE_THICKNESS": 11
+      },
+      "costs": {
+        "seedQuality": {
+          "objectiveCalls": 32,
+          "analysisCalls": 32,
+          "traceApiCalls": 8541,
+          "paraxialCalls": 866,
+          "elapsedMs": 33.650957999999946
+        }
+      },
+      "elapsedMs": 33.67054099999996
+    },
+    {
+      "seed": 2002,
+      "topology": "double-gauss",
+      "policy": "achromatic-v1",
+      "attempts": 128,
+      "paraxialPassed": 119,
+      "coarseValid": 79,
+      "bestRmsSumMm": 2.4994281879797757,
+      "medianRmsSumMm": 3.1722787619802393,
+      "medianAbsoluteLcaMm": 0.12643749239705215,
+      "rejections": {
+        "INVALID_EDGE_THICKNESS": 33,
+        "BFL_TOO_SHORT": 9,
+        "COARSE_INVALID": 7
+      },
+      "costs": {
+        "seedQuality": {
+          "objectiveCalls": 86,
+          "analysisCalls": 86,
+          "traceApiCalls": 27447,
+          "paraxialCalls": 1591,
+          "elapsedMs": 91.18745799999999
+        }
+      },
+      "elapsedMs": 91.22704199999998
+    },
+    {
+      "seed": 2002,
+      "topology": "modified-gauss",
+      "policy": "legacy-v1",
+      "attempts": 128,
+      "paraxialPassed": 44,
+      "coarseValid": 19,
+      "bestRmsSumMm": 2.3961047531421293,
+      "medianRmsSumMm": 4.315102337413844,
+      "medianAbsoluteLcaMm": 0.24580477671082335,
+      "rejections": {
+        "BFL_TOO_SHORT": 65,
+        "APERTURE_FAILURE": 19,
+        "INVALID_EDGE_THICKNESS": 15,
+        "COARSE_INVALID": 10
+      },
+      "costs": {
+        "seedQuality": {
+          "objectiveCalls": 29,
+          "analysisCalls": 29,
+          "traceApiCalls": 8889,
+          "paraxialCalls": 852,
+          "elapsedMs": 36.74604099999999
+        }
+      },
+      "elapsedMs": 36.76391699999999
+    },
+    {
+      "seed": 2002,
+      "topology": "modified-gauss",
+      "policy": "achromatic-v1",
+      "attempts": 128,
+      "paraxialPassed": 115,
+      "coarseValid": 82,
+      "bestRmsSumMm": 2.286535344619071,
+      "medianRmsSumMm": 3.137005275112409,
+      "medianAbsoluteLcaMm": 0.14757792433569605,
+      "rejections": {
+        "BFL_TOO_SHORT": 11,
+        "COARSE_INVALID": 3,
+        "POWER_DISTRIBUTION": 1,
+        "INVALID_EDGE_THICKNESS": 30,
+        "APERTURE_FAILURE": 1
+      },
+      "costs": {
+        "seedQuality": {
+          "objectiveCalls": 85,
+          "analysisCalls": 85,
+          "traceApiCalls": 26898,
+          "paraxialCalls": 1566,
+          "elapsedMs": 88.32450000000006
+        }
+      },
+      "elapsedMs": 88.34966599999996
+    },
+    {
+      "seed": 2002,
+      "topology": "sonnar",
+      "policy": "legacy-v1",
+      "attempts": 128,
+      "paraxialPassed": 32,
+      "coarseValid": 11,
+      "bestRmsSumMm": 3.422972038023287,
+      "medianRmsSumMm": 4.853507088970296,
+      "medianAbsoluteLcaMm": 0.19192689480948388,
+      "rejections": {
+        "BFL_TOO_SHORT": 86,
+        "INVALID_EDGE_THICKNESS": 13,
+        "COARSE_INVALID": 8,
+        "APERTURE_FAILURE": 10
+      },
+      "costs": {
+        "seedQuality": {
+          "objectiveCalls": 19,
+          "analysisCalls": 19,
+          "traceApiCalls": 6049,
+          "paraxialCalls": 705,
+          "elapsedMs": 21.977957999999944
+        }
+      },
+      "elapsedMs": 21.98675000000003
+    },
+    {
+      "seed": 2002,
+      "topology": "sonnar",
+      "policy": "achromatic-v1",
+      "attempts": 128,
+      "paraxialPassed": 104,
+      "coarseValid": 55,
+      "bestRmsSumMm": 3.96127143652126,
+      "medianRmsSumMm": 5.026859447465155,
+      "medianAbsoluteLcaMm": 0.12198114875582178,
+      "rejections": {
+        "COARSE_INVALID": 2,
+        "BFL_TOO_SHORT": 22,
+        "INVALID_EDGE_THICKNESS": 47,
+        "APERTURE_FAILURE": 2
+      },
+      "costs": {
+        "seedQuality": {
+          "objectiveCalls": 57,
+          "analysisCalls": 57,
+          "traceApiCalls": 20313,
+          "paraxialCalls": 1312,
+          "elapsedMs": 64.91691600000001
+        }
+      },
+      "elapsedMs": 64.9346250000001
+    }
+  ],
+  "limitations": [
+    "Equal generation attempts, not equal traced rays: early paraxial rejection differs.",
+    "Thin-power chromatic cancellation is an initialization hypothesis, not an achromatization certificate.",
+    "Coarse seed measurements do not establish final dense performance."
+  ]
+}

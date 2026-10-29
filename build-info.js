@@ -6,7 +6,7 @@ globalThis.LB_BUILD = {
   "searchEngineVersion": "numerical-lab-2",
   "physicalEngineVersion": "physical-2",
   "dlsEngineVersion": "bounded-dls-1",
-  "baseCommit": "a97ff0dfe9fdcdd0535953da4addf27e13feb76e",
-  "sourceSha256": "74a2043e43747fbe5f17e43bd9050f5f892ef8d6929d7df9b570fe020f14a9e9",
+  "baseCommit": "b3eb11e50a9d981de59c80ff2d82ba589e8eb563",
+  "sourceSha256": "04b51fdf6c89115afcabe33e16d6e7599f351b08e3557ff8459fb0bda83475b3",
   "note": "Source fingerprint identifies this exact working source; baseCommit is its recorded Git parent at stamping time."
 };
