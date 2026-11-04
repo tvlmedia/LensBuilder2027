@@ -1,5 +1,6 @@
 'use strict';
 importScripts('../build-info.js','../materials/catalog.js','../optics/core.js','../analysis/aberrations.js','../analysis/evaluate.js','../analysis/multi-aperture.js','../synthesis/physics.js','../design/merit.js','../optimization/search.js','../optimization/explorer.js','../optimization/dls.js','../optimization/experiment.js','../synthesis/forms.js','../synthesis/specification.js','../synthesis/seeds.js','../synthesis/engine.js','../synthesis/glass.js','../synthesis/refine.js','./project.js','./engine.js');
+importScripts('../optimization/aperture-continuation.js','../optimization/design-challenge.js');
 let busy=false,pause=false;
 onmessage=async({data})=>{
  if(data.type==='pause'){pause=true;return;}

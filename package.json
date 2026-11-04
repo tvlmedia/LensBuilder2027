@@ -1,6 +1,6 @@
 {
   "name": "lensbuilder2027",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "scripts": {
     "test": "node --test tests/*.test.cjs",
@@ -18,7 +18,10 @@
     "benchmark:advanced": "node tools/benchmark-advanced-physical.cjs",
     "benchmark:diagnostics": "node tools/benchmark-physical-diagnostics.cjs",
     "benchmark:pupil": "node tools/benchmark-pupil-boundaries.cjs",
-    "benchmark:studio": "node tools/benchmark-studio.cjs"
+    "benchmark:studio": "node tools/benchmark-studio.cjs",
+    "benchmark:challenge": "node tools/benchmark-challenge.cjs",
+    "benchmark:seed-quality": "node tools/benchmark-seed-quality.cjs",
+    "analyze:challenge": "node tools/analyze-challenge.cjs"
   },
   "engines": {
     "node": ">=20"

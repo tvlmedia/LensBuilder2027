@@ -6,14 +6,14 @@
  const compact=x=>JSON.parse(JSON.stringify(x,(k,v)=>['hits','rows'].includes(k)?undefined:v));
  // Worker-local instrumentation. Categories do not overlap; analyses can contain
  // several wavelengths and objective calls may reject before any ray tracing.
- async function measured(run,category,fn){
+ async function measured(run,category,fn,options={}){
   const original=[];let active=category,depth=0,start=performance.now();
   const cost=()=>run.costs[active]||(run.costs[active]={objectiveCalls:0,analysisCalls:0,traceApiCalls:0,paraxialCalls:0,elapsedMs:0});
   const switchCategory=next=>{cost().elapsedMs+=performance.now()-start;active=next==='validation'?'validation':category;start=performance.now();};
   for(const [host,key,counter]of [[E,'evaluate','objectiveCalls'],[M,'evaluate','objectiveCalls'],[A,'evaluate','analysisCalls'],[O,'trace','traceApiCalls'],[O,'paraxial','paraxialCalls']]){const f=host[key];original.push([host,key,f]);host[key]=function(...args){
-   const objective=counter==='objectiveCalls',previous=active;
+   const standalone=host===A&&depth===0&&options.includeStandaloneAnalysis,objective=counter==='objectiveCalls'||standalone,previous=active;
    if(host===E&&args[2]&&category!=='checkpointVerification')switchCategory('validation');
-   if(!objective||depth===0)cost()[counter]++;
+   if(!objective||depth===0)cost()[counter]++;if(standalone)cost().objectiveCalls++;
    if(objective)depth++;
    try{return f.apply(this,args);}finally{if(objective)depth--;if(active!==previous){cost().elapsedMs+=performance.now()-start;active=previous;start=performance.now();}}
   };}
@@ -30,7 +30,17 @@
  async function verify(p,run){
   await measured(run,'checkpointVerification',async()=>{if(run.synthesis)run.synthesis=S.restore(run.synthesis);run.results=(run.results||[]).map(i=>validate(p,run,i));if(run.incumbent)run.incumbent=validate(p,run,run.incumbent);});run.needsVerification=false;
  }
+ async function controlled(p,run,options){
+  const C=root.LBDesignChallenge||require('../optimization/design-challenge.js');
+  if(!run.challenge)run.challenge=C.create({...p.brief,topology:run.topology,seed:run.seed},p.operands,{budget:p.settings.allocation.perRun,source:run.source,strategy:p.settings.method==='controlled-continuation'?'aperture-continuation':'direct',glassTrials:p.settings.glassTrials,glassTrialBudget:p.settings.glassTrialBudget},p.settings.referenceSystem);
+  else if(run.needsVerification)run.challenge=C.restore(run.challenge);
+  run.needsVerification=false;await C.step(run.challenge,options);const c=run.challenge;
+  run.costs=c.costs;run.history=c.history;run.elapsedMs=c.elapsedMs;run.done=c.done;run.stage=c.done?'FINISHED':c.stage==='GENERATE'?'GENERATE':'REFINE';run.synthesisSummary=c.synthesisSummary;
+  run.results=c.best?.verified?[{...c.best,id:run.id+'-0',topology:run.topology}]:[];
+  run.convergence=c.history.filter(h=>Number.isFinite(h.score)).map(h=>({stage:h.stage,evaluations:h.evaluations,score:h.score}));return run;
+ }
  async function step(p,run,options={}){
+  if(p.settings.method.startsWith('controlled-'))return controlled(p,run,options);
   if(run.needsVerification)await verify(p,run);
   if(run.done)return run;
   const spec=J.spec(p,run),start=performance.now();
@@ -68,6 +78,6 @@
   if(run.convergence.length>2000)run.convergence=run.convergence.filter((_,i)=>i%2===0);
   return run;
  }
- function summary(p){const ranked=J.ranked(p);return {contract:p.contract,allocation:p.settings.allocation,runs:p.runs.map(r=>({id:r.id,topology:r.topology,seed:r.seed,stage:r.stage,done:r.done,costs:r.costs,counts:r.synthesis?.counts||r.synthesisSummary?.counts,rejections:r.synthesis?.rejections||r.synthesisSummary?.rejections,best:ranked.find(i=>i.runId===r.id)?.dense.score??null})),best:ranked[0]||null,fairness:'Identical allocated maximum work budgets per topology/seed; actual objective and ray-analysis counts are reported separately. Early rejection/termination can leave budget unused. Not an exact equal-actual-evaluation benchmark.'};}
+ function summary(p){const ranked=J.ranked(p);return {contract:p.contract,allocation:p.settings.allocation,runs:p.runs.map(r=>({id:r.id,topology:r.topology,seed:r.seed,stage:r.stage,done:r.done,costs:r.costs,counts:r.synthesis?.counts||r.synthesisSummary?.counts,rejections:r.synthesis?.rejections||r.synthesisSummary?.rejections,best:ranked.find(i=>i.runId===r.id)?.dense.score??null})),best:ranked[0]||null,fairness:p.settings.method.startsWith('controlled-')?'Equal outer objective/standalone-analysis budgets, fully spent by completed feasible runs. Initialization/paraxial and public ray costs reported separately; verification after reload is extra. Failed initialization leaves an explicitly incomplete comparison.':'Identical allocated maximum work budgets per topology/seed; actual objective and ray-analysis counts are reported separately. Early rejection/termination can leave budget unused. Not an exact equal-actual-evaluation benchmark.'};}
  const api={measured,validate,verify,step,summary,select};root.LBStudioEngine=api;if(typeof module!=='undefined')module.exports=api;
 })(globalThis);

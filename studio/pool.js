@@ -12,7 +12,7 @@
      if(data.type==='error'){failure=Error(data.error);this.pause();finish();}else if(data.type==='done'||data.type==='paused')finish();};
     w.onerror=e=>{failure=Error(e.message);this.pause();finish();};
     // Only this run's mutable checkpoint is sent; the project contract is shared.
-    const payload={...project,physical:[],events:[],runs:project.runs.map(r=>r.id===runId?r:{id:r.id,topology:r.topology,seed:r.seed,stage:'QUEUED',done:false,costs:{},results:[],history:[]})};
+    const payload={...project,physical:[],events:[],runs:project.runs.map(r=>r.id===runId?r:{id:r.id,topology:r.topology,seed:r.seed,...(r.source?{source:r.source}:{}),stage:'QUEUED',done:false,costs:{},results:[],history:[]})};
     w.postMessage({type:'run',project:payload,runId});
    });}};
    await Promise.all(Array.from({length:Math.min(project.settings.workers,pending.length)},lane));
