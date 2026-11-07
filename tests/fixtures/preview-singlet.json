@@ -1,0 +1,43 @@
+{
+  "name": "Geometric preview validation singlet",
+  "surfaces": [
+    {
+      "type": "OBJ",
+      "R": 0,
+      "t": 0,
+      "ap": 10,
+      "glass": "AIR"
+    },
+    {
+      "type": "SPH",
+      "R": 50,
+      "t": 5,
+      "ap": 4,
+      "glass": "N-BK7",
+      "stop": true
+    },
+    {
+      "type": "SPH",
+      "R": -50,
+      "t": 47.2001953125,
+      "ap": 5,
+      "glass": "AIR"
+    },
+    {
+      "type": "IMS",
+      "R": 0,
+      "t": 0,
+      "ap": 23.15,
+      "glass": "AIR"
+    }
+  ],
+  "focus": {
+    "mode": "fixed",
+    "shiftMm": 0,
+    "mechanism": "move-ims"
+  },
+  "import_options": {
+    "preserve_optical_apertures": true,
+    "preserve_ims_aperture": true
+  }
+}

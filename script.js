@@ -6760,7 +6760,7 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
     : (document.getElementById("optDOF")?.checked ? "quality" : "fast");
   const requestedPupilSamples = Math.round(Number(ui.pupilSamples?.value));
   const sppFallback = (q === "hq" ? 64 : (q === "draft" ? 12 : 28));
-  const spp = previewMode === "quality" && doDOF
+  const spp = previewMode === "quality"
     ? clamp(Number.isFinite(requestedPupilSamples) ? requestedPupilSamples : sppFallback, 8, 128)
     : 1;
 
@@ -7155,6 +7155,9 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
   function renderDOFPath() {
     const waves=doCA?["c","d","g"]:[wavePreset];
     const compiled=waves.map(w=>LBPreview.pose(lens,wavePresetToLambdaNm(w),lensShift,sensorShift));
+    const diagnostic=document.getElementById("previewSpotRadius");
+    const spot=spp>1?LBPreview.spot(lens,{nm:compiled[doCA?1:0].nm,distance:focusChartDistanceMm>=1e8?Infinity:focusChartDistanceMm,lensShift,sensorShift,samples:spp}):null;
+    diagnostic.textContent=!spot?"Chief ray only: no blur distribution.":!spot.ok?"Warning: insufficient valid on-axis rays; RMS unavailable.":`On-axis geometric RMS (single wavelength): ${(spot.rmsMm*1000).toFixed(2)} µm · ${Math.hypot(spot.rmsY*W/sensorWv,spot.rmsZ*H/sensorHv).toFixed(3)} output px · ${spot.validHits}/${spp} rays.`;
     const worker=new Worker(new URL("./optics/preview-worker.js",document.baseURI));
     activePreviewWorker=worker;
     const poll=()=>{
@@ -7167,17 +7170,18 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
     worker.onmessage=({data})=>{
       if(activePreviewWorker!==worker)return;
       if(!renderEngineEnabled||jobId!==_previewRenderJobId){hidePreviewProgress();finishPreviewRender();return;}
-      if(data.error){hidePreviewProgress();finishPreviewRender();handleRuntimeError("Preview unavailable",new Error(data.error));return;}
+      if(data.error){diagnostic.textContent="Preview unavailable: "+data.error;hidePreviewProgress();finishPreviewRender();handleRuntimeError("Preview unavailable",new Error(data.error));return;}
       if(data.progress!=null){setPreviewProgress(data.progress,`Geometric ${Math.round(data.progress*100)}%`);return;}
       preview.worldCanvas.width=W;preview.worldCanvas.height=H;
       preview.worldCtx=preview.worldCanvas.getContext("2d",{willReadFrequently:true});
       preview.worldCtx.putImageData(new ImageData(data.output,W,H),0,0);
       preview.worldReady=true;preview.dirtyKey=previewRenderKey;
       updatePreviewCoverage(data.survival,W,H,sensorWv,sensorHv);
+      if(spp>1 && data.undersampled) diagnostic.textContent+=` Warning: ${data.undersampled} pixels had insufficient surviving pupil rays; brightness there is unreliable.`;
       hidePreviewProgress();drawPreviewViewport();finishPreviewRender();
     };
     setPreviewProgress(0,"Geometric 0%");
-    worker.postMessage({W,H,sensorW:sensorWv,sensorH:sensorHv,sensorX,halfObjW,halfObjH,
+    worker.postMessage({W,H,sensorW:sensorWv,sensorH:sensorHv,sensorX:compiled[0].imageX,halfObjW,halfObjH,
       distance:focusChartDistanceMm,orientation:previewOrientation,spp,doCA,imgW,imgH,imgData,compiled});
   }
 
@@ -7979,6 +7983,38 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
   }
 
 // -------------------- init + bindings --------------------
+  let sweetCache = null;
+  function refreshSweetSpot() {
+    if (!document.getElementById("sweetPanel")?.open) return null;
+    const output = document.getElementById("sweetResult"), button = document.getElementById("setSweetFocus");
+    button.disabled = true;
+    try {
+      const distance = Number(ui.prevObjDist.value), wave = ui.wavePreset.value, target = getPreviewAutofocusMode();
+      if (!Number.isFinite(distance) || distance <= 0.1) throw Error("Set a valid object distance.");
+      const nm = wavePresetToLambdaNm(wave), {w,h} = getSensorWH();
+      const key = JSON.stringify([lens.surfaces,lens.materials,lens.glass_catalog,w,h,distance,wave,target]);
+      if (sweetCache?.key !== key) {
+        const plane = LBPreview.pose(lens,nm).imageX;
+        const af = runAutofocusForShift({objectDistanceMm:distance,wavePreset:wave,
+          focusMechanism:"move-ims",currentShiftMm:0,autofocusMode:target});
+        if (!Number.isFinite(plane) || !af.ok) throw Error(af.reason || "Invalid sensor plane.");
+        sweetCache = {key, plane, shift:af.focusShiftMm, rms:af.bestMetricRmsMm};
+      }
+      const {plane,shift,rms} = sweetCache;
+      const pose = focusPoseFromShift(getFocusShiftMm(),ui.focusMechanism.value);
+      const current = plane + pose.sensorX - pose.lensShift, optimal = plane + shift;
+      output.textContent = (distance >= 1e8 ? "Infinity" : "Finite object: " + distance + " mm") +
+        " · Optimal sensor: " + optimal.toFixed(4) + " mm · Current: " + current.toFixed(4) +
+        " mm · Current − optimal: " + (current-optimal).toFixed(4) + " mm · RMS: " + (rms*1000).toFixed(2) + " µm";
+      button.disabled = false;
+      return sweetCache;
+    } catch (error) {
+      sweetCache = null;
+      output.textContent = "Optimum unavailable: " + error.message;
+      return null;
+    }
+  }
+
 function wireUI() {
   // sensor presets
   populateSensorPresetsSelect();
@@ -8072,6 +8108,9 @@ function wireUI() {
     });
   }
 
+  // Both controls select the same physical path. Full pupil never means one ray.
+  on("#previewRenderMode","change",()=>{document.getElementById("optDOF").checked=ui.previewRenderMode.value==="quality";});
+  on("#optDOF","change",()=>{ui.previewRenderMode.value=document.getElementById("optDOF").checked?"quality":"fast";});
   // preview options (DOF/CA/quality)
   ["optDOF","optCA","renderQuality"].forEach((id) => {
     const el = document.getElementById(id);
@@ -8109,37 +8148,6 @@ function wireUI() {
 
   on("#btnScaleToFocal", "click", openScaleToFocalModal);
   on("#btnSetTStop", "click", setTargetFNumber);
-  let sweetCache = null;
-  function refreshSweetSpot() {
-    if (!document.getElementById("sweetPanel")?.open) return null;
-    const output = document.getElementById("sweetResult"), button = document.getElementById("setSweetFocus");
-    button.disabled = true;
-    try {
-      const distance = Number(ui.prevObjDist.value), wave = ui.wavePreset.value, target = getPreviewAutofocusMode();
-      if (!Number.isFinite(distance) || distance <= 0.1) throw Error("Set a valid object distance.");
-      const nm = wavePresetToLambdaNm(wave), {w,h} = getSensorWH();
-      const key = JSON.stringify([lens.surfaces,lens.materials,lens.glass_catalog,w,h,distance,wave,target]);
-      if (sweetCache?.key !== key) {
-        const plane = LBPreview.pose(lens,nm).imageX;
-        const af = runAutofocusForShift({objectDistanceMm:distance,wavePreset:wave,
-          focusMechanism:"move-ims",currentShiftMm:0,autofocusMode:target});
-        if (!Number.isFinite(plane) || !af.ok) throw Error(af.reason || "Invalid sensor plane.");
-        sweetCache = {key, plane, shift:af.focusShiftMm, rms:af.bestMetricRmsMm};
-      }
-      const {plane,shift,rms} = sweetCache;
-      const pose = focusPoseFromShift(getFocusShiftMm(),ui.focusMechanism.value);
-      const current = plane + pose.sensorX - pose.lensShift, optimal = plane + shift;
-      output.textContent = (distance >= 1e8 ? "Infinity" : "Finite object: " + distance + " mm") +
-        " · Optimal sensor: " + optimal.toFixed(4) + " mm · Current: " + current.toFixed(4) +
-        " mm · Current − optimal: " + (current-optimal).toFixed(4) + " mm · RMS: " + (rms*1000).toFixed(2) + " µm";
-      button.disabled = false;
-      return sweetCache;
-    } catch (error) {
-      sweetCache = null;
-      output.textContent = "Optimum unavailable: " + error.message;
-      return null;
-    }
-  }
   document.getElementById("focusReleaseVersion").textContent = "v" + LB_BUILD.applicationVersion;
   on("#sweetPanel","toggle",refreshSweetSpot);
   on("#setSweetFocus","click",() => {

@@ -379,6 +379,7 @@
           <label>Before / after <input id="previewSplit" type="range" min="0" max="100" value="50" /></label>
           <label>Requested image circle (mm) <input id="previewTargetIC" type="number" min="1" step="0.1" value="46.3" /></label>
           <output id="previewCoverage">Traced coverage: not rendered · usable image circle: unvalidated.</output>
+          <output id="previewSpotRadius" aria-live="polite">Render to measure the on-axis geometric RMS radius.</output>
           <output id="previewMetadata">Render to inspect focus and prescription.</output>
           <p>Experimental geometric rendering of one flat object plane. DOF off / chief-ray mode omits the PSF; it is not an optical sharpness prediction. RGB wavelengths approximate chromatic effects. Pupil survival is not calibrated illumination or a validated usable image circle.</p>
         </div>

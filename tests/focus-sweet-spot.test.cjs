@@ -6,7 +6,7 @@ function harness(){
   const ui={prevObjDist:{value:'2000'},wavePreset:{value:'d'},focusMode:{value:'manual'},focusMechanism:{value:'move-lens'}};
   const handlers={};let current=-1;
   const ctx={document:{getElementById:id=>nodes[id]},ui,lens,LBPreview:P,LB_BUILD:{applicationVersion:'test'},getSensorWH:()=>({w:36,h:24}),getPreviewAutofocusMode:()=>'chart-center',wavePresetToLambdaNm:()=>587.5618,getPreviewAutofocusSensorSamples:()=>[{sy:0,sz:0,w:1}],normalizeFocusMechanism:x=>x,isSafeFocusShift:x=>Number.isFinite(x)&&Math.abs(x)<=40,getFocusShiftMm:()=>current,setFocusShiftMm:x=>current=Number(x.toFixed(4)),syncFocusControlsUI(){},scheduleRenderAll(){},scheduleRenderPreview(){},on:(id,e,fn)=>handlers[id]=fn};
-  for(const [a,b] of [['  function focusPoseFromShift','  function getFocusContext'],['  function runAutofocusForShift','  function getFocusChartDistanceMm'],['  let sweetCache','  on("#btnAutoFocus"']])vm.runInNewContext(src.slice(src.indexOf(a),src.indexOf(b,src.indexOf(a))),ctx);
+  for(const [a,b] of [['  function focusPoseFromShift','  function getFocusContext'],['  function runAutofocusForShift','  function getFocusChartDistanceMm'],['  let sweetCache','function wireUI()'],['  document.getElementById("focusReleaseVersion")','  on("#btnAutoFocus"']])vm.runInNewContext(src.slice(src.indexOf(a),src.indexOf(b,src.indexOf(a))),ctx);
   return {ctx,ui,nodes,handlers,lens,saved};
 }
 test('sensor optimum uses the same geometric RMS search at finite distance and infinity; applying preserves surfaces',()=>{

@@ -16,7 +16,7 @@ self.onmessage=({data:m})=>{
       return (a*(1-tx)+b*tx)*(1-ty)+(c*(1-tx)+d*tx)*ty;
     });
   }
-  let last=performance.now();
+  let last=performance.now(),undersampled=0;
   for(let y=0;y<H;y++) {
     for(let x=0;x<W;x++) {
       const p={x:sensorX,y:((x+.5)/W-.5)*sensorW,z:(.5-(y+.5)/H)*sensorH};
@@ -36,12 +36,14 @@ self.onmessage=({data:m})=>{
         }
         if(greenSurvived)survived++;
       }
+      if(spp>1 && (survived<4 || survived/spp<.3))undersampled++;
       const i=y*W+x;survival[i]=survived/spp;
       for(let ch=0;ch<3;ch++)output[i*4+ch]=srgb(color[ch]/spp);
       output[i*4+3]=255;
     }
     if(performance.now()-last>150) {self.postMessage({progress:(y+1)/H});last=performance.now();}
   }
-  self.postMessage({output,survival},[output.buffer,survival.buffer]);
+  if(undersampled===W*H)throw Error('No reliably sampled full-pupil pixels; no chief-ray fallback.');
+  self.postMessage({output,survival,undersampled},[output.buffer,survival.buffer]);
  } catch(error) {self.postMessage({error:error.message||String(error)});}
 };

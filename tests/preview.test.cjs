@@ -89,3 +89,20 @@ test('edge autofocus field is the actual sensor corner, including aspect ratio',
  const result=vm.runInNewContext(source.slice(start,end)+'; getPreviewAutofocusSensorSamples(12,"chart-edge");',{getSensorWH:()=>({w:36,h:24})});
  a.equal(result[0].sy,18);a.equal(result[0].sz,12);
 });
+
+test('resolved edge broadens on the actual worker when the sensor is defocused',()=>{
+ const lens=require('./fixtures/preview-singlet.json'), W=128,H=8;
+ function edge(s,shift,spp){
+   const c=P.pose(s,587.5618,0,shift),n=1024;
+   const imgData=Uint8ClampedArray.from({length:n*4},(_,i)=>i%4===3||i>>2>=n/2?255:0);
+   return render({W,H,sensorW:4,sensorH:.25,imgW:n,imgH:1,imgData,halfObjW:5e7,halfObjH:5e7,distance:1e9,sensorX:c.imageX,compiled:[c],spp}).output;
+ }
+ const focused=edge(lens,0,64),defocused=edge(lens,5,64);
+ const width=image=>Array.from({length:W},(_,x)=>image[(4*W+x)*4]).filter(v=>v>80&&v<244).length;
+ a.ok(width(defocused)>=width(focused)+6);
+ const s=P.spot(lens,{sensorShift:5,samples:64});
+ a.ok(s.ok && s.rmsMm*W/4>6);a.ok(Math.abs(s.rmsMm-Math.hypot(s.rmsY,s.rmsZ))<1e-12);
+ const narrow=structuredClone(lens);narrow.surfaces[1].ap=2;
+ a.ok(width(edge(narrow,5,64))<width(defocused));a.notDeepEqual(edge(lens,5,16),defocused);
+ const altered=structuredClone(lens);altered.surfaces[2].R=-38;a.notDeepEqual(edge(altered,0,64),focused);
+});
