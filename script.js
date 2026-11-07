@@ -5062,6 +5062,7 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
     });
     const focusMode = focusCtx.focusMode;
     const focusMechanism = focusCtx.focusMechanism;
+    refreshSweetSpot();
     const sensorShift = focusCtx.sensorX;
     const lensShift = focusCtx.lensShift;
 
@@ -8108,6 +8109,50 @@ function wireUI() {
 
   on("#btnScaleToFocal", "click", openScaleToFocalModal);
   on("#btnSetTStop", "click", setTargetFNumber);
+  let sweetCache = null;
+  function refreshSweetSpot() {
+    if (!document.getElementById("sweetPanel")?.open) return null;
+    const output = document.getElementById("sweetResult"), button = document.getElementById("setSweetFocus");
+    button.disabled = true;
+    try {
+      const distance = Number(ui.prevObjDist.value), wave = ui.wavePreset.value, target = getPreviewAutofocusMode();
+      if (!Number.isFinite(distance) || distance <= 0.1) throw Error("Set a valid object distance.");
+      const nm = wavePresetToLambdaNm(wave), {w,h} = getSensorWH();
+      const key = JSON.stringify([lens.surfaces,lens.materials,lens.glass_catalog,w,h,distance,wave,target]);
+      if (sweetCache?.key !== key) {
+        const plane = LBPreview.pose(lens,nm).imageX;
+        const af = runAutofocusForShift({objectDistanceMm:distance,wavePreset:wave,
+          focusMechanism:"move-ims",currentShiftMm:0,autofocusMode:target});
+        if (!Number.isFinite(plane) || !af.ok) throw Error(af.reason || "Invalid sensor plane.");
+        sweetCache = {key, plane, shift:af.focusShiftMm, rms:af.bestMetricRmsMm};
+      }
+      const {plane,shift,rms} = sweetCache;
+      const pose = focusPoseFromShift(getFocusShiftMm(),ui.focusMechanism.value);
+      const current = plane + pose.sensorX - pose.lensShift, optimal = plane + shift;
+      output.textContent = (distance >= 1e8 ? "Infinity" : "Finite object: " + distance + " mm") +
+        " · Optimal sensor: " + optimal.toFixed(4) + " mm · Current: " + current.toFixed(4) +
+        " mm · Current − optimal: " + (current-optimal).toFixed(4) + " mm · RMS: " + (rms*1000).toFixed(2) + " µm";
+      button.disabled = false;
+      return sweetCache;
+    } catch (error) {
+      sweetCache = null;
+      output.textContent = "Optimum unavailable: " + error.message;
+      return null;
+    }
+  }
+  document.getElementById("focusReleaseVersion").textContent = "v" + LB_BUILD.applicationVersion;
+  on("#sweetPanel","toggle",refreshSweetSpot);
+  on("#setSweetFocus","click",() => {
+    const solution = refreshSweetSpot();
+    if (!solution) return;
+    ui.focusMode.value = "manual";
+    ui.focusMechanism.value = "move-ims";
+    setFocusShiftMm(solution.shift);
+    syncFocusControlsUI();
+    refreshSweetSpot();
+    scheduleRenderAll({immediate:true});
+    scheduleRenderPreview();
+  });
   on("#btnAutoFocus", "click", autoFocus);
   on("#btnRenderEngine", "click", toggleRenderEngine);
   on("#btnDebugOverlay", "click", toggleDebugOverlay);
