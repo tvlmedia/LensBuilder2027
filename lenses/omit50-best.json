@@ -1,0 +1,889 @@
+{
+  "name": "OMIT 50 Best · recovered Cooke direct 2002",
+  "surfaces": [
+    {
+      "type": "OBJ",
+      "R": 0,
+      "t": 0,
+      "ap": 1,
+      "glass": "AIR",
+      "stop": false
+    },
+    {
+      "type": "SPH",
+      "R": 35.11927442167887,
+      "t": 11.527226856330755,
+      "glass": "N-LAK22",
+      "ap": 21.9507219154388,
+      "stop": false,
+      "group": 0,
+      "element": 0,
+      "ap_optical": 21.9507219154388
+    },
+    {
+      "type": "SPH",
+      "R": -224.08551189395627,
+      "t": 3.3800177266015146,
+      "glass": "AIR",
+      "ap": 21.9507219154388,
+      "stop": false,
+      "group": 0,
+      "element": 0,
+      "ap_optical": 21.9507219154388
+    },
+    {
+      "type": "SPH",
+      "R": -53.15933135977668,
+      "t": 3.920488309763292,
+      "glass": "N-SF10",
+      "ap": 19.227063312170372,
+      "stop": false,
+      "group": 1,
+      "element": 1,
+      "ap_optical": 19.227063312170372
+    },
+    {
+      "type": "SPH",
+      "R": 96.8854283014909,
+      "t": 8.591830315178807,
+      "glass": "AIR",
+      "ap": 19.227063312170372,
+      "stop": false,
+      "group": 1,
+      "element": 1,
+      "ap_optical": 19.227063312170372
+    },
+    {
+      "type": "STOP",
+      "R": 0,
+      "t": 1.0011445693997234,
+      "glass": "AIR",
+      "ap": 9.236802419783935,
+      "stop": true,
+      "group": null,
+      "element": null,
+      "ap_optical": 9.236802419783935
+    },
+    {
+      "type": "SPH",
+      "R": 79.80091577967458,
+      "t": 4.763317671494462,
+      "glass": "N-LAK22",
+      "ap": 15.680390617761708,
+      "stop": false,
+      "group": 2,
+      "element": 2,
+      "ap_optical": 15.680390617761708
+    },
+    {
+      "type": "SPH",
+      "R": -47.198793889733246,
+      "t": 33.75119698467775,
+      "glass": "AIR",
+      "ap": 15.680390617761708,
+      "stop": false,
+      "group": 2,
+      "element": 2,
+      "ap_optical": 15.680390617761708
+    },
+    {
+      "type": "IMS",
+      "R": 0,
+      "t": 0,
+      "ap": 23.15,
+      "glass": "AIR",
+      "stop": false
+    }
+  ],
+  "synthesis": {
+    "topology": "cooke",
+    "ordinal": 87,
+    "seed": 2002,
+    "powers": [
+      {
+        "group": 0,
+        "element": 0,
+        "role": 1,
+        "thinPower": 0.017847736661801086,
+        "glass": "N-LAK22",
+        "frontCurvature": 0.020588344512786953,
+        "rearCurvature": -0.006822040867873035
+      },
+      {
+        "group": 1,
+        "element": 1,
+        "role": -1,
+        "thinPower": -0.021610229887048436,
+        "glass": "N-SF10",
+        "frontCurvature": -0.021135301977724293,
+        "rearCurvature": 0.008537786585447037
+      },
+      {
+        "group": 2,
+        "element": 2,
+        "role": 1,
+        "thinPower": 0.024486499173710204,
+        "glass": "N-LAK22",
+        "frontCurvature": 0.024277331173337854,
+        "rearCurvature": -0.013328802965290636
+      }
+    ],
+    "origin": "generated from specification; no input prescription"
+  },
+  "focus": {
+    "mode": "fixed",
+    "mechanism": "move-lens",
+    "shiftMm": 0,
+    "autoRefocusOnDistanceChange": false
+  },
+  "import_options": {
+    "preserve_optical_apertures": true,
+    "preserve_ims_aperture": true
+  },
+  "presetProvenance": {
+    "name": "OMIT 50 Best · recovered Cooke direct 2002",
+    "selection": "Lowest valid dense merit among recovered complete prescriptions under the frozen common OMIT50 contract; not the historical M4 winner.",
+    "geometrySHA256": "a7574640ea0872e7f75962f4fea2149e0d3845ba96636893e936254c9287f6f5",
+    "sources": [
+      {
+        "oid": "cf783af776e954d555dd3cbadb76704cb7da5862",
+        "path": "benchmarks/omit50-challenge-new.json",
+        "trail": "/system"
+      },
+      {
+        "oid": "cf783af776e954d555dd3cbadb76704cb7da5862",
+        "path": "benchmarks/omit50-challenge-new.json",
+        "trail": "/dense/analysis/apertures/0/system"
+      },
+      {
+        "oid": "cf783af776e954d555dd3cbadb76704cb7da5862",
+        "path": "benchmarks/omit50-challenge-new.json",
+        "trail": "/dense/prescription"
+      },
+      {
+        "oid": "cf783af776e954d555dd3cbadb76704cb7da5862",
+        "path": "benchmarks/omit50-challenge-new.json",
+        "trail": "/dense/geometryAtOriginalStop"
+      },
+      {
+        "oid": "28f2303ecc58256ccf88a75921d02a6ee6c6f7c9",
+        "path": "benchmarks/omit50-challenge-v1.json",
+        "trail": "/results/3/best/system"
+      },
+      {
+        "oid": "28f2303ecc58256ccf88a75921d02a6ee6c6f7c9",
+        "path": "benchmarks/omit50-challenge-v1.json",
+        "trail": "/results/3/best/dense/analysis/apertures/0/system"
+      },
+      {
+        "oid": "28f2303ecc58256ccf88a75921d02a6ee6c6f7c9",
+        "path": "benchmarks/omit50-challenge-v1.json",
+        "trail": "/results/3/best/dense/prescription"
+      },
+      {
+        "oid": "28f2303ecc58256ccf88a75921d02a6ee6c6f7c9",
+        "path": "benchmarks/omit50-challenge-v1.json",
+        "trail": "/results/3/best/dense/geometryAtOriginalStop"
+      },
+      {
+        "oid": "28f2303ecc58256ccf88a75921d02a6ee6c6f7c9",
+        "path": "benchmarks/omit50-challenge-v1.json",
+        "trail": "/bestNew/best/system"
+      },
+      {
+        "oid": "28f2303ecc58256ccf88a75921d02a6ee6c6f7c9",
+        "path": "benchmarks/omit50-challenge-v1.json",
+        "trail": "/bestNew/best/dense/analysis/apertures/0/system"
+      },
+      {
+        "oid": "28f2303ecc58256ccf88a75921d02a6ee6c6f7c9",
+        "path": "benchmarks/omit50-challenge-v1.json",
+        "trail": "/bestNew/best/dense/prescription"
+      },
+      {
+        "oid": "28f2303ecc58256ccf88a75921d02a6ee6c6f7c9",
+        "path": "benchmarks/omit50-challenge-v1.json",
+        "trail": "/bestNew/best/dense/geometryAtOriginalStop"
+      }
+    ],
+    "specification": {
+      "name": "OMIT50_TECHNICAL_FOUNDATION",
+      "topology": "auto",
+      "targetEflMm": 50,
+      "eflToleranceMm": 1,
+      "targetFNumber": 2,
+      "fNumberTolerance": 0.02,
+      "imageCircleMm": 46.3,
+      "mount": "PL-oriented development envelope; not certified",
+      "flangeFocalDistanceMm": 52,
+      "minBflMm": 25,
+      "minElements": 3,
+      "maxElements": 8,
+      "minGroups": 3,
+      "maxGroups": 6,
+      "sphericalOnly": true,
+      "cementedAllowed": true,
+      "maxOpticalLengthMm": 140,
+      "maxDiameterMm": 70,
+      "maxRearDiameterMm": 60,
+      "minCenterMm": 1,
+      "minEdgeMm": 0.5,
+      "minAirGapMm": 0.2,
+      "minMechanicalClearanceMm": 0.2,
+      "rearClearanceEnvelope": [],
+      "allowedGlasses": [
+        "N-BK7",
+        "N-F2",
+        "N-LAK22",
+        "N-SK16",
+        "N-SF6",
+        "N-SF10",
+        "N-BAK4",
+        "N-PK52A"
+      ],
+      "maxUniqueGlasses": 2,
+      "objectDistance": "infinity",
+      "fields": [
+        0,
+        0.3,
+        0.5,
+        0.7,
+        0.85,
+        1
+      ],
+      "wavelengths": [
+        {
+          "nm": 486.1327,
+          "weight": 1
+        },
+        {
+          "nm": 587.5618,
+          "weight": 2
+        },
+        {
+          "nm": 656.2725,
+          "weight": 1
+        }
+      ],
+      "pupilGrid": 7,
+      "validationGrid": 19,
+      "minRayFraction": 0.7,
+      "focusPolicy": "global-image-plane-variable",
+      "budget": 100000,
+      "workers": 4,
+      "seed": 1001,
+      "algorithm": "de",
+      "seedFraction": 0.18,
+      "localFraction": 0.18,
+      "denseFraction": 0.02,
+      "parentsPerTopology": 2,
+      "archiveSize": 8,
+      "apertureMarginMm": 0.25,
+      "apertures": [
+        {
+          "optimization": true,
+          "validation": true,
+          "weight": 1,
+          "fNumber": 2
+        },
+        {
+          "optimization": true,
+          "validation": true,
+          "weight": 1,
+          "fNumber": 2.8
+        },
+        {
+          "optimization": true,
+          "validation": true,
+          "weight": 1,
+          "fNumber": 4
+        },
+        {
+          "optimization": true,
+          "validation": true,
+          "weight": 1,
+          "fNumber": 5.6
+        }
+      ],
+      "seedGlassPolicy": "sample-pairs-v1",
+      "sensorDiagonalMm": null,
+      "maxFieldHeightMm": 23.15
+    },
+    "operands": [
+      {
+        "metric": "efl",
+        "target": 50,
+        "scale": 0.5,
+        "weight": 10,
+        "aperture": 2
+      },
+      {
+        "metric": "fNumber",
+        "target": 2,
+        "scale": 0.1,
+        "weight": 3,
+        "aperture": 2
+      },
+      {
+        "metric": "rms",
+        "field": 0,
+        "target": 0,
+        "scale": 0.05,
+        "weight": 2,
+        "aperture": 2
+      },
+      {
+        "metric": "rms",
+        "field": 0.3,
+        "target": 0,
+        "scale": 0.05,
+        "weight": 2,
+        "aperture": 2
+      },
+      {
+        "metric": "rms",
+        "field": 0.5,
+        "target": 0,
+        "scale": 0.05,
+        "weight": 2,
+        "aperture": 2
+      },
+      {
+        "metric": "rms",
+        "field": 0.7,
+        "target": 0,
+        "scale": 0.05,
+        "weight": 2,
+        "aperture": 2
+      },
+      {
+        "metric": "rms",
+        "field": 0.85,
+        "target": 0,
+        "scale": 0.05,
+        "weight": 1,
+        "aperture": 2
+      },
+      {
+        "metric": "rms",
+        "field": 1,
+        "target": 0,
+        "scale": 0.05,
+        "weight": 1,
+        "aperture": 2
+      },
+      {
+        "metric": "lateralColor",
+        "target": 0,
+        "scale": 0.01,
+        "weight": 1,
+        "aperture": 2
+      },
+      {
+        "metric": "longitudinalColor",
+        "target": 0,
+        "scale": 0.1,
+        "weight": 0.2,
+        "aperture": 2
+      },
+      {
+        "metric": "distortion",
+        "target": [
+          -2,
+          2
+        ],
+        "scale": 1,
+        "weight": 0.2,
+        "aperture": 2
+      },
+      {
+        "metric": "rayLoss",
+        "target": 0,
+        "scale": 0.1,
+        "weight": 2,
+        "aperture": 2
+      },
+      {
+        "metric": "efl",
+        "target": 50,
+        "scale": 0.5,
+        "weight": 10,
+        "aperture": 2.8
+      },
+      {
+        "metric": "fNumber",
+        "target": 2.8,
+        "scale": 0.1,
+        "weight": 3,
+        "aperture": 2.8
+      },
+      {
+        "metric": "rms",
+        "field": 0,
+        "target": 0,
+        "scale": 0.05,
+        "weight": 2,
+        "aperture": 2.8
+      },
+      {
+        "metric": "rms",
+        "field": 0.3,
+        "target": 0,
+        "scale": 0.05,
+        "weight": 2,
+        "aperture": 2.8
+      },
+      {
+        "metric": "rms",
+        "field": 0.5,
+        "target": 0,
+        "scale": 0.05,
+        "weight": 2,
+        "aperture": 2.8
+      },
+      {
+        "metric": "rms",
+        "field": 0.7,
+        "target": 0,
+        "scale": 0.05,
+        "weight": 2,
+        "aperture": 2.8
+      },
+      {
+        "metric": "rms",
+        "field": 0.85,
+        "target": 0,
+        "scale": 0.05,
+        "weight": 1,
+        "aperture": 2.8
+      },
+      {
+        "metric": "rms",
+        "field": 1,
+        "target": 0,
+        "scale": 0.05,
+        "weight": 1,
+        "aperture": 2.8
+      },
+      {
+        "metric": "lateralColor",
+        "target": 0,
+        "scale": 0.01,
+        "weight": 1,
+        "aperture": 2.8
+      },
+      {
+        "metric": "longitudinalColor",
+        "target": 0,
+        "scale": 0.1,
+        "weight": 0.2,
+        "aperture": 2.8
+      },
+      {
+        "metric": "distortion",
+        "target": [
+          -2,
+          2
+        ],
+        "scale": 1,
+        "weight": 0.2,
+        "aperture": 2.8
+      },
+      {
+        "metric": "rayLoss",
+        "target": 0,
+        "scale": 0.1,
+        "weight": 2,
+        "aperture": 2.8
+      },
+      {
+        "metric": "efl",
+        "target": 50,
+        "scale": 0.5,
+        "weight": 10,
+        "aperture": 4
+      },
+      {
+        "metric": "fNumber",
+        "target": 4,
+        "scale": 0.1,
+        "weight": 3,
+        "aperture": 4
+      },
+      {
+        "metric": "rms",
+        "field": 0,
+        "target": 0,
+        "scale": 0.05,
+        "weight": 2,
+        "aperture": 4
+      },
+      {
+        "metric": "rms",
+        "field": 0.3,
+        "target": 0,
+        "scale": 0.05,
+        "weight": 2,
+        "aperture": 4
+      },
+      {
+        "metric": "rms",
+        "field": 0.5,
+        "target": 0,
+        "scale": 0.05,
+        "weight": 2,
+        "aperture": 4
+      },
+      {
+        "metric": "rms",
+        "field": 0.7,
+        "target": 0,
+        "scale": 0.05,
+        "weight": 2,
+        "aperture": 4
+      },
+      {
+        "metric": "rms",
+        "field": 0.85,
+        "target": 0,
+        "scale": 0.05,
+        "weight": 1,
+        "aperture": 4
+      },
+      {
+        "metric": "rms",
+        "field": 1,
+        "target": 0,
+        "scale": 0.05,
+        "weight": 1,
+        "aperture": 4
+      },
+      {
+        "metric": "lateralColor",
+        "target": 0,
+        "scale": 0.01,
+        "weight": 1,
+        "aperture": 4
+      },
+      {
+        "metric": "longitudinalColor",
+        "target": 0,
+        "scale": 0.1,
+        "weight": 0.2,
+        "aperture": 4
+      },
+      {
+        "metric": "distortion",
+        "target": [
+          -2,
+          2
+        ],
+        "scale": 1,
+        "weight": 0.2,
+        "aperture": 4
+      },
+      {
+        "metric": "rayLoss",
+        "target": 0,
+        "scale": 0.1,
+        "weight": 2,
+        "aperture": 4
+      },
+      {
+        "metric": "efl",
+        "target": 50,
+        "scale": 0.5,
+        "weight": 10,
+        "aperture": 5.6
+      },
+      {
+        "metric": "fNumber",
+        "target": 5.6,
+        "scale": 0.1,
+        "weight": 3,
+        "aperture": 5.6
+      },
+      {
+        "metric": "rms",
+        "field": 0,
+        "target": 0,
+        "scale": 0.05,
+        "weight": 2,
+        "aperture": 5.6
+      },
+      {
+        "metric": "rms",
+        "field": 0.3,
+        "target": 0,
+        "scale": 0.05,
+        "weight": 2,
+        "aperture": 5.6
+      },
+      {
+        "metric": "rms",
+        "field": 0.5,
+        "target": 0,
+        "scale": 0.05,
+        "weight": 2,
+        "aperture": 5.6
+      },
+      {
+        "metric": "rms",
+        "field": 0.7,
+        "target": 0,
+        "scale": 0.05,
+        "weight": 2,
+        "aperture": 5.6
+      },
+      {
+        "metric": "rms",
+        "field": 0.85,
+        "target": 0,
+        "scale": 0.05,
+        "weight": 1,
+        "aperture": 5.6
+      },
+      {
+        "metric": "rms",
+        "field": 1,
+        "target": 0,
+        "scale": 0.05,
+        "weight": 1,
+        "aperture": 5.6
+      },
+      {
+        "metric": "lateralColor",
+        "target": 0,
+        "scale": 0.01,
+        "weight": 1,
+        "aperture": 5.6
+      },
+      {
+        "metric": "longitudinalColor",
+        "target": 0,
+        "scale": 0.1,
+        "weight": 0.2,
+        "aperture": 5.6
+      },
+      {
+        "metric": "distortion",
+        "target": [
+          -2,
+          2
+        ],
+        "scale": 1,
+        "weight": 0.2,
+        "aperture": 5.6
+      },
+      {
+        "metric": "rayLoss",
+        "target": 0,
+        "scale": 0.1,
+        "weight": 2,
+        "aperture": 5.6
+      }
+    ],
+    "originalOptimization": {
+      "sourceCase": "cooke-direct-2002",
+      "contract": "da831e50",
+      "budget": 10000,
+      "used": 10000
+    },
+    "validation": {
+      "nominalFNumber": 2,
+      "key": "a7574640ea0872e7f75962f4fea2149e0d3845ba96636893e936254c9287f6f5",
+      "name": "OMIT50_TECHNICAL_FOUNDATION · Cooke Triplet · 87",
+      "sources": [
+        {
+          "oid": "cf783af776e954d555dd3cbadb76704cb7da5862",
+          "path": "benchmarks/omit50-challenge-new.json",
+          "trail": "/system"
+        },
+        {
+          "oid": "cf783af776e954d555dd3cbadb76704cb7da5862",
+          "path": "benchmarks/omit50-challenge-new.json",
+          "trail": "/dense/analysis/apertures/0/system"
+        },
+        {
+          "oid": "cf783af776e954d555dd3cbadb76704cb7da5862",
+          "path": "benchmarks/omit50-challenge-new.json",
+          "trail": "/dense/prescription"
+        },
+        {
+          "oid": "cf783af776e954d555dd3cbadb76704cb7da5862",
+          "path": "benchmarks/omit50-challenge-new.json",
+          "trail": "/dense/geometryAtOriginalStop"
+        },
+        {
+          "oid": "28f2303ecc58256ccf88a75921d02a6ee6c6f7c9",
+          "path": "benchmarks/omit50-challenge-v1.json",
+          "trail": "/results/3/best/system"
+        },
+        {
+          "oid": "28f2303ecc58256ccf88a75921d02a6ee6c6f7c9",
+          "path": "benchmarks/omit50-challenge-v1.json",
+          "trail": "/results/3/best/dense/analysis/apertures/0/system"
+        },
+        {
+          "oid": "28f2303ecc58256ccf88a75921d02a6ee6c6f7c9",
+          "path": "benchmarks/omit50-challenge-v1.json",
+          "trail": "/results/3/best/dense/prescription"
+        },
+        {
+          "oid": "28f2303ecc58256ccf88a75921d02a6ee6c6f7c9",
+          "path": "benchmarks/omit50-challenge-v1.json",
+          "trail": "/results/3/best/dense/geometryAtOriginalStop"
+        },
+        {
+          "oid": "28f2303ecc58256ccf88a75921d02a6ee6c6f7c9",
+          "path": "benchmarks/omit50-challenge-v1.json",
+          "trail": "/bestNew/best/system"
+        },
+        {
+          "oid": "28f2303ecc58256ccf88a75921d02a6ee6c6f7c9",
+          "path": "benchmarks/omit50-challenge-v1.json",
+          "trail": "/bestNew/best/dense/analysis/apertures/0/system"
+        },
+        {
+          "oid": "28f2303ecc58256ccf88a75921d02a6ee6c6f7c9",
+          "path": "benchmarks/omit50-challenge-v1.json",
+          "trail": "/bestNew/best/dense/prescription"
+        },
+        {
+          "oid": "28f2303ecc58256ccf88a75921d02a6ee6c6f7c9",
+          "path": "benchmarks/omit50-challenge-v1.json",
+          "trail": "/bestNew/best/dense/geometryAtOriginalStop"
+        }
+      ],
+      "status": "DENSE VALIDATED",
+      "checks": {
+        "geometry": true,
+        "efl": true,
+        "fNumber": true,
+        "bfl": true,
+        "rearToImage": true,
+        "construction": true,
+        "materials": true,
+        "rearDiameter": true,
+        "rearClearance": true,
+        "coverage": true
+      },
+      "merit": 191.71823128235255,
+      "firstOrder": {
+        "matrix": [
+          0.7056349048454668,
+          27.44629453843994,
+          -0.020017419838677244,
+          0.6385681832260461
+        ],
+        "eflMm": 49.95648830164519,
+        "bflMm": 35.25104186914508,
+        "fflMm": -31.900623975134792,
+        "frontPrincipalMm": 18.055864326510395,
+        "rearPrincipalMm": 18.478579016268434,
+        "entrancePupilXMm": 31.494818481474756,
+        "entrancePupilRadiusMm": 12.489122075411297,
+        "fNumber": 2,
+        "preStop": [
+          0.7395878080148997,
+          23.293183764541066,
+          -0.004283210401973796,
+          1.217205561325985
+        ],
+        "imageDistanceMm": 33.75119698467775,
+        "tStop": null
+      },
+      "fields": [
+        {
+          "field": 0,
+          "rmsMm": 0.09692741475300694,
+          "rayFraction": 0.9154929577464789
+        },
+        {
+          "field": 0.3,
+          "rmsMm": 0.07334386383385261,
+          "rayFraction": 0.9154929577464789
+        },
+        {
+          "field": 0.5,
+          "rmsMm": 0.09611034112072049,
+          "rayFraction": 0.8838028169014085
+        },
+        {
+          "field": 0.7,
+          "rmsMm": 0.17109880010248021,
+          "rayFraction": 0.8450704225352113
+        },
+        {
+          "field": 0.85,
+          "rmsMm": 0.23601905381881105,
+          "rayFraction": 0.823943661971831
+        },
+        {
+          "field": 1,
+          "rmsMm": 0.29015563300822717,
+          "rayFraction": 0.823943661971831
+        }
+      ]
+    },
+    "materials": {
+      "AIR": {
+        "nd": 1,
+        "Vd": 999,
+        "name": "AIR",
+        "model": "constant",
+        "source": "Reference ambient medium n=1",
+        "transmission": null
+      },
+      "N-LAK22": {
+        "name": "N-LAK22",
+        "manufacturer": "SCHOTT",
+        "nd": 1.65113,
+        "Vd": 55.89,
+        "model": "sellmeier",
+        "B": [
+          1.14229781,
+          0.535138441,
+          1.04088385
+        ],
+        "C": [
+          0.00585778594,
+          0.0198546147,
+          100.834017
+        ],
+        "rangeNm": [
+          400,
+          700
+        ],
+        "source": "https://media.schott.com/api/public/content/a79c07aa61da4c05a2c0bbab93d09a7f?download=true&v=3b65e351",
+        "transmission": null
+      },
+      "N-SF10": {
+        "name": "N-SF10",
+        "manufacturer": "SCHOTT",
+        "nd": 1.72828,
+        "Vd": 28.53,
+        "model": "sellmeier",
+        "B": [
+          1.62153902,
+          0.256287842,
+          1.64447552
+        ],
+        "C": [
+          0.0122241457,
+          0.0595736775,
+          147.468793
+        ],
+        "rangeNm": [
+          400,
+          700
+        ],
+        "source": "https://media.schott.com/api/public/content/a79c07aa61da4c05a2c0bbab93d09a7f?download=true&v=3b65e351",
+        "transmission": null
+      }
+    },
+    "referenceGeometry": "OBJ/first nominal vertex x=0; mm; IMS=sum of preceding thicknesses; no focus shift; positive x toward sensor",
+    "coverage": "46.3 mm requested target; sampled survival, not validated usable coverage",
+    "mechanical": "PL/manufacturing unverified"
+  }
+}

@@ -1,0 +1,902 @@
+{
+  "name": "OMIT 50 Historical M4 · block DLS",
+  "surfaces": [
+    {
+      "type": "OBJ",
+      "R": 0,
+      "t": 0,
+      "ap": 1,
+      "glass": "AIR",
+      "stop": false
+    },
+    {
+      "type": "SPH",
+      "R": 52.760740779683005,
+      "t": 7.298755793933621,
+      "glass": "N-LAK22",
+      "ap": 26.800727472401586,
+      "stop": false,
+      "group": 0,
+      "element": 0,
+      "ap_optical": 26.800727472401586
+    },
+    {
+      "type": "SPH",
+      "R": 289.3624901585444,
+      "t": 5.138677017783336,
+      "glass": "AIR",
+      "ap": 26.800727472401586,
+      "stop": false,
+      "group": 0,
+      "element": 0,
+      "ap_optical": 26.800727472401586
+    },
+    {
+      "type": "SPH",
+      "R": 37.618766042792615,
+      "t": 4.337540694861379,
+      "glass": "N-LAK22",
+      "ap": 18.518065356723056,
+      "stop": false,
+      "group": 1,
+      "element": 1,
+      "ap_optical": 18.518065356723056
+    },
+    {
+      "type": "SPH",
+      "R": 160.0390812117473,
+      "t": 2.550007835977561,
+      "glass": "N-SF10",
+      "ap": 18.518065356723056,
+      "stop": false,
+      "group": 1,
+      "element": 2,
+      "ap_optical": 18.518065356723056
+    },
+    {
+      "type": "SPH",
+      "R": 43.41349570729476,
+      "t": 8.914051497196896,
+      "glass": "AIR",
+      "ap": 18.518065356723056,
+      "stop": false,
+      "group": 1,
+      "element": 2,
+      "ap_optical": 18.518065356723056
+    },
+    {
+      "type": "STOP",
+      "R": 0,
+      "t": 1.0541428553605612,
+      "glass": "AIR",
+      "ap": 8.401642750646396,
+      "stop": true,
+      "group": null,
+      "element": null,
+      "ap_optical": 8.401642750646396
+    },
+    {
+      "type": "SPH",
+      "R": -41.74779638936237,
+      "t": 4.08724652116356,
+      "glass": "N-SF10",
+      "ap": 12.352216742580381,
+      "stop": false,
+      "group": 2,
+      "element": 3,
+      "ap_optical": 12.352216742580381
+    },
+    {
+      "type": "SPH",
+      "R": -131.55975148337956,
+      "t": 7.115841332447658,
+      "glass": "N-LAK22",
+      "ap": 12.352216742580381,
+      "stop": false,
+      "group": 2,
+      "element": 4,
+      "ap_optical": 12.352216742580381
+    },
+    {
+      "type": "SPH",
+      "R": -39.26910594393732,
+      "t": 1.6426916935272575,
+      "glass": "AIR",
+      "ap": 12.352216742580381,
+      "stop": false,
+      "group": 2,
+      "element": 4,
+      "ap_optical": 12.352216742580381
+    },
+    {
+      "type": "SPH",
+      "R": -564.5001759800765,
+      "t": 7.60308504244804,
+      "glass": "N-LAK22",
+      "ap": 15.346628716903975,
+      "stop": false,
+      "group": 3,
+      "element": 5,
+      "ap_optical": 15.346628716903975
+    },
+    {
+      "type": "SPH",
+      "R": -45.34952942523991,
+      "t": 27.090728005068087,
+      "glass": "AIR",
+      "ap": 15.346628716903975,
+      "stop": false,
+      "group": 3,
+      "element": 5,
+      "ap_optical": 15.346628716903975
+    },
+    {
+      "type": "IMS",
+      "R": 0,
+      "t": 0,
+      "ap": 23.15,
+      "glass": "AIR",
+      "stop": false
+    }
+  ],
+  "synthesis": {
+    "topology": "modified-gauss",
+    "ordinal": 8520,
+    "seed": 1001,
+    "powers": [
+      {
+        "group": 0,
+        "element": 0,
+        "role": 1,
+        "thinPower": 0.014123077907138949,
+        "glass": "N-SK16",
+        "frontCurvature": 0.026571204042185236,
+        "rearCurvature": 0.0038070985280233664
+      },
+      {
+        "group": 1,
+        "element": 1,
+        "role": 1,
+        "thinPower": 0.008614600173254819,
+        "glass": "N-SK16",
+        "frontCurvature": 0.019985687879161794,
+        "rearCurvature": 0.006100352926278532
+      },
+      {
+        "group": 1,
+        "element": 2,
+        "role": -1,
+        "thinPower": -0.013099366004099649,
+        "glass": "N-SF10",
+        "frontCurvature": 0.006100352926278532,
+        "rearCurvature": 0.0240871420346166
+      },
+      {
+        "group": 2,
+        "element": 3,
+        "role": -1,
+        "thinPower": -0.009696445878804288,
+        "glass": "N-SF10",
+        "frontCurvature": -0.019849403016937293,
+        "rearCurvature": -0.006535176430102263
+      },
+      {
+        "group": 2,
+        "element": 4,
+        "role": 1,
+        "thinPower": 0.00952171082940707,
+        "glass": "N-SK16",
+        "frontCurvature": -0.006535176430102263,
+        "rearCurvature": -0.021882626286368764
+      },
+      {
+        "group": 3,
+        "element": 5,
+        "role": 1,
+        "thinPower": 0.01547901086930271,
+        "glass": "N-SK16",
+        "frontCurvature": -0.0036289932030488135,
+        "rearCurvature": -0.028578642210192722
+      }
+    ],
+    "origin": "generated from specification; no input prescription"
+  },
+  "focus": {
+    "mode": "fixed",
+    "mechanism": "move-lens",
+    "shiftMm": 0,
+    "autoRefocusOnDistanceChange": false
+  },
+  "import_options": {
+    "preserve_optical_apertures": true,
+    "preserve_ims_aperture": true
+  },
+  "presetProvenance": {
+    "name": "OMIT 50 Historical M4 · block DLS",
+    "source": "benchmarks/physical-omit50.json",
+    "originalMerit": 211.6991817575039,
+    "materials": {
+      "AIR": {
+        "nd": 1,
+        "Vd": 999,
+        "name": "AIR",
+        "model": "constant",
+        "source": "Reference ambient medium n=1",
+        "transmission": null
+      },
+      "N-LAK22": {
+        "name": "N-LAK22",
+        "manufacturer": "SCHOTT",
+        "nd": 1.65113,
+        "Vd": 55.89,
+        "model": "sellmeier",
+        "B": [
+          1.14229781,
+          0.535138441,
+          1.04088385
+        ],
+        "C": [
+          0.00585778594,
+          0.0198546147,
+          100.834017
+        ],
+        "rangeNm": [
+          400,
+          700
+        ],
+        "source": "https://media.schott.com/api/public/content/a79c07aa61da4c05a2c0bbab93d09a7f?download=true&v=3b65e351",
+        "transmission": null
+      },
+      "N-SF10": {
+        "name": "N-SF10",
+        "manufacturer": "SCHOTT",
+        "nd": 1.72828,
+        "Vd": 28.53,
+        "model": "sellmeier",
+        "B": [
+          1.62153902,
+          0.256287842,
+          1.64447552
+        ],
+        "C": [
+          0.0122241457,
+          0.0595736775,
+          147.468793
+        ],
+        "rangeNm": [
+          400,
+          700
+        ],
+        "source": "https://media.schott.com/api/public/content/a79c07aa61da4c05a2c0bbab93d09a7f?download=true&v=3b65e351",
+        "transmission": null
+      }
+    },
+    "originalOptimization": {
+      "method": "block-dls",
+      "seed": 1001,
+      "budget": 3000,
+      "variables": [
+        {
+          "surface": 1,
+          "key": "R",
+          "min": 37.38965216750189,
+          "max": 64.80873042366996,
+          "enabled": true
+        },
+        {
+          "surface": 1,
+          "key": "t",
+          "min": 5.018716022464481,
+          "max": 9.320472613148324,
+          "enabled": true
+        },
+        {
+          "surface": 2,
+          "key": "R",
+          "min": 169.6389942137715,
+          "max": 294.0409233038706,
+          "enabled": true
+        },
+        {
+          "surface": 2,
+          "key": "t",
+          "min": 3.8150802134058486,
+          "max": 7.085148967753718,
+          "enabled": true
+        },
+        {
+          "surface": 3,
+          "key": "R",
+          "min": 31.068662351110465,
+          "max": 53.85234807525814,
+          "enabled": true
+        },
+        {
+          "surface": 3,
+          "key": "t",
+          "min": 3.0359337720163095,
+          "max": 5.638162719458861,
+          "enabled": true
+        },
+        {
+          "surface": 4,
+          "key": "R",
+          "min": 92.33023916062344,
+          "max": 160.0390812117473,
+          "enabled": true
+        },
+        {
+          "surface": 4,
+          "key": "t",
+          "min": 1.6020848800622358,
+          "max": 2.975300491544152,
+          "enabled": true
+        },
+        {
+          "surface": 5,
+          "key": "R",
+          "min": 33.95546209180693,
+          "max": 58.85613429246535,
+          "enabled": true
+        },
+        {
+          "surface": 7,
+          "key": "R",
+          "min": -60.377575085826024,
+          "max": -34.833216395668856,
+          "enabled": true
+        },
+        {
+          "surface": 7,
+          "key": "t",
+          "min": 2.7795422465953745,
+          "max": 5.16200702939141,
+          "enabled": true
+        },
+        {
+          "surface": 8,
+          "key": "R",
+          "min": -228.03690257119126,
+          "max": -131.55975148337956,
+          "enabled": true
+        },
+        {
+          "surface": 8,
+          "key": "t",
+          "min": 5.222529948835808,
+          "max": 9.698984190695072,
+          "enabled": true
+        },
+        {
+          "surface": 9,
+          "key": "R",
+          "min": -60.31099598630724,
+          "max": -34.794805376715715,
+          "enabled": true
+        },
+        {
+          "surface": 9,
+          "key": "t",
+          "min": 1.6426916935272575,
+          "max": 3.05071314512205,
+          "enabled": true
+        },
+        {
+          "surface": 10,
+          "key": "R",
+          "min": -564.5001759800765,
+          "max": -325.67317845004413,
+          "enabled": true
+        },
+        {
+          "surface": 10,
+          "key": "t",
+          "min": 4.405600769800854,
+          "max": 8.181830001058728,
+          "enabled": true
+        },
+        {
+          "surface": 11,
+          "key": "R",
+          "min": -50.99522093052638,
+          "max": -29.42031976761137,
+          "enabled": true
+        },
+        {
+          "surface": 11,
+          "key": "t",
+          "min": 20.364221460172224,
+          "max": 35.364221460172224,
+          "enabled": true
+        },
+        {
+          "surface": 6,
+          "key": "stopPosition",
+          "min": -0.40603308209518996,
+          "max": 0.40603308209518996,
+          "enabled": true
+        }
+      ],
+      "archive": "benchmarks/omit50-methods-v1.json#experiments/omit50/runs/block-dls/1001"
+    },
+    "geometrySHA256": "4aa01648394be8fa5d4c015936cb963b45e36b7be3fa467e90b3fa693bb6cdf7",
+    "specification": {
+      "name": "OMIT50_TECHNICAL_FOUNDATION",
+      "topology": "auto",
+      "targetEflMm": 50,
+      "eflToleranceMm": 1,
+      "targetFNumber": 2,
+      "fNumberTolerance": 0.02,
+      "imageCircleMm": 46.3,
+      "mount": "PL-oriented development envelope; not certified",
+      "flangeFocalDistanceMm": 52,
+      "minBflMm": 25,
+      "minElements": 3,
+      "maxElements": 8,
+      "minGroups": 3,
+      "maxGroups": 6,
+      "sphericalOnly": true,
+      "cementedAllowed": true,
+      "maxOpticalLengthMm": 140,
+      "maxDiameterMm": 70,
+      "maxRearDiameterMm": 60,
+      "minCenterMm": 1,
+      "minEdgeMm": 0.5,
+      "minAirGapMm": 0.2,
+      "minMechanicalClearanceMm": 0.2,
+      "rearClearanceEnvelope": [],
+      "allowedGlasses": [
+        "N-BK7",
+        "N-F2",
+        "N-LAK22",
+        "N-SK16",
+        "N-SF6",
+        "N-SF10",
+        "N-BAK4",
+        "N-PK52A"
+      ],
+      "maxUniqueGlasses": 2,
+      "objectDistance": "infinity",
+      "fields": [
+        0,
+        0.3,
+        0.5,
+        0.7,
+        0.85,
+        1
+      ],
+      "wavelengths": [
+        {
+          "nm": 486.1327,
+          "weight": 1
+        },
+        {
+          "nm": 587.5618,
+          "weight": 2
+        },
+        {
+          "nm": 656.2725,
+          "weight": 1
+        }
+      ],
+      "pupilGrid": 7,
+      "validationGrid": 19,
+      "minRayFraction": 0.7,
+      "focusPolicy": "global-image-plane-variable",
+      "budget": 100000,
+      "workers": 4,
+      "seed": 1001,
+      "algorithm": "de",
+      "seedFraction": 0.18,
+      "localFraction": 0.18,
+      "denseFraction": 0.02,
+      "parentsPerTopology": 2,
+      "archiveSize": 8,
+      "apertureMarginMm": 0.25,
+      "apertures": [
+        {
+          "optimization": true,
+          "validation": true,
+          "weight": 1,
+          "fNumber": 2
+        },
+        {
+          "optimization": true,
+          "validation": true,
+          "weight": 1,
+          "fNumber": 2.8
+        },
+        {
+          "optimization": true,
+          "validation": true,
+          "weight": 1,
+          "fNumber": 4
+        },
+        {
+          "optimization": true,
+          "validation": true,
+          "weight": 1,
+          "fNumber": 5.6
+        }
+      ],
+      "seedGlassPolicy": "sample-pairs-v1",
+      "sensorDiagonalMm": null,
+      "maxFieldHeightMm": 23.15
+    },
+    "operands": [
+      {
+        "metric": "efl",
+        "target": 50,
+        "scale": 0.5,
+        "weight": 10,
+        "aperture": 2
+      },
+      {
+        "metric": "fNumber",
+        "target": 2,
+        "scale": 0.1,
+        "weight": 3,
+        "aperture": 2
+      },
+      {
+        "metric": "rms",
+        "field": 0,
+        "target": 0,
+        "scale": 0.05,
+        "weight": 2,
+        "aperture": 2
+      },
+      {
+        "metric": "rms",
+        "field": 0.3,
+        "target": 0,
+        "scale": 0.05,
+        "weight": 2,
+        "aperture": 2
+      },
+      {
+        "metric": "rms",
+        "field": 0.5,
+        "target": 0,
+        "scale": 0.05,
+        "weight": 2,
+        "aperture": 2
+      },
+      {
+        "metric": "rms",
+        "field": 0.7,
+        "target": 0,
+        "scale": 0.05,
+        "weight": 2,
+        "aperture": 2
+      },
+      {
+        "metric": "rms",
+        "field": 0.85,
+        "target": 0,
+        "scale": 0.05,
+        "weight": 1,
+        "aperture": 2
+      },
+      {
+        "metric": "rms",
+        "field": 1,
+        "target": 0,
+        "scale": 0.05,
+        "weight": 1,
+        "aperture": 2
+      },
+      {
+        "metric": "lateralColor",
+        "target": 0,
+        "scale": 0.01,
+        "weight": 1,
+        "aperture": 2
+      },
+      {
+        "metric": "longitudinalColor",
+        "target": 0,
+        "scale": 0.1,
+        "weight": 0.2,
+        "aperture": 2
+      },
+      {
+        "metric": "distortion",
+        "target": [
+          -2,
+          2
+        ],
+        "scale": 1,
+        "weight": 0.2,
+        "aperture": 2
+      },
+      {
+        "metric": "rayLoss",
+        "target": 0,
+        "scale": 0.1,
+        "weight": 2,
+        "aperture": 2
+      },
+      {
+        "metric": "efl",
+        "target": 50,
+        "scale": 0.5,
+        "weight": 10,
+        "aperture": 2.8
+      },
+      {
+        "metric": "fNumber",
+        "target": 2.8,
+        "scale": 0.1,
+        "weight": 3,
+        "aperture": 2.8
+      },
+      {
+        "metric": "rms",
+        "field": 0,
+        "target": 0,
+        "scale": 0.05,
+        "weight": 2,
+        "aperture": 2.8
+      },
+      {
+        "metric": "rms",
+        "field": 0.3,
+        "target": 0,
+        "scale": 0.05,
+        "weight": 2,
+        "aperture": 2.8
+      },
+      {
+        "metric": "rms",
+        "field": 0.5,
+        "target": 0,
+        "scale": 0.05,
+        "weight": 2,
+        "aperture": 2.8
+      },
+      {
+        "metric": "rms",
+        "field": 0.7,
+        "target": 0,
+        "scale": 0.05,
+        "weight": 2,
+        "aperture": 2.8
+      },
+      {
+        "metric": "rms",
+        "field": 0.85,
+        "target": 0,
+        "scale": 0.05,
+        "weight": 1,
+        "aperture": 2.8
+      },
+      {
+        "metric": "rms",
+        "field": 1,
+        "target": 0,
+        "scale": 0.05,
+        "weight": 1,
+        "aperture": 2.8
+      },
+      {
+        "metric": "lateralColor",
+        "target": 0,
+        "scale": 0.01,
+        "weight": 1,
+        "aperture": 2.8
+      },
+      {
+        "metric": "longitudinalColor",
+        "target": 0,
+        "scale": 0.1,
+        "weight": 0.2,
+        "aperture": 2.8
+      },
+      {
+        "metric": "distortion",
+        "target": [
+          -2,
+          2
+        ],
+        "scale": 1,
+        "weight": 0.2,
+        "aperture": 2.8
+      },
+      {
+        "metric": "rayLoss",
+        "target": 0,
+        "scale": 0.1,
+        "weight": 2,
+        "aperture": 2.8
+      },
+      {
+        "metric": "efl",
+        "target": 50,
+        "scale": 0.5,
+        "weight": 10,
+        "aperture": 4
+      },
+      {
+        "metric": "fNumber",
+        "target": 4,
+        "scale": 0.1,
+        "weight": 3,
+        "aperture": 4
+      },
+      {
+        "metric": "rms",
+        "field": 0,
+        "target": 0,
+        "scale": 0.05,
+        "weight": 2,
+        "aperture": 4
+      },
+      {
+        "metric": "rms",
+        "field": 0.3,
+        "target": 0,
+        "scale": 0.05,
+        "weight": 2,
+        "aperture": 4
+      },
+      {
+        "metric": "rms",
+        "field": 0.5,
+        "target": 0,
+        "scale": 0.05,
+        "weight": 2,
+        "aperture": 4
+      },
+      {
+        "metric": "rms",
+        "field": 0.7,
+        "target": 0,
+        "scale": 0.05,
+        "weight": 2,
+        "aperture": 4
+      },
+      {
+        "metric": "rms",
+        "field": 0.85,
+        "target": 0,
+        "scale": 0.05,
+        "weight": 1,
+        "aperture": 4
+      },
+      {
+        "metric": "rms",
+        "field": 1,
+        "target": 0,
+        "scale": 0.05,
+        "weight": 1,
+        "aperture": 4
+      },
+      {
+        "metric": "lateralColor",
+        "target": 0,
+        "scale": 0.01,
+        "weight": 1,
+        "aperture": 4
+      },
+      {
+        "metric": "longitudinalColor",
+        "target": 0,
+        "scale": 0.1,
+        "weight": 0.2,
+        "aperture": 4
+      },
+      {
+        "metric": "distortion",
+        "target": [
+          -2,
+          2
+        ],
+        "scale": 1,
+        "weight": 0.2,
+        "aperture": 4
+      },
+      {
+        "metric": "rayLoss",
+        "target": 0,
+        "scale": 0.1,
+        "weight": 2,
+        "aperture": 4
+      },
+      {
+        "metric": "efl",
+        "target": 50,
+        "scale": 0.5,
+        "weight": 10,
+        "aperture": 5.6
+      },
+      {
+        "metric": "fNumber",
+        "target": 5.6,
+        "scale": 0.1,
+        "weight": 3,
+        "aperture": 5.6
+      },
+      {
+        "metric": "rms",
+        "field": 0,
+        "target": 0,
+        "scale": 0.05,
+        "weight": 2,
+        "aperture": 5.6
+      },
+      {
+        "metric": "rms",
+        "field": 0.3,
+        "target": 0,
+        "scale": 0.05,
+        "weight": 2,
+        "aperture": 5.6
+      },
+      {
+        "metric": "rms",
+        "field": 0.5,
+        "target": 0,
+        "scale": 0.05,
+        "weight": 2,
+        "aperture": 5.6
+      },
+      {
+        "metric": "rms",
+        "field": 0.7,
+        "target": 0,
+        "scale": 0.05,
+        "weight": 2,
+        "aperture": 5.6
+      },
+      {
+        "metric": "rms",
+        "field": 0.85,
+        "target": 0,
+        "scale": 0.05,
+        "weight": 1,
+        "aperture": 5.6
+      },
+      {
+        "metric": "rms",
+        "field": 1,
+        "target": 0,
+        "scale": 0.05,
+        "weight": 1,
+        "aperture": 5.6
+      },
+      {
+        "metric": "lateralColor",
+        "target": 0,
+        "scale": 0.01,
+        "weight": 1,
+        "aperture": 5.6
+      },
+      {
+        "metric": "longitudinalColor",
+        "target": 0,
+        "scale": 0.1,
+        "weight": 0.2,
+        "aperture": 5.6
+      },
+      {
+        "metric": "distortion",
+        "target": [
+          -2,
+          2
+        ],
+        "scale": 1,
+        "weight": 0.2,
+        "aperture": 5.6
+      },
+      {
+        "metric": "rayLoss",
+        "target": 0,
+        "scale": 0.1,
+        "weight": 2,
+        "aperture": 5.6
+      }
+    ],
+    "referenceGeometry": "OBJ/first nominal vertex x=0; mm; IMS=sum of preceding thicknesses; no focus shift; positive x toward sensor"
+  }
+}

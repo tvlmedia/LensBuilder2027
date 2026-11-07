@@ -22,6 +22,7 @@ for (const dir of [
     .sort())
     files.push(`${dir}/${file}`);
 }
+for (const file of fs.readdirSync(path.join(root, "lenses")).filter(f => f.endsWith(".json")).sort()) files.push(`lenses/${file}`);
 const hash = crypto.createHash("sha256");
 for (const file of files.sort())
   hash.update(file + "\0").update(fs.readFileSync(path.join(root, file)));
