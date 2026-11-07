@@ -15,6 +15,7 @@
   <header class="topbar" role="banner">
     <div class="brand" aria-label="TVL Lens Builder">
       <div class="dot" aria-hidden="true"></div>
+      <strong id="focusReleaseVersion"></strong>
       <div class="brandText">
         <div class="title">Meridional Raytracer (2D)</div>
         <div class="subtitle">OSLO-ish doorsnede • stop-aware • element builder • sanity check tool</div>
@@ -281,6 +282,12 @@
           </div>
         </section>
 
+        <details id="sweetPanel" style="padding:8px 12px;overflow:auto">
+          <summary>Focus Sweet Spot</summary>
+          <p>Sensor position is measured from the first optical vertex. Applying the optimum uses manual sensor focus with the lens at its nominal position.</p>
+          <output id="sweetResult" aria-live="polite"></output>
+          <button id="setSweetFocus" type="button" disabled>Set Optimal Focus</button>
+        </details>
         <section class="tableWrap" aria-label="Surface table">
           <table class="tbl" aria-describedby="surfaceTableHelp">
             <thead>
