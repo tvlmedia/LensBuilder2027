@@ -269,15 +269,11 @@ const SENSOR_PRESETS = {
 
   function updateUsableCircleBadges() {
     const uc = preview.usableCircle;
-    if (!uc?.valid) {
-      if (ui.ic) ui.ic.textContent = "Image Circle: —";
-      if (ui.icTop) ui.icTop.textContent = "IC: —";
-      return;
-    }
-    const leftTxt = `Image Circle: Ø${uc.diameterMm.toFixed(1)}mm`;
-    const topTxt = `IC: Ø${uc.diameterMm.toFixed(1)}mm`;
-    if (ui.ic) ui.ic.textContent = leftTxt;
-    if (ui.icTop) ui.icTop.textContent = topTxt;
+    const text = uc?.valid ? `Pupil ≥35%: Ø${uc.diameterMm.toFixed(1)}mm (estimate)` : `Pupil coverage: ${uc?.source || "not rendered"}`;
+    if(ui.ic) ui.ic.textContent=text;
+    if(ui.icTop) ui.icTop.textContent=uc?.valid?`IC estimate: ${uc.diameterMm.toFixed(1)}mm`:"IC: unvalidated";
+    for(const el of [ui.ic,ui.icTop]) if(el) el.title="Requested coverage is a design target. Traced field / pupil survival is not a validated usable image circle. No MTF or illumination qualification implied.";
+
   }
 
   // -------------------- default preview chart (GitHub) --------------------
@@ -938,6 +934,7 @@ function warnMissingGlass(name) {
     schemaVersion:2,
     project: obj?.project ? clone(obj.project) : null,
     synthesis: obj?.synthesis ? clone(obj.synthesis) : null,
+    presetProvenance: obj?.presetProvenance ? clone(obj.presetProvenance) : null,
     importReport: obj?.importReport ? clone(obj.importReport) : null,
     name: String(obj?.name ?? "No name"),
     notes: Array.isArray(obj?.notes) ? obj.notes.map(String) : [],
@@ -2471,7 +2468,7 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
   function finiteFieldObjectPoint(surfaces, fieldAngleDeg, objectDistanceMm = null) {
     const dist = Number(objectDistanceMm);
     if (!Number.isFinite(dist) || dist <= 0.1 || dist >= 1e8) return null;
-    const xObj = (Number(surfaces?.[0]?.vx) || 0) - dist;
+    const xObj = -dist;
     const theta = (fieldAngleDeg * Math.PI) / 180;
     const yObj = Math.tan(theta) * dist;
     if (!Number.isFinite(xObj) || !Number.isFinite(yObj)) return null;
@@ -3259,7 +3256,7 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
     lens.focus.mode = normalizeFocusMode(ui.focusMode?.value || lens.focus.mode || "auto");
     lens.focus.mechanism = normalizeFocusMechanism(ui.focusMechanism?.value || lens.focus.mechanism || "move-lens");
     const shiftVal = Number(shiftOverride);
-    lens.focus.shiftMm = Number.isFinite(shiftVal) ? shiftVal : getFocusShiftMm();
+    lens.focus.shiftMm = shiftOverride !== null && Number.isFinite(shiftVal) ? shiftVal : getFocusShiftMm();
     lens.focus.autoRefocusOnDistanceChange = !!ui.autoRefocusOnDistanceChange?.checked;
     lens.import_options.autofocus_mode = getPreviewAutofocusMode();
   }
@@ -3330,6 +3327,7 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
         focusMechanism,
         String(wavePreset || "d"),
         targetDist.toFixed(6),
+        JSON.stringify([getPreviewAutofocusMode(),getSensorWH(),lens.surfaces.map(({vx,...s})=>s)]),
       ].join("|");
       let shouldRun = false;
       if (!focusRuntime.lastAutoKey) {
@@ -3337,7 +3335,7 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
       } else {
         const [lastMech, lastWave, lastDist] = String(focusRuntime.lastAutoKey).split("|");
         const distChanged = lastDist !== targetDist.toFixed(6);
-        const nonDistChanged = lastMech !== focusMechanism || lastWave !== String(wavePreset || "d");
+        const nonDistChanged = lastMech !== focusMechanism || lastWave !== String(wavePreset || "d") || String(focusRuntime.lastAutoKey).split("|").slice(3).join("|") !== autoKey.split("|").slice(3).join("|");
         const lastAutoShift = Number(focusRuntime.lastAutoShiftMm);
         const shiftChanged = !Number.isFinite(lastAutoShift) || Math.abs(lastAutoShift - focusShiftMm) > 1e-6;
         shouldRun = nonDistChanged || shiftChanged || (autoRefocusOnDistanceChange && distChanged);
@@ -3419,58 +3417,28 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
     sensorHv: sensorHvOverride = null,
   }) {
     const dist = Number(objectDistanceMm);
-    if (!Number.isFinite(dist) || dist <= 0.1) {
-      return { ok: false, reason: "invalid_object_distance" };
-    }
-
-    const { h: sensorH } = getSensorWH();
-    const sensorHv = Number.isFinite(Number(sensorHvOverride))
-      ? Math.max(1e-6, Number(sensorHvOverride))
-      : Math.max(1e-6, sensorH * OV_DEFAULT * 0.5);
-    const mech = normalizeFocusMechanism(focusMechanism);
-    const startShift = Number.isFinite(Number(currentShiftMm)) ? Number(currentShiftMm) : 0;
-
-    if (mech === "move-ims") {
-      const best = autoFocusPreviewSensorForObjectDistance({
-        surfaces: lens.surfaces,
-        wavePreset,
-        lensShift: 0,
-        sensorX: startShift,
-        objDist: dist,
-        sensorHv,
-        autofocusMode,
-      });
-      const ok = isSafeFocusShift(best?.sensorX);
-      return {
-        ok,
-        focusShiftMm: ok ? Number(best.sensorX) : startShift,
-        bestMetricRmsMm: Number.isFinite(best?.rmsMm) ? Number(best.rmsMm) : null,
-        raysUsed: Number.isFinite(best?.raysUsed) ? Number(best.raysUsed) : 0,
-        method: "move-ims",
-        stoppedByMaxIterations: best?.stoppedByMaxIterations === true,
-        reason: ok ? null : "invalid_focus_shift",
-      };
-    }
-
-    const best = autoFocusLensShiftForObjectDistance({
-      surfaces: lens.surfaces,
-      wavePreset,
-      lensShift: startShift,
-      sensorX: 0,
-      objDist: dist,
-      sensorHv,
-      autofocusMode,
-    });
-    const ok = isSafeFocusShift(best?.lensShift);
-    return {
-      ok,
-      focusShiftMm: ok ? Number(best.lensShift) : startShift,
-      bestMetricRmsMm: Number.isFinite(best?.rmsMm) ? Number(best.rmsMm) : null,
-      raysUsed: Number.isFinite(best?.raysUsed) ? Number(best.raysUsed) : 0,
-      method: mech === "move-focus-group" ? "move-focus-group (placeholder→lens)" : "move-lens",
-      stoppedByMaxIterations: best?.stoppedByMaxIterations === true,
-      reason: ok ? null : "invalid_focus_shift",
-    };
+    if (!(dist > 0.1)) return {ok:false,reason:"invalid_object_distance"};
+    const {h} = getSensorWH();
+    const fields = getPreviewAutofocusSensorSamples(sensorHvOverride == null ? h * .5 : sensorHvOverride, autofocusMode);
+    const mechanism = normalizeFocusMechanism(focusMechanism);
+    const result = LBPreview.minimize(shift => {
+      let score=0, raysUsed=0;
+      for (const field of fields) {
+        const spot = LBPreview.spot(lens, {
+          nm:wavePresetToLambdaNm(wavePreset), distance:dist >= 1e8 ? Infinity : dist,
+          lensShift:mechanism === "move-ims" ? 0 : shift,
+          sensorShift:mechanism === "move-ims" ? shift : 0,
+          fieldY:field.sy,fieldZ:field.sz,samples:64,
+        });
+        if(!spot.ok) return {score:Infinity};
+        score += field.w * spot.rmsMm;
+        raysUsed += spot.raysUsed;
+      }
+      return {score:score/fields.reduce((sum,f)=>sum+f.w,0),raysUsed};
+    }, Number(currentShiftMm)||0, 16);
+    const ok=result.ok && isSafeFocusShift(result.x);
+    return {ok,focusShiftMm:ok?result.x:currentShiftMm,bestMetricRmsMm:ok?result.score:null,
+      raysUsed:result.raysUsed||0,method:"forward sensor-plane RMS",reason:ok?null:result.reason||"invalid_focus_shift"};
   }
 
   function getFocusChartDistanceMm() {
@@ -3581,8 +3549,8 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
         rmsMm: Number.isFinite(Number(ev?.rmsMm)) ? Number(ev.rmsMm) : null,
         hitRate: Number.isFinite(Number(ev?.hitRate)) ? Number(ev.hitRate) : null,
         raysUsed: Number.isFinite(Number(af?.raysUsed)) ? Number(af.raysUsed) : 0,
-        xObjPlaneMm: Number(surfaces?.[0]?.vx || 0) - objectDistanceMm,
-        startRayXMm: sensorPlaneX + 0.05,
+        xObjPlaneMm: -objectDistanceMm,
+        startRayXMm: sensorPlaneX,
         stopXMm: Number(stopSurf?.vx || 0),
       });
     }
@@ -3785,7 +3753,8 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
       }
     }
 
-    for (let sh = bestShift - coarseStep; sh <= bestShift + coarseStep + 1e-9; sh += fineStep) {
+    const fineCenter = bestShift;
+    for (let sh = fineCenter - coarseStep; sh <= fineCenter + coarseStep + 1e-9; sh += fineStep) {
       const ev = evaluateAtShift(sh);
       if (!ev) break;
       if (ev.score < best.score) {
@@ -3934,8 +3903,9 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
     const r = previewCanvasEl.getBoundingClientRect();
     const dpr = window.devicePixelRatio || 1;
 
-    previewCanvasEl.width  = Math.max(2, Math.floor(r.width  * dpr));
-    previewCanvasEl.height = Math.max(2, Math.floor(r.height * dpr));
+    const width=Math.max(2,Math.floor(r.width*dpr)),height=Math.max(2,Math.floor(r.height*dpr));
+    if(previewCanvasEl.width!==width)previewCanvasEl.width=width;
+    if(previewCanvasEl.height!==height)previewCanvasEl.height=height;
 
     pctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
@@ -5030,7 +5000,9 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
     }
   }
 
+  let activePreviewWorker = null;
   function finishPreviewRender() {
+    if(activePreviewWorker){activePreviewWorker.terminate();activePreviewWorker=null;}
     _renderPreviewRunning = false;
     clearRuntimeBusy();
     if (_renderAllAfterPreview) {
@@ -5237,13 +5209,13 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
     if (ui.tstop) ui.tstop.textContent = `f/≈ ${T == null ? "—" : T.toFixed(2)}`;
     if (ui.vig) ui.vig.textContent = `Vignette: ${vigPct}%`;
     if (ui.fov) ui.fov.textContent = fovTxt;
-    if (ui.cov) ui.cov.textContent = covers ? "COV: YES" : "COV: NO";
+    if (ui.cov) ui.cov.textContent = covers ? "Meridional COV: YES" : "Meridional COV: NO";
 
     if (ui.eflTop) ui.eflTop.textContent = ui.efl?.textContent || `EFL: ${efl == null ? "—" : efl.toFixed(2)}mm`;
     if (ui.bflTop) ui.bflTop.textContent = ui.bfl?.textContent || `BFL: ${bfl == null ? "—" : bfl.toFixed(2)}mm`;
     if (ui.tstopTop) ui.tstopTop.textContent = ui.tstop?.textContent || `f/≈ ${T == null ? "—" : T.toFixed(2)}`;
     if (ui.fovTop) ui.fovTop.textContent = fovTxt;
-    if (ui.covTop) ui.covTop.textContent = ui.cov?.textContent || (covers ? "COV: YES" : "COV: NO");
+    if (ui.covTop) ui.covTop.textContent = ui.cov?.textContent || (covers ? "Meridional COV: YES" : "Meridional COV: NO");
 
     if (!_safeModeActive && reachedIMSCount === 0 && ui.footerWarn) {
       const reasonTxt = Object.entries(failReasonCounts)
@@ -5463,7 +5435,7 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
     pctx.fillStyle = hasImg ? "#000" : "#fff";
     pctx.fillRect(0, 0, Wc, Hc);
 
-    if (!preview.worldReady) {
+    if (!preview.worldReady && document.getElementById("previewCompare")?.value !== "original") {
       pctx.fillStyle = "rgba(255,255,255,.65)";
       pctx.font = "12px " + (getComputedStyle(document.documentElement).getPropertyValue("--mono") || "ui-monospace");
       pctx.fillText("Preview: render first", 18, 24);
@@ -5483,14 +5455,32 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
     pctx.rect(sr0.x, sr0.y, sr0.w, sr0.h);
     pctx.clip();
 
-    pctx.translate(cx + preview.view.panX, cy + preview.view.panY);
-    pctx.scale(preview.view.zoom, preview.view.zoom);
-
-    pctx.drawImage(
-      preview.worldCanvas,
-      -sr0.w * 0.5, -sr0.h * 0.5,
-      sr0.w, sr0.h
-    );
+    const comparison=document.getElementById("previewCompare")?.value || "simulation";
+    const crop = comparison === "center" || comparison === "corner";
+    pctx.translate(cx + (crop?0:preview.view.panX), cy + (crop?0:preview.view.panY));
+    pctx.scale(crop?1:preview.view.zoom, crop?1:preview.view.zoom);
+    if(comparison === "center" || comparison === "corner") {
+      // One rendered pixel per CSS pixel; crop without resampling.
+      const cw=Math.min(sr0.w,preview.worldCanvas.width),ch=Math.min(sr0.h,preview.worldCanvas.height);
+      const x=comparison==="center"?(preview.worldCanvas.width-cw)/2:preview.worldCanvas.width-cw;
+      const y=comparison==="center"?(preview.worldCanvas.height-ch)/2:preview.worldCanvas.height-ch;
+      pctx.imageSmoothingEnabled=false;
+      pctx.drawImage(preview.worldCanvas,x,y,cw,ch,-cw/2,-ch/2,cw,ch);
+    } else {
+      if(comparison!=="original") pctx.drawImage(preview.worldCanvas,-sr0.w/2,-sr0.h/2,sr0.w,sr0.h);
+      if((comparison==="original"||comparison==="split") && hasImg) {
+        pctx.save();
+        if(comparison==="split") {
+          const split=Number(document.getElementById("previewSplit")?.value||50)/100;
+          pctx.beginPath();pctx.rect(-sr0.w/2,-sr0.h/2,sr0.w*split,sr0.h);pctx.clip();
+        }
+        pctx.fillStyle="#000";pctx.fillRect(-sr0.w/2,-sr0.h/2,sr0.w,sr0.h);
+        const scale=Math.min(sr0.w/preview.imgCanvas.width,sr0.h/preview.imgCanvas.height);
+        const w=preview.imgCanvas.width*scale,h=preview.imgCanvas.height*scale;
+        pctx.drawImage(preview.imgCanvas,-w/2,-h/2,w,h);
+        pctx.restore();
+      }
+    }
 
     pctx.restore();
 
@@ -5761,7 +5751,7 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
       pctx.stroke();
       pctx.setLineDash([]);
 
-      const txt = `usable Ø${preview.usableCircle.diameterMm.toFixed(1)}mm`;
+      const txt = `pupil estimate Ø${preview.usableCircle.diameterMm.toFixed(1)}mm`;
       const off = barHalfW + tick10mm + 22;
       const tx = pPos.x + nx * off;
       const ty = pPos.y + ny * off;
@@ -5792,6 +5782,12 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
   }
 
   function bindPreviewViewControls() {
+    for(const id of ["previewCompare","previewSplit"]) document.getElementById(id)?.addEventListener("input",()=>{
+      preview.view.zoom=1;preview.view.panX=0;preview.view.panY=0;drawPreviewViewport();
+    });
+    document.getElementById("previewInfinity")?.addEventListener("click",()=>{
+      ui.prevObjDist.value="1000000000";focusRuntime.lastAutoKey="";scheduleRenderAll();scheduleRenderPreview();
+    });
     if (!previewCanvasEl) return;
     if (previewCanvasEl.dataset._pvBound === "1") return;
     previewCanvasEl.dataset._pvBound = "1";
@@ -6241,16 +6237,6 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
   }
 
   function clamp(x,a,b){ return x < a ? a : (x > b ? b : x); }
-  function srgbToLin(u){
-    u /= 255;
-    return (u <= 0.04045) ? (u/12.92) : Math.pow((u+0.055)/1.055, 2.4);
-  }
-  function linToSrgb(u){
-    u = Math.max(0, Math.min(1, u));
-    const v = (u <= 0.0031308) ? (12.92*u) : (1.055*Math.pow(u, 1/2.4) - 0.055);
-    return Math.round(v*255);
-  }
-
   function setNoUsableCircle(source = "") {
     preview.usableCircle = {
       valid: false,
@@ -6261,6 +6247,8 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
       source,
     };
     updateUsableCircleBadges();
+    const el=document.getElementById("previewCoverage");
+    if(el)el.textContent=`Traced coverage: ${source||"not rendered"} · usable image circle: unvalidated.`;
   }
 
   function setUsableCircleFromRadialCurve(radialMm, gainCurve, source = "curve") {
@@ -6401,21 +6389,22 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
 
   function getPreviewAutofocusSensorSamples(sensorHv, autofocusMode) {
     const h = Math.max(0, Number(sensorHv) || 0);
+    const sensor=getSensorWH(),w=h*sensor.w/sensor.h;
     if (autofocusMode === "chart-mid" && h > 1e-9) {
-      return [{ sy: h * 0.55, sz: 0, w: 1.00, label: "mid" }];
+      return [{ sy: w * 0.5, sz: h * 0.5, w: 1.00, label: "mid" }];
     }
     if (autofocusMode === "chart-edge" && h > 1e-9) {
-      return [{ sy: h * 0.80, sz: h * 0.80, w: 1.00, label: "edge" }];
+      return [{ sy: w, sz: h, w: 1.00, label: "edge" }];
     }
     if (autofocusMode === "chart-grid" && h > 1e-9) {
       return [
         { sy: 0,         sz: 0,         w: 1.00, label: "center" },
-        { sy: -h * 0.45, sz: 0,         w: 0.70, label: "left" },
-        { sy: h * 0.45,  sz: 0,         w: 0.70, label: "right" },
+        { sy: -w * 0.45, sz: 0,         w: 0.70, label: "left" },
+        { sy: w * 0.45,  sz: 0,         w: 0.70, label: "right" },
         { sy: 0,         sz: -h * 0.45, w: 0.70, label: "up" },
         { sy: 0,         sz: h * 0.45,  w: 0.70, label: "down" },
-        { sy: h * 0.62,  sz: h * 0.62,  w: 0.55, label: "corner+" },
-        { sy: -h * 0.62, sz: h * 0.62,  w: 0.55, label: "corner-" },
+        { sy: w * 0.62,  sz: h * 0.62,  w: 0.55, label: "corner+" },
+        { sy: -w * 0.62, sz: h * 0.62,  w: 0.55, label: "corner-" },
       ];
     }
     // chart-center + scene-center default to center-only focus target.
@@ -6431,58 +6420,10 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
     sy = 0,
     sz = 0,
   }) {
-    computeVertices(surfaces, lensShift, sensorX);
-    const sensorPlaneX = getSensorPlaneX(surfaces, sensorX);
-    const stopIdx = findStopSurfaceIndex(surfaces);
-    const stopSurf = stopIdx >= 0 ? surfaces[stopIdx] : surfaces[0];
-    const stopAp = Math.max(1e-6, getSurfaceOpticalAp(stopSurf));
-    const xStop = Number(stopSurf?.vx || 0);
-    const xObjPlane = Number(surfaces?.[0]?.vx || 0) - objDist;
-    const startX = sensorPlaneX + 0.05;
-
-    const hits = [];
-    let raysUsed = 0;
-    for (const p of PREVIEW_FOCUS_PUPIL_POINTS) {
-      const py = p.y * stopAp;
-      const pz = p.z * stopAp;
-      const dir = normalize3({ x: xStop - startX, y: py - sy, z: pz - sz });
-      const tr = traceRayReverse3D({ p: { x: startX, y: sy, z: sz }, d: dir }, surfaces, wavePreset);
-      raysUsed++;
-      if (!tr || tr.vignetted || tr.tir || !tr.endRay) continue;
-      const hitObj = intersectPlaneX3D(tr.endRay, xObjPlane);
-      if (!hitObj) continue;
-      hits.push(hitObj);
-    }
-
-    const hitRate = raysUsed > 0 ? (hits.length / raysUsed) : 0;
-    if (hits.length < 4) {
-      return {
-        ok: false,
-        sensorPlaneX,
-        rmsMm: null,
-        hitRate,
-        raysUsed,
-        validHits: hits.length,
-        centroidY: null,
-        centroidZ: null,
-      };
-    }
-
-    const centroidY = hits.reduce((s, h) => s + h.y, 0) / hits.length;
-    const centroidZ = hits.reduce((s, h) => s + h.z, 0) / hits.length;
-    const rmsMm = Math.sqrt(
-      hits.reduce((acc, h) => acc + (h.y - centroidY) ** 2 + (h.z - centroidZ) ** 2, 0) / hits.length
-    );
-    return {
-      ok: true,
-      sensorPlaneX,
-      rmsMm,
-      hitRate,
-      raysUsed,
-      validHits: hits.length,
-      centroidY,
-      centroidZ,
-    };
+    return LBPreview.spot({...lens,surfaces}, {
+      nm:wavePresetToLambdaNm(wavePreset),distance:objDist>=1e8?Infinity:objDist,
+      lensShift,sensorShift:sensorX,fieldY:sy,fieldZ:sz,samples:64,
+    });
   }
 
   function evaluatePreviewFocusAtSensorX({
@@ -6611,8 +6552,8 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
       const sensorPlaneXCached = getSensorPlaneX(surfaces, cached);
       const stopIdxCached = findStopSurfaceIndex(surfaces);
       const stopSurfCached = stopIdxCached >= 0 ? surfaces[stopIdxCached] : surfaces[0];
-      const xObjPlaneCached = Number(surfaces?.[0]?.vx || 0) - objDistMm;
-      const startXCached = sensorPlaneXCached + 0.05;
+      const xObjPlaneCached = -objDistMm;
+      const startXCached = sensorPlaneXCached;
       const xStopCached = Number(stopSurfCached?.vx || 0);
       return {
         sensorX: cached,
@@ -6672,7 +6613,8 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
       }
     }
 
-    for (let x = bestX - coarseStep; x <= bestX + coarseStep + 1e-9; x += fineStep) {
+    const fineCenter = bestX;
+    for (let x = fineCenter - coarseStep; x <= fineCenter + coarseStep + 1e-9; x += fineStep) {
       const ev = evaluateAtSensorX(x);
       if (!ev) break;
       if (ev.score < best.score) {
@@ -6688,8 +6630,8 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
     const bestSensorPlaneX = getSensorPlaneX(surfaces, bestX);
     const stopIdxBest = findStopSurfaceIndex(surfaces);
     const stopSurfBest = stopIdxBest >= 0 ? surfaces[stopIdxBest] : surfaces[0];
-    const xObjPlaneBest = Number(surfaces?.[0]?.vx || 0) - objDistMm;
-    const startXBest = bestSensorPlaneX + 0.05;
+    const xObjPlaneBest = -objDistMm;
+    const startXBest = bestSensorPlaneX;
     const xStopBest = Number(stopSurfBest?.vx || 0);
     const debugKey = `${key}|${bestX.toFixed(6)}|${Number(best?.rmsMm || 0).toFixed(6)}|${Number(best?.hitRate || 0).toFixed(4)}`;
     if (preview.focusAssist.debugKey !== debugKey) {
@@ -6738,7 +6680,7 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
     if (!Array.isArray(surfaces) || !surfaces.length) return null;
     if (!(sensorWv > 0) || !(sensorHv > 0) || !(imgAsp > 0)) return null;
 
-    const startX = sensorX + 0.05;
+    const startX = sensorX;
     const points = [
       { sx: -sensorWv * 0.5, sy: -sensorHv * 0.5 },
       { sx: 0,               sy: -sensorHv * 0.5 },
@@ -6755,12 +6697,13 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
     let maxObjY = 0;
     let used = 0;
 
+    const pose=focusPoseFromShift(getFocusShiftMm(),ui.focusMechanism?.value);
+    const c=LBPreview.pose({...lens,surfaces},wavePresetToLambdaNm(wavePreset),pose.lensShift,pose.sensorX);
     for (const pt of points) {
       const pS = { x: startX, y: pt.sx, z: pt.sy };
-      const dir = normalize3({ x: xStop - startX, y: -pt.sx, z: -pt.sy });
-      const tr = traceRayReverse3D({ p: pS, d: dir }, surfaces, wavePreset);
-      if (!tr || tr.vignetted || tr.tir || !tr.endRay) continue;
-      const hitObj = intersectPlaneX3D(tr.endRay, xObjPlane);
+      const ray=LBPreview.reverse(c,pS,{y:0,z:0});
+      if(!ray) continue;
+      const hitObj = intersectPlaneX3D(ray, xObjPlane);
       if (!hitObj) continue;
       maxObjX = Math.max(maxObjX, Math.abs(hitObj.y));
       maxObjY = Math.max(maxObjY, Math.abs(hitObj.z));
@@ -6774,65 +6717,25 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
     return { halfObjH: halfObjH * 1.03, used };
   }
 
-  function setUsableCircleFromRenderedPixels(outD, W, H, sensorW, sensorH) {
-    const baseCircle = (preview.usableCircle && preview.usableCircle.valid)
-      ? { ...preview.usableCircle }
-      : null;
 
-    if (!outD || !(W > 0) || !(H > 0) || !(sensorW > 0) || !(sensorH > 0)) {
-      setNoUsableCircle("pixels");
-      return;
+  function updatePreviewCoverage(survival,W,H,sensorW,sensorH) {
+    const n=32, sums=new Float64Array(n), counts=new Uint32Array(n);
+    const limit=Math.min(sensorW,sensorH)*.5;
+    let reached=0;
+    for(let y=0;y<H;y++) for(let x=0;x<W;x++) {
+      const r=Math.hypot(((x+.5)/W-.5)*sensorW,((y+.5)/H-.5)*sensorH);
+      const value=survival[y*W+x]; if(value>0) reached=Math.max(reached,r);
+      const i=Math.floor(r/limit*n); if(i<n){sums[i]+=value;counts[i]++;}
     }
-
-    const halfDiagMm = Math.hypot(sensorW, sensorH) * 0.5;
-    if (!(halfDiagMm > 0)) { setNoUsableCircle("pixels"); return; }
-
-    const bins = Math.max(96, Math.min(420, Math.round(halfDiagMm * 14)));
-    const sum = new Float64Array(bins);
-    const cnt = new Uint32Array(bins);
-
-    for (let py = 0; py < H; py++) {
-      const yMm = (0.5 - (py + 0.5) / H) * sensorH;
-      for (let px = 0; px < W; px++) {
-        const xMm = ((px + 0.5) / W - 0.5) * sensorW;
-        const rMm = Math.hypot(xMm, yMm);
-        const b = Math.min(bins - 1, Math.max(0, Math.floor((rMm / halfDiagMm) * (bins - 1))));
-        const o = (py * W + px) * 4;
-        const rr = outD[o] / 255;
-        const gg = outD[o + 1] / 255;
-        const bb = outD[o + 2] / 255;
-        const lum = 0.2126 * rr + 0.7152 * gg + 0.0722 * bb;
-        // Penalize clearly blue-dominant fringe, but keep neutral chart detail stable.
-        const blueDom = Math.max(0, bb - Math.max(rr, gg));
-        const usableScore = lum * (1 - 0.65 * blueDom);
-        sum[b] += usableScore;
-        cnt[b]++;
-      }
-    }
-
-    const rCurve = [];
-    const gCurve = [];
-    for (let b = 0; b < bins; b++) {
-      if (cnt[b] < 8) continue;
-      rCurve.push(((b + 0.5) / bins) * halfDiagMm);
-      gCurve.push(sum[b] / cnt[b]);
-    }
-    setUsableCircleFromRadialCurve(rCurve, gCurve, "pixels");
-
-    if (baseCircle && baseCircle.valid) {
-      if (!preview.usableCircle.valid) {
-        preview.usableCircle = baseCircle;
-        updateUsableCircleBadges();
-      } else if (preview.usableCircle.radiusMm > baseCircle.radiusMm) {
-        preview.usableCircle = baseCircle;
-        updateUsableCircleBadges();
-      }
-    }
+    let radius=0;
+    for(let i=0;i<n;i++){if(!counts[i]||sums[i]/counts[i]<.35)break;radius=(i+1)/n*limit;}
+    preview.usableCircle={valid:radius>0,diameterMm:radius*2,radiusMm:radius,source:"pupil survival estimate",tracedRadiusMm:reached};
+    updateUsableCircleBadges();
+    const el=document.getElementById("previewCoverage");
+    if(el)el.textContent=`Traced sensor radius ≤${reached.toFixed(2)}mm (rectangular sampled field) · annular-mean pupil-survival estimate Ø${(2*radius).toFixed(2)}mm, limited to sensor height · validated usable image circle: unavailable.`;
   }
 
  function performRenderPreview() {
-  let previewSeed=0x12345678;
-  const random=()=>{previewSeed=(Math.imul(1664525,previewSeed)+1013904223)>>>0;return previewSeed/4294967296;};
   if (!renderEngineEnabled) {
     hidePreviewProgress();
     finishPreviewRender();
@@ -6845,8 +6748,8 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
   syncActiveZoomConfigFromUI();
   if (!preview.worldCtx) preview.worldCtx = preview.worldCanvas.getContext("2d");
   const jobId = ++_previewRenderJobId;
-  setNoUsableCircle("pending");
 
+  const doDOF = !!document.getElementById("optDOF")?.checked;
   const doCA  = !!document.getElementById("optCA")?.checked;
   const q     = String(document.getElementById("renderQuality")?.value || "normal");
   const previewOrientation = getPreviewOrientation();
@@ -6856,10 +6759,10 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
     : (document.getElementById("optDOF")?.checked ? "quality" : "fast");
   const requestedPupilSamples = Math.round(Number(ui.pupilSamples?.value));
   const sppFallback = (q === "hq" ? 64 : (q === "draft" ? 12 : 28));
-  const spp = previewMode === "quality"
+  const spp = previewMode === "quality" && doDOF
     ? clamp(Number.isFinite(requestedPupilSamples) ? requestedPupilSamples : sppFallback, 8, 128)
     : 1;
-  const lutPupilSqrt = (q === "hq" ? 16 : (q === "draft" ? 10 : 14));
+
 
   const wavePreset = ui.wavePreset?.value || "d";
   const focusChartDistanceMm = getFocusChartDistanceMm() ?? 2000;
@@ -6881,7 +6784,7 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
   let xStop = Number(stopSurf?.vx || 0);
   let stopAp = Math.max(1e-6, getSurfaceOpticalAp(stopSurf));
 
-  let xObjPlane = (lens.surfaces[0]?.vx ?? 0) - focusChartDistanceMm;
+  let xObjPlane = -focusChartDistanceMm;
 
   const previewParaxFocused = estimateEflBflParaxial(lens.surfaces, wavePreset);
   let previewParax = previewParaxFocused;
@@ -6922,10 +6825,9 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
   }
 
   const baseRaw = Number(ui.prevRes?.value || 720);
-  const base = Math.max(64, Number.isFinite(baseRaw) ? baseRaw : 720);
+  const base = Math.min(1920, Math.max(64, Number.isFinite(baseRaw) ? baseRaw : 720));
   const aspect = sensorW / sensorH;
-  const W = Math.max(64, Math.round(base * aspect));
-  const H = Math.max(64, base);
+  const {width: W, height: H} = LBPreview.dimensions(base, aspect);
 
   const previewOverscan = OV_DEFAULT;
   const sensorWv = sensorW * previewOverscan;
@@ -6939,12 +6841,17 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
   const imgH = preview.imgCanvas.height;
   const imgData = hasImg ? preview.imgData : null;
   const autoFill = !!ui.previewAutoFit?.checked;
+  const meta=document.getElementById("previewMetadata");
+  if(meta) {
+    let opticsText="focal length/aperture unavailable";
+    try {const p=LBOptics.paraxial(LBOptics.compile(lens,wavePresetToLambdaNm(wavePreset)));opticsText=`EFL ${p.eflMm.toFixed(3)}mm · f/${p.fNumber.toFixed(3)}`;} catch {}
+    meta.textContent=`${opticsText} · object ${focusChartDistanceMm>=1e8?"∞":focusChartDistanceMm+"mm"} · ${focusCtx.focusMechanism} ${focusCtx.focusShiftMm.toFixed(4)}mm · ${spp>1?`Geometric / ${spp} pupil samples`:"Chief ray / PSF omitted"} · ${W}×${H} · EXPERIMENTAL`;
+  }
   const previewRenderKey = JSON.stringify({
     mode: previewMode,
     q,
     doCA,
     spp,
-    lutPupilSqrt,
     wavePreset,
     focusChartDistanceMm,
     focusMode: focusCtx.focusMode,
@@ -6960,6 +6867,9 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
     imgW,
     imgH,
     sourceMode: preview.sourceMode,
+    imageRevision: preview.imageRevision || 0,
+    prescription: lens.surfaces.map(({vx,...s})=>s),
+    doDOF,
     surfaces: (lens.surfaces || []).map((s) => [
       String(s?.type || ""),
       Number(s?.R ?? 0).toFixed(6),
@@ -6976,7 +6886,8 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
     return;
   }
   _forcePreviewRender = false;
-  preview.dirtyKey = previewRenderKey;
+  setNoUsableCircle("pending");
+  preview.dirtyKey = "";
 
   let focusInfo = {
     sensorX,
@@ -7033,35 +6944,6 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
   preview.debug.bestFocusCornerShiftMm = null;
   preview.debug.fieldCurvatureDeltaMm = null;
 
-  function sample(u, v) {
-    if (!hasImg) return [255, 255, 255, 255];
-    if (autoFill) {
-      u = clamp(u, 0, 1);
-      v = clamp(v, 0, 1);
-    } else if (u < 0 || u > 1 || v < 0 || v > 1) {
-      return [0, 0, 0, 255];
-    }
-
-    const x = u * (imgW - 1);
-    const y = v * (imgH - 1);
-    const x0 = Math.floor(x), y0 = Math.floor(y);
-    const x1 = Math.min(imgW - 1, x0 + 1);
-    const y1 = Math.min(imgH - 1, y0 + 1);
-    const tx = x - x0, ty = y - y0;
-
-    function px(ix, iy) {
-      const o = (iy * imgW + ix) * 4;
-      return [imgData[o], imgData[o + 1], imgData[o + 2], imgData[o + 3]];
-    }
-
-    const c00 = px(x0, y0), c10 = px(x1, y0), c01 = px(x0, y1), c11 = px(x1, y1);
-    const lerp = (a, b, t) => a + (b - a) * t;
-
-    const c0 = c00.map((v0, i) => lerp(v0, c10[i], tx));
-    const c1 = c01.map((v0, i) => lerp(v0, c11[i], tx));
-    return c0.map((v0, i) => lerp(v0, c1[i], ty));
-  }
-
   const imgAsp = hasImg ? (imgW / imgH) : (16 / 9);
   const objHManual = Number(ui.prevObjH?.value || 1650);
   const objWManual = Number(ui.prevObjW?.value || (objHManual * imgAsp));
@@ -7106,8 +6988,8 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
   function rmsMmToPreviewPx(rmsMm) {
     const mm = Number(rmsMm);
     if (!Number.isFinite(mm)) return null;
-    const pxPerMmX = W / Math.max(1e-9, 2 * halfObjW);
-    const pxPerMmY = H / Math.max(1e-9, 2 * halfObjH);
+    const pxPerMmX = W / sensorWv;
+    const pxPerMmY = H / sensorHv;
     const pxPerMm = Math.sqrt(pxPerMmX * pxPerMmY);
     return mm * pxPerMm;
   }
@@ -7248,48 +7130,6 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
     computeVertices(lens.surfaces, lensShift, sensorShift);
   }
 
-  function naturalCos4(rS) {
-    const dirChief0 = normalize3({ x: xStop - (sensorX + 0.05), y: -rS, z: 0 });
-    const cosT = clamp(Math.abs(dirChief0.x), 0, 1);
-    return Math.pow(cosT, 4);
-  }
-
-  function samplePupilDisk(u, v) {
-    // Shirley/Chiu concentric mapping
-    const a = (u * 2 - 1);
-    const b = (v * 2 - 1);
-    let r, phi;
-    if (a === 0 && b === 0) { r = 0; phi = 0; }
-    else if (Math.abs(a) > Math.abs(b)) { r = a; phi = (Math.PI / 4) * (b / a); }
-    else { r = b; phi = (Math.PI / 2) - (Math.PI / 4) * (a / b); }
-
-    const rr = Math.abs(r) * stopAp; // stopAp = semi-diameter
-    return { y: rr * Math.cos(phi), z: rr * Math.sin(phi) };
-  }
-
-  const taps = [
-    [0, 0],
-    [0.55, 0.15],
-    [-0.48, 0.36],
-    [0.25, -0.58],
-    [-0.28, -0.18],
-    [0.78, -0.22],
-    [-0.72, -0.44],
-    [0.12, 0.74],
-    [-0.14, -0.82],
-  ];
-
-  function requestPreviewFrame(fn) {
-    requestAnimationFrame(() => {
-      try {
-        fn();
-      } catch (e) {
-        finishPreviewRender();
-        handleRuntimeError("Preview stopped", e);
-      }
-    });
-  }
-
   if (Number.isFinite(focusChartDistanceMm) && focusChartDistanceMm > 0.1 && focusChartDistanceMm < 1e8) {
     updatePreviewFieldSpotDebug();
     sensorX = getSensorPlaneX(lens.surfaces, sensorShift);
@@ -7311,403 +7151,39 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
     preview.debug.fieldCurvatureDeltaMm = null;
   }
 
-  function renderFastLUT() {
-    const LUT_N = 900;
-    const WAVES = doCA ? ["c", "d", "g"] : [wavePreset, wavePreset, wavePreset];
-
-    const rObjLUT   = [new Float32Array(LUT_N), new Float32Array(LUT_N), new Float32Array(LUT_N)];
-    const transLUT  = [new Float32Array(LUT_N), new Float32Array(LUT_N), new Float32Array(LUT_N)];
-    const sigmaRadLUT = [new Float32Array(LUT_N), new Float32Array(LUT_N), new Float32Array(LUT_N)];
-    const sigmaTanLUT = [new Float32Array(LUT_N), new Float32Array(LUT_N), new Float32Array(LUT_N)];
-    const sigmaLUT  = [new Float32Array(LUT_N), new Float32Array(LUT_N), new Float32Array(LUT_N)];
-    const naturalLUT = new Float32Array(LUT_N);
-
-    const epsX = 0.05;
-    const startX = sensorX + epsX;
-
-    function lookup(ch, absR) {
-      const t = clamp(absR / rMaxSensor, 0, 1);
-      const x = t * (LUT_N - 1);
-      const i0 = Math.floor(x);
-      const i1 = Math.min(LUT_N - 1, i0 + 1);
-      const u = x - i0;
-      return {
-        rObj:   rObjLUT[ch][i0]   * (1 - u) + rObjLUT[ch][i1]   * u,
-        trans:  transLUT[ch][i0]  * (1 - u) + transLUT[ch][i1]  * u,
-        sigmaRad: sigmaRadLUT[ch][i0] * (1 - u) + sigmaRadLUT[ch][i1] * u,
-        sigmaTan: sigmaTanLUT[ch][i0] * (1 - u) + sigmaTanLUT[ch][i1] * u,
-        sigma:  sigmaLUT[ch][i0]  * (1 - u) + sigmaLUT[ch][i1]  * u,
-        nat:    naturalLUT[i0]    * (1 - u) + naturalLUT[i1]    * u,
-      };
-    }
-
-    // Build LUT in chunks (prevents freezing)
-    let k = 0;
-    const kPerFrame = (q === "hq") ? 18 : (q === "draft" ? 40 : 26);
-
-    function buildStep() {
-      if (!renderEngineEnabled || jobId !== _previewRenderJobId) {
-        hidePreviewProgress();
-        finishPreviewRender();
-        return;
-      }
-      const end = Math.min(LUT_N, k + kPerFrame);
-      setPreviewProgress(k / LUT_N, `LUT ${Math.round((k / LUT_N) * 100)}%`);
-
-      for (; k < end; k++) {
-        const a = k / (LUT_N - 1);
-        const rS = a * rMaxSensor;
-        const pS = { x: startX, y: rS, z: 0 };
-
-        naturalLUT[k] = naturalCos4(rS);
-
-        for (let ch = 0; ch < 3; ch++) {
-          const wave = WAVES[ch];
-
-          // chief ray -> object radius
-          {
-            const dirChief = normalize3({ x: xStop - startX, y: -rS, z: 0 });
-            const trC = traceRayReverse3D({ p: pS, d: dirChief }, lens.surfaces, wave);
-            if (!trC.vignetted && !trC.tir) {
-              const hitObj = intersectPlaneX3D(trC.endRay, xObjPlane);
-              rObjLUT[ch][k] = hitObj ? Math.hypot(hitObj.y, hitObj.z) : 0;
-            } else {
-              rObjLUT[ch][k] = 0;
-            }
-          }
-
-          // pupil sampling -> transmission + sigma
-          let ok = 0, total = 0;
-          let sumY = 0, sumZ = 0, sumYY = 0, sumZZ = 0;
-
-          for (let iy = 0; iy < lutPupilSqrt; iy++) {
-            for (let ix = 0; ix < lutPupilSqrt; ix++) {
-              const uu = (ix + random()) / lutPupilSqrt;
-              const vv = (iy + random()) / lutPupilSqrt;
-
-              const pp = samplePupilDisk(uu, vv);
-              const target = { x: xStop, y: pp.y, z: pp.z };
-              const dir = normalize3({ x: target.x - pS.x, y: target.y - pS.y, z: target.z - pS.z });
-
-              const tr = traceRayReverse3D({ p: pS, d: dir }, lens.surfaces, wave);
-              total++;
-              if (tr.vignetted || tr.tir) continue;
-
-              const hitObj = intersectPlaneX3D(tr.endRay, xObjPlane);
-              if (!hitObj) continue;
-
-              ok++;
-              sumY += hitObj.y; sumZ += hitObj.z;
-              sumYY += hitObj.y * hitObj.y;
-              sumZZ += hitObj.z * hitObj.z;
-            }
-          }
-
-          transLUT[ch][k] = total ? (ok / total) : 0;
-
-          if (ok > 2) {
-            const my = sumY / ok, mz = sumZ / ok;
-            const varY = Math.max(0, sumYY / ok - my * my);
-            const varZ = Math.max(0, sumZZ / ok - mz * mz);
-            sigmaRadLUT[ch][k] = Math.sqrt(varY);
-            sigmaTanLUT[ch][k] = Math.sqrt(varZ);
-            sigmaLUT[ch][k] = Math.sqrt(varY + varZ);
-            // Use centroid radius for mapping to preserve coma/field-curvature shifts
-            // better than chief-only mapping in fast mode.
-            rObjLUT[ch][k] = Math.hypot(my, mz);
-          } else {
-            sigmaRadLUT[ch][k] = 0;
-            sigmaTanLUT[ch][k] = 0;
-            sigmaLUT[ch][k] = 0;
-          }
-        }
-      }
-
-      if (k < LUT_N) {
-        requestPreviewFrame(buildStep);
-        return;
-      }
-
-      setUsableCircleFromLUT(transLUT[1], naturalLUT, rMaxSensor, previewOverscan);
-      const centerL = lookup(1, 0);
-      const centerSigmaRad = Number.isFinite(centerL?.sigmaRad) ? Number(centerL.sigmaRad) : Number(centerL?.sigma || 0);
-      const centerSigmaTan = Number.isFinite(centerL?.sigmaTan) ? Number(centerL.sigmaTan) : Number(centerL?.sigma || 0);
-      const pxPerMmX = W / Math.max(1e-9, 2 * halfObjW);
-      const pxPerMmY = H / Math.max(1e-9, 2 * halfObjH);
-      const centerKernelPx = (Number.isFinite(centerSigmaRad) || Number.isFinite(centerSigmaTan))
-        ? Math.max(centerSigmaRad * pxPerMmX, centerSigmaTan * pxPerMmY)
-        : null;
-      preview.debug.kernelPx = Number.isFinite(centerKernelPx) ? centerKernelPx : null;
-      if (!Number.isFinite(preview.debug.spotRmsPx) && Number.isFinite(centerKernelPx)) {
-        preview.debug.spotRmsPx = centerKernelPx;
-      }
-
-      // Allocate world canvas AFTER LUT is ready
-      preview.worldCanvas.width = W;
-      preview.worldCanvas.height = H;
-      preview.worldCtx = preview.worldCanvas.getContext("2d", { willReadFrequently: true });
-      const wctx = preview.worldCtx;
-
-      const out = wctx.createImageData(W, H);
-      const outD = out.data;
-      let litPixels = 0;
-
-      function objXYPhysical(L, sx, sy, rS) {
-        if (rS <= 1e-9) return { ox: 0, oy: 0 };
-        const s = L.rObj / rS;
-        // LUT gives radial magnitude only; reconstruct physical object-plane sign
-        // from sensor coords (sensor-real convention = inverted image).
-        return { ox: -sx * s, oy: -sy * s };
-      }
-
-      for (let py = 0; py < H; py++) {
-        const sy = (0.5 - (py + 0.5) / H) * sensorHv;
-
-        for (let px = 0; px < W; px++) {
-          const sx = ((px + 0.5) / W - 0.5) * sensorWv;
-          const rS = Math.hypot(sx, sy);
-          const idx = (py * W + px) * 4;
-
-          if (!doCA) {
-            const L = lookup(1, rS); // green basis
-            const gain = clamp(L.trans * L.nat, 0, 1);
-
-            if (gain < 1e-4) {
-              outD[idx] = 0; outD[idx + 1] = 0; outD[idx + 2] = 0; outD[idx + 3] = 255;
-              continue;
-            }
-
-            const p = objXYPhysical(L, sx, sy, rS);
-            const uv0 = objectHitToPreviewUV(p.ox, p.oy);
-            const sigmaBoost = 1.15;
-            const sigR = Math.max(0, Number(L.sigmaRad || L.sigma || 0) * sigmaBoost);
-            const sigT = Math.max(0, Number(L.sigmaTan || L.sigma || 0) * sigmaBoost);
-            const pNorm = Math.hypot(p.ox, p.oy);
-            const urx = pNorm > 1e-9 ? (p.ox / pNorm) : 1;
-            const ury = pNorm > 1e-9 ? (p.oy / pNorm) : 0;
-            const utx = -ury;
-            const uty = urx;
-
-            if (sigR < 1e-4 && sigT < 1e-4) {
-              const c = sample(uv0.u, uv0.v);
-              outD[idx]     = clamp(c[0] * gain, 0, 255);
-              outD[idx + 1] = clamp(c[1] * gain, 0, 255);
-              outD[idx + 2] = clamp(c[2] * gain, 0, 255);
-              outD[idx + 3] = 255;
-              if (outD[idx] > 0 || outD[idx + 1] > 0 || outD[idx + 2] > 0) litPixels++;
-            } else {
-              let r = 0, g = 0, b = 0;
-              for (let t = 0; t < taps.length; t++) {
-                const o = taps[t];
-                const ox = p.ox + urx * (o[0] * sigR) + utx * (o[1] * sigT);
-                const oy = p.oy + ury * (o[0] * sigR) + uty * (o[1] * sigT);
-                const uv = objectHitToPreviewUV(ox, oy);
-                const c = sample(uv.u, uv.v);
-                r += c[0]; g += c[1]; b += c[2];
-              }
-              const inv = 1 / taps.length;
-              outD[idx]     = clamp(r * inv * gain, 0, 255);
-              outD[idx + 1] = clamp(g * inv * gain, 0, 255);
-              outD[idx + 2] = clamp(b * inv * gain, 0, 255);
-              outD[idx + 3] = 255;
-              if (outD[idx] > 0 || outD[idx + 1] > 0 || outD[idx + 2] > 0) litPixels++;
-            }
-            continue;
-          }
-
-          // CA path (with sigma blur per channel)
-          const Lr = lookup(0, rS);
-          const Lg = lookup(1, rS);
-          const Lb = lookup(2, rS);
-
-          const gr = clamp(Lr.trans * Lr.nat, 0, 1);
-          const gg = clamp(Lg.trans * Lg.nat, 0, 1);
-          const gb = clamp(Lb.trans * Lb.nat, 0, 1);
-
-          if (gr < 1e-4 && gg < 1e-4 && gb < 1e-4) {
-            outD[idx] = 0; outD[idx + 1] = 0; outD[idx + 2] = 0; outD[idx + 3] = 255;
-            continue;
-          }
-
-          function chanSample(L, sx, sy, rS, chGain, chIndex){
-            const p = objXYPhysical(L, sx, sy, rS);
-            const uv0 = objectHitToPreviewUV(p.ox, p.oy);
-            const sigmaBoost = 1.15;
-            const sigR = Math.max(0, Number(L.sigmaRad || L.sigma || 0) * sigmaBoost);
-            const sigT = Math.max(0, Number(L.sigmaTan || L.sigma || 0) * sigmaBoost);
-            const pNorm = Math.hypot(p.ox, p.oy);
-            const urx = pNorm > 1e-9 ? (p.ox / pNorm) : 1;
-            const ury = pNorm > 1e-9 ? (p.oy / pNorm) : 0;
-            const utx = -ury;
-            const uty = urx;
-
-            if (sigR < 1e-4 && sigT < 1e-4) {
-              const c = sample(uv0.u, uv0.v);
-              return clamp(c[chIndex] * chGain, 0, 255);
-            }
-
-            let acc = 0;
-            for (let t = 0; t < taps.length; t++){
-              const o = taps[t];
-              const ox = p.ox + urx * (o[0] * sigR) + utx * (o[1] * sigT);
-              const oy = p.oy + ury * (o[0] * sigR) + uty * (o[1] * sigT);
-              const uv = objectHitToPreviewUV(ox, oy);
-              const c = sample(uv.u, uv.v);
-              acc += c[chIndex];
-            }
-            return clamp((acc / taps.length) * chGain, 0, 255);
-          }
-
-          outD[idx]     = chanSample(Lr, sx, sy, rS, gr, 0);
-          outD[idx + 1] = chanSample(Lg, sx, sy, rS, gg, 1);
-          outD[idx + 2] = chanSample(Lb, sx, sy, rS, gb, 2);
-          outD[idx + 3] = 255;
-          if (outD[idx] > 0 || outD[idx + 1] > 0 || outD[idx + 2] > 0) litPixels++;
-        }
-      }
-
-      setUsableCircleFromRenderedPixels(outD, W, H, sensorW, sensorH);
-
-      wctx.putImageData(out, 0, 0);
-      preview.worldReady = true;
-      if (litPixels <= 0) {
-        console.warn("[preview-black]", {
-          reason: "all_pixels_black_fast_lut",
-          mode: "fast",
-          activeZoomConfig: Number.isFinite(Number(lens?.zoom?.activeConfig)) ? Number(lens.zoom.activeConfig) : null,
-          activeZoomLabel: String(lens?.zemax?.currentConfigLabel || "—"),
-        });
-      }
-      hidePreviewProgress();
-      drawPreviewViewport();
-      finishPreviewRender();
-    }
-
-    requestPreviewFrame(buildStep);
-  }
-
   function renderDOFPath() {
-    // allocate render target
-    preview.worldCanvas.width  = W;
-    preview.worldCanvas.height = H;
-    const wctx = preview.worldCanvas.getContext("2d", { willReadFrequently: true });
-    preview.worldCtx = wctx;
-
-    const out  = wctx.createImageData(W, H);
-    const outD = out.data;
-    let litPixels = 0;
-
-    const epsX   = 0.05;
-    const startX = sensorX + epsX;
-
-    const WAVES = doCA ? ["c","d","g"] : [wavePreset, wavePreset, wavePreset];
-
-    let row = 0;
-    const rowsPerChunk = (q === "hq") ? 10 : (q === "draft" ? 24 : 16);
-
-    function step() {
-      if (!renderEngineEnabled || jobId !== _previewRenderJobId) {
-        hidePreviewProgress();
-        finishPreviewRender();
-        return;
-      }
-      const yEnd = Math.min(H, row + rowsPerChunk);
-      setPreviewProgress(row / H, `DOF ${Math.round((row / H) * 100)}%`);
-
-      for (; row < yEnd; row++) {
-        const sy = (0.5 - (row + 0.5) / H) * sensorHv;
-
-        for (let col = 0; col < W; col++) {
-          const sx = ((col + 0.5) / W - 0.5) * sensorWv;
-          const rS = Math.hypot(sx, sy);
-
-          const nat = naturalCos4(rS);
-
-          let accR = 0, accG = 0, accB = 0;
-          let wSum = 0;
-
-          for (let s = 0; s < spp; s++) {
-            const jx = (random() - 0.5) * (sensorWv / W) * 0.6;
-            const jy = (random() - 0.5) * (sensorHv / H) * 0.6;
-
-            const pS = { x: startX, y: sx + jx, z: sy + jy };
-
-            const pp = samplePupilDisk(random(), random());
-            const target = { x: xStop, y: pp.y, z: pp.z };
-            const dir0 = normalize3({ x: target.x - pS.x, y: target.y - pS.y, z: target.z - pS.z });
-
-            let colLin = [0, 0, 0];
-            let okAny = false;
-
-            for (let ch = 0; ch < 3; ch++) {
-              const wave = WAVES[ch];
-              const tr = traceRayReverse3D({ p: pS, d: dir0 }, lens.surfaces, wave);
-              if (tr.vignetted || tr.tir) continue;
-
-              const hitObj = intersectPlaneX3D(tr.endRay, xObjPlane);
-              if (!hitObj) continue;
-
-              const uv = objectHitToPreviewUV(hitObj.y, hitObj.z);
-              const c  = sample(uv.u, uv.v);
-
-              colLin[ch] = srgbToLin(c[ch]);
-              okAny = true;
-            }
-
-            if (!okAny) continue;
-
-            const w = nat;
-            accR += colLin[0] * w;
-            accG += colLin[1] * w;
-            accB += colLin[2] * w;
-            wSum += w;
-          }
-
-          const idx = (row * W + col) * 4;
-          if (wSum <= 1e-9) {
-            outD[idx] = 0; outD[idx + 1] = 0; outD[idx + 2] = 0; outD[idx + 3] = 255;
-          } else {
-            outD[idx]     = linToSrgb(accR / wSum);
-            outD[idx + 1] = linToSrgb(accG / wSum);
-            outD[idx + 2] = linToSrgb(accB / wSum);
-            outD[idx + 3] = 255;
-            if (outD[idx] > 0 || outD[idx + 1] > 0 || outD[idx + 2] > 0) litPixels++;
-          }
-        }
-      }
-
-      wctx.putImageData(out, 0, 0);
-      preview.worldReady = true;
-      drawPreviewViewport();
-
-      if (row < H) requestPreviewFrame(step);
-      else {
-        setUsableCircleFromRenderedPixels(outD, W, H, sensorW, sensorH);
-        if (litPixels <= 0) {
-          console.warn("[preview-black]", {
-            reason: "all_pixels_black_quality_dof",
-            mode: "quality",
-            activeZoomConfig: Number.isFinite(Number(lens?.zoom?.activeConfig)) ? Number(lens.zoom.activeConfig) : null,
-            activeZoomLabel: String(lens?.zemax?.currentConfigLabel || "—"),
-          });
-        }
-        hidePreviewProgress();
-        drawPreviewViewport();
-        finishPreviewRender();
-      }
-    }
-
-    requestPreviewFrame(step);
+    const waves=doCA?["c","d","g"]:[wavePreset];
+    const compiled=waves.map(w=>LBPreview.pose(lens,wavePresetToLambdaNm(w),lensShift,sensorShift));
+    const worker=new Worker(new URL("./optics/preview-worker.js",document.baseURI));
+    activePreviewWorker=worker;
+    const poll=()=>{
+      if(activePreviewWorker!==worker)return;
+      if(!renderEngineEnabled||jobId!==_previewRenderJobId){hidePreviewProgress();finishPreviewRender();return;}
+      setTimeout(poll,30);
+    };
+    poll();
+    worker.onerror=event=>{hidePreviewProgress();finishPreviewRender();handleRuntimeError("Preview worker stopped",new Error(event.message));};
+    worker.onmessage=({data})=>{
+      if(activePreviewWorker!==worker)return;
+      if(!renderEngineEnabled||jobId!==_previewRenderJobId){hidePreviewProgress();finishPreviewRender();return;}
+      if(data.error){hidePreviewProgress();finishPreviewRender();handleRuntimeError("Preview unavailable",new Error(data.error));return;}
+      if(data.progress!=null){setPreviewProgress(data.progress,`Geometric ${Math.round(data.progress*100)}%`);return;}
+      preview.worldCanvas.width=W;preview.worldCanvas.height=H;
+      preview.worldCtx=preview.worldCanvas.getContext("2d",{willReadFrequently:true});
+      preview.worldCtx.putImageData(new ImageData(data.output,W,H),0,0);
+      preview.worldReady=true;preview.dirtyKey=previewRenderKey;
+      updatePreviewCoverage(data.survival,W,H,sensorWv,sensorHv);
+      hidePreviewProgress();drawPreviewViewport();finishPreviewRender();
+    };
+    setPreviewProgress(0,"Geometric 0%");
+    worker.postMessage({W,H,sensorW:sensorWv,sensorH:sensorHv,sensorX,halfObjW,halfObjH,
+      distance:focusChartDistanceMm,orientation:previewOrientation,spp,doCA,imgW,imgH,imgData,compiled});
   }
 
   // --- run ---
   preview.worldReady = false;
 
-  if (previewMode === "fast") {
-    renderFastLUT();
-  } else {
-    renderDOFPath();
-  }
+  renderDOFPath();
   }
 
   // -------------------- toolbar actions: Scale → FL, Set f/ --------------------
@@ -8040,8 +7516,7 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
   async function togglePreviewFullscreen() {
     await togglePaneFullscreen(ui.previewPane);
     setTimeout(() => {
-      resizePreviewCanvasToCSS();
-      if (preview.ready) scheduleRenderPreview();
+      drawPreviewViewport();
     }, 50);
   }
 
@@ -8145,6 +7620,7 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
   }
 
   async function setPreviewSourceMode(modeRaw) {
+    previewFiles.next();
     const mode = String(modeRaw || "").toLowerCase() === "custom" ? "custom" : "chart";
     const url = getPreviewSourceUrl(mode);
     if (!url) {
@@ -8162,7 +7638,14 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
     return true;
   }
 
+  const previewLoads = LBPreview.latest();
+  const previewFiles = LBPreview.latest();
   function loadPreviewImageFromURL(url, opts = {}) {
+    const loadId = previewLoads.next();
+    _previewRenderJobId++;
+    preview.ready=false;preview.worldReady=false;preview.imgData=null;preview.dirtyKey="";
+    if(activePreviewWorker){hidePreviewProgress();finishPreviewRender();}
+    drawPreviewViewport();
     return new Promise((resolve, reject) => {
       const sourceUrl = String(url || "").trim();
       if (!sourceUrl) {
@@ -8181,15 +7664,19 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
       const img = new Image();
       img.crossOrigin = "anonymous";
       img.onload = () => {
-        preview.img = img;
+        if (!previewLoads.current(loadId)) { resolve(false); return; }
+        preview.imageRevision = (preview.imageRevision || 0) + 1;
+        preview.img = null; // Keep the bounded canvas, not an additional full-resolution decoded bitmap.
 
-        preview.imgCanvas.width = img.naturalWidth || img.width;
-        preview.imgCanvas.height = img.naturalHeight || img.height;
+        const sourceW=img.naturalWidth||img.width,sourceH=img.naturalHeight||img.height;
+        const scale=Math.min(1,1920/Math.max(sourceW,sourceH));
+        preview.imgCanvas.width = Math.max(1,Math.round(sourceW*scale));
+        preview.imgCanvas.height = Math.max(1,Math.round(sourceH*scale));
         preview.imgCtx.setTransform(1, 0, 0, 1, 0, 0);
         preview.imgCtx.imageSmoothingEnabled = true;
         preview.imgCtx.imageSmoothingQuality = "high";
         preview.imgCtx.clearRect(0, 0, preview.imgCanvas.width, preview.imgCanvas.height);
-        preview.imgCtx.drawImage(img, 0, 0);
+        preview.imgCtx.drawImage(img, 0, 0, preview.imgCanvas.width, preview.imgCanvas.height);
 
         const id = preview.imgCtx.getImageData(0, 0, preview.imgCanvas.width, preview.imgCanvas.height);
         preview.imgData = id.data;
@@ -8205,6 +7692,7 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
         resolve(true);
       };
       img.onerror = (e) => {
+        if (!previewLoads.current(loadId)) { resolve(false); return; }
         if (ui.footerWarn) ui.footerWarn.textContent = `Preview image load failed: ${sourceUrl}`;
         reject(e);
       };
@@ -8213,9 +7701,15 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
   }
 
   function loadPreviewImageFromFile(file) {
+    const fileId = previewFiles.next();
+    previewLoads.next();
+    _previewRenderJobId++;preview.ready=false;preview.worldReady=false;preview.imgData=null;preview.dirtyKey="";
+    if(activePreviewWorker){hidePreviewProgress();finishPreviewRender();}
+    drawPreviewViewport();
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.onload = () => {
+        if (!previewFiles.current(fileId)) { resolve(false); return; }
         const url = String(reader.result || "");
         preview.sourceUrls.custom = url;
         setPreviewSourceMode("custom").then(resolve).catch(reject);
@@ -8587,6 +8081,13 @@ function wireUI() {
   // toolbar buttons
   on("#btnNew", "click", newClearLens);
   on("#btnLoadOmit", "click", () => loadLens(omit50ConceptV1()));
+  on("#btnLoadOmitBest", "click", async () => {
+    if(await loadLensFromURL("./lenses/omit50-best.json")) {
+      ui.prevObjDist.value="1000000000";
+      scheduleRenderAll();scheduleRenderPreview();
+      toast("Recovered OMIT 50 Best loaded at its saved infinity image plane; no optimization performed.");
+    }
+  });
   on("#btnLoadDemo", "click", () => loadLens(demoLensSimple()));
   on("#btnPasteZmx", "click", openZmxPasteModal);
 
@@ -8740,9 +8241,8 @@ function wireUI() {
   // resize
   window.addEventListener("resize", () => {
     resizeCanvasToCSS();
-    resizePreviewCanvasToCSS();
+    drawPreviewViewport();
     scheduleRenderAll();
-    if (preview.ready) scheduleRenderPreview();
   });
 
   window.addEventListener("pagehide", () => {

@@ -1,6 +1,6 @@
 {
   "name": "lensbuilder2027",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "private": true,
   "scripts": {
     "test": "node --test tests/*.test.cjs",
@@ -21,7 +21,8 @@
     "benchmark:studio": "node tools/benchmark-studio.cjs",
     "benchmark:challenge": "node tools/benchmark-challenge.cjs",
     "benchmark:seed-quality": "node tools/benchmark-seed-quality.cjs",
-    "analyze:challenge": "node tools/analyze-challenge.cjs"
+    "analyze:challenge": "node tools/analyze-challenge.cjs",
+    "benchmark:preview": "node tools/benchmark-preview.cjs"
   },
   "engines": {
     "node": ">=20"

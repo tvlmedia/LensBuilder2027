@@ -1,0 +1,306 @@
+{
+  "fixture": "benchmarks/physical-omit50.json#system",
+  "nominal": {
+    "eflMm": 50,
+    "fNumber": 2,
+    "targetImageCircleMm": 46.3
+  },
+  "paraxial": {
+    "matrix": [
+      0.5732565514035116,
+      39.14259642746879,
+      -0.02000773723651214,
+      0.37826905840580494
+    ],
+    "eflMm": 49.98066438892945,
+    "bflMm": 28.651743304453994,
+    "fflMm": -18.906138856896888,
+    "frontPrincipalMm": 31.07452553203256,
+    "rearPrincipalMm": 28.413119200224408,
+    "entrancePupilXMm": 33.440638547347376,
+    "entrancePupilRadiusMm": 12.495166097232364,
+    "fNumber": 1.9999999999999998,
+    "preStop": [
+      0.6723914420399206,
+      22.485199175586658,
+      -0.012864336706733778,
+      1.057037288771862
+    ],
+    "imageDistanceMm": 27.090728005068087,
+    "tStop": null
+  },
+  "cases": [
+    {
+      "objectDistanceMm": "infinity",
+      "focus": {
+        "ok": true,
+        "x": -0.1689453125,
+        "score": 0.09182192470581717,
+        "evaluations": 78,
+        "reason": null
+      },
+      "nominalPoseCenter": {
+        "ok": true,
+        "rmsMm": 0.09698737902293245,
+        "hitRate": 1,
+        "raysUsed": 256,
+        "validHits": 256,
+        "centroidY": 0.00018318317720889292,
+        "centroidZ": -0.00023718822884223308,
+        "sensorPlaneX": 76.83276828976794
+      },
+      "fields": [
+        {
+          "nominalImageHeightMm": 0,
+          "ok": true,
+          "rmsMm": 0.09184043930736346,
+          "hitRate": 1,
+          "raysUsed": 256,
+          "validHits": 256,
+          "centroidY": 0.0002332865593767342,
+          "centroidZ": -0.0003179425486318332,
+          "sensorPlaneX": 76.83276828976794
+        },
+        {
+          "nominalImageHeightMm": 11.575,
+          "ok": true,
+          "rmsMm": 0.1552047325625139,
+          "hitRate": 1,
+          "raysUsed": 256,
+          "validHits": 256,
+          "centroidY": 11.285920289001378,
+          "centroidZ": -0.0006938306578296124,
+          "sensorPlaneX": 76.83276828976794
+        },
+        {
+          "nominalImageHeightMm": 23.15,
+          "ok": true,
+          "rmsMm": 0.37754642216668854,
+          "hitRate": 0.95703125,
+          "raysUsed": 256,
+          "validHits": 245,
+          "centroidY": 23.07600035373891,
+          "centroidZ": -0.0012894929841885967,
+          "sensorPlaneX": 76.83276828976794
+        }
+      ],
+      "preview": [
+        {
+          "mode": "DOF off / chief ray (no PSF)",
+          "spp": 1,
+          "sensorRadiusMm": 0,
+          "survival": 1,
+          "rms": 0,
+          "units": "object direction slope",
+          "note": "Not an image-space spot radius or calibrated illumination"
+        },
+        {
+          "mode": "DOF off / chief ray (no PSF)",
+          "spp": 1,
+          "sensorRadiusMm": 23.15,
+          "survival": 1,
+          "rms": 0,
+          "units": "object direction slope",
+          "note": "Not an image-space spot radius or calibrated illumination"
+        },
+        {
+          "mode": "DOF on / geometric",
+          "spp": 16,
+          "sensorRadiusMm": 0,
+          "survival": 1,
+          "rms": 0.0018866737715966225,
+          "units": "object direction slope",
+          "note": "Not an image-space spot radius or calibrated illumination"
+        },
+        {
+          "mode": "DOF on / geometric",
+          "spp": 16,
+          "sensorRadiusMm": 23.15,
+          "survival": 0.9375,
+          "rms": 0.007477959256543407,
+          "units": "object direction slope",
+          "note": "Not an image-space spot radius or calibrated illumination"
+        },
+        {
+          "mode": "DOF on / geometric",
+          "spp": 32,
+          "sensorRadiusMm": 0,
+          "survival": 1,
+          "rms": 0.0018938114419144586,
+          "units": "object direction slope",
+          "note": "Not an image-space spot radius or calibrated illumination"
+        },
+        {
+          "mode": "DOF on / geometric",
+          "spp": 32,
+          "sensorRadiusMm": 23.15,
+          "survival": 0.96875,
+          "rms": 0.0076450813775597775,
+          "units": "object direction slope",
+          "note": "Not an image-space spot radius or calibrated illumination"
+        },
+        {
+          "mode": "DOF on / geometric",
+          "spp": 64,
+          "sensorRadiusMm": 0,
+          "survival": 1,
+          "rms": 0.001895380282326209,
+          "units": "object direction slope",
+          "note": "Not an image-space spot radius or calibrated illumination"
+        },
+        {
+          "mode": "DOF on / geometric",
+          "spp": 64,
+          "sensorRadiusMm": 23.15,
+          "survival": 0.9375,
+          "rms": 0.0075141183296975065,
+          "units": "object direction slope",
+          "note": "Not an image-space spot radius or calibrated illumination"
+        }
+      ]
+    },
+    {
+      "objectDistanceMm": 2000,
+      "focus": {
+        "ok": true,
+        "x": -1.328125,
+        "score": 0.09577333345870695,
+        "evaluations": 78,
+        "reason": null
+      },
+      "nominalPoseCenter": {
+        "ok": true,
+        "rmsMm": 0.2573315476674762,
+        "hitRate": 1,
+        "raysUsed": 256,
+        "validHits": 256,
+        "centroidY": -0.00014069945547152648,
+        "centroidZ": 0.00028738253440476787,
+        "sensorPlaneX": 76.83276828976794
+      },
+      "fields": [
+        {
+          "nominalImageHeightMm": 0,
+          "ok": true,
+          "rmsMm": 0.0957924628502615,
+          "hitRate": 1,
+          "raysUsed": 256,
+          "validHits": 256,
+          "centroidY": 0.00024298940046314256,
+          "centroidZ": -0.0003310127355937653,
+          "sensorPlaneX": 76.83276828976794
+        },
+        {
+          "nominalImageHeightMm": 11.575,
+          "ok": true,
+          "rmsMm": 0.15527776593121895,
+          "hitRate": 1,
+          "raysUsed": 256,
+          "validHits": 256,
+          "centroidY": 11.382720499198493,
+          "centroidZ": -0.000710196973590119,
+          "sensorPlaneX": 76.83276828976794
+        },
+        {
+          "nominalImageHeightMm": 23.15,
+          "ok": true,
+          "rmsMm": 0.3634496446750451,
+          "hitRate": 0.98046875,
+          "raysUsed": 256,
+          "validHits": 251,
+          "centroidY": 23.195548621330314,
+          "centroidZ": -0.002125572233674348,
+          "sensorPlaneX": 76.83276828976794
+        }
+      ],
+      "preview": [
+        {
+          "mode": "DOF off / chief ray (no PSF)",
+          "spp": 1,
+          "sensorRadiusMm": 0,
+          "survival": 1,
+          "rms": 0,
+          "units": "object-space mm",
+          "note": "Not an image-space spot radius or calibrated illumination"
+        },
+        {
+          "mode": "DOF off / chief ray (no PSF)",
+          "spp": 1,
+          "sensorRadiusMm": 23.15,
+          "survival": 1,
+          "rms": 0,
+          "units": "object-space mm",
+          "note": "Not an image-space spot radius or calibrated illumination"
+        },
+        {
+          "mode": "DOF on / geometric",
+          "spp": 16,
+          "sensorRadiusMm": 0,
+          "survival": 1,
+          "rms": 3.8984707313231572,
+          "units": "object-space mm",
+          "note": "Not an image-space spot radius or calibrated illumination"
+        },
+        {
+          "mode": "DOF on / geometric",
+          "spp": 16,
+          "sensorRadiusMm": 23.15,
+          "survival": 1,
+          "rms": 14.866472626039867,
+          "units": "object-space mm",
+          "note": "Not an image-space spot radius or calibrated illumination"
+        },
+        {
+          "mode": "DOF on / geometric",
+          "spp": 32,
+          "sensorRadiusMm": 0,
+          "survival": 1,
+          "rms": 3.913108496343864,
+          "units": "object-space mm",
+          "note": "Not an image-space spot radius or calibrated illumination"
+        },
+        {
+          "mode": "DOF on / geometric",
+          "spp": 32,
+          "sensorRadiusMm": 23.15,
+          "survival": 0.96875,
+          "rms": 14.622703669390134,
+          "units": "object-space mm",
+          "note": "Not an image-space spot radius or calibrated illumination"
+        },
+        {
+          "mode": "DOF on / geometric",
+          "spp": 64,
+          "sensorRadiusMm": 0,
+          "survival": 1,
+          "rms": 3.9163213003388964,
+          "units": "object-space mm",
+          "note": "Not an image-space spot radius or calibrated illumination"
+        },
+        {
+          "mode": "DOF on / geometric",
+          "spp": 64,
+          "sensorRadiusMm": 23.15,
+          "survival": 0.953125,
+          "rms": 14.383324639826046,
+          "units": "object-space mm",
+          "note": "Not an image-space spot radius or calibrated illumination"
+        }
+      ],
+      "observedV11BrowserFocus": {
+        "shiftMm": -1.7504,
+        "warning": "max iterations reached",
+        "sensorSpot": {
+          "ok": true,
+          "rmsMm": 0.12232363604761942,
+          "hitRate": 1,
+          "raysUsed": 256,
+          "validHits": 256,
+          "centroidY": 0.00036497980584333355,
+          "centroidZ": -0.0005276259200893032,
+          "sensorPlaneX": 76.83276828976794
+        }
+      }
+    }
+  ]
+}
