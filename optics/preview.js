@@ -50,7 +50,8 @@
       if(hits.length<4||hitRate<.3) return {ok:false,rmsMm:null,hitRate,raysUsed:samples,validHits:hits.length};
       const y=hits.reduce((a,h)=>a+h.y,0)/hits.length,z=hits.reduce((a,h)=>a+h.z,0)/hits.length;
       const rmsMm=Math.sqrt(hits.reduce((a,h)=>a+(h.y-y)**2+(h.z-z)**2,0)/hits.length);
-      return {ok:true,rmsMm,hitRate,raysUsed:samples,validHits:hits.length,centroidY:y,centroidZ:z,sensorPlaneX:c.imageX};
+      const rmsY=Math.sqrt(hits.reduce((a,h)=>a+(h.y-y)**2,0)/hits.length),rmsZ=Math.sqrt(hits.reduce((a,h)=>a+(h.z-z)**2,0)/hits.length);
+      return {ok:true,rmsMm,rmsY,rmsZ,hitRate,raysUsed:samples,validHits:hits.length,centroidY:y,centroidZ:z,sensorPlaneX:c.imageX};
     } catch(e) { return {ok:false,rmsMm:null,hitRate:0,raysUsed:0,validHits:0,reason:e.message}; }
   }
   function reverse(c, sensor, pupil) {
