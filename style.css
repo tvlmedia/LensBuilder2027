@@ -821,3 +821,9 @@ input:disabled {
   .right .canvasSplit{height:auto;}
   .right .pane{min-height:420px;}
 }
+
+.omitComparison { padding: 8px 12px; overflow: auto; flex: 0 1 auto; max-height: 40vh; font-size: 13px; }
+.omitComparison summary { cursor: pointer; font-weight: 600; }
+.omitComparison table { width: 100%; }
+.omitComparison td, .omitComparison th { padding: 3px; text-align: right; }
+.omitComparison th:first-child { text-align: left; }

@@ -15,6 +15,7 @@
   <header class="topbar" role="banner">
     <div class="brand" aria-label="TVL Lens Builder">
       <div class="dot" aria-hidden="true"></div>
+      <strong id="appVersion"></strong>
       <div class="brandText">
         <div class="title">Meridional Raytracer (2D)</div>
         <div class="subtitle">OSLO-ish doorsnede • stop-aware • element builder • sanity check tool</div>
@@ -281,6 +282,12 @@
           </div>
         </section>
 
+        <details id="omitComparison" class="omitComparison">
+          <summary>Full-Frame Coverage: Ø46.3 mm unvalidated · OMIT 50 Best vs M4</summary>
+          <p><strong>Required Ø46.3 mm: usable coverage unvalidated.</strong> The table traces four field positions; survival is the fraction of launched rays reaching the image plane, not measured illumination.</p>
+          <p>Saved presets at infinity on their fixed image planes, using the same OMIT 50 dense reference settings. Editor changes do not affect this comparison.</p>
+          <div id="omitResult" aria-live="polite"></div>
+        </details>
         <section class="tableWrap" aria-label="Surface table">
           <table class="tbl" aria-describedby="surfaceTableHelp">
             <thead>
@@ -585,5 +592,6 @@
   <script src="./optimization/aperture-continuation.js"></script>
   <script src="./optimization/design-challenge.js"></script>
   <script src="./ui/studio.js"></script>
+  <script src="./ui/omit-comparison.js"></script>
 </body>
 </html>
