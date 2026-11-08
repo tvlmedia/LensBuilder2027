@@ -43,6 +43,11 @@
       if (s.stop) surfaces.push("  STOP");
       if (s.glass?.toUpperCase() !== "AIR") {
         const glass = materials.material(s);
+        if (glass.model === "nd-vd-approximate" && glass.nd > 1 && glass.Vd > 0) {
+          surfaces.push("  COMM " + glass.name.replace(/[\r\n]/g, " ") + " (Lens Builder nd/Vd model)",
+            "  GLAS ___BLANK 0 0 " + glass.nd + " " + glass.Vd);
+          continue;
+        }
         if (glass.model !== "sellmeier")
           throw new Error("No verified catalog dispersion for " + glass.name + " at surface " + index);
         catalogs.add(glass.manufacturer);

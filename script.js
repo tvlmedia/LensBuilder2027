@@ -7939,6 +7939,9 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
   }
 
   function exportZmxFile() {
+    const dialog = document.getElementById("zmxResult");
+    const message = document.getElementById("zmxMessage");
+    const link = document.getElementById("zmxDownload");
     try {
       const snapshot = buildLensJson();
       const distance = getFocusChartDistanceMm();
@@ -7948,16 +7951,23 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
         lensShift: pose.lensShift, sensorShift: pose.sensorX, activeNm: getActiveAnalysisLambdaNm()
       });
       const url = URL.createObjectURL(new Blob([text], {type: "text/plain"}));
-      const link = document.createElement("a");
       link.href = url;
       link.download = (snapshot.name.replace(/[^a-z0-9_-]+/gi, "_") || "lens") + ".zmx";
-      document.body.appendChild(link);
+      link.hidden = false;
+      message.textContent = "Your export is ready. If the download did not start, use the link below.";
+      if (text.includes("GLAS ___BLANK"))
+        message.textContent += " Approximate glasses use their stored nd/Vd values. Surface comments identify their original names.";
+      dialog.addEventListener("close", () => {
+        URL.revokeObjectURL(url);
+        link.removeAttribute("href");
+        link.hidden = true;
+      }, {once: true});
+      dialog.showModal();
       link.click();
-      link.remove();
-      setTimeout(() => URL.revokeObjectURL(url), 1000);
-      toast("Exported ZMX");
     } catch (error) {
-      setStatusWarning("ZMX export failed: " + error.message);
+      link.hidden = true;
+      message.textContent = "Export failed: " + error.message;
+      dialog.showModal();
     }
   }
 
