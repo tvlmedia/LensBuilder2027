@@ -7938,6 +7938,29 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
     modal.setAttribute("aria-hidden", "false");
   }
 
+  function exportZmxFile() {
+    try {
+      const snapshot = buildLensJson();
+      const distance = getFocusChartDistanceMm();
+      const pose = getFocusContext();
+      const text = LBZmxExport.serialize(snapshot, {
+        objectDistance: distance >= 1e8 ? Infinity : distance,
+        lensShift: pose.lensShift, sensorShift: pose.sensorX, activeNm: getActiveAnalysisLambdaNm()
+      });
+      const url = URL.createObjectURL(new Blob([text], {type: "text/plain"}));
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = (snapshot.name.replace(/[^a-z0-9_-]+/gi, "_") || "lens") + ".zmx";
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+      toast("Exported ZMX");
+    } catch (error) {
+      setStatusWarning("ZMX export failed: " + error.message);
+    }
+  }
+
   function saveLensToFile() {
     try {
       const out = buildLensJson();
@@ -8166,6 +8189,7 @@ function wireUI() {
   on("#btnDebugOverlay", "click", toggleDebugOverlay);
 
   on("#btnSave", "click", saveLensToFile);
+  on("#btnExportZmx", "click", exportZmxFile);
   on("#btnCopyJson", "click", copyLensJsonToClipboard);
 
   // lens JSON file picker
