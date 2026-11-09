@@ -7639,8 +7639,7 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
 
     preview.sourceMode = mode;
     if (ui.previewSourceMode) ui.previewSourceMode.value = mode;
-    await loadPreviewImageFromURL(url, { announce: false });
-    return true;
+    return loadPreviewImageFromURL(url, { announce: false });
   }
 
   const previewLoads = LBPreview.latest();
@@ -7717,7 +7716,17 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
         if (!previewFiles.current(fileId)) { resolve(false); return; }
         const url = String(reader.result || "");
         preview.sourceUrls.custom = url;
-        setPreviewSourceMode("custom").then(resolve).catch(reject);
+        setPreviewSourceMode("custom").then(loaded => {
+          if (loaded && previewFiles.current(fileId)) {
+            // A new photo opens as the lens simulation, including when the last
+            // photo was left on Original or at the original end of the A/B slider.
+            document.getElementById("previewCompare").value = "simulation";
+            ui.previewRenderMode.value = "quality";
+            document.getElementById("optDOF").checked = true;
+            scheduleRenderPreview();
+          }
+          resolve(loaded);
+        }).catch(reject);
       };
       reader.onerror = reject;
       reader.readAsDataURL(file);
