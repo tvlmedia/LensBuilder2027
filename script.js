@@ -7624,8 +7624,9 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
     return preview.sourceUrls[mode] || null;
   }
 
-  async function setPreviewSourceMode(modeRaw) {
-    previewFiles.next();
+  async function setPreviewSourceMode(modeRaw, fileId = null) {
+    if (fileId === null) previewFiles.next();
+    else if (!previewFiles.current(fileId)) return false;
     const mode = String(modeRaw || "").toLowerCase() === "custom" ? "custom" : "chart";
     const url = getPreviewSourceUrl(mode);
     if (!url) {
@@ -7716,7 +7717,7 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
         if (!previewFiles.current(fileId)) { resolve(false); return; }
         const url = String(reader.result || "");
         preview.sourceUrls.custom = url;
-        setPreviewSourceMode("custom").then(loaded => {
+        setPreviewSourceMode("custom", fileId).then(loaded => {
           if (loaded && previewFiles.current(fileId)) {
             // A new photo opens as the lens simulation, including when the last
             // photo was left on Original or at the original end of the A/B slider.

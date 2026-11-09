@@ -116,3 +116,20 @@ test('a focused singlet reduces fine stripe contrast more off axis than at the c
  const center=contrast(full,40,56),edge=contrast(full,0,16);
  a.ok(center>edge+.10 && contrast(chief,0,16)>edge+.10);
 });
+
+test('loading a photo after A/B Original and fast mapping opens the geometric simulation',async()=>{
+ const source=require('node:fs').readFileSync(require.resolve('../script.js'),'utf8');
+ const between=(a,b)=>source.slice(source.indexOf(a),source.indexOf(b,source.indexOf(a)));
+ const comparison={value:'original'},dof={checked:false},mode={value:'fast'};
+ const context={
+   preview:{sourceUrls:{}},ui:{previewRenderMode:mode},previewFiles:P.latest(),previewLoads:P.latest(),
+   _previewRenderJobId:0,activePreviewWorker:null,drawPreviewViewport(){},scheduleRenderPreview(){},
+   document:{getElementById:id=>id==='previewCompare'?comparison:dof},
+   FileReader:class{readAsDataURL(file){this.result=file;this.onload();}},
+   loadPreviewImageFromURL:async url=>url==='data:image/png;base64,photo'
+ };
+ const code=between('  function getPreviewSourceUrl','  const previewLoads')+
+   between('  function loadPreviewImageFromFile','  // -------------------- load lens JSON');
+ const loaded=await require('node:vm').runInNewContext(code+';loadPreviewImageFromFile("data:image/png;base64,photo")',context);
+ a.equal(loaded,true);a.equal(comparison.value,'simulation');a.equal(mode.value,'quality');a.equal(dof.checked,true);
+});
