@@ -106,3 +106,13 @@ test('resolved edge broadens on the actual worker when the sensor is defocused',
  a.ok(width(edge(narrow,5,64))<width(defocused));a.notDeepEqual(edge(lens,5,16),defocused);
  const altered=structuredClone(lens);altered.surfaces[2].R=-38;a.notDeepEqual(edge(altered,0,64),focused);
 });
+test('a focused singlet reduces fine stripe contrast more off axis than at the center',()=>{
+ const system=require('./fixtures/preview-singlet.json'),c=P.pose(system,587.5618);
+ const W=96,H=8,imgW=1536,span=5e8;
+ const pixels=Uint8ClampedArray.from({length:imgW*4},(_,i)=>i%4===3||Math.floor((i>>2)/16)%2?255:0);
+ const run=spp=>render({W,H,spp,sensorW:36,sensorH:3,imgW,imgH:1,imgData:pixels,halfObjW:span,halfObjH:span,distance:1e9,sensorX:c.imageX,compiled:[c]});
+ const contrast=(im,lo,hi)=>{const values=[];for(let x=lo;x<hi;x++)values.push(im.output[(4*W+x)*4]);return (Math.max(...values)-Math.min(...values))/(Math.max(...values)+Math.min(...values));};
+ const chief=run(1),full=run(64);
+ const center=contrast(full,40,56),edge=contrast(full,0,16);
+ a.ok(center>edge+.10 && contrast(chief,0,16)>edge+.10);
+});
