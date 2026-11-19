@@ -28,6 +28,18 @@
       "verification": "manufacturer-agf"
     },
     {
+      "name": "LF7",
+      "before": null,
+      "nd": 1.575011,
+      "Vd": 41.490793,
+      "rangeNm": [
+        334,
+        1060
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
       "name": "N-BAF10",
       "before": {
         "nd": 1.67003,

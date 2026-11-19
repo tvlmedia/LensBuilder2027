@@ -7,9 +7,9 @@ const fixture = require('./fixtures/omit-legacy-schema-v2.json');
 const zmx = fs.readFileSync(require.resolve('./fixtures/omit-legacy-reconstructed.zmx'),'utf8');
 const near=(x,y,t=1e-12)=>a.ok(Math.abs(x-y)<=t,`${x} != ${y} (tolerance ${t})`);
 
-test('all 63 SCHOTT records match pinned manufacturer coefficients, ranges, nd/Vd and transmission',()=>{
+test('all 64 SCHOTT records match pinned manufacturer coefficients, ranges, nd/Vd and transmission',()=>{
   const glasses=Object.values(M.catalog).filter(g=>g.manufacturer==='SCHOTT');
-  a.equal(glasses.length,63);
+  a.equal(glasses.length,64);
   for(const g of glasses){
     a.deepEqual(g,agf[g.name]);
     const nd=M.index(g.name,M.wavelengths.d);
@@ -97,6 +97,47 @@ function nativeContext(){
   vm.runInNewContext(src.slice(start,end),ctx);
   return ctx;
 }
+for (const [file,count] of [
+  ['Helios44_front_Jupiter9_rear_native_LensBuilder.json',12],
+  ['Jupiter9_front_Helios44_rear_native_LensBuilder.json',14],
+]) test(`hybrid JSON import resolves original materials without geometry changes: ${file}`,()=>{
+  const original=require('./fixtures/'+file), before=structuredClone(original);
+  const ctx=nativeContext();
+  ctx.LBMaterials=M;
+  ctx.window={dispatchEvent(){}};
+  ctx.CustomEvent=class {constructor(type,options){this.detail=options.detail;}};
+  // Run the actual loadLens preflight through material validation, before UI work.
+  const src=fs.readFileSync(require.resolve('../script.js'),'utf8');
+  const start=src.indexOf('  function loadLens(obj) {');
+  vm.runInNewContext(src.slice(start,src.indexOf('    lens = next;',start))+'return next;\n}',ctx);
+  const loaded=ctx.loadLens(original);
+  a.equal(loaded.surfaces.length,count);
+  for(const [i,s] of loaded.surfaces.entries()){
+    for(const key of ['R','t','ap','glass','stop'])a.equal(s[key],original.surfaces[i][key],`${i}:${key}`);
+    for(const nm of [486.1327,587.5618,656.2725])a.ok(Number.isFinite(M.index(s,nm)));
+    if(s.glass!=='AIR'){a.notEqual(M.material(s).source,'User-supplied nd/Vd');a.notEqual(M.material(s).nd,1.5);}
+  }
+  a.ok(loaded.importReport.materialWarnings.some(w=>w.includes('LZ_TK14')));
+  a.deepEqual(original,before);
+});
+
+test('LF7 uses its own SCHOTT Sellmeier record; TK14 and BF16 use original LZOS nd/Vd',()=>{
+  const lf=M.material('LF7');a.equal(lf.model,'sellmeier');a.equal(lf.manufacturer,'SCHOTT');
+  a.deepEqual(lf.B,[1.26879731,.156697051,.887676301]);
+  a.deepEqual(lf.C,[.00919553925,.0447256764,106.820361]);
+  a.deepEqual(lf.rangeNm,[334,1060]);
+  near(M.index('LF7',M.wavelengths.d),1.575011,.51e-6);
+  for(const [name,nd,Vd] of [['LZ_TK14',1.613091,60.58],['LZ_BF16',1.671025,47.29]]){
+    const g=M.material(name);a.equal(g.name,name);a.equal(g.manufacturer,'LZOS');
+    a.equal(g.model,'nd-vd-approximate');a.equal(g.nd,nd);a.equal(g.Vd,Vd);
+    near(M.index(name,M.wavelengths.d),nd);
+    near((nd-1)/(M.index(name,M.wavelengths.F)-M.index(name,M.wavelengths.C)),Vd,1e-9);
+    a.equal(g.transmission,null);
+    a.throws(()=>M.index(name,800),/approximation scope/);
+  }
+  const named=Z.parseZemaxSequentialText(zmx.replace('GLAS LZ_TK16 0 0 1.5 40','GLAS LF7 0 0 1.5 40'));
+  a.equal(named.surfaces[1].nd,null);a.equal(M.material(named.surfaces[1]),lf);
+});
 test('real schemaVersion 2 sanitizer preserves all 13 surface records and explicit OF1 values',()=>{
   const context=nativeContext(), original=structuredClone(fixture), result=context.sanitizeLens(fixture);
   a.equal(result.schemaVersion,2);a.equal(result.surfaces.length,13);

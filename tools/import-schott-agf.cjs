@@ -19,7 +19,7 @@ function generate() {
   const file = fs.readFileSync(path.join(root,'materials/sources/schott-june-2025.agf'));
   const all = parse(file.toString('utf8'));
   const before = require('../materials/sources/legacy-values.json');
-  const selected = [...Object.keys(before), 'BAF9','K11'].sort().map(name=> {
+  const selected = [...Object.keys(before), 'BAF9','K11','LF7'].sort().map(name=> {
     const g = all[name];
     if (!g || g.formula !== 2 || !g.B?.every(Number.isFinite) || !g.C?.every(Number.isFinite) || !g.rangeNm?.every(Number.isFinite) || !(g.nd>1 && g.Vd>0)) throw Error('Unsupported/incomplete AGF record: '+name);
     if (!g.transmission.length) g.transmission = null;
