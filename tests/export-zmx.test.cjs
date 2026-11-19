@@ -45,13 +45,13 @@ test('exports edited surfaces and current conjugates without changing the lens',
   assert.deepEqual(lens,before);
 });
 
-test('default Concept exports its actual approximate glass models', () => {
+test('default Concept exports its verified catalog glass models', () => {
   const fs = require('node:fs'), vm = require('node:vm');
   const source = fs.readFileSync(require.resolve('../script.js'), 'utf8');
   const factory = source.match(/function omit50ConceptV1\(\) \{[\s\S]*?\n  \}/)[0];
   const concept = vm.runInNewContext(factory + ';omit50ConceptV1()');
   const text = serialize(concept, options);
-  assert.match(text, /COMM N-LAK9 .*\r\n  GLAS ___BLANK/);
+  assert.match(text, /GLAS N-LAK9/);
   const imported = parseZemaxSequentialText(text);
   const materials = require('../materials/catalog');
   for (const [i,s] of concept.surfaces.entries()) {

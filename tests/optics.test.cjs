@@ -81,7 +81,7 @@ test("unknown and legacy substituted glass fail; user nd/Vd marked approximate",
     M.material({ glass: "custom", nd: 1.5, vd: 60 }).model,
     "nd-vd-approximate",
   );
-  a.throws(() => M.index("N-F2", 200), /scope/);
+  a.throws(() => M.index("N-F2", 200), /manufacturer range/);
 });
 test("thick lens analytic EFL BFL and determinant", () => {
   const c = O.compile(singlet()),
