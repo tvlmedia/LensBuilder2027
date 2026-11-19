@@ -10,7 +10,7 @@ test('Best is the recovered serialized winner, never the concept or regenerated 
  a.equal(best.focus.mode,'fixed');a.equal(best.focus.shiftMm,0);
  a.equal(best.import_options.preserve_optical_apertures,true);a.equal(best.import_options.preserve_ims_aperture,true);
  const f=O.paraxial(O.compile(best));close(f.eflMm,49.95648830164519);close(f.fNumber,2);close(f.bflMm,35.25104186914508);close(f.imageDistanceMm,33.75119698467775);
- for(const [name,model]of Object.entries(best.presetProvenance.materials))a.deepEqual(model,M.catalog[name]);
+ for(const [name,model]of Object.entries(best.presetProvenance.materials))for(const key of ["nd","Vd","model","B","C"])a.deepEqual(model[key],M.catalog[name][key]);
 });
 for(const [name,preset,merit,center,edge]of [['Best',best,191.71823128235255,.09692741475300694,.29015563300822717],['Historical M4',historical,211.6991817575039,.097399,.309609]])test(`${name} reproduces frozen dense objective and RMS`,()=>{
  const p=C.create(definition.specification,definition.operands,{source:'reference',budget:10000},preset),r=C.validate(p,{system:preset});

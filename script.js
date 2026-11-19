@@ -1040,7 +1040,7 @@ function warnMissingGlass(name) {
     safe.surfaces[0].t = 0.0;
   }
     if (safe.surfaces.length >= 1) safe.surfaces[safe.surfaces.length - 1].type = "IMS";
-    syncAllIMSApertures(safe.surfaces);
+    // Import preserves the recorded image surface; UI sensor changes are explicit actions.
     generateSurfaceLabels(safe.surfaces);
 
     return safe;
@@ -1420,9 +1420,21 @@ function warnMissingGlass(name) {
 
   function loadLens(obj) {
     const next = sanitizeLens(obj);
+    next.import_options.preserve_optical_apertures = true;
+    next.import_options.preserve_ims_aperture = true;
+    const materialErrors = [], materialWarnings = [];
     for (const surface of next.surfaces) {
-      LBMaterials.material(surface);
+      try {
+        const material = LBMaterials.material(surface);
+        if (material.model === "nd-vd-approximate") materialWarnings.push(`APPROXIMATE ${surface.glass}: ${material.source}`);
+      } catch (error) { materialErrors.push(`Surface ${next.surfaces.indexOf(surface)}: ${error.message}`); }
       if (surface.surfaceType !== "STANDARD" || surface.conic !== 0 || Object.values(surface.aspheric).some(v=>Number(v)!==0)) throw new Error("Unsupported native optical surface model");
+    }
+    if (materialErrors.length) throw new Error(materialErrors.join("; "));
+    if (materialWarnings.length) {
+      next.importReport = next.importReport || {supported:[],partial:[],ignored:[],failed:[],blocked:false};
+      next.importReport.materialWarnings = [...new Set([...(next.importReport.materialWarnings || []), ...materialWarnings])];
+      window.dispatchEvent(new CustomEvent("lensbuilder:import-report", {detail:next.importReport}));
     }
     lens = next;
     verifyPanelExpanded = false;
@@ -7784,12 +7796,12 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
       if (!r.ok) throw new Error(`${r.status} ${r.statusText}`);
       const txt = await r.text();
 
-      try {
+      if (/^\s*[\[{]/.test(txt)) {
         const obj = JSON.parse(txt);
         loadLens(obj);
         toast("Loaded lens JSON");
         return true;
-      } catch (_) {}
+      }
 
       if (isLikelyZemaxSequentialText(txt) || /\.(zmx|seq|txt)(\?|$)/i.test(url)) {
         importZemaxText(txt, url.split("/").pop() || "Zemax import", { importSource: "zmx_file" });
@@ -7826,7 +7838,9 @@ function traceRayForward(ray, surfaces, wavePreset, opts = {}) {
         return true;
       };
 
-      const order = /\.(zmx|seq)$/i.test(lower) ? [tryZemax, tryJson] : [tryJson, tryZemax];
+      // A recognized JSON file with a material error is not a failed format guess.
+      const order = /^\s*[\[{]/.test(txt) || /\.json$/i.test(lower)
+        ? [tryJson] : [tryZemax];
       for (const fn of order) {
         try {
           fn();

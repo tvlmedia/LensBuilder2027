@@ -75,90 +75,17 @@
   }
 
   function parseZemaxGlassLine(line) {
-    const parts = String(line || "")
-      .trim()
-      .split(/\s+/)
-      .filter(Boolean);
-    const glass = parts[1] ? String(parts[1]).trim() : "AIR";
-    const glassUp = glass.toUpperCase();
-
-    if (glassUp === "___BLANK") {
-      const ndFixed = parseZemaxFirstNumber(parts[4]);
-      const vdFixed = parseZemaxFirstNumber(parts[5]);
-      let nd = Number.isFinite(ndFixed) && ndFixed > 1 ? ndFixed : NaN;
-      let vd = Number.isFinite(vdFixed) && vdFixed > 0 ? vdFixed : NaN;
-
-      // Fallback for variant formatting; still prefer the explicit slots above.
-      if (!Number.isFinite(nd) || !Number.isFinite(vd)) {
-        const nums = parts
-          .slice(2)
-          .map((p) => parseZemaxFirstNumber(p))
-          .filter((n) => Number.isFinite(n));
-        for (let i = 0; i < nums.length; i++) {
-          const n = nums[i];
-          if (n > 1.2 && n < 3.0) {
-            nd = n;
-            for (let j = i + 1; j < nums.length; j++) {
-              if (nums[j] > 1) {
-                vd = nums[j];
-                break;
-              }
-            }
-            break;
-          }
-        }
-      }
-
-      return {
-        glass,
-        nd: Number.isFinite(nd) ? nd : null,
-        vd: Number.isFinite(vd) ? vd : null,
-      };
-    }
-
-    const nums = parts
-      .slice(2)
-      .map((p) => parseZemaxFirstNumber(p))
-      .filter((n) => Number.isFinite(n));
-
-    let nd = NaN;
-    let ndIdx = -1;
-    for (let i = 0; i < nums.length; i++) {
-      const n = nums[i];
-      if (n > 1.2 && n < 3.0) {
-        nd = n;
-        ndIdx = i;
-        break;
-      }
-    }
-
-    let vd = NaN;
-    if (ndIdx >= 0) {
-      for (let i = ndIdx + 1; i < nums.length; i++) {
-        const v = nums[i];
-        if (v > 1) {
-          vd = v;
-          break;
-        }
-      }
-    }
-
-    if (!Number.isFinite(nd) && nums.length >= 2) {
-      const ndTail = nums[nums.length - 2];
-      const vdTail = nums[nums.length - 1];
-      if (ndTail > 1.2 && ndTail < 3.0 && vdTail > 1) {
-        nd = ndTail;
-        vd = vdTail;
-      }
-    }
-
-    // Missing dispersion stays unavailable; do not fabricate an Abbe number.
-
-    return {
-      glass,
-      nd: Number.isFinite(nd) ? nd : null,
-      vd: Number.isFinite(vd) ? vd : null,
-    };
+    const parts = String(line || "").trim().split(/\s+/);
+    const glass = parts[1] || "AIR";
+    // Catalog GLAS trailing nd/Vd are inactive cached/placeholder values.
+    // Only the model-glass ___BLANK record defines nd/Vd in slots 4 and 5.
+    if (parts[2] != null && Number(parts[2]) !== 0)
+      throw new Error(`Unsupported GLAS solve for ${glass}; export a fixed prescription`);
+    if (glass.toUpperCase() !== "___BLANK") return {glass, nd:null, vd:null};
+    const nd = Number(parts[4]), vd = Number(parts[5]);
+    if (!(Number.isFinite(nd) && nd > 1 && Number.isFinite(vd) && vd > 0))
+      throw new Error("___BLANK requires explicit valid nd and Vd in GLAS slots 4 and 5");
+    return {glass, nd, vd};
   }
 
   function extractLikelyZemaxLinesFromText(txt) {
@@ -541,7 +468,12 @@
       }
 
       if (up.startsWith("GLAS")) {
-        const parsedGlass = parseZemaxGlassLine(line);
+        let parsedGlass;
+        try { parsedGlass = parseZemaxGlassLine(line); }
+        catch (error) {
+          report.failed.push({surface:cur.idx, keyword:"GLAS", reason:error.message});
+          failReport(report);
+        }
         const glassName = String(parsedGlass.glass || "AIR").trim();
         const isBlank = glassName.toUpperCase() === "___BLANK";
         cur.ORIGINAL_GLASS = glassName || "AIR";
@@ -585,7 +517,7 @@
         const mat = M.material({ glass: s.GLAS, nd: s.nd, vd: s.vd });
         if (mat.model === "nd-vd-approximate")
           report.materialWarnings.push(
-            `APPROXIMATE material at surface ${s.idx}: ${mat.name}`,
+            `APPROXIMATE material at surface ${s.idx}: ${mat.name}; ${mat.source}`,
           );
       } catch (e) {
         report.failed.push({ ...entry, keyword: "GLAS", reason: e.message });

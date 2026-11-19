@@ -1,0 +1,1007 @@
+{
+  "source": "https://media.schott.com/api/public/content/a79c07aa61da4c05a2c0bbab93d09a7f?download=true&v=3b65e351",
+  "retrieved": "2026-11-19",
+  "sha256": "657e8c97718faee9a5b58e6308eb9608f94f991a0cb0ac5f5cc69c9e8e540371",
+  "records": [
+    {
+      "name": "BAF9",
+      "before": null,
+      "nd": 1.643276,
+      "Vd": 47.958224,
+      "rangeNm": [
+        334,
+        2325
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "K11",
+      "before": null,
+      "nd": 1.50013,
+      "Vd": 61.438579,
+      "rangeNm": [
+        334,
+        2325
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-BAF10",
+      "before": {
+        "nd": 1.67003,
+        "Vd": 47.11,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.67003,
+      "Vd": 47.11,
+      "rangeNm": [
+        350,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-BAF4",
+      "before": {
+        "nd": 1.60568,
+        "Vd": 43.72,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.60568,
+      "Vd": 43.72,
+      "rangeNm": [
+        365,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-BAF51",
+      "before": {
+        "nd": 1.65224,
+        "Vd": 44.96,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.65224,
+      "Vd": 44.96,
+      "rangeNm": [
+        350,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-BAF52",
+      "before": {
+        "nd": 1.60863,
+        "Vd": 46.6,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.60863,
+      "Vd": 46.6,
+      "rangeNm": [
+        365,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-BAK1",
+      "before": {
+        "nd": 1.5725,
+        "Vd": 57.55,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.5725,
+      "Vd": 57.55,
+      "rangeNm": [
+        300,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-BAK2",
+      "before": {
+        "nd": 1.53996,
+        "Vd": 59.71,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.53996,
+      "Vd": 59.71,
+      "rangeNm": [
+        300,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-BAK4",
+      "before": {
+        "nd": 1.56883,
+        "Vd": 55.98,
+        "model": "sellmeier"
+      },
+      "nd": 1.56883,
+      "Vd": 55.98,
+      "rangeNm": [
+        334,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-BALF4",
+      "before": {
+        "nd": 1.57956,
+        "Vd": 53.87,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.57956,
+      "Vd": 53.87,
+      "rangeNm": [
+        350,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-BALF5",
+      "before": {
+        "nd": 1.54739,
+        "Vd": 53.63,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.54739,
+      "Vd": 53.63,
+      "rangeNm": [
+        350,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-BASF2",
+      "before": {
+        "nd": 1.66446,
+        "Vd": 36,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.66446,
+      "Vd": 36,
+      "rangeNm": [
+        370,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-BK10",
+      "before": {
+        "nd": 1.49782,
+        "Vd": 66.95,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.49782,
+      "Vd": 66.95,
+      "rangeNm": [
+        290,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-BK7",
+      "before": {
+        "nd": 1.5168,
+        "Vd": 64.17,
+        "model": "sellmeier"
+      },
+      "nd": 1.5168,
+      "Vd": 64.17,
+      "rangeNm": [
+        300,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-BK7HT",
+      "before": {
+        "nd": 1.5168,
+        "Vd": 64.17,
+        "model": "sellmeier"
+      },
+      "nd": 1.5168,
+      "Vd": 64.17,
+      "rangeNm": [
+        300,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-F2",
+      "before": {
+        "nd": 1.62005,
+        "Vd": 36.43,
+        "model": "sellmeier"
+      },
+      "nd": 1.62005,
+      "Vd": 36.43,
+      "rangeNm": [
+        365,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-FK5",
+      "before": {
+        "nd": 1.48749,
+        "Vd": 70.41,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.48749,
+      "Vd": 70.41,
+      "rangeNm": [
+        260,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-FK58",
+      "before": {
+        "nd": 1.456,
+        "Vd": 90.9,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.456,
+      "Vd": 90.9,
+      "rangeNm": [
+        260,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-K5",
+      "before": {
+        "nd": 1.52249,
+        "Vd": 59.48,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.52249,
+      "Vd": 59.48,
+      "rangeNm": [
+        310,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-KF9",
+      "before": {
+        "nd": 1.52346,
+        "Vd": 51.54,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.52346,
+      "Vd": 51.54,
+      "rangeNm": [
+        350,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-KZFS2",
+      "before": {
+        "nd": 1.55836,
+        "Vd": 54.01,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.55836,
+      "Vd": 54.01,
+      "rangeNm": [
+        310,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-KZFS4",
+      "before": {
+        "nd": 1.61336,
+        "Vd": 44.49,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.61336,
+      "Vd": 44.49,
+      "rangeNm": [
+        334,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-KZFS5",
+      "before": {
+        "nd": 1.65412,
+        "Vd": 39.7,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.65412,
+      "Vd": 39.7,
+      "rangeNm": [
+        334,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-KZFS8",
+      "before": {
+        "nd": 1.72047,
+        "Vd": 34.7,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.72047,
+      "Vd": 34.7,
+      "rangeNm": [
+        334,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-LAF2",
+      "before": {
+        "nd": 1.74397,
+        "Vd": 44.85,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.74397,
+      "Vd": 44.85,
+      "rangeNm": [
+        350,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-LAF21",
+      "before": {
+        "nd": 1.788,
+        "Vd": 47.49,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.788,
+      "Vd": 47.49,
+      "rangeNm": [
+        334,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-LAF34",
+      "before": {
+        "nd": 1.7725,
+        "Vd": 49.62,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.7725,
+      "Vd": 49.62,
+      "rangeNm": [
+        310,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-LAF7",
+      "before": {
+        "nd": 1.7495,
+        "Vd": 34.82,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.7495,
+      "Vd": 34.82,
+      "rangeNm": [
+        365,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-LAK10",
+      "before": {
+        "nd": 1.72003,
+        "Vd": 50.62,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.72003,
+      "Vd": 50.62,
+      "rangeNm": [
+        350,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-LAK22",
+      "before": {
+        "nd": 1.65113,
+        "Vd": 55.89,
+        "model": "sellmeier"
+      },
+      "nd": 1.65113,
+      "Vd": 55.89,
+      "rangeNm": [
+        280,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-LAK28",
+      "before": {
+        "nd": 1.74429,
+        "Vd": 50.77,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.74429,
+      "Vd": 50.77,
+      "rangeNm": [
+        350,
+        2325
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-LAK34",
+      "before": {
+        "nd": 1.72916,
+        "Vd": 54.5,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.72916,
+      "Vd": 54.5,
+      "rangeNm": [
+        290,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-LAK9",
+      "before": {
+        "nd": 1.691,
+        "Vd": 54.71,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.691,
+      "Vd": 54.71,
+      "rangeNm": [
+        320,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-LASF40",
+      "before": {
+        "nd": 1.83404,
+        "Vd": 37.3,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.83404,
+      "Vd": 37.3,
+      "rangeNm": [
+        365,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-LASF41",
+      "before": {
+        "nd": 1.83501,
+        "Vd": 43.13,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.83501,
+      "Vd": 43.13,
+      "rangeNm": [
+        334,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-LASF43",
+      "before": {
+        "nd": 1.8061,
+        "Vd": 40.61,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.8061,
+      "Vd": 40.61,
+      "rangeNm": [
+        350,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-LASF44",
+      "before": {
+        "nd": 1.8042,
+        "Vd": 46.5,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.8042,
+      "Vd": 46.5,
+      "rangeNm": [
+        334,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-LASF45",
+      "before": {
+        "nd": 1.80107,
+        "Vd": 34.97,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.80107,
+      "Vd": 34.97,
+      "rangeNm": [
+        365,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-LASF9",
+      "before": {
+        "nd": 1.85025,
+        "Vd": 32.17,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.85025,
+      "Vd": 32.17,
+      "rangeNm": [
+        370,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-PK52A",
+      "before": {
+        "nd": 1.497,
+        "Vd": 81.61,
+        "model": "sellmeier"
+      },
+      "nd": 1.497,
+      "Vd": 81.61,
+      "rangeNm": [
+        290,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-PSK3",
+      "before": {
+        "nd": 1.55232,
+        "Vd": 63.46,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.55232,
+      "Vd": 63.46,
+      "rangeNm": [
+        300,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-PSK53A",
+      "before": {
+        "nd": 1.618,
+        "Vd": 63.39,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.618,
+      "Vd": 63.39,
+      "rangeNm": [
+        320,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-SF1",
+      "before": {
+        "nd": 1.71736,
+        "Vd": 29.62,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.71736,
+      "Vd": 29.62,
+      "rangeNm": [
+        370,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-SF10",
+      "before": {
+        "nd": 1.72828,
+        "Vd": 28.53,
+        "model": "sellmeier"
+      },
+      "nd": 1.72828,
+      "Vd": 28.53,
+      "rangeNm": [
+        380,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-SF11",
+      "before": {
+        "nd": 1.78472,
+        "Vd": 25.68,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.78472,
+      "Vd": 25.68,
+      "rangeNm": [
+        370,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-SF15",
+      "before": {
+        "nd": 1.69892,
+        "Vd": 30.2,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.69892,
+      "Vd": 30.2,
+      "rangeNm": [
+        370,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-SF2",
+      "before": {
+        "nd": 1.64769,
+        "Vd": 33.82,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.64769,
+      "Vd": 33.82,
+      "rangeNm": [
+        365,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-SF4",
+      "before": {
+        "nd": 1.75513,
+        "Vd": 27.38,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.75513,
+      "Vd": 27.38,
+      "rangeNm": [
+        365,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-SF5",
+      "before": {
+        "nd": 1.67271,
+        "Vd": 32.25,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.67271,
+      "Vd": 32.25,
+      "rangeNm": [
+        370,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-SF57",
+      "before": {
+        "nd": 1.84666,
+        "Vd": 23.78,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.84666,
+      "Vd": 23.78,
+      "rangeNm": [
+        370,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-SF6",
+      "before": {
+        "nd": 1.80518,
+        "Vd": 25.36,
+        "model": "sellmeier"
+      },
+      "nd": 1.80518,
+      "Vd": 25.36,
+      "rangeNm": [
+        370,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-SF66",
+      "before": {
+        "nd": 1.92286,
+        "Vd": 20.88,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.92286,
+      "Vd": 20.88,
+      "rangeNm": [
+        390,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-SF8",
+      "before": {
+        "nd": 1.68894,
+        "Vd": 31.31,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.68894,
+      "Vd": 31.31,
+      "rangeNm": [
+        370,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-SK11",
+      "before": {
+        "nd": 1.56384,
+        "Vd": 60.8,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.56384,
+      "Vd": 60.8,
+      "rangeNm": [
+        300,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-SK14",
+      "before": {
+        "nd": 1.60311,
+        "Vd": 60.6,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.60311,
+      "Vd": 60.6,
+      "rangeNm": [
+        310,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-SK16",
+      "before": {
+        "nd": 1.62041,
+        "Vd": 60.32,
+        "model": "sellmeier"
+      },
+      "nd": 1.62041,
+      "Vd": 60.32,
+      "rangeNm": [
+        310,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-SK2",
+      "before": {
+        "nd": 1.60738,
+        "Vd": 56.65,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.60738,
+      "Vd": 56.65,
+      "rangeNm": [
+        310,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-SK4",
+      "before": {
+        "nd": 1.61272,
+        "Vd": 58.63,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.61272,
+      "Vd": 58.63,
+      "rangeNm": [
+        334,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-SK5",
+      "before": {
+        "nd": 1.58913,
+        "Vd": 61.27,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.58913,
+      "Vd": 61.27,
+      "rangeNm": [
+        300,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-SSK2",
+      "before": {
+        "nd": 1.62229,
+        "Vd": 53.27,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.62229,
+      "Vd": 53.27,
+      "rangeNm": [
+        350,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-SSK5",
+      "before": {
+        "nd": 1.65844,
+        "Vd": 50.88,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.65844,
+      "Vd": 50.88,
+      "rangeNm": [
+        350,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-SSK8",
+      "before": {
+        "nd": 1.61773,
+        "Vd": 49.83,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.61773,
+      "Vd": 49.83,
+      "rangeNm": [
+        350,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    },
+    {
+      "name": "N-ZK7A",
+      "before": {
+        "nd": 1.508054,
+        "Vd": 61.04,
+        "model": "nd-vd-approximate"
+      },
+      "nd": 1.508054,
+      "Vd": 61.04,
+      "rangeNm": [
+        300,
+        2500
+      ],
+      "model": "sellmeier",
+      "verification": "manufacturer-agf"
+    }
+  ]
+}
